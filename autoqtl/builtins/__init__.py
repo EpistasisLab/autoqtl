@@ -1,0 +1,5 @@
+from .genetic_encoders import AdditiveEncoder
+from .genetic_encoders import AdditiveAlternateEncoder
+from .genetic_encoders import DominantEncoder
+from .genetic_encoders import RecessiveEncoder
+from .genetic_encoders import HeterosisEncoder
