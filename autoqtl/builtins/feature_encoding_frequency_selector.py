@@ -3,7 +3,8 @@ from sklearn.base import BaseEstimator
 from sklearn.feature_selection._base import SelectorMixin
 
 class FeatureEncodingFrequencySelector(BaseEstimator, SelectorMixin):
-    """Feature selector based on Allele Frequency. Features are selected on the basis of a threshold assigned for Frequency of A and Frequency of a. """
+    """Feature selector based on Encoding Frequency. Encoding frequency is the frequency of each unique element(0/1/2/3) present in a feature set. 
+     Features are selected on the basis of a threshold assigned for encoding frequency. If frequency of any unique element is less than or equal to threshold, the feature is removed.  """
 
     @property
     def __name__(self):
@@ -11,7 +12,7 @@ class FeatureEncodingFrequencySelector(BaseEstimator, SelectorMixin):
         return self.__class__.__name__
     
     def __init__(self, threshold):
-        """Create a FeatureAlleleFrequencySelector object.
+        """Create a FeatureEncodingFrequencySelector object.
         
         Parameters
         ----------
@@ -78,12 +79,13 @@ class FeatureEncodingFrequencySelector(BaseEstimator, SelectorMixin):
         return X_transformed"""
 
     def fit(self, X, y=None) :
-        """Fit FeatureEncodingFrequencySelector for feature selection. """
+        """Fit FeatureEncodingFrequencySelector for feature selection. This function gets the appropriate features. """
+       
         self.selected_feature_indexes = []
         self.no_of_original_features = X.shape[1]
 
-        # Finding the frequency of all the unique values present in the input variable X
-        for i in range(0, X.shape[1]-1):
+        # Finding the frequency of all the unique elements present featurewise in the input variable X
+        for i in range(0, X.shape[1]):
             unique, counts = np.unique(X[:,i], return_counts=True)
             element_count_dict_featurewise = dict(zip(unique, counts))
             element_frequency_dict_featurewise = {}
@@ -108,7 +110,7 @@ class FeatureEncodingFrequencySelector(BaseEstimator, SelectorMixin):
         return self
 
     def transform(self, X):
-
+        """ Make subset after fit. This function returns a transformed version of X.  """
         X_transformed = X[:, self.selected_feature_indexes]
 
         return X_transformed
@@ -123,7 +125,7 @@ class FeatureEncodingFrequencySelector(BaseEstimator, SelectorMixin):
         support : boolean array of shape [# input features]
             An element is True iff its corresponding feature is selected for retention.
             """
-        n_features = self.no_of_features
+        n_features = self.no_of_original_features
         mask = np.zeros(n_features, dtype=bool)
         mask[np.asarray(self.selected_feature_indexes)] = True
 

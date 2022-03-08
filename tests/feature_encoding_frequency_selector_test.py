@@ -23,3 +23,6 @@ print( transformed_X.shape[0] == test_X.shape[0])
 print( transformed_X.shape[1] != test_X.shape[1])
 print(transformed_X.shape[1])
 print(op.selected_feature_indexes)
+
+mask = op._get_support_mask()
+print(mask)
