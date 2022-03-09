@@ -23,7 +23,8 @@ def test_AdditiveEncoder():
                                     [3, 3, 3, 2, 1],
                                     [1, 1, 3, 2, 1]])
     op = AdditiveEncoder()
-    X_transformed = op.transform(X)
+    #X_transformed = op.transform(X)
+    X_transformed = op.fit_transform(X)
 
     print( np.allclose(X_expected_transformation, X_transformed))
 

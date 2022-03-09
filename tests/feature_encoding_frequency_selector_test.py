@@ -17,12 +17,13 @@ test_X = test_data_numpyarray[:, : -1 ]
 op = FeatureEncodingFrequencySelector(0.05)
 op.fit(test_X, y=None)
 
-transformed_X = op.transform(test_X)
+# transformed_X = op.transform(test_X)
+transformed_X = op.fit_transform(test_X, y=None)
 
 print( transformed_X.shape[0] == test_X.shape[0])
 print( transformed_X.shape[1] != test_X.shape[1])
 print(transformed_X.shape[1])
-print(op.selected_feature_indexes)
+# print(op.selected_feature_indexes)
 
 mask = op._get_support_mask()
-print(mask)
+# print(mask)
