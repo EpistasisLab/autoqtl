@@ -64,4 +64,90 @@ def source_decode(sourcecode, verbose=0):
         op_obj = None
     return import_str, op_str, op_obj
 
+def set_sample_weight(pipeline_steps, sample_weight=None):
+    """Recursively iterates through all objects in the pipeline and sets sample weight.
+    
+    Parameters
+    ----------
+    pipeline_steps : array-like
+        List of (str, obj) tuples from a scikit-learn pipeline or related object
+        
+    sample_weight : array-like
+        List of sample weight
+        
+    Returns
+    -------
+    sample_weight_dict :
+        A dictionary of sample_weight
+        
+    """
+    sample_weight_dict = {}
+    if not isinstance(sample_weight, type(None)):
+        for (pname, obj) in pipeline_steps:
+            if inspect.getfullargspec(obj.fit).args.count("sample_weight"):
+                step_sw = pname + "_sample_weight"
+                sample_weight_dict[step_sw] = sample_weight
+    
+    if sample_weight_dict:
+        return sample_weight_dict
+    else:
+        return None
+
+def _is_selector(estimator):
+    """Checks if an estimator is of type selector.
+    
+    Parameter
+    ---------
+    estimator : object
+        the class object for the operator
+    
+    Returns
+    -------
+    bool value : True if estimator is a selector else false
+    
+    """
+    selector_methods = [
+        "get_support",
+        "transform",
+        "inverse_transform",
+        "fit_transform",
+    ]
+    return all(hasattr(estimator, method) for method in selector_methods)
+
+def _is_transformer(estimator):
+    """Checks if an estimator is of type transformer.
+    
+    Parameter
+    ---------
+    estimator : object
+        the class object for the operator
+    
+    Returns
+    -------
+    bool value : True if estimator is a transformer else false
+    """
+    return hasattr(estimator, "fit_transform")
+
+def ARGTypeClassFactory(classname, prange, BaseClass=ARGType):
+    """Dynamically create parameter type class.
+    
+    Parameters
+    ----------
+    classname : string
+        parameter name in a operator
+    
+    prange : list
+        list of values for the parameter in a operator
+
+    BaseClass : Class
+        inherited BaseClass (AUTOQTL class) for parameter
+
+    Returns 
+    -------
+
+    Class
+        parameter class
+
+    """
+    return type(classname, (BaseClass,), {"values": prange})
 

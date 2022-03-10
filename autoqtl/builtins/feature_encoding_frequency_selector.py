@@ -119,6 +119,7 @@ class FeatureEncodingFrequencySelector(BaseEstimator, SelectorMixin):
     def _get_support_mask(self):
         """
         Get the boolean mask indicating which features are selected
+        It is the abstractmethod
         
         Returns
         -------

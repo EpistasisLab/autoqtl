@@ -27,3 +27,5 @@ print(transformed_X.shape[1])
 
 mask = op._get_support_mask()
 # print(mask)
+support = op.get_support()
+#print(support)
