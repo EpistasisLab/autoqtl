@@ -40,11 +40,11 @@ regressor_config_dict = {
 
     },
 
-    'autoqtl.builtins.genetic_encoder.RecessiveEncoder': {
+    'autoqtl.builtins.genetic_encoders.RecessiveEncoder': {
 
     },
 
-    'autoqtl.builtins.genetic_encoder.HeterosisEncoder': {
+    'autoqtl.builtins.genetic_encoders.HeterosisEncoder': {
 
     },
 
