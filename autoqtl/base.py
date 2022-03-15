@@ -1,9 +1,19 @@
 """This file is part of AUTOQTL library"""
+import imp
+import inspect
+import os
+import random
+from subprocess import call
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
+from sklearn import tree
 
 from sklearn.base import BaseEstimator
+from sklearn.metrics import SCORERS
+
+from .gp_types import Output_Array
+from .builtins.combine_dfs import CombineDFs
 
 from .config.regressor import regressor_config_dict
 
@@ -249,10 +259,10 @@ class AUTOQTLBase(BaseEstimator):
             self._min = 1
             self._max = 3
         else:
-            self.template_comp = template.split("-")
+            self._template_comp = template.split("-")
             self._min = 0
             self._max = 1
-            for comp in self.template_comp:
+            for comp in self._template_comp:
                 if comp == "CombineDFs":
                     self._min += 1
                     self._max += 2
@@ -264,3 +274,210 @@ class AUTOQTLBase(BaseEstimator):
             self.tree_structure = False
         else:
             self.tree_structure = True
+    
+
+    def _setup_scoring_function(self, scoring):
+        """Setup the scoring function which will be used to score the pipelines generated.
+        
+        Parameter
+        ---------
+        scoring : string or callable function
+            the custom scoring function specified by the user while using the package
+            
+        Returns
+        -------
+        None
+        
+        """
+        if scoring:
+            if isinstance(scoring, str):
+                if scoring not in SCORERS:
+                    raise ValueError(
+                        "The scoring function {} is not available. "
+                        "choose a valid scoring function from the AUTOQTL " 
+                        "documentation.".format(scoring)
+                    )
+                self._scoring_function = scoring # tpot uses the variable name as scoring_function and not _scoring_function but I thought this to be according to code convention.
+            elif callable(scoring):
+                # Heuristic to ensure user has not passed a metric
+                module = getattr(scoring, "__module__", None)
+                args_list = inspect.getfullargspec(scoring)[0]
+                if args_list == ["y_true", "y_pred"] or (
+                    hasattr(module, "startswith")
+                    and (
+                        module.startswith("sklearn.metrics.")
+                        or module.startswith("autoqtl.metrics")
+                    )
+                    and not module.startswith("sklearn.metrics._scorer")
+                    and not module.startswith("sklearn.metrics.tests.")
+                ):
+                    raise ValueError(
+                        "Scoring function {} looks like it is a metric function "
+                        "rather than a scikit-learn scorer. "
+                        "Please update your custom scoring function.".format(scoring)
+                    )
+                else:
+                    self._scoring_function = scoring
+    
+    def _setup_config(self, config_dict):
+        """Setup the configuration dictionary containing the various ML methods, selectors and transformers.
+        
+        Parameters
+        ----------
+        config_dict : Python dictionary or string
+            custom config dict containing the customizing operators and parameters that AUTOQTL uses in the optimization process
+            or the path to the cumtom config dict
+            
+        Returns
+        -------
+        None
+        
+        """
+        
+        if config_dict:
+            if isinstance(config_dict, dict):
+                self._config_dict = config_dict
+            
+            else:
+                config = self._read_config_file(config_dict)
+                if hasattr(config, "autoqtl_config"):
+                    self._config_dict = config.autoqtl_config
+                else:
+                     raise ValueError(
+                        'Could not find "autoqtl_config" in configuration file {}. '
+                        "When using a custom config file for customizing operators "
+                        "dictionary, the file must have a python dictionary with "
+                        'the standardized name of "autoqtl_config"'.format(config_dict)
+                    )
+        else:
+            self._config_dict = self.default_config_dict
+
+
+    def _read_config_file(self, config_path):
+        """Read the contents of the config dict file given the path.
+        
+        Parameters
+        ----------
+        config_path : string
+            path to the config dictionary
+        
+        Returns
+        -------
+        None
+        
+        """
+        if os.path.isfile(config_path):
+            try:
+                custom_config = imp.new_module("custom_config")
+
+                with open(config_path, "r") as config_file:
+                    file_string = config_file.read()
+                    exec(file_string, custom_config.__dict__)
+                return custom_config
+            except Exception as e:
+                raise ValueError(
+                    "An error occured while attempting to read the specified "
+                    "custom AUTOQTL operator configuration file: {}".format(e)
+                )
+        else:
+            raise ValueError(
+                "Could not open specified AUTOQTL operator config file: "
+                "{}".format(config_path)
+            )
+    
+
+    def _setup_pset(self):
+        """Set up the Primitive set to contain the primitives (functions) which will be used to generate a strongly typed GP tree. 
+            Uses the DEAP module class gp.PrimitiveSetTyped(...).
+            
+        """
+        if self.random_state is not None:
+            random.seed(self.random_state)
+            np.random.seed(self.random_state)
+
+        self._pset = gp.PrimitiveSetTyped("MAIN", [np.ndarray], Output_Array)
+        self._pset.renameArguments(ARG0="input_matrix") # default names of the argument are ARG0 and ARG1, ARG0 is renamed to input_matrix
+        self._add_operators() # function to add GP operators to the Primitive set for the GP tree to use them
+
+        if self.verbosity > 2:
+            print(
+                "{} operators have been imported by AUTOQTL.".format(len(self.operators))
+            )
+
+    def _add_operators(self):
+        """Add the operators as primitives to the GP primitive set. The operators are in the form of python classes."""
+
+        main_operator_types = ["Regressor", "Selector", "Transformer"] # TPOT uses the variable name main_type
+        return_types = [] # TPOT uses the variable name ret_types
+        self._op_list = [] # TPOT uses the variable name _op_list
+
+        if self.template == None: # default pipeline structure
+            step_in_type = np.ndarray # Input type of each step/operator in the tree
+            step_ret_type = Output_Array # Output type of each step/operator in the tree
+            
+            for operator in self.operators:
+                arg_types = operator.parameter_types()[0][1:] # parameter_types() is defined in operator_utils.py, it returns the input and return types of an operator class
+                if operator.root:
+                    # In case an operator is a root, the return type of that operator can only be Output_Array. In AUTOQTL, a ML method is always the root and cannot exist elsewhere in the tree.
+                    tree_primitive_types = ([step_in_type] + arg_types, step_ret_type) # A tuple with input(arguments types) and output type of a root operator
+                else:
+                    # For a non-root operator the return type is n-dimensional array
+                    tree_primitive_types = ([step_in_type] + arg_types, step_in_type)
+                
+                self._pset.addPrimitive(operator, *tree_primitive_types) # addPrimitive() is a method of the gp.PrimitiveSetTyped(...) class
+                self._import_hash_and_add_terminals(operator, arg_types)
+            self._pset.addPrimitive(CombineDFs(), [step_in_type, step_in_type], step_in_type)
+
+        else:
+            gp_types = {}
+            for idx, step in enumerate(self._template_comp):
+
+                # input class in each step
+                if idx:
+                    step_in_type = return_types[-1]
+                else:
+                    step_in_type = np.ndarray
+                if step != "CombineDFs":
+                    if idx < len(self._template_comp) - 1:
+                        # create an empty return class for returning class for strongly-type GP
+                        step_ret_type_name = "Ret_{}".format(idx)
+                        step_ret_type = type(step_ret_type_name, (object,), {})
+                        return_types.append(step_ret_type)
+                    else:
+                        step_ret_type = Output_Array
+                
+                if step == "CombineDFs":
+                    self._pset.addPrimitive(
+                        CombineDFs(), [step_in_type, step_in_type], step_in_type
+                    )
+                elif main_operator_types.count(step): # if the step is a main type
+                    step_operator_list = [op for op in self.operators if op.type() == step]
+                    for operator in step_operator_list:
+                        arg_types = operator.parameter_types()[0][1:]
+                        if operator.root: # Why not check for root condition? Modified. TPOT does not check for root condition
+                            tree_primitive_types = ([step_in_type] + arg_types, step_ret_type)
+                        else:
+                            tree_primitive_types = ([step_in_type] + arg_types, step_in_type)
+                        self._pset.addPrimitive(operator, *tree_primitive_types) 
+                        self._import_hash_and_add_terminals(operator, arg_types)
+                else:  # if the step is a specific operator or a wrong input
+                    try:
+                        operator = next(
+                            op for op in self.operators if op.__name__ == step
+                        )
+                    except:
+                        raise ValueError(
+                            "An error occured while attempting to read the specified "
+                            "template. Please check a step named {}".format(step)
+                        )
+                    arg_types = operator.parameter_types()[0][1:]
+                    if operator.root: # Why not check for root condition? Modified. TPOT does not check for root condition
+                            tree_primitive_types = ([step_in_type] + arg_types, step_ret_type)
+                    else:
+                        tree_primitive_types = ([step_in_type] + arg_types, step_in_type)
+                    self._pset.addPrimitive(operator, *tree_primitive_types) 
+                    self._import_hash_and_add_terminals(operator, arg_types)
+        self.return_types = [np.ndarray, Output_Array] + return_types 
+
+
+
