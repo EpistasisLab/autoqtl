@@ -454,11 +454,8 @@ class AUTOQTLBase(BaseEstimator):
                     step_operator_list = [op for op in self.operators if op.type() == step]
                     for operator in step_operator_list:
                         arg_types = operator.parameter_types()[0][1:]
-                        if operator.root: # Why not check for root condition? Modified. TPOT does not check for root condition
-                            tree_primitive_types = ([step_in_type] + arg_types, step_ret_type)
-                        else:
-                            tree_primitive_types = ([step_in_type] + arg_types, step_in_type)
-                        self._pset.addPrimitive(operator, *tree_primitive_types) 
+                        p_types = ([step_in_type] + arg_types, step_ret_type)
+                        self._pset.addPrimitive(operator, *p_types)
                         self._import_hash_and_add_terminals(operator, arg_types)
                 else:  # if the step is a specific operator or a wrong input
                     try:
@@ -471,11 +468,8 @@ class AUTOQTLBase(BaseEstimator):
                             "template. Please check a step named {}".format(step)
                         )
                     arg_types = operator.parameter_types()[0][1:]
-                    if operator.root: # Why not check for root condition? Modified. TPOT does not check for root condition
-                            tree_primitive_types = ([step_in_type] + arg_types, step_ret_type)
-                    else:
-                        tree_primitive_types = ([step_in_type] + arg_types, step_in_type)
-                    self._pset.addPrimitive(operator, *tree_primitive_types) 
+                    p_types = ([step_in_type] + arg_types, step_ret_type)
+                    self._pset.addPrimitive(operator, *p_types)
                     self._import_hash_and_add_terminals(operator, arg_types)
         self.return_types = [np.ndarray, Output_Array] + return_types 
 
