@@ -3,10 +3,14 @@ import imp
 import inspect
 import os
 import random
+import statistics
 from subprocess import call
+import sys
+import warnings
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
+from pyrsistent import pset
 from sklearn import tree
 
 from sklearn.base import BaseEstimator
@@ -14,6 +18,7 @@ from sklearn.metrics import SCORERS
 
 from .gp_types import Output_Array
 from .builtins.combine_dfs import CombineDFs
+from .decorators import _pre_test
 
 from .config.regressor import regressor_config_dict
 
@@ -472,6 +477,169 @@ class AUTOQTLBase(BaseEstimator):
                     self._pset.addPrimitive(operator, *p_types)
                     self._import_hash_and_add_terminals(operator, arg_types)
         self.return_types = [np.ndarray, Output_Array] + return_types 
+
+
+    def _import_hash_and_add_terminals(self, operator, arg_types):
+        """Call the _import_hash and _add_terminal methods """
+        if not self._op_list.count(operator.__name__):
+            self._import_hash(operator)
+            self._add_terminals(arg_types)
+            self._op_list.append(operator.__name__)
+    
+
+    def _import_hash(self, operator):
+        """Import required modules into local namespace so that pipelines may be evaluated directly """
+        for key in sorted(operator.import_hash.keys()): # import_hash is a dict containing the import paths for the classes, declared and defined in operator_utils.py
+            module_list = ", ".join(sorted(operator.import_hash[key]))
+
+            if key.startswith("autoqtl."):
+                exec("from {} import {}".format(key[7:], module_list))
+            else:
+                exec("from {} import {}".format(key, module_list))
+
+            for var in operator.import_hash[key]:
+                self.operators_context[var] = eval(var)
+    
+
+    def _add_terminals(self, arg_types):
+        """Adding terminals"""
+        for _type in arg_types:
+            type_values = list(_type.values) # picks up the multiple possible values for that argument. values is a property of the argument classes created
+
+            for val in type_values:
+                terminal_name = _type.__name__ + "=" + str(val)
+                self._pset.addTerminal(val, _type, name=terminal_name)
+
+
+    def _setup_toolbox(self):
+        """Setup the toolbox. ToolBox is a DEAP package class, which is a toolbox for evolution containing all the evolutionary operators. """
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            creator.create("FitnessMulti", base.Fitness, weights=(1.0, 1.0)) # Weights set according to requirement of maximizing two R2 values
+            creator.create(
+                "Individual",
+                gp.PrimitiveTree,
+                fitness=creator.FitnessMulti,
+                statistics=dict
+            )
+
+            self._toolbox = base.Toolbox()
+            self._toolbox.register(
+                "expr", self._gen_grow_safe, pset=self._pset, min_=self._min, max_=self._max
+            )
+            self._toolbox.register(
+                "individual", tools.initIterate, creator.Individual, self._toolbox.expr
+            )
+            self._toolbox.register(
+            "population", tools.initRepeat, list, self._toolbox.individual
+            )
+            self._toolbox.register("compile", self._compile_to_sklearn)
+            self._toolbox.register("select", tools.selNSGA2)
+            self._toolbox.register("mate", self._mate_operator)
+            if self.tree_structure:
+                self._toolbox.register(
+                "expr_mut", self._gen_grow_safe, min_=self._min, max_=self._max + 1
+                )
+            else:
+                self._toolbox.register(
+                "expr_mut", self._gen_grow_safe, min_=self._min, max_=self._max
+                )
+            self._toolbox.register("mutate", self._random_mutation_operator)
+    
+
+    def _gen_grow_safe(self, pset, min_, max_, type_=None):
+        """Generate an expression where each leaf might have a different depth between min_ and max_.
+
+        Parameters
+        ----------
+        pset: PrimitiveSetTyped
+            Primitive set from which primitives are selected.
+        min_: int
+            Minimum height of the produced trees.
+        max_: int
+            Maximum Height of the produced trees.
+        type_: class
+            The type that should return the tree when called, when
+                  :obj:None (default) the type of :pset: (pset.ret)
+                  is assumed.
+        Returns
+        -------
+        individual: list
+            A grown tree with leaves at possibly different depths.
+        """
+
+        def condition(height, depth, type_):
+            """Stop when the depth is equal to height or when a node should be a terminal."""
+            return type_ not in self.return_types or depth == height
+
+        return self._generate(pset, min_, max_, condition, type_)
+
+
+    @_pre_test
+    def _generate(self, pset, min_, max_, condition, type_=None):
+        """Generate a Tree as a list of lists.
+
+        The tree is build from the root to the leaves, and it stop growing when
+        the condition is fulfilled.
+
+        Parameters
+        ----------
+        pset: PrimitiveSetTyped
+            Primitive set from which primitives are selected.
+        min_: int
+            Minimum height of the produced trees.
+        max_: int
+            Maximum height of the produced trees.
+        condition: function
+            The condition is a function that takes two arguments,
+            the height of the tree to build and the current
+            depth in the tree.
+        type_: class
+            The type that should return the tree when called, when
+            :obj:None (default) no return type is enforced.
+
+        Returns
+        -------
+        individual: list
+            A grown tree with leaves at possibly different depths
+            depending on the condition function.
+        """
+        if type_ is None:
+            type_ = pset.ret
+        expr = []
+        height = np.random.randint(min_, max_)
+        stack = [(0, type_)]
+        while len(stack) != 0:
+            depth, type_ = stack.pop()
+
+            # We've added a type_ parameter to the condition function
+            if condition(height, depth, type_):
+                try:
+                    term = np.random.choice(pset.terminals[type_])
+                except IndexError:
+                    _, _, traceback = sys.exc_info()
+                    raise IndexError(
+                        "The gp.generate function tried to add "
+                        "a terminal of type {}, but there is"
+                        "none available. {}".format(type_, traceback)
+                    )
+                if inspect.isclass(term):
+                    term = term()
+                expr.append(term)
+            else:
+                try:
+                    prim = np.random.choice(pset.primitives[type_])
+                except IndexError:
+                    _, _, traceback = sys.exc_info()
+                    raise IndexError(
+                        "The gp.generate function tried to add "
+                        "a primitive of type {}, but there is"
+                        "none available. {}".format(type_, traceback)
+                    )
+                expr.append(prim)
+                for arg in reversed(prim.args):
+                    stack.append((depth + 1, arg))
+        return expr
 
 
 
