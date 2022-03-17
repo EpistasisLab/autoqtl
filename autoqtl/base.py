@@ -1,4 +1,5 @@
 """This file is part of AUTOQTL library"""
+from functools import partial
 import imp
 import inspect
 import os
@@ -15,12 +16,27 @@ from sklearn import tree
 
 from sklearn.base import BaseEstimator
 from sklearn.metrics import SCORERS
+from sklearn.pipeline import make_union, make_pipeline
 
 from .gp_types import Output_Array
 from .builtins.combine_dfs import CombineDFs
 from .decorators import _pre_test
 
+from .gp_deap import (
+    cxOnePoint, mutNodeReplacement
+)
+
+from .export_utils import (
+    expr_to_tree,
+    generate_pipeline_code,
+    set_param_recursive
+)
 from .config.regressor import regressor_config_dict
+
+try:
+    from imblearn.pipeline import make_pipeline as make_imblearn_pipeline
+except:
+    make_imblearn_pipeline = None
 
 """Building up the initial GP. """
 
@@ -640,6 +656,166 @@ class AUTOQTLBase(BaseEstimator):
                 for arg in reversed(prim.args):
                     stack.append((depth + 1, arg))
         return expr
+
+
+    @_pre_test
+    def _mate_operator(self, ind1, ind2):
+        """Crossover operator, one point crossover is used (DEAP inbuilt tool cxOnePoint is modified according to the problem).
+        Parameters
+        ----------
+        ind1 : DEAP individual
+            A list of pipeline operators and model parameters that can be compiled by DEAP into a callable function
+        
+        ind2 : DEAP individual
+            A list of pipeline operators and model parameters that can be compiled by DEAP into a callable function
+        
+        Returns
+        -------
+        offspring : DEAP individual formed after crossover
+        
+        offspring2 : DEAP individual formed after crossover
+        
+        """
+        for _ in range(self._max_mut_loops):
+            ind1_copy, ind2_copy = self._toolbox.clone(ind1), self._toolbox.clone(ind2)
+            offspring, offspring2 = cxOnePoint(ind1_copy, ind2_copy)
+
+            if str(offspring) not in self.evaluated_individuals_:
+                # We only use the first offspring, so we do not care to check uniqueness of the second.
+
+                # update statistics:
+                # mutation_count is set equal to the sum of mutation_count's of the predecessors
+                # crossover_count is set equal to the sum of the crossover_counts of the predecessor +1, corresponding to the current crossover operations
+                # predecessor is taken as tuple string representation of two predecessor individuals
+                # generation is set to 'INVALID' such that we can recognize that it should be updated accordingly
+                offspring.statistics["predecessor"] = (str(ind1), str(ind2))
+               
+                offspring.statistics["mutation_count"] = (
+                    ind1.statistics["mutation_count"]
+                    + ind2.statistics["mutation_count"]
+                )
+
+                offspring.statistics["crossover_count"] = (
+                    ind1.statistics["crossover_count"]
+                    + ind2.statistics["crossover_count"]
+                    + 1
+                )
+
+                offspring.statistics["generation"] = "INVALID"
+                break
+        
+        return offspring, offspring2
+
+
+    @_pre_test
+    def _random_mutation_operator(self, individual, allow_shrink=True):
+        """Perform a replacement, insertion, or shrink mutation on an individual.
+
+        Parameters
+        ----------
+        individual: DEAP individual
+            A list of pipeline operators and model parameters that can be
+            compiled by DEAP into a callable function
+
+        allow_shrink: bool (True)
+            If True the `mutShrink` operator, which randomly shrinks the pipeline,
+            is allowed to be chosen as one of the random mutation operators.
+            If False, `mutShrink`  will never be chosen as a mutation operator.
+
+        Returns
+        -------
+        mut_ind: DEAP individual
+            Returns the individual with one of the mutations applied to it
+
+        """
+        if self.tree_structure:
+            mutation_techniques = [
+                partial(gp.mutInsert, pset=self._pset),
+                partial(mutNodeReplacement, pset=self._pset),
+            ]
+            # We can't shrink pipelines with only one primitive, so we only add it if we find more primitives.
+            number_of_primitives = sum(
+                isinstance(node, deap.gp.Primitive) for node in individual
+            )
+            if number_of_primitives > 1 and allow_shrink:
+                mutation_techniques.append(partial(gp.mutShrink))
+        else:
+            mutation_techniques = [partial(mutNodeReplacement, pset=self._pset)]
+
+        mutator = np.random.choice(mutation_techniques)
+
+        unsuccesful_mutations = 0
+        for _ in range(self._max_mut_loops):
+            # We have to clone the individual because mutator operators work in-place.
+            ind = self._toolbox.clone(individual)
+            (offspring,) = mutator(ind)
+            if str(offspring) not in self.evaluated_individuals_:
+                # Update statistics
+                # crossover_count is kept the same as for the predecessor
+                # mutation count is increased by 1
+                # predecessor is set to the string representation of the individual before mutation
+                # generation is set to 'INVALID' such that we can recognize that it should be updated accordingly
+                offspring.statistics["crossover_count"] = individual.statistics[
+                    "crossover_count"
+                ]
+                offspring.statistics["mutation_count"] = (
+                    individual.statistics["mutation_count"] + 1
+                )
+                offspring.statistics["predecessor"] = (str(individual),)
+                offspring.statistics["generation"] = "INVALID"
+                break
+            else:
+                unsuccesful_mutations += 1
+        # Sometimes you have pipelines for which every shrunk version has already been explored too.
+        # To still mutate the individual, one of the two other mutators should be applied instead.
+        if (unsuccesful_mutations == 50) and (
+            type(mutator) is partial and mutator.func is gp.mutShrink
+        ):
+            (offspring,) = self._random_mutation_operator(
+                individual, allow_shrink=False
+            )
+
+        return (offspring,)
+
+    
+    def _compile_to_sklearn(self, expr):
+        """Compile a DEAP pipeline into a sklearn pipeline.
+
+        Parameters
+        ----------
+        expr: DEAP individual
+            The DEAP pipeline to be compiled
+
+        Returns
+        -------
+        sklearn_pipeline: sklearn.pipeline.Pipeline
+        """
+        sklearn_pipeline_str = generate_pipeline_code(
+            expr_to_tree(expr, self._pset), self.operators
+        )
+        sklearn_pipeline = eval(sklearn_pipeline_str, self.operators_context)
+        sklearn_pipeline.memory = self._memory
+        if self.random_state:
+            # Fix random state when the operator allows
+            set_param_recursive(
+                sklearn_pipeline.steps, "random_state", self.random_state
+            )
+      
+        return sklearn_pipeline
+    
+
+    def _get_make_pipeline_func(self):
+        """Utility function to make a sklearn pipeline. The function to make the pipeline is choosen according to the presence of resamplers in the config dict."""
+        imblearn_used = np.any([k.count("imblearn") for k in self._config_dict.keys()])
+
+        if imblearn_used == True:
+            assert make_imblearn_pipeline is not None, "You must install `imblearn`"
+            make_pipeline_func = make_imblearn_pipeline
+        else:
+            make_pipeline_func = make_pipeline
+
+        return make_pipeline_func
+
 
 
 
