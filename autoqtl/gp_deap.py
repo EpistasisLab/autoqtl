@@ -1,17 +1,14 @@
-
-
-
-
-
-
-
-
+import warnings
 from deap import tools, gp
 from collections import defaultdict
 from inspect import isclass
+from filelock import Timeout
 
 import numpy as np
+from sklearn.metrics import check_scoring
+from stopit import threading_timeoutable
 
+from .operator_utils import set_sample_weight
 # One point crossover
 def cxOnePoint(ind1, ind2):
     """Randomly select in each individual and exchange each subtree with the
@@ -370,5 +367,46 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
 
     return population, logbook
 
+# Change to tpot's _wrapped_cross_val_score() as autoqtl does not do cross validation and also it has two sets of features & target for two inputted datasets
+@threading_timeoutable(default="Timeout")
+def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
+                    sample_weight=None):
+    """Fit estimator and compute scores for a given dataset split.
     
+    Parameters
+    ----------
+    sklearn_pipeline : pipeline object implementing 'fit'
+        The object to use to fit the data.
+    
+    features : array-like of shape at least 2D
+        The data to fit.
+    
+    target : array-like, optional, default: None
+        The target variable to try to predict in the case of
+        supervised learning.
+    
+    scoring_function : callable
+        A scorer callable object / function with signature
+        ``scorer(estimator, X, y)``.
+    
+    sample weight : array-like, optional
+        List of sample weights to balance ( or un-balance) the dataset target as needed 
+        
+    Returns
+    -------
+    score : float
+        The score of the pipeline
+        
+    """
+    sample_weight_dict = set_sample_weight(sklearn_pipeline.steps, sample_weight)
+
+    scorer = check_scoring(sklearn_pipeline, scoring=scoring_function)
+
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+    
+    except TimeoutError:
+        return Timeout
+
 
