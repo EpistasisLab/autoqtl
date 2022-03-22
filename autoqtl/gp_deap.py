@@ -8,6 +8,8 @@ import numpy as np
 from sklearn.metrics import check_scoring
 from stopit import threading_timeoutable
 
+from sklearn.model_selection import train_test_split
+
 from .operator_utils import set_sample_weight
 # One point crossover
 def cxOnePoint(ind1, ind2):
@@ -402,11 +404,19 @@ def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
 
     scorer = check_scoring(sklearn_pipeline, scoring=scoring_function)
 
+    """features_train, features_test, target_train, target_test = train_test_split(features, target, test_size=0.2)
+    sklearn_pipeline.fit(features_train, target_train, sample_weight_dict)
+    pipeline_score = sklearn_pipeline.score(features_test, target_test)"""
+    
     try:
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')
+
+            score = scorer(sklearn_pipeline, features, target) # will return the result of sklearn pipeline score?
+        return score
     
     except TimeoutError:
         return Timeout
-
+    except Exception as e:
+        return -float('inf')
 

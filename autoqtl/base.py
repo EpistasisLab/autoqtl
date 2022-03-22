@@ -1,9 +1,11 @@
 """This file is part of AUTOQTL library"""
+from ast import expr
 from functools import partial
 import imp
 import inspect
 import os
 import random
+from socket import timeout
 import statistics
 from subprocess import call
 import sys
@@ -18,12 +20,14 @@ from sklearn.base import BaseEstimator
 from sklearn.metrics import SCORERS
 from sklearn.pipeline import make_union, make_pipeline
 
+from copy import copy, deepcopy
+
 from .gp_types import Output_Array
 from .builtins.combine_dfs import CombineDFs
 from .decorators import _pre_test
 
 from .gp_deap import (
-    cxOnePoint, mutNodeReplacement
+    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda
 )
 
 from .export_utils import (
@@ -816,6 +820,239 @@ class AUTOQTLBase(BaseEstimator):
 
         return make_pipeline_func
 
+
+    def _preprocess_individuals(self, individuals):
+        """Preprocess DEAP individuals before pipeline evaluation.
+
+         Parameters
+        ----------
+        individuals: a list of DEAP individual
+            One individual is a list of pipeline operators and model parameters that can be
+            compiled by DEAP into a callable function
+
+        Returns
+        -------
+        operator_counts: dictionary
+            a dictionary of operator counts in individuals for evaluation
+        eval_individuals_str: list
+            a list of string of individuals for evaluation
+        sklearn_pipeline_list: list
+            a list of scikit-learn pipelines converted from DEAP individuals for evaluation
+        stats_dicts: dictionary
+            A dict where 'key' is the string representation of an individual and 'value' is a dict containing statistics about the individual
+
+        """
+        # update self._pbar.total
+        if (
+            not (self.max_time_mins is None)
+            and not self._pbar.disable
+            and self._pbar.total <= self._pbar.n
+        ):
+            self._pbar.total += self._lambda
+        
+        # check we do not evaluate twice the same individual in one pass.
+        _, unique_individual_indices = np.unique(
+            [str(ind) for ind in individuals], return_index=True
+        )
+
+        unique_individuals = [
+            ind for i, ind in enumerate(individuals) if i in unique_individual_indices
+        ]
+        # update number of duplicate pipelines, the progress bar will show many pipleines have been processed
+        self._update_pbar(pbar_num = len(individuals - len(unique_individuals)))
+
+        # a dictionary for storing operator counts of an individual(pipeline)
+        operator_counts = {}
+
+        # a dictionary for storing all the statistics of an individual(pipleine)
+        stats_dicts = {}
+
+        # 2 lists of DEAP individuals' one in string format and their corresponding sklearn pipeline for parallel computing
+        eval_individuals_str = []
+        sklearn_pipeline_list = []
+
+        for individual in unique_individuals:
+            # Disallow certain combinations of operators because they will take too long or take up too much RAM
+            individual_str = str(individual)
+            if not len(individual): # a pipeline cannot be randomly generated
+                self.evaluated_individuals_[
+                    individual_str
+                ] = self._combine_individual_stats(
+                    5000.0, -float("inf"), -float("inf"), individual.statistics
+                ) # randomly set 5000, to make the pipeline not a suitable pipeline, needs to be changed later
+                self._update_pbar(
+                    pbar_msg = "Invalid pipeline encountered. Skipping its evaluation."
+                ) 
+                continue
+            sklearn_pipeline_str = generate_pipeline_code(expr_to_tree(individual, self._pset), self.operators)
+            if sklearn_pipeline_str.count("PolynomialFeatures") > 1:
+                self.evaluated_individuals_[
+                    individual_str
+                ] = self._combine_individual_stats(
+                    5000.0, -float("inf"), -float("inf"), individual.statistics
+                )   
+                self._update_pbar(
+                    pbar_msg = "Invalid pipeline encountered. Skipping its evaluation."
+                )
+            # Check if the individual was evaluated before
+            elif individual_str in self.evaluated_individuals_:
+                self._update_pbar(
+                    pbar_msg=(
+                        "Pipeline encountered that has previously been evaluated during the "
+                        "optimization process. Using the score from the previous evaluation. "
+                    )
+                )
+            else:
+                try:
+                    # Transform the tree expression into an sklearn pipeline
+                    sklearn_pipeline = self._toolbox.compile(expr=individual)
+
+                    # Count the number of pipeline operators as a measure of pipeline complexity, autoqtl does not use this info at the moment but might need it in future
+                    operator_count = self._operator_count(individual)
+                    operator_counts[individual_str] = max(1, operator_count)
+
+                    stats_dicts[individual_str] = individual.statistics
+                except Exception:
+                    self.evaluated_individuals_[
+                        individual_str
+                    ] = self._combine_individual_stats(
+                        5000.0, -float("inf"), -float("inf"), individual.statistics
+                    )
+                    self._update_pbar()
+                    continue
+                eval_individuals_str.append(individual_str)
+                sklearn_pipeline_list.append(sklearn_pipeline)
+            
+        return operator_counts, eval_individuals_str, sklearn_pipeline_list, stats_dicts
     
+
+    def _operator_count(self, individual):
+        """Count the number of pipeline operators as a measure of pipeline complexity.
+
+        Parameters
+        ----------
+        individual: list
+            A grown tree with leaves at possibly different depths
+            depending on the condition function.
+
+        Returns
+        -------
+        operator_count: int
+            How many operators in a pipeline
+        """
+        operator_count = 0
+        for node in individual:
+            if type(node) is deap.gp.Primitive and node.name != "CombineDFs":
+                operator_count += 1
+        return operator_count
+
+
+    def _combine_individual_stats(self, operator_count, score_on_dataset1, score_on_dataset2 ,individual_stats):
+        """Combine the stats with operator count and cv score and preprare to be written to _evaluated_individuals
+
+        Parameters
+        ----------
+        operator_count: int
+            number of components in the pipeline
+        score_on_dataset1: float
+            internal score assigned to the pipeline by the evaluate operator on dataset1, basically the R2 score
+        score_on_dataset1: float
+            internal score assigned to the pipeline by the evaluate operator on dataset1, basically the R2 score
+        individual_stats: dictionary
+            dict containing statistics about the individual. currently:
+            'generation': generation in which the individual was evaluated
+            'mutation_count': number of mutation operations applied to the individual and its predecessor cumulatively
+            'crossover_count': number of crossover operations applied to the individual and its predecessor cumulatively
+            'predecessor': string representation of the individual
+
+        Returns
+        -------
+        stats: dictionary
+            dict containing the combined statistics:
+            'operator_count': number of operators in the pipeline
+            'internal_score': internal score assigned to the pipeline, basically the R2 score
+            and all the statistics contained in the 'individual_stats' parameter
+        """
+        stats = deepcopy(
+            individual_stats
+        )  # Deepcopy, since the string reference to predecessor should be cloned
+        stats["operator_count"] = operator_count
+        stats["score_on_dataset1"] = score_on_dataset1
+        stats["score_on_dataset2"] = score_on_dataset2
+        return stats # returns the entire statistics dictionary of the pipeline with all the components
+    
+
+    def _evaluate_individuals(
+        self, population, features_dataset1, target_dataset1, features_dataset2, target_dataset2, sample_weight=None
+    ):
+        """Determine the fit of the provided individuals. Evaluate each pipeline and return the fitness scores.
+        
+        Parameters
+        ----------
+        population : a list of DEAP individual
+            One individual is a list of pipeline operators and model parameters that can be compiled by DEAP into a callable function
+        features_dataset1 : numpy.ndarray {n_samples, n_features}
+            A numpy matrix containing the training and testing features for the individual's evaluation. A part of dataset1 for evaluation
+        target_dataset1 : numpy.ndarray {n_samples}
+            A numpy matrix containing the training and testing target for the individual's evaluation
+        features_dataset2 : numpy.ndarray {n_samples, n_features}
+            A numpy matrix containing the training and testing features for the individual's evaluation. A part of dataset1 for evaluation
+        target_dataset2 : numpy.ndarray {n_samples}
+            A numpy matrix containing the training and testing target for the individual's evaluation
+        sample_weight: array-like {n_samples}, optional
+            List of sample weights to balance (or un-balanace) the dataset target as needed
+            
+        Returns
+        -------
+        fitnesses_ordered: float
+            Returns a list of tuple value indicating the individual's fitness
+            according to its performance on the provided data
+            
+        """
+        # Evaluate the individuals with an invalid fitness
+        individuals = [ind for ind in population if not ind.fitness.valid]
+        num_population = len(population)
+        # update pbar for valid individuals (valid individuals have fitness values) 
+        if self.verbosity > 0:
+            self._pbar.update(num_population - len(individuals))
+
+        # preprocess the individuals with invalid fitness
+        (
+            operator_counts,
+            eval_individuals_str,
+            sklearn_pipeline_list,
+            stats_dicts,
+        ) = self._preprocess_individuals(individuals)
+
+        partial_wrapped_score = partial(
+            _wrapped_score,
+            scoring_function = self._scoring_function,
+            sample_weight = sample_weight,
+            timeout=max(int(self.max_eval_time_mins * 60), 1)
+        ) # The values for sklearn pipeline and (features, target) will change in every function call
+
+        result_score_list = []
+
+        try:
+            # check time limit before pipeline evaluation
+            self._stop_by_max_time_mins()
+
+            # check for parallelization, AUTOQTL does not use parallelization now
+            for sklearn_pipeline in sklearn_pipeline_list:
+                self._stop_by_max_time_mins()
+                score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
+                score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                # start from here on 22nd March, Tuesday
+
+        except (KeyboardInterrupt, SystemExit, StopIteration) as e:
+            if self.verbosity > 0:
+                self._pbar.write("", file=self.log_file_)
+                self._pbar.write(
+                    "{}\nAUTOQTL closed during evaluation in one generation.\n"
+                    "WARNING: AUTOQTL may not provide a good pipeline if AUTOQTL is stopped/interrupted in a early generation.".format(
+                        e
+                    ),
+                    file=self.log_file_,
+                )
 
 
