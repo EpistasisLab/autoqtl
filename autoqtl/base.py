@@ -10,6 +10,7 @@ import statistics
 from subprocess import call
 import sys
 import warnings
+from isort import file
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
@@ -1042,7 +1043,8 @@ class AUTOQTLBase(BaseEstimator):
                 self._stop_by_max_time_mins()
                 score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
                 score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
-                # start from here on 22nd March, Tuesday
+                # Use the modified _update_val() to add the evaluated scores to the result_score_list
+                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, result_score_list)
 
         except (KeyboardInterrupt, SystemExit, StopIteration) as e:
             if self.verbosity > 0:
@@ -1054,5 +1056,135 @@ class AUTOQTLBase(BaseEstimator):
                     ),
                     file=self.log_file_,
                 )
+            
+            # number of individuals already evaluated in this generation, update those individuals
+            num_eval_ind = len(result_score_list)
+            self._update_evaluated_individuals_(
+                result_score_list,
+                eval_individuals_str[:num_eval_ind],
+                operator_counts,
+                stats_dicts,
+            )
+            for ind in individuals[:num_eval_ind]:
+                ind_str = str(ind)
+                ind.fitness.values = (
+                    self.evaluated_individuals_[ind_str]["score_on_dataset1"],
+                    self.evaluated_individuals_[ind_str]["score_on_dataset2"]
+                ) # evaluated_individuals_ is a dictionary containing the evaluated individuals in the previous generations, defined in the fit_init() function
 
+            self._pareto_front.update(individuals[:num_eval_ind]) # the update() is the inbuilt function of pareto front of DEAP
 
+            self._pop = population
+            raise KeyboardInterrupt # need to understand why this is used here
+
+        self._update_evaluated_individuals_(
+            result_score_list, eval_individuals_str, operator_counts, stats_dicts
+        )    # update when no error/interruption occurred, so all the recently evaluated individuals get updated
+
+        for ind in individuals:
+            ind_str = str(ind)
+            ind.fitness.values = (
+                self.evaluated_individuals_[ind_str]["score_on_dataset1"],
+                self.evaluated_individuals_[ind_str]["score_on_dataset2"],
+            )
+        individuals = [ind for ind in population if not ind.fitness.valid] # WHY IS THIS DONE? Contains the new list of individuals with invalid scores
+        self._pareto_front.update(population)
+
+        return population # returns the population and sets the fitness score of the evaluated individuals
+
+    # Function to update the progress bar(instance of tqdm)
+    def _update_pbar(self, pbar_num=1, pbar_msg=None):
+        """Update self._pbar and error message during pipeline evaluation.
+        
+        Parameters
+        ----------
+        pbar_num : int
+            How many pipelines has been processed
+        pbar_msg : None or string
+            Error message
+            
+        Returns
+        -------
+        None
+        
+        """
+        if not isinstance(self._pbar, type(None)):
+            if self.verbosity > 2 and pbar_msg is not None:
+                self._pbar.write(pbar_msg, file=self.log_file) 
+            if not self._pbar.disable:
+                self._pbar.update(pbar_num)
+
+    # Function to update the two calculated scores for the pipleine in the list of result scores and update self._pbar during pipeline evaluation. MODIFIED FROM TPOT
+    def _update_val(self, score1, score2, result_score_list):
+        """Update the score of the pipeline evaluation on the two datasets d1 and d2 in the result score list and update self._pbar to show the total number of pipelines proccessed
+        
+        Parameters
+        ----------
+        score1 : float or "Timeout"
+            Pipeline evaluation score on dataset1. Basically the R2 value on scoring the pipeline on dataset1
+        score2 : float or "Timeout"
+            Pipeline evaluation score on dataset2. Basically the R2 value on scoring the pipeline on dataset2
+        result_score_list : list
+            A list of scores of the pipelines [a list of list]
+
+        Returns
+        -------
+        result_score_list : list
+            An updated result score list
+
+        """
+        self._update_pbar()
+        score_on_d1_d2_list = []
+        if score1 == "Timeout" or score2 == "Timeout" : # if any of the pipeline scores on any dataset is "Timeout" invalidate the score of the pipeline
+            self._update_pbar(
+                pbar_msg=(
+                    "Skipped pipeline #{0} due to time out. "
+                    "Continuing to the next pipeline.".format(self._pbar.n)
+                )
+            )
+            score_on_d1_d2_list.append(-float("inf")) # score1 invalidated
+            score_on_d1_d2_list.append(-float("inf")) # score2 invalidated
+        else:
+            score_on_d1_d2_list.append(score1)
+            score_on_d1_d2_list.append(score2)
+        
+        result_score_list.append(score_on_d1_d2_list)
+
+        return result_score_list
+
+    # Function to update the invalid individuals evaluated in the most recent call
+    def _update_evaluated_individuals_(
+        self, result_score_list, eval_individuals_str, operator_counts, stats_dicts
+    ):
+        """Update self.evaluated_individuals_ (dict storing the evaluated individuals from the prev gens) and error message during pipeline evaluation.
+        
+        Parameters
+        ----------
+        result_score_list : list
+            A list of scores for evaluated pipelines. Basically it is a list of list, with two R2 values on the two datasets
+        eval_individuals_str : list
+            A list of strings for evaluated pipelines
+        operator_counts : dict
+            A dict where 'key' is the string representation of an individual and 'value' is the number of operators in the pipeline
+        stats_dict : dict
+            A dict where 'key' is the string representation of an individual and 'value' is a dict containing statistics about the individual
+            
+        Returns
+        -------
+        None
+        
+        """
+        for result_score, individual_str in zip(
+            result_score_list, eval_individuals_str
+        ):
+            if type(result_score[0]) in [float, np.float64, np.float32] and type(result_score[1]) in [float, np.float64, np.float32] :
+                self.evaluated_individuals_[
+                    individual_str
+                ] = self._combine_individual_stats(
+                    operator_counts[individual_str],
+                    result_score[0],
+                    result_score[1],
+                    stats_dicts[individual_str],
+                )
+            else:
+                raise ValueError("Scoring function does not return a float.")
