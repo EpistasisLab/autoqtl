@@ -1,5 +1,6 @@
 """This file is part of AUTOQTL library"""
 from ast import expr
+from datetime import date, datetime
 from functools import partial
 import imp
 import inspect
@@ -1188,3 +1189,81 @@ class AUTOQTLBase(BaseEstimator):
                 )
             else:
                 raise ValueError("Scoring function does not return a float.")
+
+    # update the best pipeline generated till present generation
+    def _update_top_pipeline(self):
+        """Helper function to update the _optimized_pipeline(will store the best pipleine) field. """
+        # Store the pipeline with the highest internal testing score
+        if self._pareto_front:
+            self._optimized_pipeline_score = [-float("inf"), -float("inf")] # We will store the pipeline score on both dataset1 and dataset2 as the final score
+            for pipeline, pipeline_scores in zip(
+                self._pareto_front.items, reversed(self._pareto_front.keys()) # pipeline_score picks up the fitness value tuple in the list of keys
+            ):
+                if pipeline_scores.wvalues[0] > self._optimized_pipeline_score[0] and pipeline_scores.wvalues[1] > self._optimized_pipeline_score[1]:
+                    self._optimized_pipeline = pipeline
+                    self._optimized_pipeline_score = [pipeline_scores.wvalues[0], pipeline_scores.wvalues[1]]
+            
+            if not self._optimized_pipeline : # Did not find any best optimized pipeline
+                # pick one individual from evaluated pipeline for an error message
+                eval_ind_list = list(self.evaluated_individuals_.keys())
+                for pipeline, pipeline_scores in zip(
+                    self._pareto_front.items, reversed(self._pareto_front.keys())
+                ):
+                    if np.isinf(pipeline_scores.wvalues[0]) or np.isinf(pipeline_scores.wvalues[1]):
+                        sklearn_pipeline = self._toolbox.compile(expr=pipeline)
+                        break # TPOT calculated the cross validation score
+                raise RuntimeError(
+                    "There was an error in the AUTOQTL optimization process. Please make sure you passed the data to AUTOQTL correctly."
+                )
+            else:
+                pareto_front_wvalues = [
+                    [pipeline_scores.wvalues[0], pipeline_scores.wvalues[1]]
+                    for pipeline_scores in self._pareto_front.keys
+                ]
+                if not self._last_optimized_pareto_front:
+                    self._last_optimized_pareto_front = pareto_front_wvalues
+                elif self._last_optimized_pareto_front == pareto_front_wvalues:
+                    self._last_optimized_pareto_front_n_gens +=1
+                else:
+                    self._last_optimized_pareto_front = pareto_front_wvalues
+                    self._last_optimized_pareto_front_n_gens = 0
+        else:
+            # If user passes CTRL+C in initial generation, self._pareto_front(halloffame) should be not updated yet.
+            # need raise RuntimeError because no pipeline has been optimized
+            raise RuntimeError(
+                "A pipeline has not yet been optimized. Please call fit() first. "
+            )
+
+    # check for an optimized pipeline
+    def _check_periodic_pipeline(self, gen):
+        """If enough time has passed, save a new optimized pipeline. Currently used in the per generation hook in the optimization loop.
+        
+        Parameters
+        ----------
+        gen : int
+            Generation number
+            
+        Returns
+        -------
+        None
+        
+        """
+        self._update_top_pipeline
+        if self.periodic_checkpoint_folder is not None:
+            total_since_last_pipeline_save = (
+                datetime.now() - self._last_pipeline_write
+            ).total_seconds()
+            if(
+                total_since_last_pipeline_save > self._output_best_pipeline_period_seconds
+            ): # variable _output_best_pipeline_period_seconds is set to 30, so periodic pipelines doesn't get saved more often than this
+                self._last_pipeline_write = datetime.now()
+                self._save_periodic_pipeline(gen)
+        
+        if self.early_stop is not None:
+            if self._last_optimized_pareto_front_n_gens >= self.early_stop:
+                raise StopIteration(
+                    "The optimized pipeline was not improved after evaluating {} more generations. "
+                    "Will end the optimization process.\n".format(self.early_stop)
+                )
+
+    

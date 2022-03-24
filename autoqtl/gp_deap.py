@@ -412,7 +412,7 @@ def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')
 
-            score = scorer(sklearn_pipeline, features, target) # will return the result of sklearn pipeline score? Yes it does
+            score = scorer(sklearn_pipeline, features, target) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
         return score
     
     except TimeoutError:
