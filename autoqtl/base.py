@@ -1,6 +1,7 @@
 """This file is part of AUTOQTL library"""
 from ast import expr
 from datetime import date, datetime
+import errno
 from functools import partial
 import imp
 import inspect
@@ -17,6 +18,7 @@ import deap
 from deap import base, creator, tools, gp
 from pyrsistent import pset
 from sklearn import tree
+import sklearn
 
 from sklearn.base import BaseEstimator
 from sklearn.metrics import SCORERS
@@ -35,7 +37,8 @@ from .gp_deap import (
 from .export_utils import (
     expr_to_tree,
     generate_pipeline_code,
-    set_param_recursive
+    set_param_recursive,
+    export_pipeline
 )
 from .config.regressor import regressor_config_dict
 
@@ -1266,4 +1269,115 @@ class AUTOQTLBase(BaseEstimator):
                     "Will end the optimization process.\n".format(self.early_stop)
                 )
 
+    # Utility function to save a pipeline 
+    def _save_periodic_pipeline(self, gen):
+        """Saves the most optimized pipeline periodically. """
+        try:
+            self._create_periodic_checkpoint_folder()
+            for pipeline, pipeline_scores in zip(
+                self._pareto_front.items, reversed(self._pareto_front.keys)
+            ):
+                idx = self._pareto_front.items.index(pipeline)
+                pareto_front_pipeline_score = [pipeline_scores.wvalues[0], pipeline_scores.wvalues[1]]
+                sklearn_pipeline_str = generate_pipeline_code(
+                    expr_to_tree(pipeline, self._pset), self.operators
+                ) # get the string format of the sklearn pipeline
+                
+                to_write = export_pipeline(
+                    pipeline,
+                    self.operators,
+                    self._pset,
+                    self._imputed,
+                    pareto_front_pipeline_score,
+                    self.random_state
+                ) # call to function to generate the source code for the pipeline (Note: The pipeline score is in a list)
+
+                # don't export a pipeline already exported earlier
+                if self._exported_pipeline_text.count(sklearn_pipeline_str):
+                    self._update_pbar(
+                        pbar_num=0,
+                        pbar_msg="Periodic pipeline was not saved, probably saved before..."
+                    )
+                else:
+                    filename = os.path.join(
+                        self.periodic_checkpoint_folder,
+                        "pipeline_gen_{}_idx_{}_{}.py".format(
+                            gen, idx, datetime.now().strftime("%Y.%m.%d_%H-%M-%S")
+                        ),
+                    )
+                    self._update_pbar(
+                        pbar_num=0,
+                        pbar_msg="Saving periodic pipeline from pareto front to {}".format(
+                            filename
+                        ),
+                    )
+                    with open(filename, "w") as output_file:
+                        output_file.write(to_write)
+                    self._exported_pipeline_text.append(sklearn_pipeline_str)
+
+        except Exception as e:
+            self._update_pbar(
+                pbar_num=0,
+                pbar_msg="Failed saving periodic pipeline, exception:\n{}".format(
+                    str(e)[:250]
+                ),
+            )
+
+    # Utility function to create a periodic checkpoint folder to  save periodic pipeline
+    def _create_periodic_checkpoint_folder(self):
+        """Creates a folder to store pipelines at periodic intervals. """
+        try:
+            os.makedirs(self.periodic_checkpoint_folder)
+            self._update_pbar(
+                pbar_msg="Create new folder to save periodic pipeline: {}".format(
+                    self.periodic_checkpoint_folder
+                )
+            )
+        except OSError as e:
+            if e.errno == errno.EEXIST and os.path.isdir(
+                self.periodic_checkpoint_folder
+            ): # errno.EEXIST checks for file exist error
+                pass # Folder already exists
+            else:
+                raise ValueError(
+                    "Failed creating the periodic_checkpoint_folder:\n{}".format(e)
+                )
+
+
+    def export(self, output_file_name="", data_file_path=""):
+        """Export the optimized pipeline as Python code.
+
+        Parameters
+        ----------
+        output_file_name: string (default: '')
+            String containing the path and file name of the desired output file. If left empty, writing to file will be skipped.
+        data_file_path: string (default: '')
+            By default, the path of input dataset is 'PATH/TO/DATA/FILE' by default.
+            If data_file_path is another string, the path will be replaced.
+
+        Returns
+        -------
+        to_write: str
+            The whole pipeline text as a string.
+        """
+        if self._optimized_pipeline is None:
+            raise RuntimeError(
+                "A pipeline has not yet been optimized. Please call fit() first."
+            )
+
+        to_write = export_pipeline(
+            self._optimized_pipeline,
+            self.operators,
+            self._pset,
+            self._imputed,
+            self._optimized_pipeline_score,
+            self.random_state,
+            data_file_path=data_file_path,
+        )
+
+        if output_file_name != "":
+            with open(output_file_name, "w") as output_file:
+                output_file.write(to_write)
+        else:
+            return to_write
     
