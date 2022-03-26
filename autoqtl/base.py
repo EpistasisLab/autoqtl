@@ -19,6 +19,7 @@ from deap import base, creator, tools, gp
 from pyrsistent import pset
 from sklearn import tree
 import sklearn
+import re
 
 from sklearn.base import BaseEstimator
 from sklearn.metrics import SCORERS
@@ -1043,6 +1044,8 @@ class AUTOQTLBase(BaseEstimator):
             self._stop_by_max_time_mins()
 
             # check for parallelization, AUTOQTL does not use parallelization now
+            # Removed cross validation as used in TPOT and changed the code to suite AUTOQTL, two pipeline evaluations on two datasets
+
             for sklearn_pipeline in sklearn_pipeline_list:
                 self._stop_by_max_time_mins()
                 score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
@@ -1193,6 +1196,20 @@ class AUTOQTLBase(BaseEstimator):
             else:
                 raise ValueError("Scoring function does not return a float.")
 
+    # function check time limit of optimization
+    def _stop_by_max_time_mins(self):
+        """Stop optimization process once maximum minutes have elapsed. """
+        if self.max_time_mins:
+            total_mins_elapsed = (
+                datetime.now() - self._start_datetime
+            ).total_seconds() / 60.0
+            if total_mins_elapsed >= self.max_time_mins:
+                raise KeyboardInterrupt(
+                    "{:.2f} minutes have elapsed. AUTOQTL will close down.".format(
+                        total_mins_elapsed
+                    )
+                )
+            
     # update the best pipeline generated till present generation
     def _update_top_pipeline(self):
         """Helper function to update the _optimized_pipeline(will store the best pipleine) field. """
@@ -1202,7 +1219,7 @@ class AUTOQTLBase(BaseEstimator):
             for pipeline, pipeline_scores in zip(
                 self._pareto_front.items, reversed(self._pareto_front.keys()) # pipeline_score picks up the fitness value tuple in the list of keys
             ):
-                if pipeline_scores.wvalues[0] > self._optimized_pipeline_score[0] and pipeline_scores.wvalues[1] > self._optimized_pipeline_score[1]:
+                if pipeline_scores.wvalues[0] > self._optimized_pipeline_score[0] and pipeline_scores.wvalues[1] > self._optimized_pipeline_score[1]: # changed from TPOT
                     self._optimized_pipeline = pipeline
                     self._optimized_pipeline_score = [pipeline_scores.wvalues[0], pipeline_scores.wvalues[1]]
             
@@ -1380,4 +1397,134 @@ class AUTOQTLBase(BaseEstimator):
                 output_file.write(to_write)
         else:
             return to_write
+
+    
+    # Function to print out the best pipeline (on basis of two datasets) and also display the entire pareto front to the user
+    def _summary_of_best_pipeline(self, features_dataset1, target_dataset1, features_dataset2, target_dataset2):
+        """Print the best pipeline at the end of optimization process, using two datasets. 
+        
+        Parameters
+        ----------
+        features_dataset1 : array-like {n_samples, n_features}
+            Feature matrix of Dataset1
+        
+        target_dataset1 : array-like {n_samples}
+            Target values of Dataset1
+            
+        features_dataset1 : array-like {n_samples, n_features}
+            Feature matrix of Dataset2
+        
+        target_dataset1 : array-like {n_samples}
+            Target values of Dataset2
+            
+        Returns
+        -------
+        self : object
+            calling this function sets the self.fitted_pipeline_ variable
+            
+        """
+        # Choose which dataset to use to get the fitted_pipeline, this pipeline will be used in the score() and predict() function
+        dataset_choice = np.random.random()
+
+        if dataset_choice < 0.5:
+            selected_features = features_dataset1
+            selected_target = target_dataset1
+        else :
+            selected_features = features_dataset2
+            selected_target = target_dataset2
+        
+        if not self._optimized_pipeline:
+            raise RuntimeError(
+                "There was an error in the AUTOQTL optimization process. Please make sure you passed the data to AUTOQTL correctly."
+            )
+
+        else:
+            self.fitted_pipeline_ = self._toolbox.compile(expr=self._optimized_pipeline) # changing the optimized DEAP pipeline  to sklearn pipeline
+
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                self.fitted_pipeline_.fit(selected_features, selected_target) # the sklearn pipeline is fitted with the pipeline fit function
+
+                if self.verbosity in [1, 2]:
+                    # Add an extra line of spacing if the progress bar was used
+                    if self.verbosity >=2:
+                        print("")
+
+                    optimized_pipeline_str = self.clean_pipeline_string(
+                        self._optimized_pipeline
+                    )
+                    print("Best pipeline:", optimized_pipeline_str)
+                    print("Score of pipeline on two datasets respectively: ", self._optimized_pipeline_score)
+
+                # Store, fit and display the entire Pareto front 
+                self.pareto_front_fitted_pipelines_ = {} # contains the fitted pipelines present in the pareto front
+                pareto_front_pipeline_str = {} # contains the pareto front pipeline strings
+
+                for pipeline in self._pareto_front.items:
+                    self.pareto_front_fitted_pipelines_[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.pareto_front_fitted_pipelines_[str(pipeline)].fit(
+                            selected_features, selected_target
+                        )
+                        pareto_front_pipeline_str[str(pipeline)] = self.clean_pipeline_string(pipeline)
+                        print("Pareto front individuals: ", pareto_front_pipeline_str)
+                        # can print the fitness tuples of those pipelines
+
+
+    # make the pipeline suitable for display
+    def clean_pipeline_string(self, individual):
+        """Provide a string of the individual without the parameter prefixes.
+
+        Parameters
+        ----------
+        individual: individual
+            Individual which should be represented by a pretty string
+
+        Returns
+        -------
+        A string like str(individual), but with parameter prefixes removed.
+
+        """
+        dirty_string = str(individual)
+        # There are many parameter prefixes in the pipeline strings, used solely for
+        # making the terminal name unique, eg. LinearSVC__.
+        
+        parameter_prefixes = [
+            (m.start(), m.end()) for m in re.finditer(", [\w]+__", dirty_string)
+        ]
+        # We handle them in reverse so we do not mess up indices
+        pretty = dirty_string
+        for (start, end) in reversed(parameter_prefixes):
+            pretty = pretty[: start + 2] + pretty[end:]
+
+        return pretty
+
+
+    # Start with setting up the fit function, design the fit function which will include a pareto function
+
+    # This function initializes all the variables required to use the fit()
+    def _fit_init(self):
+        """Initialization for fit function. """
+
+        if not self.warm_start or not hasattr(self, "_pareto_front"): # if we do not want to use the previous generation populations and a pareto front is not created already
+            self._pop = [] # Population of individuals
+            self._pareto_front = None # List of non-dominated individuals making up the Pareto front
+            self._last_optimized_pareto_front = None # List of pipeline scores of the pipelines present in the pareto front. Basically list of list [[score_d1, score_d2], []]
+            self._last_optimized_pareto_front_n_gens = 0 # Generation number of the last optimized pareto front
+
+            self._setup_config(self.config_dict) # Set up the configuartion dictionary, containing all the selectors, transformers and ML methods
+
+            self.operators = [] # List of all the operator classes which will be used to construct the DEAP pipeline
+            self.arguments = [] # List of argument classes. Basically a list of list. One list for each operator.
+
+            # Continue from here
+    
+
+
+
+
     
