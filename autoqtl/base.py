@@ -16,20 +16,29 @@ from isort import file
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
+from pandas import DataFrame
 from pyrsistent import pset
 from sklearn import tree
 import sklearn
 import re
 
 from sklearn.base import BaseEstimator
+from sklearn.impute import SimpleImputer
 from sklearn.metrics import SCORERS
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_union, make_pipeline
 
 from copy import copy, deepcopy
 
+from sklearn.preprocessing import FunctionTransformer
+from sklearn.utils import check_X_y, check_array, check_consistent_length
+from sympy import total_degree
+from tqdm import tqdm
+
 from .gp_types import Output_Array
 from .builtins.combine_dfs import CombineDFs
 from .decorators import _pre_test
+from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
 from .gp_deap import (
     cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda
@@ -1521,9 +1530,284 @@ class AUTOQTLBase(BaseEstimator):
             self.operators = [] # List of all the operator classes which will be used to construct the DEAP pipeline
             self.arguments = [] # List of argument classes. Basically a list of list. One list for each operator.
 
-            # Continue from here
-    
+            make_pipeline_func = self._get_make_pipeline_func() # The function which will be used to generate the sklearn pipeline
 
+            for key in sorted(self._config_dict.keys()):
+                op_class, arg_types = AUTOQTLOperatorClassFactory(
+                    key,
+                    self._config_dict[key],
+                    BaseClass=Operator,
+                    ArgBaseClass=ARGType,
+                    verbose=self.verbosity,
+                ) # For each key value pair in the config dictionary we generate the corresponding Operator class and Argument classes
+
+                if op_class:
+                    self.operators.append(op_class)
+                    self.arguments += arg_types
+            
+            self.operators_context = {
+                "make_pipeline" : make_pipeline_func,
+                "make_union" : make_union,
+                "FunctionTransformer" : FunctionTransformer,
+                "copy" : copy,
+            } # Which function to use when these keys are encountered. StackingEstimator is omitted in this case of autoqtl
+
+            self._setup_pset() # Setup the primitive set to contain the operators and the arguments
+            self._setup_toolbox() # Setup the toolbox to contain the tools such as mutation, crossover, etc
+
+            self.evaluated_individuals_ = {} # Dictionary of individuals that have already been evaluated in previous generations or previous runs
+
+        self._optimized_pipeline = None # the best pipeline among all the individuals in the pareto front
+        self._optimized_pipeline_score = None # score of the optimized pipeline, two R2 values for two datasets
+        self._exported_pipeline_text = [] # Saves the entire pipeline code in text format to output in a file
+        self.fitted_pipeline_ = None # the fitted version of the optimized pipeline which is used in score and predict functions
+        self._fitted_imputer = None # the kind of imputer to be used in case imputation is required
+        self._imputed = False # to know if imputer was used or not
+        self._memory = None # initial memory setting for sklearn pipeline
+
+        self.output_best_pipeline_period_seconds = 30 # don't save periodic pipelines more often than this
+        self._max_mut_loops = 50 # Try crossover and mutation at most this many times for any given individual (or pair of individuals)
+
+        if self.max_time_mins is None and self.generations is None:
+            raise ValueError(
+                "Either the parameter generations should be set or a maximum evaluation time should be defined via max_time_mins"
+            )
+        
+        # If no. of generations is not specified and run-time limit is specified, schedule AUTOQTL to run till it automatically interrupts itself when the timer runs out
+        if self.max_time_mins is not None and self.generations is None:
+            self.generations = 1000000
+
+        # Put in check for version check later on
+
+        # check the sum of mutation and crossover rates
+        if self.mutation_rate + self.crossover_rate > 1:
+            raise ValueError(
+                "The sum of the crossover and mutation probablities must be <=1.0. "
+            )
+        
+        self._pbar = None # declare the progress bar
+
+        # setting up the log file
+        if not self.log_file:
+            self.log_file_ = sys.stdout
+        elif isinstance(self.log_file, str):
+            self.log_file_ = open(self.log_file, "w")
+        else:
+            self.log_file_ = self.log_file
+
+        self._setup_scoring_function(self.scoring) # setup scoring function
+
+        # setup subsample value if inputted by the user
+        if self.subsample <= 0.0 or self.subsample > 1.0:
+            raise ValueError(
+                "The subsample ratio of the training instance must be in the range (0.0, 1.0]. "
+            ) 
+
+        # Put in check for no.of jobs later when using dask
+
+    
+    # Function to perform a pretest on a sample of data to verify pipelines work with the passed data set
+    def _init_pretest(self, features, target):
+        """Set the sample of data used to verify whether pipelines work with the passed data set. We use one dataset in the pretest. 
+        
+        """
+        raise ValueError("Use AUTOQTLRegressor")
+    
+    # Function to impute missing values
+    def _impute_values(self, features):
+        """Impute missing values in a feature set.
+        
+        Parameters
+        ----------
+        features : array_like {n_samples, n_features}
+            A feature matrix
+            
+        Returns
+        -------
+        array-like {n_samples, n_features}
+        
+        """
+        if self.verbosity > 1:
+            print("Imputing missing values in feature set")
+
+        if self._fitted_imputer is None:
+            self._fitted_imputer = SimpleImputer(strategy="most_frequent")
+            self._fitted_imputer.fit(features)
+
+        return self._fitted_imputer.transform(features)
+
+    # Function to check for validity of dataset
+    def _check_dataset(self, features, target, sample_weight=None):
+        """Check if a dataset has a valid feature set and labels.
+
+        Parameters
+        ----------
+        features: array-like {n_samples, n_features}
+            Feature matrix
+        target: array-like {n_samples} or None
+            List of class labels for prediction
+        sample_weight: array-like {n_samples} (optional)
+            List of weights indicating relative importance
+        Returns
+        -------
+        (features, target)
+        """
+        # Check sample_weight
+        if sample_weight is not None:
+            try:
+                sample_weight = np.array(sample_weight).astype("float")
+            except ValueError as e:
+                raise ValueError(
+                    "sample_weight could not be converted to float array: %s" % e
+                )
+            if np.any(np.isnan(sample_weight)):
+                raise ValueError("sample_weight contained NaN values.")
+            try:
+                check_consistent_length(sample_weight, target)
+            except ValueError as e:
+                raise ValueError(
+                    "sample_weight dimensions did not match target: %s" % e
+                )
+
+        # check for features
+        if isinstance(features, np.ndarray):
+                if np.any(np.isnan(features)):
+                    self._imputed = True
+        elif isinstance(features, DataFrame): # AUTOQTL just takes in numpy arrays, but still kept the check
+                if features.isnull().values.any():
+                    self._imputed = True
+
+        if self._imputed:
+                features = self._impute_values(features)
+
+        # check for target
+        try:
+            if target is not None:
+                X, y = check_X_y(features, target, accept_sparse=True, dtype=None)
+                if self._imputed:
+                    return X, y
+                else:
+                    return features, target
+            else:
+                X = check_array(features, accept_sparse=True, dtype=None)
+                if self._imputed:
+                    return X
+                else:
+                    return features
+        except (AssertionError, ValueError):
+            raise ValueError(
+                "Error: Input data is not in a valid format. Please confirm "
+                "that the input data is scikit-learn compatible. For example, "
+                "the features must be a 2-D array and target labels must be a "
+                "1-D array."
+            )
+
+    
+    # the fit function of AUTOQTL
+    def fit(self, features_dataset1, target_dataset1, features_dataset2, target_dataset2, sample_weight = None):
+        """Fit an optimized machine learning pipeline.
+        
+        """
+        self._fit_init()
+        features_dataset1, target_dataset1 = self._check_dataset(features_dataset1, target_dataset1, sample_weight)
+        features_dataset2, target_dataset2 = self._check_dataset(features_dataset2, target_dataset2, sample_weight)
+        
+        #self._init_pretest(features_dataset1, target_dataset1)
+
+        # Randomly collect a subsample of training sample for pipeline optimization process. Do it for both the dataset
+        if self.subsample < 1.0:
+            features_dataset1, _, target_dataset1, _ = train_test_split(
+                features_dataset1,
+                target_dataset1,
+                train_size=self.subsample,
+                test_size=None,
+                random_state=self.random_state,
+            )
+
+            features_dataset2, _, target_dataset2, _ = train_test_split(
+                features_dataset2,
+                target_dataset2,
+                train_size=self.subsample,
+                test_size=None,
+                random_state=self.random_state,
+            )
+
+            # Raise a warning message if the training size is less than 1500 when subsample is not default value
+            if features_dataset1.shape[0] < 1500 or features_dataset2.shape[0] < 1500:
+                print(
+                    "Warning: Although subsample can accelerate pipeline optimization, "
+                    "too small training sample size may cause unpredictable effect on maximizing "
+                    "score in pipeline optimization process. Increasing subsample ratio may get "
+                    "a more reasonable outcome from optimization process in AUTOQTL. "
+                )
+
+        # set the seed for the GP run
+        if self.random_state is not None:
+            random.seed(self.random_state) # deap uses random
+            np.random.seed(self.random_state)
+
+        self._start_datetime = datetime.now() # the datetime at the beginning of the optimization process
+        self._last_pipeline_write = self._start_datetime # the last time a pipeline was recorded
+
+        # register the "evaluate" operator in the toolbox
+        self._toolbox.register(
+            "evaluate",
+            self._evaluate_individuals,
+            features_dataset1=features_dataset1,
+            target_dataset1=target_dataset1,
+            features_dataset2=features_dataset2,
+            target_dataset2=target_dataset2,
+            sample_weight=sample_weight,
+        )
+
+        # assign population, self._pop can only be not None if warm_start is enabled
+        if not self._pop:
+            self._pop = self._toolbox.population(n=self.population_size)
+
+        def pareto_eq(ind1, ind2):
+            """Determine whether two individuals are equal on the Pareto front.
+            
+            Parameters
+            ----------
+            ind1 : DEAP individual from the GP population
+                First individual to compare
+            ind2 : DEAP individual from the GP population
+                Second individual to compare
+            
+            Returns
+            -------
+            individuals_equal : bool
+                Boolean indicating whether the two individuals are equal on the Pareto front
+                
+            """
+            return np.allclose(ind1.fitness.values, ind2.fitness.values) # checks whether the fitness values of two individuals are equal or not
+
+        # Generate new pareto front if it doesn't alreday exist for warm start
+        if not self.warm_start or not self._pareto_front:
+            self._pareto_front = tools.ParetoFront(similar=pareto_eq)
+
+        # Set lambda_ (offspring size in GP) equal to pupulation_size by default
+        if not self.offspring_size:
+            self._lambda = self.population_size
+        else:
+            self._lambda = self.offspring_size
+
+        # Start the progress bar
+        if self.max_time_mins:
+            total_evals = self.population_size
+        else:
+            total_evals = self._lambda * self.generations + self.population_size
+
+        self._pbar = tqdm(
+            total=total_evals,
+            unit="pipeline",
+            leave=False,
+            file=self.log_file_,
+            disable=not(self.verbosity >=2),
+            desc="Optimization Progress",
+        )
+
+        # Continue from here
 
 
 
