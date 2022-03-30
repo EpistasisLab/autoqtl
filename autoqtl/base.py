@@ -7,12 +7,15 @@ import imp
 import inspect
 import os
 import random
+from shutil import rmtree
 from socket import timeout
 import statistics
 from subprocess import call
 import sys
+from tempfile import mkdtemp
 import warnings
 from isort import file
+from joblib import Memory
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
@@ -337,7 +340,7 @@ class AUTOQTLBase(BaseEstimator):
                         "choose a valid scoring function from the AUTOQTL " 
                         "documentation.".format(scoring)
                     )
-                self._scoring_function = scoring # tpot uses the variable name as scoring_function and not _scoring_function but I thought this to be according to code convention.
+                self.scoring_function = scoring # tpot uses the variable name as scoring_function and not _scoring_function but I thought this to be according to code convention.
             elif callable(scoring):
                 # Heuristic to ensure user has not passed a metric
                 module = getattr(scoring, "__module__", None)
@@ -357,7 +360,7 @@ class AUTOQTLBase(BaseEstimator):
                         "Please update your custom scoring function.".format(scoring)
                     )
                 else:
-                    self._scoring_function = scoring
+                    self.scoring_function = scoring
     
     def _setup_config(self, config_dict):
         """Setup the configuration dictionary containing the various ML methods, selectors and transformers.
@@ -874,7 +877,7 @@ class AUTOQTLBase(BaseEstimator):
             ind for i, ind in enumerate(individuals) if i in unique_individual_indices
         ]
         # update number of duplicate pipelines, the progress bar will show many pipleines have been processed
-        self._update_pbar(pbar_num = len(individuals - len(unique_individuals)))
+        self._update_pbar(pbar_num = len(individuals) - len(unique_individuals))
 
         # a dictionary for storing operator counts of an individual(pipeline)
         operator_counts = {}
@@ -1041,7 +1044,7 @@ class AUTOQTLBase(BaseEstimator):
 
         partial_wrapped_score = partial(
             _wrapped_score,
-            scoring_function = self._scoring_function,
+            scoring_function = self.scoring_function,
             sample_weight = sample_weight,
             timeout=max(int(self.max_eval_time_mins * 60), 1)
         ) # The values for sklearn pipeline and (features, target) will change in every function call
@@ -1224,19 +1227,22 @@ class AUTOQTLBase(BaseEstimator):
         """Helper function to update the _optimized_pipeline(will store the best pipleine) field. """
         # Store the pipeline with the highest internal testing score
         if self._pareto_front:
+            print("Pareto Front formed") # trying to debug
+            print(self._pareto_front.items) # trying to debug
+            print(self._pareto_front.keys) # trying to debug
             self._optimized_pipeline_score = [-float("inf"), -float("inf")] # We will store the pipeline score on both dataset1 and dataset2 as the final score
             for pipeline, pipeline_scores in zip(
-                self._pareto_front.items, reversed(self._pareto_front.keys()) # pipeline_score picks up the fitness value tuple in the list of keys
+                self._pareto_front.items, reversed(self._pareto_front.keys) # pipeline_score picks up the fitness value tuple in the list of keys
             ):
                 if pipeline_scores.wvalues[0] > self._optimized_pipeline_score[0] and pipeline_scores.wvalues[1] > self._optimized_pipeline_score[1]: # changed from TPOT
                     self._optimized_pipeline = pipeline
                     self._optimized_pipeline_score = [pipeline_scores.wvalues[0], pipeline_scores.wvalues[1]]
-            
+                    print(pipeline) # trying to debug
             if not self._optimized_pipeline : # Did not find any best optimized pipeline
                 # pick one individual from evaluated pipeline for an error message
                 eval_ind_list = list(self.evaluated_individuals_.keys())
                 for pipeline, pipeline_scores in zip(
-                    self._pareto_front.items, reversed(self._pareto_front.keys())
+                    self._pareto_front.items, reversed(self._pareto_front.keys)
                 ):
                     if np.isinf(pipeline_scores.wvalues[0]) or np.isinf(pipeline_scores.wvalues[1]):
                         sklearn_pipeline = self._toolbox.compile(expr=pipeline)
@@ -1527,6 +1533,8 @@ class AUTOQTLBase(BaseEstimator):
 
             self._setup_config(self.config_dict) # Set up the configuartion dictionary, containing all the selectors, transformers and ML methods
 
+            self._setup_template(self.template)
+
             self.operators = [] # List of all the operator classes which will be used to construct the DEAP pipeline
             self.arguments = [] # List of argument classes. Basically a list of list. One list for each operator.
 
@@ -1611,7 +1619,17 @@ class AUTOQTLBase(BaseEstimator):
         """Set the sample of data used to verify whether pipelines work with the passed data set. We use one dataset in the pretest. 
         
         """
-        raise ValueError("Use AUTOQTLRegressor")
+        #raise ValueError("Use AUTOQTLRegressor")
+        print("Use AUTOQTLRgressor ")
+        """self.pretest_X, _, self.pretest_y, _ = \
+                train_test_split(
+                                features,
+                                target,
+                                random_state=self.random_state,
+                                test_size=None,
+                                train_size=min(50,int(0.9*features.shape[0]))
+                                )"""
+
     
     # Function to impute missing values
     def _impute_values(self, features):
@@ -1712,7 +1730,7 @@ class AUTOQTLBase(BaseEstimator):
         features_dataset1, target_dataset1 = self._check_dataset(features_dataset1, target_dataset1, sample_weight)
         features_dataset2, target_dataset2 = self._check_dataset(features_dataset2, target_dataset2, sample_weight)
         
-        #self._init_pretest(features_dataset1, target_dataset1)
+        self._init_pretest(features_dataset1, target_dataset1)
 
         # Randomly collect a subsample of training sample for pipeline optimization process. Do it for both the dataset
         if self.subsample < 1.0:
@@ -1807,8 +1825,91 @@ class AUTOQTLBase(BaseEstimator):
             desc="Optimization Progress",
         )
 
-        # Continue from here
+        try:
+            with warnings.catch_warnings():
+                self._setup_memory()
+                warnings.simplefilter("ignore")
+                self._pop, _ = eaMuPlusLambda(
+                    population=self._pop,
+                    toolbox=self._toolbox,
+                    mu=self.population_size,
+                    lambda_=self._lambda,
+                    cxpb=self.crossover_rate,
+                    mutpb=self.mutation_rate,
+                    ngen=self.generations,
+                    pbar=self._pbar,
+                    halloffame=self._pareto_front,
+                    verbose=self.verbosity,
+                    per_generation_function=self._check_periodic_pipeline,
+                    log_file=self.log_file_,
+                )
+        # Allow for certain exceptions to signal a premature fit() cancellation
+        except(KeyboardInterrupt, SystemExit, StopIteration) as e:
+            if self.verbosity > 0:
+                self._pbar.write("", file=self.log_file_)
+                self._pbar.write(
+                    "{}\nAUTOQTL closed prematurely. Will use the current best pipleine.".format(
+                    e),
+                    file=self.log_file_,
+                )
+        finally:
+            # Clean population for the next call if warm_start=False
+            if not self.warm_start:
+                self._pop = []
+
+            # keep trying 10 times in case weird things happened like multiple CTRL+C or exceptions
+            attempts = 10
+            for attempt in range(attempts):
+                try:
+                    # Close the progress bar
+                    # Standard truthiness checks won't work for tqdm
+                    if not isinstance(self._pbar, type(None)):
+                        self._pbar.close()
+
+                    self._update_top_pipeline()
+                    self._summary_of_best_pipeline(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
+                    self._cleanup_memory()
+                    break
+
+                except (KeyboardInterrupt, SystemExit, Exception) as e:
+                    # raise the exception if it's our last attempt
+                    if attempt == (attempts - 1):
+                        raise e
+            return self
+
+    def _setup_memory(self):
+        """Setup Memory object for memory caching.
+        """
+        if self.memory:
+            if isinstance(self.memory, str):
+                if self.memory == "auto":
+                    # Create a temporary folder to store the transformers of the pipeline
+                    self._cachedir = mkdtemp()
+                else:
+                    if not os.path.isdir(self.memory):
+                        try:
+                            os.makedirs(self.memory)
+                        except:
+                            raise ValueError(
+                                "Could not create directory for memory caching: {}".format(
+                                    self.memory
+                                )
+                            )
+                    self._cachedir = self.memory
+
+                self._memory = Memory(location=self._cachedir, verbose=0)
+            elif isinstance(self.memory, Memory):
+                self._memory = self.memory
+            else:
+                raise ValueError(
+                    "Could not recognize Memory object for pipeline caching. "
+                    "Please provide an instance of joblib.Memory,"
+                    ' a path to a directory on your system, or "auto".'
+                )
 
 
-
-    
+    def _cleanup_memory(self):
+        """Clean up caching directory at the end of optimization process only when memory='auto'"""
+        if self.memory == "auto":
+            rmtree(self._cachedir)
+            self._memory = None
