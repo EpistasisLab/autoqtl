@@ -1061,9 +1061,15 @@ class AUTOQTLBase(BaseEstimator):
             for sklearn_pipeline in sklearn_pipeline_list:
                 self._stop_by_max_time_mins()
                 score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
+                #print(score_on_dataset1)
                 score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                #print(score_on_dataset2)
                 # Use the modified _update_val() to add the evaluated scores to the result_score_list
                 result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, result_score_list)
+                #print(result_score_list)
+                test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
+                #print(test_score)
+                #print(sklearn_pipeline)
 
         except (KeyboardInterrupt, SystemExit, StopIteration) as e:
             if self.verbosity > 0:
@@ -1227,17 +1233,17 @@ class AUTOQTLBase(BaseEstimator):
         """Helper function to update the _optimized_pipeline(will store the best pipleine) field. """
         # Store the pipeline with the highest internal testing score
         if self._pareto_front:
-            print("Pareto Front formed") # trying to debug
-            print(self._pareto_front.items) # trying to debug
-            print(self._pareto_front.keys) # trying to debug
+            #print("Pareto Front formed") # trying to debug
+            #print(self._pareto_front.items) # trying to debug
+            #print(self._pareto_front.keys) # trying to debug
             self._optimized_pipeline_score = [-float("inf"), -float("inf")] # We will store the pipeline score on both dataset1 and dataset2 as the final score
             for pipeline, pipeline_scores in zip(
                 self._pareto_front.items, reversed(self._pareto_front.keys) # pipeline_score picks up the fitness value tuple in the list of keys
             ):
-                if pipeline_scores.wvalues[0] > self._optimized_pipeline_score[0] and pipeline_scores.wvalues[1] > self._optimized_pipeline_score[1]: # changed from TPOT
+                if (pipeline_scores.wvalues[0] > self._optimized_pipeline_score[0]) and (pipeline_scores.wvalues[1] > self._optimized_pipeline_score[1]): # changed from TPOT
                     self._optimized_pipeline = pipeline
                     self._optimized_pipeline_score = [pipeline_scores.wvalues[0], pipeline_scores.wvalues[1]]
-                    print(pipeline) # trying to debug
+                    #print(pipeline) # trying to debug
             if not self._optimized_pipeline : # Did not find any best optimized pipeline
                 # pick one individual from evaluated pipeline for an error message
                 eval_ind_list = list(self.evaluated_individuals_.keys())
@@ -1426,10 +1432,10 @@ class AUTOQTLBase(BaseEstimator):
         target_dataset1 : array-like {n_samples}
             Target values of Dataset1
             
-        features_dataset1 : array-like {n_samples, n_features}
+        features_dataset2 : array-like {n_samples, n_features}
             Feature matrix of Dataset2
         
-        target_dataset1 : array-like {n_samples}
+        target_dataset2 : array-like {n_samples}
             Target values of Dataset2
             
         Returns
@@ -1460,7 +1466,7 @@ class AUTOQTLBase(BaseEstimator):
                 warnings.simplefilter("ignore")
                 self.fitted_pipeline_.fit(selected_features, selected_target) # the sklearn pipeline is fitted with the pipeline fit function
 
-                if self.verbosity in [1, 2]:
+                if self.verbosity in [1, 3]:
                     # Add an extra line of spacing if the progress bar was used
                     if self.verbosity >=2:
                         print("")
@@ -1468,8 +1474,8 @@ class AUTOQTLBase(BaseEstimator):
                     optimized_pipeline_str = self.clean_pipeline_string(
                         self._optimized_pipeline
                     )
-                    print("Best pipeline:", optimized_pipeline_str)
-                    print("Score of pipeline on two datasets respectively: ", self._optimized_pipeline_score)
+                    #print("Best pipeline:", optimized_pipeline_str)
+                    #print("Score of pipeline on two datasets respectively: ", self._optimized_pipeline_score)
 
                 # Store, fit and display the entire Pareto front 
                 self.pareto_front_fitted_pipelines_ = {} # contains the fitted pipelines present in the pareto front

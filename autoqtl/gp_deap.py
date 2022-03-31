@@ -348,10 +348,10 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
             # Print the entire Pareto front
             elif verbose == 3:
                 pbar.write('\nGeneration {} - '
-                            'Current Pareto front scores:'.format(gen),
+                            'Current Pareto Front:'.format(gen),
                             file=log_file)
                 for pipeline, pipeline_scores in zip(halloffame.items, reversed(halloffame.keys)):
-                    pbar.write('\n{}\t{}\t{}'.format(
+                    pbar.write('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             pipeline
@@ -403,7 +403,10 @@ def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
     sample_weight_dict = set_sample_weight(sklearn_pipeline.steps, sample_weight)
 
     scorer = check_scoring(sklearn_pipeline, scoring=scoring_function)
-
+    #print(scorer)
+    sklearn_pipeline.fit(features, target)
+    #score = scorer(sklearn_pipeline, features, target) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
+    #print(score)
     """features_train, features_test, target_train, target_test = train_test_split(features, target, test_size=0.2)
     sklearn_pipeline.fit(features_train, target_train, sample_weight_dict)
     pipeline_score = sklearn_pipeline.score(features_test, target_test)"""
@@ -413,6 +416,8 @@ def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
             warnings.simplefilter('ignore')
 
             score = scorer(sklearn_pipeline, features, target) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
+            #rounded_score = round(score, 5)
+            #print(score)
         return score
     
     except TimeoutError:
