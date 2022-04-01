@@ -104,8 +104,10 @@ class FeatureEncodingFrequencySelector(BaseEstimator, SelectorMixin):
                 self.selected_feature_indexes.append(i)
         
         if not len(self.selected_feature_indexes):
-            msg = "No feature in X meets the encoding frequency threshold {0:.5f}"
-            raise ValueError(msg.format(self.threshold))
+            """msg = "No feature in X meets the encoding frequency threshold {0:.5f}"
+            raise ValueError(msg.format(self.threshold))"""
+            for i in range(0, X.shape[1]):
+                self.selected_feature_indexes.append(i)
         
         return self
 

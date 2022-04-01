@@ -122,13 +122,13 @@ def test_update_top_pipeline():
     assert isinstance(autoqtl_obj._optimized_pipeline, creator.Individual)
 
 
-# Test if the summary of the pipeline is being printed properly
+# Test if the summary of the pipeline is being printed properly along with the working of the fit function
 def test_summary_of_best_pipeline():
     """Testing the summary_of_best_pipeline function. """
     autoqtl_obj = AUTOQTLRegressor(
-        random_state=2,
-        population_size=10,
-        offspring_size=2,
+        random_state=4,
+        population_size=50,
+        #offspring_size=100,
         generations=5,
         verbosity=3
     )

@@ -469,7 +469,7 @@ class AUTOQTLBase(BaseEstimator):
                 
                 self._pset.addPrimitive(operator, *tree_primitive_types) # addPrimitive() is a method of the gp.PrimitiveSetTyped(...) class
                 self._import_hash_and_add_terminals(operator, arg_types)
-            self._pset.addPrimitive(CombineDFs(), [step_in_type, step_in_type], step_in_type)
+            #self._pset.addPrimitive(CombineDFs(), [step_in_type, step_in_type], step_in_type)
 
         else:
             gp_types = {}
@@ -490,9 +490,10 @@ class AUTOQTLBase(BaseEstimator):
                         step_ret_type = Output_Array
                 
                 if step == "CombineDFs":
-                    self._pset.addPrimitive(
+                    """self._pset.addPrimitive(
                         CombineDFs(), [step_in_type, step_in_type], step_in_type
-                    )
+                    )"""
+                    pass
                 elif main_operator_types.count(step): # if the step is a main type
                     step_operator_list = [op for op in self.operators if op.type() == step]
                     for operator in step_operator_list:
@@ -914,12 +915,14 @@ class AUTOQTLBase(BaseEstimator):
                 )
             # Check if the individual was evaluated before
             elif individual_str in self.evaluated_individuals_:
-                self._update_pbar(
+                """self._update_pbar(
                     pbar_msg=(
                         "Pipeline encountered that has previously been evaluated during the "
                         "optimization process. Using the score from the previous evaluation. "
                     )
-                )
+                )"""
+                pass
+                
             else:
                 try:
                     # Transform the tree expression into an sklearn pipeline
@@ -1492,8 +1495,15 @@ class AUTOQTLBase(BaseEstimator):
                             selected_features, selected_target
                         )
                         pareto_front_pipeline_str[str(pipeline)] = self.clean_pipeline_string(pipeline)
-                        print("Pareto front individuals: ", pareto_front_pipeline_str)
+                        #print("Pareto front individuals: ", pareto_front_pipeline_str)
                         # can print the fitness tuples of those pipelines
+                # Trying out
+                for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
+                            pipeline_scores.wvalues[0],
+                            pipeline_scores.wvalues[1],
+                            pipeline))
+                        
 
 
     # make the pipeline suitable for display
