@@ -1497,7 +1497,8 @@ class AUTOQTLBase(BaseEstimator):
                         pareto_front_pipeline_str[str(pipeline)] = self.clean_pipeline_string(pipeline)
                         #print("Pareto front individuals: ", pareto_front_pipeline_str)
                         # can print the fitness tuples of those pipelines
-                # Trying out
+                # Printing the final pipeline
+                print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
                     print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
