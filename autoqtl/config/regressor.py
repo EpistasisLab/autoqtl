@@ -44,7 +44,11 @@ regressor_config_dict = {
 
     },
 
-    'autoqtl.builtins.genetic_encoders.HeterosisEncoder': {
+    'autoqtl.builtins.genetic_encoders.HeterozygoteAdvantageEncoder': {
+
+    },
+
+    'autoqtl.builtins.genetic_encoders.HeterozygoteDisadvantageEncoder': {
 
     },
 

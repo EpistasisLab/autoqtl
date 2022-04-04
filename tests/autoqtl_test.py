@@ -126,8 +126,8 @@ def test_update_top_pipeline():
 def test_summary_of_best_pipeline():
     """Testing the summary_of_best_pipeline function. """
     autoqtl_obj = AUTOQTLRegressor(
-        random_state=24,
-        population_size=100,
+        random_state=50,
+        population_size=50,
         #offspring_size=100,
         generations=5,
         verbosity=3

@@ -1500,11 +1500,42 @@ class AUTOQTLBase(BaseEstimator):
                 # Printing the final pipeline
                 print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+                    pipeline_to_be_printed = self.print_pipeline(pipeline)
                     print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
-                            pipeline))
+                            pipeline_to_be_printed))
                         
+
+    # To get a pipeline outputted in a desired format
+    def print_pipeline(self, individual):
+        """Print the pipeline in a user-friendly manner.
+        
+        Parameters
+        ----------
+        individual: Pareto front individuals
+            Individual which should be represented by a pretty string
+            
+        Returns
+        A string suitable for display
+        
+        """
+        dirty_string = str(individual)
+
+        parameter_prefixes = [
+            (m.start(), m.end()) for m in re.finditer("[\w]+([\w])", dirty_string)
+        ]
+        substring = '__'
+        pretty_string = ''
+        for (start, end) in reversed(parameter_prefixes):
+    
+            if (substring in dirty_string[start:end]) or (dirty_string[start:end].isdigit()):
+                continue
+            elif (start, end) == parameter_prefixes[0]: 
+                pretty_string = pretty_string + dirty_string[start:end] + "."
+            else:
+                pretty_string = pretty_string + dirty_string[start:end] + ' -> '
+        return pretty_string
 
 
     # make the pipeline suitable for display

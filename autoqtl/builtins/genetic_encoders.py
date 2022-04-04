@@ -158,8 +158,8 @@ class RecessiveEncoder(BaseEstimator, TransformerMixin):
 
         return X_transformed
 
-class HeterosisEncoder(BaseEstimator, TransformerMixin):
-    """This class contains the function definition for encoding the input features as a Heterosis genetic model.
+class HeterozygoteAdvantageEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Heterozygote Advantage genetic model.
     The encoding used is AA(0)->0, Aa(1)->1, aa(2)->0. """
 
     def fit(self, X, y=None):
@@ -190,6 +190,44 @@ class HeterosisEncoder(BaseEstimator, TransformerMixin):
         """
         X = check_array(X)
         map = {0: 0, 1: 1, 2: 0}
+        mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
+
+        X_transformed = mapping_function(X)
+
+        return X_transformed
+
+class HeterozygoteDisadvantageEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Heterozygote Disadvantage genetic model.
+    The encoding used is AA(0)->1, Aa(1)->0, aa(2)->1. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+        Dummy function to fit in with the sklearn API and hence work in pipelines.
+        
+        Parameters
+        ----------
+        X : array-like
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+        
+        Parameters
+        ----------
+        X : numpy ndarray, {n_samples, n_components}
+            New data, where n_samples is the number of samples (number of individuals)
+            and n_components is the number of components (number of features).
+        y : None
+            Unused
+            
+        Returns
+        -------
+        X_transformed: numpy ndarray, {n_samples, n_components}
+            The encoded feature set
+        """
+        X = check_array(X)
+        map = {0: 1, 1: 0, 2: 1}
         mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
 
         X_transformed = mapping_function(X)

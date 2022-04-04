@@ -1,3 +1,4 @@
+import re
 import warnings
 from deap import tools, gp
 from collections import defaultdict
@@ -313,7 +314,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
 
     # Begin the generational process
     for gen in range(1, ngen + 1):
-        print("Entered Generation: ", gen)
+        print("\nEntered Generation: ", gen)
         # Vary the population
         offspring = varOr(population, toolbox, lambda_, cxpb, mutpb)
 
@@ -352,6 +353,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
                             'Current Pareto Front:'.format(gen),
                             file=log_file)
                 for pipeline, pipeline_scores in zip(halloffame.items, reversed(halloffame.keys)):
+                    pipeline_to_be_printed = print_pareto_pipeline(pipeline)
                     pbar.write('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
@@ -425,4 +427,32 @@ def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
         return Timeout
     except Exception as e:
         return -float('inf')
+
+
+# Printing the pareto front items in a user-friendly manner. Should look into code reusability.
+def print_pareto_pipeline(individual):
+        """Print the pipeline in a user-friendly manner.
+        
+        Parameters
+        ----------
+        individual: Pareto front individuals
+            Individual which should be represented by a pretty string
+            
+        Returns
+        A string suitable for display
+        
+        """
+        dirty_string = str(individual)
+
+        parameter_prefixes = [
+            (m.start(), m.end()) for m in re.finditer("[\w]+([\w])", dirty_string)
+        ]
+
+        pretty_string = ''
+        for (start, end) in reversed(parameter_prefixes):
+            if(start, end) == parameter_prefixes[0]:
+                pretty_string = pretty_string + dirty_string[start:end] + '.'
+            else:
+                pretty_string = pretty_string + dirty_string[start:end] + ' -> '
+        return pretty_string
 
