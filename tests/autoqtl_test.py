@@ -22,13 +22,13 @@ autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
 # dataset1
-test_data = pd.read_csv("tests/randomset4.csv")
+test_data = pd.read_csv("tests/randomset5.csv")
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
 test_X = test_data_numpyarray[:, : -1 ]
 test_y = test_data_numpyarray[:,-1]
 
-features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(test_X, test_y, train_size=0.5, random_state=43)
+features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(test_X, test_y, train_size=0.5, random_state=42)
 
 
 # First test whether the custom parameters are being assigned properly
@@ -126,8 +126,8 @@ def test_update_top_pipeline():
 def test_summary_of_best_pipeline():
     """Testing the summary_of_best_pipeline function. """
     autoqtl_obj = AUTOQTLRegressor(
-        random_state=50,
-        population_size=50,
+        random_state=42,
+        population_size=10,
         #offspring_size=100,
         generations=5,
         verbosity=3
