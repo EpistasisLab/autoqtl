@@ -24,13 +24,16 @@ from pyrsistent import pset
 from sklearn import tree
 import sklearn
 import re
+import shap
 
 from sklearn.base import BaseEstimator
+from sklearn.feature_selection import VarianceThreshold
 from sklearn.impute import SimpleImputer
 from sklearn.inspection import permutation_importance
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import SCORERS
 from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_union, make_pipeline
+from sklearn.pipeline import Pipeline, make_union, make_pipeline
 
 from copy import copy, deepcopy
 
@@ -1450,14 +1453,16 @@ class AUTOQTLBase(BaseEstimator):
             
         """
         # Choose which dataset to use to get the fitted_pipeline, this pipeline will be used in the score() and predict() function
-        dataset_choice = np.random.random()
+        """dataset_choice = np.random.random()
 
         if dataset_choice < 0.5:
             selected_features = features_dataset1
             selected_target = target_dataset1
         else :
             selected_features = features_dataset2
-            selected_target = target_dataset2
+            selected_target = target_dataset2"""
+        selected_features = features_dataset1
+        selected_target = target_dataset1
         
         if not self._optimized_pipeline:
             raise RuntimeError(
@@ -1975,11 +1980,59 @@ class AUTOQTLBase(BaseEstimator):
          Parameters
         ----------
         """
-        for key, value in self.pareto_front_fitted_pipelines_.items():
+        #print(X)
+        #print(y)
+        self.pipeline_for_feature_importance_ = {}
+        self.fitted_pipeline_for_feature_importance =[]
+        """for key, value in self.pareto_front_fitted_pipelines_.items():
             pipeline_estimator = value
         
-        permutation_importance_object = permutation_importance(self.fitted_pipeline_, X, y, n_repeats=10, random_state=random_state)
-        print("Entered")
+        print(pipeline_estimator)"""
+        
+        for pipeline in self._pareto_front.items:
+                    self.pipeline_for_feature_importance_[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.pipeline_for_feature_importance_[str(pipeline)].fit(
+                            X, y
+                        )
+                        self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
+                            X, y
+                        ))
+        
+        print(self.pipeline_for_feature_importance_) 
+        print(self.fitted_pipeline_for_feature_importance[0])
+
+        """for key, value in self.pipeline_for_feature_importance_.items():
+            pipeline_estimator = value"""
+                       
+        pipeline_estimator = self.fitted_pipeline_for_feature_importance[0]
+
+
+        # Testing 
+        estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
+        pipeline = Pipeline(estimators)
+
+        pipeline.fit(X, y)
+        permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
         for i in permutation_importance_object.importances_mean.argsort()[::-1]:
             print(f"{X.columns[i]:<8}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
+        
+        """explainer = shap.Explainer(pipeline.predict, X)
+        shap_values = explainer(X)
+        shap.summary_plot(shap_values, X, plot_type='bar')"""
+
+    def get_shap_values(self, X, y):
+        estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
+        pipeline = Pipeline(estimators)
+
+        pipeline.fit(X, y)
+
+        print(X.shape[1])
+        explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
+        shap_values = explainer(X)
+        shap.summary_plot(shap_values, X, plot_type='bar')
