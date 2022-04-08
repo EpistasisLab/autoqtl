@@ -27,6 +27,7 @@ import re
 
 from sklearn.base import BaseEstimator
 from sklearn.impute import SimpleImputer
+from sklearn.inspection import permutation_importance
 from sklearn.metrics import SCORERS
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_union, make_pipeline
@@ -1073,6 +1074,7 @@ class AUTOQTLBase(BaseEstimator):
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
                 #print(sklearn_pipeline)
+                #print(result_score_list)
 
         except (KeyboardInterrupt, SystemExit, StopIteration) as e:
             if self.verbosity > 0:
@@ -1495,6 +1497,8 @@ class AUTOQTLBase(BaseEstimator):
                             selected_features, selected_target
                         )
                         pareto_front_pipeline_str[str(pipeline)] = self.clean_pipeline_string(pipeline)
+
+                
                         #print("Pareto front individuals: ", pareto_front_pipeline_str)
                         # can print the fitness tuples of those pipelines
                 # Printing the final pipeline
@@ -1505,6 +1509,9 @@ class AUTOQTLBase(BaseEstimator):
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             pipeline_to_be_printed))
+
+            """if self.pareto_front_fitted_pipelines_:
+                self.get_feature_importance(self.pareto_front_fitted_pipelines_[0], selected_features, selected_target, self.random_state)"""
                         
 
     # To get a pipeline outputted in a desired format
@@ -1961,3 +1968,18 @@ class AUTOQTLBase(BaseEstimator):
         if self.memory == "auto":
             rmtree(self._cachedir)
             self._memory = None
+
+    # Trying out feature importance with permutation importance score
+    def get_feature_importance(self, X, y, random_state):
+        """
+         Parameters
+        ----------
+        """
+        for key, value in self.pareto_front_fitted_pipelines_.items():
+            pipeline_estimator = value
+        
+        permutation_importance_object = permutation_importance(self.fitted_pipeline_, X, y, n_repeats=10, random_state=random_state)
+        print("Entered")
+        for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+            print(f"{X.columns[i]:<8}"
+                    f"{permutation_importance_object.importances_mean[i]:.3f}")
