@@ -2003,8 +2003,8 @@ class AUTOQTLBase(BaseEstimator):
                             X, y
                         ))
         
-        print(self.pipeline_for_feature_importance_) 
-        print(self.fitted_pipeline_for_feature_importance[0])
+        #print(self.pipeline_for_feature_importance_) 
+        #print(self.fitted_pipeline_for_feature_importance[0])
 
         """for key, value in self.pipeline_for_feature_importance_.items():
             pipeline_estimator = value"""
@@ -2017,7 +2017,7 @@ class AUTOQTLBase(BaseEstimator):
         pipeline = Pipeline(estimators)
 
         pipeline.fit(X, y)
-        permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
+        permutation_importance_object = permutation_importance(estimator=self.fitted_pipeline_, X=X, y=y, n_repeats=5, random_state=random_state)
         for i in permutation_importance_object.importances_mean.argsort()[::-1]:
             print(f"{X.columns[i]:<8}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
