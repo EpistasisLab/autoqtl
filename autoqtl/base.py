@@ -2032,7 +2032,10 @@ class AUTOQTLBase(BaseEstimator):
 
         pipeline.fit(X, y)
 
-        print(X.shape[1])
-        explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
-        shap_values = explainer(X)
+        #print(X.shape[1])
+        X_background = shap.utils.sample(X, 50)
+        num_features = X.shape[1]
+        max_evals = max(500, 2 * num_features + 1)
+        explainer = shap.Explainer(self.fitted_pipeline_.predict, X_background)
+        shap_values = explainer(X, max_evals=max_evals)
         shap.summary_plot(shap_values, X, plot_type='bar')
