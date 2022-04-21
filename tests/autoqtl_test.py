@@ -140,8 +140,8 @@ def test_summary_of_best_pipeline():
     autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
     #autoqtl_obj._summary_of_best_pipeline(features_dataset1, target_dataset2, features_dataset2, target_dataset2)
     assert isinstance(autoqtl_obj._optimized_pipeline, creator.Individual)
-    #autoqtl_obj.get_feature_importance(features_dataset1, target_dataset1, random_state=0)
-    autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
+    autoqtl_obj.get_feature_importance(features_dataset1, target_dataset1, random_state=0)
+    #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
 
 # calling the test functions
 #test_init_custom_parameters()
