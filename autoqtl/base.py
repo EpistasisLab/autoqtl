@@ -25,6 +25,7 @@ from sklearn import tree
 import sklearn
 import re
 import shap
+import sys
 
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection import VarianceThreshold
@@ -2013,19 +2014,22 @@ class AUTOQTLBase(BaseEstimator):
 
 
         # Testing 
-        estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
+        """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
         pipeline = Pipeline(estimators)
 
-        pipeline.fit(X, y)
-        permutation_importance_object = permutation_importance(estimator=self.fitted_pipeline_, X=X, y=y, n_repeats=5, random_state=random_state)
-        for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-            print(f"{X.columns[i]:<8}"
+        pipeline.fit(X, y)"""
+        # Putting output to a text file
+        file_path = 'output.txt'
+        sys.stdout = open(file_path, "w")
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+            print("The Pipeline being evaluated: ", fitted_pipeline)
+            permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
+            for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+                print(f"{X.columns[i]:<8}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
         
-        """explainer = shap.Explainer(pipeline.predict, X)
-        shap_values = explainer(X)
-        shap.summary_plot(shap_values, X, plot_type='bar')"""
-
+        
+    
     def get_shap_values(self, X, y):
         estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
         pipeline = Pipeline(estimators)
