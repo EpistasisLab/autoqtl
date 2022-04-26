@@ -2010,8 +2010,8 @@ class AUTOQTLBase(BaseEstimator):
         """for key, value in self.pipeline_for_feature_importance_.items():
             pipeline_estimator = value"""
                        
-        pipeline_estimator = self.fitted_pipeline_for_feature_importance[0]
-
+        pipeline_estimator = self.fitted_pipeline_for_feature_importance[2]
+        print(pipeline_estimator)
 
         # Testing 
         """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
@@ -2019,12 +2019,17 @@ class AUTOQTLBase(BaseEstimator):
 
         pipeline.fit(X, y)"""
         # Putting output to a text file
-        file_path = 'output.txt'
+        """file_path = 'output.txt'
         sys.stdout = open(file_path, "w")
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
             print("The Pipeline being evaluated: ", fitted_pipeline)
             permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+                print(f"{X.columns[i]:<8}"
+                    f"{permutation_importance_object.importances_mean[i]:.3f}")"""
+
+        permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
+        for i in permutation_importance_object.importances_mean.argsort()[::-1]:
                 print(f"{X.columns[i]:<8}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
         
@@ -2037,9 +2042,9 @@ class AUTOQTLBase(BaseEstimator):
         pipeline.fit(X, y)
 
         print(X.shape[1])
-        X_background = shap.utils.sample(X, 100)
+        X_background = shap.utils.sample(X, 2500)
         num_features = X.shape[1]
         max_evals = max(500, 2 * num_features + 1)
         explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
-        shap_values = explainer(X_background, max_evals=max_evals)
+        shap_values = explainer(X, max_evals=max_evals)
         shap.summary_plot(shap_values, X, plot_type='bar')
