@@ -2013,6 +2013,15 @@ class AUTOQTLBase(BaseEstimator):
         pipeline_estimator = self.fitted_pipeline_for_feature_importance[2]
         print(pipeline_estimator)
 
+
+         # Printing the final pipeline
+        print("Final Pareto Front at the end of the optimization process: ")
+        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+            pipeline_to_be_printed = self.print_pipeline(pipeline)
+            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
+                            pipeline_scores.wvalues[0],
+                            pipeline_scores.wvalues[1],
+                            pipeline_to_be_printed))
         # Testing 
         """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
         pipeline = Pipeline(estimators)
