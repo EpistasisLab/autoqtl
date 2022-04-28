@@ -2019,13 +2019,24 @@ class AUTOQTLBase(BaseEstimator):
 
         pipeline.fit(X, y)"""
         # Putting output to a text file
-        file_path = 'output.txt'
+        file_path = 'output5.txt'
         sys.stdout = open(file_path, "w")
+
+        # Printing the pareto front, added now
+        print("Final Pareto Front at the end of the optimization process: ")
+        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+            pipeline_to_be_printed = self.print_pipeline(pipeline)
+            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
+                            pipeline_scores.wvalues[0],
+                            pipeline_scores.wvalues[1],
+                            pipeline_to_be_printed))
+        #
+        print("Feature Importance: \n ")
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
-            print("The Pipeline being evaluated: ", fitted_pipeline)
+            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
             permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<8}"
+                print(f"{X.columns[i]:<20}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
         
         

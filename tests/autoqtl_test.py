@@ -1,11 +1,14 @@
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
 from shutil import rmtree
 import sys
 from tempfile import mkdtemp
 
 from sklearn.model_selection import train_test_split
-sys.path.append("C:/Users/ghosha/.vscode/autoqtl")
+sys.path.append("/home/ghosha/common/autoqtl/autoqtl")
 import autoqtl
-
+import autoqtl.base
 from autoqtl.autoqtl import AUTOQTLRegressor
 from autoqtl.base import AUTOQTLBase
 
@@ -22,7 +25,7 @@ autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
 # dataset1
-test_data = pd.read_csv("tests/randomset5.csv")
+test_data = pd.read_csv("/home/ghosha/common/autoqtl/tests/rat_random_length_wo_tail_cm_res.csv")
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
 feature_name = test_data.columns
@@ -132,7 +135,7 @@ def test_summary_of_best_pipeline():
     """Testing the summary_of_best_pipeline function. """
     autoqtl_obj = AUTOQTLRegressor(
         random_state=42,
-        population_size=10,
+        population_size=100,
         #offspring_size=2,
         generations=5,
         verbosity=3
