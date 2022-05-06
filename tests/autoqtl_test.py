@@ -18,11 +18,13 @@ import pandas as pd
 
 from deap import creator, gp
 
+from sklearn.linear_model import LinearRegression
+
 autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
 # dataset1
-test_data = pd.read_csv("tests/rat_random_bmi_w_tail.csv")
+test_data = pd.read_csv("tests/BMIwTail.csv")
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
 feature_name = test_data.columns
@@ -132,7 +134,7 @@ def test_summary_of_best_pipeline():
     """Testing the summary_of_best_pipeline function. """
     autoqtl_obj = AUTOQTLRegressor(
         random_state=42,
-        population_size=100,
+        population_size=50,
         #offspring_size=2,
         generations=5,
         verbosity=3
@@ -140,11 +142,15 @@ def test_summary_of_best_pipeline():
     autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
     #autoqtl_obj._summary_of_best_pipeline(features_dataset1, target_dataset2, features_dataset2, target_dataset2)
     assert isinstance(autoqtl_obj._optimized_pipeline, creator.Individual)
-    autoqtl_obj.get_feature_importance(features_dataset1, target_dataset1, random_state=0)
+    #autoqtl_obj.get_feature_importance(features_dataset1, target_dataset1, random_state=0)
     #autoqtl_obj.get_feature_importance(test_X, test_y, random_state=0)
     #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
     #autoqtl_obj.get_shap_values(test_X, test_y)
 
+# Just LR
+"""def check_lr(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
+    lr = LinearRegression()
+    lr.fit(features_dataset1, )"""
 # calling the test functions
 #test_init_custom_parameters()
 #test_init_log_file()

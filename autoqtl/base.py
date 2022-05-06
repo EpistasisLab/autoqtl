@@ -49,7 +49,7 @@ from .decorators import _pre_test
 from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
 from .gp_deap import (
-    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda
+    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda, get_feature_size
 )
 
 from .export_utils import (
@@ -559,7 +559,7 @@ class AUTOQTLBase(BaseEstimator):
         """Setup the toolbox. ToolBox is a DEAP package class, which is a toolbox for evolution containing all the evolutionary operators. """
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            creator.create("FitnessMulti", base.Fitness, weights=(1.0, 1.0)) # Weights set according to requirement of maximizing two R2 values
+            creator.create("FitnessMulti", base.Fitness, weights=(1.0, 1.0, 1.0)) # Weights set according to requirement of maximizing two R2 values
             creator.create(
                 "Individual",
                 gp.PrimitiveTree,
@@ -973,7 +973,7 @@ class AUTOQTLBase(BaseEstimator):
         return operator_count
 
 
-    def _combine_individual_stats(self, operator_count, score_on_dataset1, score_on_dataset2 ,individual_stats):
+    def _combine_individual_stats(self, operator_count, score_on_dataset1, score_on_dataset2, no_of_features, individual_stats):
         """Combine the stats with operator count and cv score and preprare to be written to _evaluated_individuals
 
         Parameters
@@ -1005,6 +1005,7 @@ class AUTOQTLBase(BaseEstimator):
         stats["operator_count"] = operator_count
         stats["score_on_dataset1"] = score_on_dataset1
         stats["score_on_dataset2"] = score_on_dataset2
+        stats["no_of_features"] = no_of_features
         return stats # returns the entire statistics dictionary of the pipeline with all the components
     
 
@@ -1072,8 +1073,16 @@ class AUTOQTLBase(BaseEstimator):
                 #print(score_on_dataset1)
                 score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
                 #print(score_on_dataset2)
+
+                # Trying no_of_features for pareto front
+                no_of_features_dataset1 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
+                #print(no_of_features_dataset1)
+                no_of_features_dataset2 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                #print(no_of_features_dataset2)
+                no_of_features_after_addition = 1/(no_of_features_dataset1 + no_of_features_dataset2)
+                #print(no_of_features_after_addition)
                 # Use the modified _update_val() to add the evaluated scores to the result_score_list
-                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, result_score_list)
+                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, no_of_features_after_addition, result_score_list)
                 #print(result_score_list)
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
@@ -1103,7 +1112,8 @@ class AUTOQTLBase(BaseEstimator):
                 ind_str = str(ind)
                 ind.fitness.values = (
                     self.evaluated_individuals_[ind_str]["score_on_dataset1"],
-                    self.evaluated_individuals_[ind_str]["score_on_dataset2"]
+                    self.evaluated_individuals_[ind_str]["score_on_dataset2"],
+                    self.evaluated_individuals_[ind_str]["no_of_features"]
                 ) # evaluated_individuals_ is a dictionary containing the evaluated individuals in the previous generations, defined in the fit_init() function
 
             self._pareto_front.update(individuals[:num_eval_ind]) # the update() is the inbuilt function of pareto front of DEAP
@@ -1120,6 +1130,7 @@ class AUTOQTLBase(BaseEstimator):
             ind.fitness.values = (
                 self.evaluated_individuals_[ind_str]["score_on_dataset1"],
                 self.evaluated_individuals_[ind_str]["score_on_dataset2"],
+                self.evaluated_individuals_[ind_str]["no_of_features"]
             )
         individuals = [ind for ind in population if not ind.fitness.valid] # WHY IS THIS DONE? Contains the new list of individuals with invalid scores
         self._pareto_front.update(population)
@@ -1149,7 +1160,7 @@ class AUTOQTLBase(BaseEstimator):
                 self._pbar.update(pbar_num)
 
     # Function to update the two calculated scores for the pipleine in the list of result scores and update self._pbar during pipeline evaluation. MODIFIED FROM TPOT
-    def _update_val(self, score1, score2, result_score_list):
+    def _update_val(self, score1, score2, no_of_features, result_score_list):
         """Update the score of the pipeline evaluation on the two datasets d1 and d2 in the result score list and update self._pbar to show the total number of pipelines proccessed
         
         Parameters
@@ -1178,9 +1189,11 @@ class AUTOQTLBase(BaseEstimator):
             )
             score_on_d1_d2_list.append(-float("inf")) # score1 invalidated
             score_on_d1_d2_list.append(-float("inf")) # score2 invalidated
+            score_on_d1_d2_list.append(-float("inf")) # no_of_features invalidated
         else:
             score_on_d1_d2_list.append(score1)
             score_on_d1_d2_list.append(score2)
+            score_on_d1_d2_list.append(no_of_features)
         
         result_score_list.append(score_on_d1_d2_list)
 
@@ -1211,13 +1224,14 @@ class AUTOQTLBase(BaseEstimator):
         for result_score, individual_str in zip(
             result_score_list, eval_individuals_str
         ):
-            if type(result_score[0]) in [float, np.float64, np.float32] and type(result_score[1]) in [float, np.float64, np.float32] :
+            if type(result_score[0]) in [float, np.float64, np.float32] and type(result_score[1]) in [float, np.float64, np.float32] and type(result_score[2]) in [int, float, np.float64, np.float32] :
                 self.evaluated_individuals_[
                     individual_str
                 ] = self._combine_individual_stats(
                     operator_counts[individual_str],
                     result_score[0],
                     result_score[1],
+                    result_score[2],
                     stats_dicts[individual_str],
                 )
             else:
