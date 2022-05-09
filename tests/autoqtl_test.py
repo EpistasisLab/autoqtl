@@ -24,7 +24,7 @@ autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
 # dataset1
-test_data = pd.read_csv("tests/BMIwTail.csv")
+test_data = pd.read_csv("tests/BMIwoTail1000.csv")
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
 feature_name = test_data.columns
@@ -134,7 +134,7 @@ def test_summary_of_best_pipeline():
     """Testing the summary_of_best_pipeline function. """
     autoqtl_obj = AUTOQTLRegressor(
         random_state=42,
-        population_size=50,
+        population_size=100,
         #offspring_size=2,
         generations=5,
         verbosity=3

@@ -12,7 +12,7 @@ regressor_config_dict = {
     
     # Feature Selectors
     'sklearn.feature_selection.SelectPercentile': {
-        'percentile': range(5, 95),
+        'percentile': range(0, 1),
         'score_func': {
             'sklearn.feature_selection.f_regression': None
         }
