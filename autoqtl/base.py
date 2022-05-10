@@ -2019,7 +2019,7 @@ class AUTOQTLBase(BaseEstimator):
 
         pipeline.fit(X, y)"""
         # Putting output to a text file
-        file_path = 'output5.txt'
+        file_path = 'output_new_test.txt'
         sys.stdout = open(file_path, "w")
 
         # Printing the pareto front, added now
