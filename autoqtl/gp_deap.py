@@ -457,6 +457,7 @@ def print_pareto_pipeline(individual):
                 pretty_string = pretty_string + dirty_string[start:end] + ' -> '
         return pretty_string
 
+
 # To get the number of features after applying a pipeline. TESTING
 def get_feature_size(sklearn_pipeline, features, target):
     feature_names = features.columns
