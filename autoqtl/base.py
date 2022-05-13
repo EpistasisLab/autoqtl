@@ -1525,9 +1525,10 @@ class AUTOQTLBase(BaseEstimator):
                 print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
                     pipeline_to_be_printed = self.print_pipeline(pipeline)
-                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
+                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tFeature Selection Score = {2}, \tPipeline: {3}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
+                            abs(pipeline_scores.wvalues[2]),
                             pipeline_to_be_printed))
 
             """if self.pareto_front_fitted_pipelines_:
@@ -2024,36 +2025,34 @@ class AUTOQTLBase(BaseEstimator):
         """for key, value in self.pipeline_for_feature_importance_.items():
             pipeline_estimator = value"""
                        
-        pipeline_estimator = self.fitted_pipeline_for_feature_importance[2]
-        print(pipeline_estimator)
+        pipeline_estimator = self.fitted_pipeline_for_feature_importance[0]
 
 
-         # Printing the final pipeline
-        print("Final Pareto Front at the end of the optimization process: ")
-        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
-            pipeline_to_be_printed = self.print_pipeline(pipeline)
-            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
-                            pipeline_scores.wvalues[0],
-                            pipeline_scores.wvalues[1],
-                            pipeline_to_be_printed))
         # Testing 
         """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
         pipeline = Pipeline(estimators)
 
         pipeline.fit(X, y)"""
         # Putting output to a text file
-        """file_path = 'output.txt'
+        file_path = 'output_BMIwTail.txt'
         sys.stdout = open(file_path, "w")
+
+        # Printing the pareto front, added now
+        print("Final Pareto Front at the end of the optimization process: ")
+        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+            pipeline_to_be_printed = self.print_pipeline(pipeline)
+            print('\nScore on D1 = {0},\tScore on D2 = {1},\tFeature Selection Score = {2}, \tPipeline: {3}'.format(
+                            pipeline_scores.wvalues[0],
+                            pipeline_scores.wvalues[1],
+                            abs(pipeline_scores.wvalues[2]),
+                            pipeline_to_be_printed))
+        #
+        print("Feature Importance: \n ")
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
-            print("The Pipeline being evaluated: ", fitted_pipeline)
+            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
             permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<8}"
-                    f"{permutation_importance_object.importances_mean[i]:.3f}")"""
-
-        permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
-        for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<8}"
+                print(f"{X.columns[i]:<20}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
         
         
