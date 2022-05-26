@@ -16,6 +16,7 @@ from tempfile import mkdtemp
 import warnings
 from isort import file
 from joblib import Memory
+from matplotlib import pyplot as plt
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
@@ -1071,12 +1072,10 @@ class AUTOQTLBase(BaseEstimator):
                 self._stop_by_max_time_mins()
                 score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
                 #print(score_on_dataset1)
-                score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
-                #print(score_on_dataset2)
-
-                # Trying no_of_features for pareto front
                 no_of_features_dataset1 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
                 #print(no_of_features_dataset1)
+                score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                #print(score_on_dataset2)
                 no_of_features_dataset2 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
                 #print(no_of_features_dataset2)
                 no_of_features_after_addition = 1/(no_of_features_dataset1 + no_of_features_dataset2)
@@ -2046,7 +2045,8 @@ class AUTOQTLBase(BaseEstimator):
                             pipeline_scores.wvalues[1],
                             abs(pipeline_scores.wvalues[2]),
                             pipeline_to_be_printed))
-        #
+        
+        # Permutation Feature Importance
         print("Feature Importance: \n ")
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
             print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
@@ -2054,8 +2054,24 @@ class AUTOQTLBase(BaseEstimator):
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
                 print(f"{X.columns[i]:<20}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
-        
-        
+
+        # Shapley Values
+        print("Shapley Values")
+        num_features = X.shape[1]
+        max_evals = max(500, 2 * num_features + 1)
+        #X_background = shap.utils.sample(X, 100)
+        save_folder = "shapDiagrams"
+        if not os.path.exists(save_folder):
+            os.makedirs(save_folder)
+        i=1
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
+            explainer = shap.Explainer(fitted_pipeline.predict, X)
+            shap_values = explainer(X, max_evals=max_evals)
+            shap.summary_plot(shap_values, X, plot_type='bar', show=False)
+            plt.tight_layout()
+            plt.savefig(f"{save_folder}/summary{i}.png")
+            i = i+1
     
     def get_shap_values(self, X, y):
         estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
@@ -2069,4 +2085,9 @@ class AUTOQTLBase(BaseEstimator):
         max_evals = max(500, 2 * num_features + 1)
         explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
         shap_values = explainer(X, max_evals=max_evals)
-        shap.summary_plot(shap_values, X, plot_type='bar')
+        shap.summary_plot(shap_values, X, plot_type='bar', show=False)
+
+        ################################TRYING SHAP VALUES######################
+        # Putting output to a text file
+        file_path = 'output_shap_BMIwTail.pdf'
+        sys.stdout = open(file_path, "w")
