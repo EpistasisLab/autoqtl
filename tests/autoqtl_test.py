@@ -1,3 +1,7 @@
+#For running on HPC
+#import os, sys
+#sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
 from shutil import rmtree
 import sys
 from tempfile import mkdtemp
@@ -148,6 +152,20 @@ def test_summary_of_best_pipeline():
     #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
     #autoqtl_obj.get_shap_values(test_X, test_y)
 
+# Printing the Linear Regression R2 values for whole dataset and split dataset
+def get_R2():
+    model = LinearRegression()
+    # Entire Dataset
+    model.fit(test_X, test_y)
+    print("Entire Dataset: ", model.score(test_X, test_y))
+    # Dataset split 1
+    model.fit(features_dataset1, target_dataset1)
+    print("Dataset split 1: ", model.score(features_dataset1,target_dataset1))
+    # Dataset split 1
+    model.fit(features_dataset2, target_dataset2)
+    print("Dataset split 1: ", model.score(features_dataset2,target_dataset2))
+
+
 # Just LR
 """def check_lr(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
     lr = LinearRegression()
@@ -158,4 +176,5 @@ def test_summary_of_best_pipeline():
 #test_fit()
 #test_update_top_pipeline()
 test_summary_of_best_pipeline() # using 
+get_R2()
 #print(feature_name)

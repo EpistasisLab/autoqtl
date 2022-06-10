@@ -85,7 +85,7 @@ chr9:71715296_A     0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=85,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('overdominanceplusalternateencoder',
                  OverDominancePlusAlternateEncoder()),
                 ('randomforestregressor',
@@ -115,7 +115,7 @@ chr18:27348077_G    0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=70,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('overdominanceplusalternateencoder',
                  OverDominancePlusAlternateEncoder()),
                 ('randomforestregressor',
@@ -143,7 +143,7 @@ chr7:8599340_A      0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.4, min_samples_leaf=3,
                                        min_samples_split=3, random_state=42))])
@@ -169,7 +169,7 @@ chr7:8599340_A      0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.55,
                                        min_samples_leaf=4, min_samples_split=19,
@@ -196,7 +196,7 @@ chr7:8599340_A      0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=50,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.7000000000000001,
                                        min_samples_leaf=7, min_samples_split=10,
@@ -225,7 +225,7 @@ The Pipeline being evaluated:
                 ('underdominanceencoder', UnderDominanceEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=40,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.25, min_samples_split=18,
                                        random_state=42))])
@@ -282,7 +282,7 @@ chr1:203085725_C    0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=40,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('decisiontreeregressor',
                  DecisionTreeRegressor(max_depth=7, min_samples_leaf=6,
                                        min_samples_split=18,
@@ -309,7 +309,7 @@ chr7:8599340_A      0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=25,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('decisiontreeregressor',
                  DecisionTreeRegressor(max_depth=10, min_samples_leaf=5,
                                        min_samples_split=19,
@@ -336,7 +336,7 @@ chr7:8599340_A      0.000
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=1.0, min_samples_leaf=6,
                                        min_samples_split=19,
@@ -364,7 +364,7 @@ The Pipeline being evaluated:
  Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
                 ('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('linearregression', LinearRegression())])
 chr1:281788173_G    0.030
 chr10:84091208_T    0.020
@@ -387,7 +387,7 @@ chr1:203085725_C    0.000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(score_func=<function f_regression at 0x0000019D86649430>)),
+                 SelectPercentile(score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('variancethreshold', VarianceThreshold(threshold=0.2)),
                 ('decisiontreeregressor',
                  DecisionTreeRegressor(max_depth=8, min_samples_leaf=7,
@@ -411,7 +411,8 @@ chr9:71715296_A     0.000
 chr10:23267180_G    0.000
 chr18:27348077_G    0.000
 chr1:203085725_C    0.000
-Shapley Values
+
+ Shapley Values
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('inverseencoder', InverseEncoder()),
@@ -420,6 +421,25 @@ The Pipeline being evaluated:
                                        max_features=0.6500000000000001,
                                        min_samples_leaf=3, min_samples_split=6,
                                        random_state=42))])
+            col_name  feature_importance_vals
+1   chr1:281788173_G                 0.121171
+14  chr10:84091208_T                 0.085522
+0   chr1:203085725_C                 0.071772
+3   chr3:136492861_G                 0.067883
+4   chr4:178946041_A                 0.056503
+2   chr2:241577141_C                 0.056239
+6   chr5:107167969_G                 0.051571
+9   chr7:129118847_C                 0.050671
+7    chr6:29889998_C                 0.049953
+15  chr18:27348077_G                 0.047961
+17  chr19:24321261_T                 0.047557
+11   chr9:15866960_A                 0.045515
+5    chr5:72916242_T                 0.044593
+10  chr8:103608382_G                 0.040154
+13  chr10:23267180_G                 0.036096
+8     chr7:8599340_A                 0.032329
+16  chr18:32316331_A                 0.029358
+12   chr9:71715296_A                 0.017381
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.2)),
@@ -428,11 +448,30 @@ The Pipeline being evaluated:
                                        max_features=0.35000000000000003,
                                        min_samples_leaf=3, min_samples_split=5,
                                        random_state=42))])
+            col_name  feature_importance_vals
+1   chr1:281788173_G                 0.111968
+14  chr10:84091208_T                 0.077419
+0   chr1:203085725_C                 0.065686
+3   chr3:136492861_G                 0.062495
+4   chr4:178946041_A                 0.054714
+2   chr2:241577141_C                 0.053472
+15  chr18:27348077_G                 0.050657
+7    chr6:29889998_C                 0.045461
+9   chr7:129118847_C                 0.045349
+6   chr5:107167969_G                 0.045035
+17  chr19:24321261_T                 0.044001
+5    chr5:72916242_T                 0.041543
+11   chr9:15866960_A                 0.039951
+10  chr8:103608382_G                 0.036345
+8     chr7:8599340_A                 0.033707
+13  chr10:23267180_G                 0.031898
+12   chr9:71715296_A                 0.000000
+16  chr18:32316331_A                 0.000000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=85,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('overdominanceplusalternateencoder',
                  OverDominancePlusAlternateEncoder()),
                 ('randomforestregressor',
@@ -440,52 +479,166 @@ The Pipeline being evaluated:
                                        max_features=0.7500000000000001,
                                        min_samples_leaf=2, min_samples_split=12,
                                        random_state=42))])
+            col_name  feature_importance_vals
+1   chr1:281788173_G                 0.125190
+14  chr10:84091208_T                 0.090116
+0   chr1:203085725_C                 0.063229
+3   chr3:136492861_G                 0.057385
+7    chr6:29889998_C                 0.056528
+4   chr4:178946041_A                 0.051677
+2   chr2:241577141_C                 0.050413
+10  chr8:103608382_G                 0.048541
+8     chr7:8599340_A                 0.046994
+13  chr10:23267180_G                 0.046886
+9   chr7:129118847_C                 0.045644
+17  chr19:24321261_T                 0.044854
+16  chr18:32316331_A                 0.040491
+6   chr5:107167969_G                 0.040049
+11   chr9:15866960_A                 0.038959
+12   chr9:71715296_A                 0.000000
+5    chr5:72916242_T                 0.000000
+15  chr18:27348077_G                 0.000000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=70,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('overdominanceplusalternateencoder',
                  OverDominancePlusAlternateEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.55, min_samples_leaf=3,
                                        random_state=42))])
+            col_name  feature_importance_vals
+1   chr1:281788173_G                 0.106702
+14  chr10:84091208_T                 0.085174
+0   chr1:203085725_C                 0.063378
+3   chr3:136492861_G                 0.056127
+7    chr6:29889998_C                 0.055264
+2   chr2:241577141_C                 0.054901
+9   chr7:129118847_C                 0.054269
+17  chr19:24321261_T                 0.048414
+4   chr4:178946041_A                 0.047554
+6   chr5:107167969_G                 0.044210
+16  chr18:32316331_A                 0.041356
+11   chr9:15866960_A                 0.039832
+8     chr7:8599340_A                 0.000000
+5    chr5:72916242_T                 0.000000
+10  chr8:103608382_G                 0.000000
+12   chr9:71715296_A                 0.000000
+13  chr10:23267180_G                 0.000000
+15  chr18:27348077_G                 0.000000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.4, min_samples_leaf=3,
                                        min_samples_split=3, random_state=42))])
+            col_name  feature_importance_vals
+1   chr1:281788173_G                 0.104335
+14  chr10:84091208_T                 0.078559
+0   chr1:203085725_C                 0.067268
+3   chr3:136492861_G                 0.063702
+2   chr2:241577141_C                 0.059777
+4   chr4:178946041_A                 0.055614
+9   chr7:129118847_C                 0.053054
+7    chr6:29889998_C                 0.049962
+6   chr5:107167969_G                 0.048548
+17  chr19:24321261_T                 0.046585
+11   chr9:15866960_A                 0.041885
+8     chr7:8599340_A                 0.000000
+10  chr8:103608382_G                 0.000000
+12   chr9:71715296_A                 0.000000
+13  chr10:23267180_G                 0.000000
+5    chr5:72916242_T                 0.000000
+15  chr18:27348077_G                 0.000000
+16  chr18:32316331_A                 0.000000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.55,
                                        min_samples_leaf=4, min_samples_split=19,
                                        random_state=42))])
+            col_name  feature_importance_vals
+1   chr1:281788173_G                 0.112401
+14  chr10:84091208_T                 0.082875
+3   chr3:136492861_G                 0.068873
+0   chr1:203085725_C                 0.068162
+2   chr2:241577141_C                 0.059701
+9   chr7:129118847_C                 0.059090
+4   chr4:178946041_A                 0.057935
+17  chr19:24321261_T                 0.050199
+6   chr5:107167969_G                 0.048261
+7    chr6:29889998_C                 0.048168
+8     chr7:8599340_A                 0.000000
+5    chr5:72916242_T                 0.000000
+10  chr8:103608382_G                 0.000000
+11   chr9:15866960_A                 0.000000
+12   chr9:71715296_A                 0.000000
+13  chr10:23267180_G                 0.000000
+15  chr18:27348077_G                 0.000000
+16  chr18:32316331_A                 0.000000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=50,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.7000000000000001,
                                        min_samples_leaf=7, min_samples_split=10,
                                        random_state=42))])
+            col_name  feature_importance_vals
+1   chr1:281788173_G                 0.111906
+14  chr10:84091208_T                 0.087855
+0   chr1:203085725_C                 0.068945
+3   chr3:136492861_G                 0.063746
+2   chr2:241577141_C                 0.062113
+9   chr7:129118847_C                 0.059684
+4   chr4:178946041_A                 0.056944
+7    chr6:29889998_C                 0.050528
+17  chr19:24321261_T                 0.049919
+6   chr5:107167969_G                 0.000000
+8     chr7:8599340_A                 0.000000
+5    chr5:72916242_T                 0.000000
+10  chr8:103608382_G                 0.000000
+11   chr9:15866960_A                 0.000000
+12   chr9:71715296_A                 0.000000
+13  chr10:23267180_G                 0.000000
+15  chr18:27348077_G                 0.000000
+16  chr18:32316331_A                 0.000000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('timestwoencoder', TimesTwoEncoder()),
                 ('underdominanceencoder', UnderDominanceEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=40,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
+                                  score_func=<function f_regression at 0x00000235E45085E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.25, min_samples_split=18,
                                        random_state=42))])
+            col_name  feature_importance_vals
+0   chr1:203085725_C                 0.084032
+3   chr3:136492861_G                 0.071926
+2   chr2:241577141_C                 0.063794
+4   chr4:178946041_A                 0.057538
+17  chr19:24321261_T                 0.055698
+16  chr18:32316331_A                 0.054431
+10  chr8:103608382_G                 0.051693
+5    chr5:72916242_T                 0.000000
+6   chr5:107167969_G                 0.000000
+7    chr6:29889998_C                 0.000000
+8     chr7:8599340_A                 0.000000
+1   chr1:281788173_G                 0.000000
+11   chr9:15866960_A                 0.000000
+12   chr9:71715296_A                 0.000000
+13  chr10:23267180_G                 0.000000
+14  chr10:84091208_T                 0.000000
+15  chr18:27348077_G                 0.000000
+9   chr7:129118847_C                 0.000000
 
 The Pipeline being evaluated: 
  Pipeline(steps=[('inverseencoder', InverseEncoder()),
@@ -498,31 +651,4 @@ The Pipeline being evaluated:
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.55,
                                        min_samples_leaf=4, min_samples_split=19,
-                                       random_state=42))])
-
-The Pipeline being evaluated: 
- Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(percentile=40,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
-                ('decisiontreeregressor',
-                 DecisionTreeRegressor(max_depth=7, min_samples_leaf=6,
-                                       min_samples_split=18,
-                                       random_state=42))])
-
-The Pipeline being evaluated: 
- Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(percentile=25,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
-                ('decisiontreeregressor',
-                 DecisionTreeRegressor(max_depth=10, min_samples_leaf=5,
-                                       min_samples_split=19,
-                                       random_state=42))])
-
-The Pipeline being evaluated: 
- Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x0000019D86649430>)),
-                ('randomforestregressor',
-                 RandomForestRegressor(max_features=1.0, min_samples_leaf=6,
-                                       min_samples_split=19,
                                        random_state=42))])

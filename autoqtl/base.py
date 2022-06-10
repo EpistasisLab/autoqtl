@@ -28,6 +28,8 @@ import re
 import shap
 import sys
 
+import pandas as pd
+
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.impute import SimpleImputer
@@ -2033,7 +2035,7 @@ class AUTOQTLBase(BaseEstimator):
 
         pipeline.fit(X, y)"""
         # Putting output to a text file
-        file_path = 'output_BMIwTail.txt'
+        file_path = 'output_BMIwTail_new.txt'
         sys.stdout = open(file_path, "w")
 
         # Printing the pareto front, added now
@@ -2047,16 +2049,16 @@ class AUTOQTLBase(BaseEstimator):
                             pipeline_to_be_printed))
         
         # Permutation Feature Importance
-        print("Feature Importance: \n ")
+        """print("Feature Importance: \n ")
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
             print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
             permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
                 print(f"{X.columns[i]:<20}"
-                    f"{permutation_importance_object.importances_mean[i]:.3f}")
+                    f"{permutation_importance_object.importances_mean[i]:.3f}")"""
 
         # Shapley Values
-        print("Shapley Values")
+        print("\n Shapley Values")
         num_features = X.shape[1]
         max_evals = max(500, 2 * num_features + 1)
         #X_background = shap.utils.sample(X, 100)
@@ -2064,13 +2066,19 @@ class AUTOQTLBase(BaseEstimator):
         if not os.path.exists(save_folder):
             os.makedirs(save_folder)
         i=1
-        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance[7:13]:
             print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
             explainer = shap.Explainer(fitted_pipeline.predict, X)
             shap_values = explainer(X, max_evals=max_evals)
+            #printing the Shap values
+            vals= np.abs(shap_values.values).mean(0)
+            feature_importance = pd.DataFrame(list(zip(X.columns,vals)),columns=['col_name','feature_importance_vals'])
+            feature_importance.sort_values(by=['feature_importance_vals'],ascending=False,inplace=True)
+            print(feature_importance)
+            #printing the Shap diagram
             shap.summary_plot(shap_values, X, plot_type='bar', show=False)
             plt.tight_layout()
-            plt.savefig(f"{save_folder}/summary{i}.png")
+            plt.savefig(f"{save_folder}/Pipeline{i}.png")
             i = i+1
     
     def get_shap_values(self, X, y):
