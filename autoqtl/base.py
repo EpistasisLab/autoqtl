@@ -52,7 +52,7 @@ from .decorators import _pre_test
 from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
 from .gp_deap import (
-    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda, get_feature_size
+    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda, get_feature_size, get_score_on_fitted_pipeline
 )
 
 from .export_utils import (
@@ -1077,6 +1077,7 @@ class AUTOQTLBase(BaseEstimator):
                 no_of_features_dataset1 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
                 #print(no_of_features_dataset1)
                 score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                #score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
                 #print(score_on_dataset2)
                 no_of_features_dataset2 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
                 #print(no_of_features_dataset2)
@@ -2099,3 +2100,63 @@ class AUTOQTLBase(BaseEstimator):
         # Putting output to a text file
         file_path = 'output_shap_BMIwTail.pdf'
         sys.stdout = open(file_path, "w")
+
+    
+    #############################################################################################################################
+    # Getting test R2 values for the pipelines in the pareto front
+    def get_test_r2(self, X, y, holdout_X, holdout_y):
+        
+        self.final_pareto_pipelines_testR2 = {}
+        self.fitted_final_pareto_pipelines_testR2 =[]
+        
+        for pipeline in self._pareto_front.items:
+                    self.final_pareto_pipelines_testR2[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            X, y
+                        )
+                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            X, y
+                        ))
+
+        final_output_file_path = 'TestR2_ParetoPipelines.txt'
+        sys.stdout = open(final_output_file_path, "w")
+
+        
+
+        for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
+            print("\n The Pipeline being evaluated: \n", pareto_pipeline)
+            #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
+            score = pareto_pipeline.score(holdout_X, holdout_y)
+            print("\n Holdout R2 Value: ", score)
+
+        """final_output_file_path = 'TestR2_ParetoPipelines.txt'
+        sys.stdout = open(final_output_file_path, "w")
+
+        self.final_pareto_pipelines_testR2 = {}
+        self.fitted_final_pareto_pipelines_testR2 =[]
+
+        for pipeline in self._pareto_front.items:
+                    self.final_pareto_pipelines_testR2[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+        with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            X, y
+                        )
+                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            X, y
+                        ))
+
+        for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
+            print("\n The Pipeline being evaluated: \n", pareto_pipeline)
+            score = pareto_pipeline.score(holdout_X, holdout_y)
+            print("\n Test R2 Value: ", score)"""
+
+        

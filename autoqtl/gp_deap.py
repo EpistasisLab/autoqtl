@@ -469,3 +469,14 @@ def get_feature_size(sklearn_pipeline, features, target):
             feature_names = feature_names[tuple(indexes)]
     #print (len(feature_names))  
     return  len(feature_names)
+
+# Getting score on split two
+def get_score_on_fitted_pipeline(sklearn_pipeline, X_learner, y_learner, X_test, y_test, scoring_function):
+    scorer = check_scoring(sklearn_pipeline, scoring=scoring_function)
+
+    sklearn_pipeline.fit(X_learner, y_learner)
+    
+
+    score = scorer(sklearn_pipeline, X_test, y_test) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
+            
+    return score
