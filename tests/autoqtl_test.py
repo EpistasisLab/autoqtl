@@ -5,6 +5,8 @@ from shutil import rmtree
 import sys
 from tempfile import mkdtemp
 
+from sklearn.linear_model import LinearRegression
+
 from sklearn.model_selection import train_test_split
 sys.path.append("/home/ghosha/common/autoqtl/autoqtl")
 import autoqtl
@@ -25,7 +27,7 @@ autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
 # dataset1
-test_data = pd.read_csv("/home/ghosha/common/autoqtl/tests/rat_random_bmi_w_tail.csv")
+test_data = pd.read_csv("/home/ghosha/common/autoqtl/tests/BMIwTail.csv")
 
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
@@ -37,7 +39,7 @@ feature_name = test_data.columns
 test_X = test_data.iloc[:,:-1]
 test_y = test_data.iloc[:,-1]
 
-features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(test_X, test_y, train_size=0.5, random_state=29)
+features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(test_X, test_y, train_size=0.5, random_state=8)
 
 
 # First test whether the custom parameters are being assigned properly
@@ -148,10 +150,24 @@ def test_summary_of_best_pipeline():
     autoqtl_obj.get_feature_importance(test_X, test_y, random_state=0)
     #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
 
+# Printing the Linear Regression R2 values for whole dataset and split dataset
+def get_R2():
+    model = LinearRegression()
+    # Entire Dataset
+    model.fit(test_X, test_y)
+    print("Entire Dataset: ", model.score(test_X, test_y))
+    # Dataset split 1
+    model.fit(features_dataset1, target_dataset1)
+    print("Dataset split 1: ", model.score(features_dataset1,target_dataset1))
+    # Dataset split 1
+    model.fit(features_dataset2, target_dataset2)
+    print("Dataset split 2: ", model.score(features_dataset2,target_dataset2))
+
 # calling the test functions
 #test_init_custom_parameters()
 #test_init_log_file()
 #test_fit()
 #test_update_top_pipeline()
 test_summary_of_best_pipeline() # using 
+get_R2()
 #print(feature_name)

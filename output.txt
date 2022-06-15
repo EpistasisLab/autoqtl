@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-The Pipeline being evaluated:  Pipeline(steps=[('dominantencoder', DominantEncoder()),
-                ('heterozygotedisadvantageencoder',
-                 HeterozygoteDisadvantageEncoder()),
-                ('linearregression', LinearRegression())])
-=======
->>>>>>> 7f880cf69cb42eb3dc9b5d6fd8c3bb42677f3acd
