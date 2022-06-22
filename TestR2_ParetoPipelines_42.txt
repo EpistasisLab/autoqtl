@@ -30,7 +30,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=90,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.5,
                                        min_samples_leaf=3, min_samples_split=6,
@@ -97,7 +97,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('overdominanceplusencoder', OverDominancePlusEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.55,
@@ -123,7 +123,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.5,
                                        min_samples_leaf=3, min_samples_split=4,
@@ -151,7 +151,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.9500000000000001,
                                        min_samples_leaf=3, min_samples_split=4,
@@ -162,7 +162,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('overdominanceplusencoder', OverDominancePlusEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.55, min_samples_leaf=3,
@@ -218,7 +218,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.1,
                                        min_samples_leaf=3, min_samples_split=4,
@@ -239,7 +239,7 @@
  Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
                 ('selectpercentile',
                  SelectPercentile(percentile=90,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.9500000000000001,
                                        min_samples_leaf=2, min_samples_split=15,
@@ -250,7 +250,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('overdominanceplusencoder', OverDominancePlusEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.1,
@@ -262,7 +262,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=50,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.9500000000000001,
                                        min_samples_leaf=2, min_samples_split=11,
@@ -342,7 +342,7 @@
  Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=75,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('heterozygotedisadvantageencoder',
                  HeterozygoteDisadvantageEncoder()),
                 ('randomforestregressor',
@@ -364,7 +364,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=40,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False,
                                        max_features=0.7500000000000001,
@@ -376,7 +376,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
                                        min_samples_leaf=11,
@@ -388,7 +388,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.5,
                                        min_samples_leaf=3, min_samples_split=6,
@@ -399,7 +399,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('overdominanceplusalternateencoder',
                  OverDominancePlusAlternateEncoder()),
                 ('randomforestregressor',
@@ -412,7 +412,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.55, min_samples_leaf=9,
                                        min_samples_split=13,
@@ -423,7 +423,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
                                        min_samples_split=14,
@@ -434,7 +434,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.9500000000000001,
                                        min_samples_leaf=12, min_samples_split=4,
@@ -446,7 +446,7 @@
  Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.9500000000000001,
                                        min_samples_leaf=2, min_samples_split=11,
@@ -458,7 +458,7 @@
  Pipeline(steps=[('inverseencoder', InverseEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.55, min_samples_leaf=2,
                                        min_samples_split=10,
@@ -469,7 +469,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('additiveencoder', AdditiveEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.25,
@@ -482,7 +482,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=1.0, min_samples_leaf=3,
                                        min_samples_split=19,
@@ -493,7 +493,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=1.0, min_samples_leaf=19,
                                        min_samples_split=11,
@@ -504,7 +504,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.8, min_samples_leaf=18,
                                        min_samples_split=11,
@@ -515,7 +515,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=1.0, min_samples_leaf=6,
                                        min_samples_split=19,
@@ -526,7 +526,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=40,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
                                        min_samples_leaf=11,
@@ -538,7 +538,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
                                        min_samples_leaf=8, min_samples_split=14,
@@ -549,7 +549,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=50,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.6500000000000001,
                                        min_samples_leaf=16, random_state=42))])
@@ -560,7 +560,7 @@
  Pipeline(steps=[('inverseencoder', InverseEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('variancethreshold', VarianceThreshold(threshold=0.1)),
                 ('underdominancealternateencoder',
                  UnderDominanceAlternateEncoder()),
@@ -575,7 +575,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('underdominancealternateencoder',
                  UnderDominanceAlternateEncoder()),
                 ('randomforestregressor',
@@ -589,7 +589,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=25,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.1,
                                        min_samples_leaf=3, min_samples_split=4,
@@ -601,7 +601,7 @@
  Pipeline(steps=[('inverseencoder', InverseEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
                                        min_samples_leaf=11,
@@ -613,7 +613,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
                                        min_samples_leaf=11,
@@ -625,7 +625,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=30,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.2,
                                        min_samples_leaf=11,
@@ -637,7 +637,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=75,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('linearregression', LinearRegression())])
 
  Holdout R2 Value:  0.09513560149018796
@@ -645,7 +645,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=65,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('linearregression', LinearRegression())])
 
  Holdout R2 Value:  0.08604786305529943
@@ -653,7 +653,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('linearregression', LinearRegression())])
 
  Holdout R2 Value:  0.08411528965026349
@@ -661,7 +661,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=55,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('linearregression', LinearRegression())])
 
  Holdout R2 Value:  0.07554899403267068
@@ -669,7 +669,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=50,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('linearregression', LinearRegression())])
 
  Holdout R2 Value:  0.07510685220732205
@@ -677,7 +677,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=60,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('featureencodingfrequencyselector',
                  FeatureEncodingFrequencySelector(threshold=0.05)),
                 ('linearregression', LinearRegression())])
@@ -687,7 +687,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('additiveencoder', AdditiveEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.9500000000000001,
@@ -699,7 +699,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('additiveencoder', AdditiveEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.35000000000000003,
@@ -711,7 +711,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.35000000000000003,
                                        min_samples_leaf=2, min_samples_split=15,
@@ -722,7 +722,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('additiveencoder', AdditiveEncoder()),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
@@ -735,7 +735,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False, max_features=0.4,
                                        min_samples_leaf=11,
@@ -747,7 +747,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.35000000000000003,
                                        min_samples_leaf=9, min_samples_split=15,
@@ -758,7 +758,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.35000000000000003,
                                        min_samples_leaf=19,
@@ -770,7 +770,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=25,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('linearregression', LinearRegression())])
 
  Holdout R2 Value:  0.061307469250962976
@@ -780,7 +780,7 @@
                  OverDominancePlusAlternateEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=15,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False,
                                        max_features=0.8500000000000001,
@@ -793,7 +793,7 @@
  Pipeline(steps=[('underdominanceencoder', UnderDominanceEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=20,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=0.2, min_samples_leaf=18,
                                        min_samples_split=19,
@@ -806,7 +806,7 @@
                 ('timestwoencoder', TimesTwoEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=15,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False,
                                        max_features=0.8500000000000001,
@@ -818,7 +818,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=15,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(bootstrap=False,
                                        max_features=0.8500000000000001,
@@ -829,7 +829,7 @@
 
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                 SelectPercentile(score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('decisiontreeregressor',
                  DecisionTreeRegressor(max_depth=7, min_samples_leaf=15,
                                        min_samples_split=13,
@@ -839,7 +839,7 @@
 
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                 SelectPercentile(score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('linearregression', LinearRegression())])
 
  Holdout R2 Value:  0.03442352880687649
@@ -847,7 +847,7 @@
  The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=5,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('underdominancealternateencoder',
                  UnderDominanceAlternateEncoder()),
                 ('featureencodingfrequencyselector',
@@ -864,7 +864,7 @@
  Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
                 ('selectpercentile',
                  SelectPercentile(percentile=5,
-                                  score_func=<function f_regression at 0x000001DF67E5B5E0>)),
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
                 ('randomforestregressor',
                  RandomForestRegressor(max_features=1.0, min_samples_leaf=6,
                                        min_samples_split=19,
@@ -874,6 +874,6 @@
 Entire Dataset R^2 using LR:  0.09676189140743763
 Dataset split 1 R^2 using LR:  0.10378835698918853
 Dataset split 2 R^2 using LR:  0.08697931802273906
-Dataset split 2 R^2 using LR:  0.0749430677782329
+Dataset split 2 R^2 using LR using LR model trained on D1:  0.0749430677782329
 Holdout Dataset R^2 using LR:  0.1279803644446027
 Holdout Dataset R^2 value on only LR model trained on D1:  0.1052899945107082

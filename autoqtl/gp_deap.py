@@ -354,7 +354,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
                             file=log_file)
                 for pipeline, pipeline_scores in zip(halloffame.items, reversed(halloffame.keys)):
                     pipeline_to_be_printed = print_pareto_pipeline(pipeline)
-                    pbar.write('\nScore on D1 = {0},\tScore on D2 = {1},\tFeature Selection Score = {2}, \tPipeline: {3}'.format(
+                    pbar.write('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features Removed = {2}, \tPipeline: {3}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             abs(pipeline_scores.wvalues[2]),

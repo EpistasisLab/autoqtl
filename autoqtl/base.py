@@ -1076,15 +1076,17 @@ class AUTOQTLBase(BaseEstimator):
                 #print(score_on_dataset1)
                 no_of_features_dataset1 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
                 #print(no_of_features_dataset1)
-                score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
-                #score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
+                #score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
                 #print(score_on_dataset2)
                 no_of_features_dataset2 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
                 #print(no_of_features_dataset2)
                 no_of_features_after_addition = 1/(no_of_features_dataset1 + no_of_features_dataset2)
+                # percentage of feature retained
+                feature_percentage = round(1 - ((no_of_features_dataset1 + no_of_features_dataset2)/(len(features_dataset1.columns) + len(features_dataset2.columns))), 4)
                 #print(no_of_features_after_addition)
                 # Use the modified _update_val() to add the evaluated scores to the result_score_list
-                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, no_of_features_after_addition, result_score_list)
+                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, feature_percentage, result_score_list)
                 #print(result_score_list)
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
@@ -1527,7 +1529,7 @@ class AUTOQTLBase(BaseEstimator):
                 print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
                     pipeline_to_be_printed = self.print_pipeline(pipeline)
-                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tFeature Selection Score = {2}, \tPipeline: {3}'.format(
+                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features Removed = {2}, \tPipeline: {3}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             abs(pipeline_scores.wvalues[2]),
@@ -2043,7 +2045,7 @@ class AUTOQTLBase(BaseEstimator):
         print("Final Pareto Front at the end of the optimization process: ")
         for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
             pipeline_to_be_printed = self.print_pipeline(pipeline)
-            print('\nScore on D1 = {0},\tScore on D2 = {1},\tFeature Selection Score = {2}, \tPipeline: {3}'.format(
+            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features removed = {2}, \tPipeline: {3}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             abs(pipeline_scores.wvalues[2]),
@@ -2123,7 +2125,7 @@ class AUTOQTLBase(BaseEstimator):
                             X, y
                         ))
 
-        final_output_file_path = 'TestR2_ParetoPipelines.txt'
+        final_output_file_path = 'TestR2_ParetoPipelines_42.txt'
         sys.stdout = open(final_output_file_path, "w")
 
         
@@ -2159,4 +2161,14 @@ class AUTOQTLBase(BaseEstimator):
             score = pareto_pipeline.score(holdout_X, holdout_y)
             print("\n Test R2 Value: ", score)"""
 
+    # Getting R^2 value for selected pipeline on entire dataset
+    def get_best_pipeline_R2(self, entire_X, entire_y):
+        estimator = self.fitted_final_pareto_pipelines_testR2[5]
+        print("R^2 value for selected pipelines:")
+        print(estimator)
+        score = estimator.score(entire_X, entire_y)
+        print("R^2 value on entire dataset with above selected pipeline: ", score)
+        no_of_features_retained_entire_dataset = get_feature_size(sklearn_pipeline=estimator, features=entire_X, target=entire_y)
+        percentage = round(1 - (no_of_features_retained_entire_dataset/len(entire_X.columns)),4)
+        print("Percentage of Features Removed: ", percentage)
         

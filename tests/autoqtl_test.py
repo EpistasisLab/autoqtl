@@ -143,7 +143,7 @@ def test_summary_of_best_pipeline():
         random_state=42,
         population_size=100,
         #offspring_size=2,
-        generations=5,
+        generations=15,
         verbosity=3
     )
     autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
@@ -154,6 +154,7 @@ def test_summary_of_best_pipeline():
     #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
     #autoqtl_obj.get_shap_values(test_X, test_y)
     autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_20, target_20)
+    #autoqtl_obj.get_best_pipeline_R2(test_X, test_y)
 
 # Printing the Linear Regression R2 values for whole dataset and split dataset
 def get_R2():
@@ -167,20 +168,29 @@ def get_R2():
     # Dataset split 2
     model.fit(features_dataset2, target_dataset2)
     print("Dataset split 2 R^2 using LR: ", model.score(features_dataset2,target_dataset2))
-    # Test dataset
+     # Dataset split 2 with D1 as learner
     model.fit(features_dataset1, target_dataset1)
+    print("Dataset split 2 R^2 using LR using LR model trained on D1: ", model.score(features_dataset2,target_dataset2))
+    # Holdout dataset 
+    model.fit(features_20, target_20)
     print("Holdout Dataset R^2 using LR: ", model.score(features_20,target_20))
+    # Holdout dataset with D1 as learner
+    model.fit(features_dataset1, target_dataset1)
+    print("Holdout Dataset R^2 value on only LR model trained on D1: ", model.score(features_20,target_20))
 
 
 # Just LR
 """def check_lr(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
     lr = LinearRegression()
     lr.fit(features_dataset1, )"""
+
+# Just RF
+
 # calling the test functions
 #test_init_custom_parameters()
 #test_init_log_file()
 #test_fit()
 #test_update_top_pipeline()
-#test_summary_of_best_pipeline() # using 
+test_summary_of_best_pipeline() # using 
 get_R2()
 #print(feature_name)
