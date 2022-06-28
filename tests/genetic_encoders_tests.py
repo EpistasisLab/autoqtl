@@ -8,7 +8,7 @@ import numpy as np
 
 sys.path.append("C:/Users/ghosha/.vscode/autoqtl")
 import autoqtl
-from autoqtl.builtins.genetic_encoders import AdditiveEncoder, AdditiveAlternateEncoder, DominantEncoder, RecessiveEncoder, HeterozygoteAdvantageEncoder
+from autoqtl.builtins.genetic_encoders import AdditiveEncoder, AdditiveAlternateEncoder, DominantEncoder, RecessiveEncoder, HeterosisEncoder
 
 X = np.array([[1, 1, 2, 1, 2],
             [1, 0, 0, 1, 2],
@@ -99,14 +99,14 @@ def test_HeterorisEncoder():
                                         [1, 0, 0, 1, 0],
                                         [0, 0, 0, 1, 0],
                                          [0, 0, 0, 1, 0]])
-    op = HeterozygoteAdvantageEncoder()
+    op = HeterosisEncoder()
     X_transformed = op.transform(X)
 
     print( np.allclose(X_expected_transformation, X_transformed))
 
 def test_HeterosisEncoder_fit():
     """Assert that fit() in HeterosisEncoder does nothing. """
-    op = HeterozygoteAdvantageEncoder()
+    op = HeterosisEncoder()
     ret_op = op.fit(X)
 
     print(ret_op==op)

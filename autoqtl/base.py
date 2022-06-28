@@ -49,7 +49,7 @@ from .decorators import _pre_test
 from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
 from .gp_deap import (
-    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda, get_feature_size
+    cxOnePoint, get_feature_size, get_score_on_fitted_pipeline, mutNodeReplacement, _wrapped_score, eaMuPlusLambda
 )
 
 from .export_utils import (
@@ -559,7 +559,7 @@ class AUTOQTLBase(BaseEstimator):
         """Setup the toolbox. ToolBox is a DEAP package class, which is a toolbox for evolution containing all the evolutionary operators. """
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            creator.create("FitnessMulti", base.Fitness, weights=(1.0, 1.0, 1.0)) # Weights set according to requirement of maximizing two R2 values
+            creator.create("FitnessMulti", base.Fitness, weights=(1.0, 1.0)) # Weights set according to requirement of maximizing two R2 values
             creator.create(
                 "Individual",
                 gp.PrimitiveTree,
@@ -973,7 +973,7 @@ class AUTOQTLBase(BaseEstimator):
         return operator_count
 
 
-    def _combine_individual_stats(self, operator_count, score_on_dataset1, score_on_dataset2, no_of_features, individual_stats):
+    def _combine_individual_stats(self, operator_count, score_on_dataset1, score_on_dataset2 ,individual_stats):
         """Combine the stats with operator count and cv score and preprare to be written to _evaluated_individuals
 
         Parameters
@@ -1005,7 +1005,6 @@ class AUTOQTLBase(BaseEstimator):
         stats["operator_count"] = operator_count
         stats["score_on_dataset1"] = score_on_dataset1
         stats["score_on_dataset2"] = score_on_dataset2
-        stats["no_of_features"] = no_of_features
         return stats # returns the entire statistics dictionary of the pipeline with all the components
     
 
@@ -1070,19 +1069,17 @@ class AUTOQTLBase(BaseEstimator):
             for sklearn_pipeline in sklearn_pipeline_list:
                 self._stop_by_max_time_mins()
                 score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
+                #score_on_dataset1 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset2, y_learner=target_dataset2, X_test=features_dataset1, y_test=target_dataset1, scoring_function=self.scoring_function)
                 #print(score_on_dataset1)
-                score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                #score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
                 #print(score_on_dataset2)
-
-                # Trying no_of_features for pareto front
-                no_of_features_dataset1 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
-                #print(no_of_features_dataset1)
-                no_of_features_dataset2 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
-                #print(no_of_features_dataset2)
-                no_of_features_after_addition = 1/(no_of_features_dataset1 + no_of_features_dataset2)
-                #print(no_of_features_after_addition)
                 # Use the modified _update_val() to add the evaluated scores to the result_score_list
-                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, no_of_features_after_addition, result_score_list)
+                #result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, result_score_list)
+                avg_traind1_testd2 = (score_on_dataset1 + score_on_dataset2)/2
+                difference_inverse = 1/(abs(score_on_dataset1-score_on_dataset2))
+                #Trying Ruowang's method
+                result_score_list = self._update_val(score_on_dataset2, difference_inverse, result_score_list)
                 #print(result_score_list)
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
@@ -1112,8 +1109,7 @@ class AUTOQTLBase(BaseEstimator):
                 ind_str = str(ind)
                 ind.fitness.values = (
                     self.evaluated_individuals_[ind_str]["score_on_dataset1"],
-                    self.evaluated_individuals_[ind_str]["score_on_dataset2"],
-                    self.evaluated_individuals_[ind_str]["no_of_features"]
+                    self.evaluated_individuals_[ind_str]["score_on_dataset2"]
                 ) # evaluated_individuals_ is a dictionary containing the evaluated individuals in the previous generations, defined in the fit_init() function
 
             self._pareto_front.update(individuals[:num_eval_ind]) # the update() is the inbuilt function of pareto front of DEAP
@@ -1130,7 +1126,6 @@ class AUTOQTLBase(BaseEstimator):
             ind.fitness.values = (
                 self.evaluated_individuals_[ind_str]["score_on_dataset1"],
                 self.evaluated_individuals_[ind_str]["score_on_dataset2"],
-                self.evaluated_individuals_[ind_str]["no_of_features"]
             )
         individuals = [ind for ind in population if not ind.fitness.valid] # WHY IS THIS DONE? Contains the new list of individuals with invalid scores
         self._pareto_front.update(population)
@@ -1160,7 +1155,7 @@ class AUTOQTLBase(BaseEstimator):
                 self._pbar.update(pbar_num)
 
     # Function to update the two calculated scores for the pipleine in the list of result scores and update self._pbar during pipeline evaluation. MODIFIED FROM TPOT
-    def _update_val(self, score1, score2, no_of_features, result_score_list):
+    def _update_val(self, score1, score2, result_score_list):
         """Update the score of the pipeline evaluation on the two datasets d1 and d2 in the result score list and update self._pbar to show the total number of pipelines proccessed
         
         Parameters
@@ -1189,11 +1184,9 @@ class AUTOQTLBase(BaseEstimator):
             )
             score_on_d1_d2_list.append(-float("inf")) # score1 invalidated
             score_on_d1_d2_list.append(-float("inf")) # score2 invalidated
-            score_on_d1_d2_list.append(-float("inf")) # no_of_features invalidated
         else:
             score_on_d1_d2_list.append(score1)
             score_on_d1_d2_list.append(score2)
-            score_on_d1_d2_list.append(no_of_features)
         
         result_score_list.append(score_on_d1_d2_list)
 
@@ -1224,14 +1217,13 @@ class AUTOQTLBase(BaseEstimator):
         for result_score, individual_str in zip(
             result_score_list, eval_individuals_str
         ):
-            if type(result_score[0]) in [float, np.float64, np.float32] and type(result_score[1]) in [float, np.float64, np.float32] and type(result_score[2]) in [int, float, np.float64, np.float32] :
+            if type(result_score[0]) in [float, np.float64, np.float32] and type(result_score[1]) in [float, np.float64, np.float32] :
                 self.evaluated_individuals_[
                     individual_str
                 ] = self._combine_individual_stats(
                     operator_counts[individual_str],
                     result_score[0],
                     result_score[1],
-                    result_score[2],
                     stats_dicts[individual_str],
                 )
             else:
@@ -2071,3 +2063,80 @@ class AUTOQTLBase(BaseEstimator):
         explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
         shap_values = explainer(X, max_evals=max_evals)
         shap.summary_plot(shap_values, X, plot_type='bar')
+
+    
+     #############################################################################################################################
+    # Getting test R2 values for the pipelines in the pareto front
+    def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, entire_X, entire_y):
+        
+        self.final_pareto_pipelines_testR2 = {}
+        self.fitted_final_pareto_pipelines_testR2 =[]
+        
+        for pipeline in self._pareto_front.items:
+                    self.final_pareto_pipelines_testR2[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            entire_X, entire_y
+                        )
+                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            entire_X, entire_y
+                        ))
+
+        final_output_file_path = 'holdout.txt'
+        sys.stdout = open(final_output_file_path, "w")
+
+        
+
+        for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
+            print("\n The Pipeline being evaluated: \n", pareto_pipeline)
+            #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
+            score_80 = pareto_pipeline.score(entire_X, entire_y)
+            score_holdout_entireDataTrained = pareto_pipeline.score(holdout_X, holdout_y)
+            """features_removed_d1 = len(d1_X.columns) - get_feature_size(pareto_pipeline, d1_X, d1_y)
+            features_removed_d2 = len(d2_X.columns) - get_feature_size(pareto_pipeline, d2_X, d2_y)
+            features_removed_holdout = len(holdout_X.columns) - get_feature_size(pareto_pipeline, holdout_X, holdout_y)
+            pareto_pipeline.fit(d2_X, d2_y)
+            score_holdout_D2trained = pareto_pipeline.score(holdout_X,holdout_y)
+            print("\n Holdout R2 Value, D1 trained: ", score_holdout_D1trained, "\t Holdout R2 Value, D2 trained: ", score_holdout_D2trained, "\t No.of features removed in D1 split: ", features_removed_d1, "\t No.of features removed in D2 split: ", features_removed_d2,
+            "\t No.of features removed in holdout: ", features_removed_holdout)"""
+            print("\n Entire dataset(80%) R^2 trained on entire dataset(80%): ", score_80)
+            print("\n Holdout data R^2 trained on entire dataset(80%): ", score_holdout_entireDataTrained)
+
+            # To get the D1 train score
+            pareto_pipeline.fit(d1_X, d1_y)
+            score_d1_trained_d1 = pareto_pipeline.score(d1_X, d1_y)
+            print("\n Dataset D1 score on trained D1: ", score_d1_trained_d1)
+
+    def get_permutation_importance(self, X, y, random_state):
+        self.pipeline_for_feature_importance_ = {}
+        self.fitted_pipeline_for_feature_importance =[]
+        for pipeline in self._pareto_front.items:
+                    self.pipeline_for_feature_importance_[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.pipeline_for_feature_importance_[str(pipeline)].fit(
+                            X, y
+                        )
+                        self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
+                            X, y
+                        ))
+        file_path = 'FeatureImportance.txt'
+        sys.stdout = open(file_path, "w")
+
+        # Permutation Feature Importance
+        print("Feature Importance: \n ")
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
+            permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
+            for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+                print(f"{X.columns[i]:<20}"
+                    f"{permutation_importance_object.importances_mean[i]:.3f}")
+            
+

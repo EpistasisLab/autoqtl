@@ -1,0 +1,212 @@
+Feature Importance: 
+ 
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.35)),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_leaf=5,
+                                       min_samples_split=9, random_state=42))])
+M0P1                0.729
+M0P2                0.723
+M1P6                0.214
+M1P7                0.213
+M1P5                0.207
+N5                  0.050
+N9                  0.050
+N0                  0.048
+N13                 0.045
+N7                  0.045
+N10                 0.039
+N6                  0.039
+N2                  0.038
+N12                 0.000
+N11                 0.000
+N8                  0.000
+N14                 0.000
+N4                  0.000
+N3                  0.000
+N1                  0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.35)),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_split=16,
+                                       random_state=42))])
+M0P1                0.711
+M0P2                0.705
+M1P7                0.193
+M1P6                0.191
+M1P5                0.186
+N5                  0.041
+N9                  0.039
+N0                  0.037
+N13                 0.036
+N7                  0.033
+N2                  0.032
+N10                 0.030
+N6                  0.030
+N12                 0.000
+N11                 0.000
+N8                  0.000
+N14                 0.000
+N4                  0.000
+N3                  0.000
+N1                  0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.35)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_leaf=5,
+                                       min_samples_split=16,
+                                       random_state=42))])
+M0P1                0.718
+M0P2                0.710
+M1P7                0.183
+M1P6                0.180
+M1P5                0.177
+N5                  0.040
+N9                  0.038
+N0                  0.038
+N13                 0.035
+N7                  0.033
+N10                 0.030
+N6                  0.030
+N2                  0.030
+N12                 0.000
+N11                 0.000
+N8                  0.000
+N14                 0.000
+N4                  0.000
+N3                  0.000
+N1                  0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x000002B589FFF4C0>)),
+                ('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('heterosisencoder', HeterosisEncoder()),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('decisiontreeregressor',
+                 DecisionTreeRegressor(max_depth=4, min_samples_leaf=12,
+                                       min_samples_split=19,
+                                       random_state=42))])
+M0P1                0.734
+M0P2                0.732
+N0                  0.003
+N1                  0.002
+N5                  0.002
+M1P6                0.002
+N11                 0.002
+N4                  0.001
+N13                 0.001
+N10                 0.000
+N6                  0.000
+N2                  0.000
+N3                  0.000
+M1P7                0.000
+N7                  0.000
+N8                  0.000
+N12                 0.000
+N14                 0.000
+M1P5                0.000
+N9                  0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('dominantencoder', DominantEncoder()),
+                ('variancethreshold-1', VarianceThreshold(threshold=0.15)),
+                ('variancethreshold-2', VarianceThreshold(threshold=0.05)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.3, min_samples_leaf=18,
+                                       min_samples_split=15,
+                                       random_state=42))])
+N1                  0.003
+N11                 0.002
+N4                  0.001
+M1P7                0.000
+N8                  0.000
+N2                  0.000
+N3                  0.000
+N5                  0.000
+N6                  0.000
+N7                  0.000
+N9                  0.000
+M1P6                0.000
+N10                 0.000
+N12                 0.000
+N13                 0.000
+N14                 0.000
+M0P1                0.000
+M0P2                0.000
+M1P5                0.000
+N0                  0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('dominantencoder', DominantEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.15)),
+                ('featureencodingfrequencyselector-1',
+                 FeatureEncodingFrequencySelector(threshold=0.2)),
+                ('featureencodingfrequencyselector-2',
+                 FeatureEncodingFrequencySelector(threshold=0.25)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.1, min_samples_leaf=14,
+                                       random_state=42))])
+N1                  0.003
+N11                 0.001
+M1P7                0.000
+N8                  0.000
+N2                  0.000
+N3                  0.000
+N4                  0.000
+N5                  0.000
+N6                  0.000
+N7                  0.000
+N9                  0.000
+M1P6                0.000
+N10                 0.000
+N12                 0.000
+N13                 0.000
+N14                 0.000
+M0P1                0.000
+M0P2                0.000
+M1P5                0.000
+N0                  0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('dominantencoder', DominantEncoder()),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.15)),
+                ('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x000002B589FFF4C0>)),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.15)),
+                ('linearregression', LinearRegression())])
+N1                  0.002
+M1P7                0.000
+M1P6                0.000
+N2                  0.000
+N3                  0.000
+N4                  0.000
+N5                  0.000
+N6                  0.000
+N7                  0.000
+N8                  0.000
+N9                  0.000
+N10                 0.000
+N11                 0.000
+N12                 0.000
+N13                 0.000
+N14                 0.000
+M0P1                0.000
+M0P2                0.000
+M1P5                0.000
+N0                  0.000

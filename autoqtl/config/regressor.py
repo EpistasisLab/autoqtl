@@ -12,7 +12,7 @@ regressor_config_dict = {
     
     # Feature Selectors
     'sklearn.feature_selection.SelectPercentile': {
-        'percentile': range(5, 95),
+        'percentile': [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95],
         'score_func': {
             'sklearn.feature_selection.f_regression': None
         }
@@ -28,13 +28,7 @@ regressor_config_dict = {
 
     # Feature Transformers (Encoders)
 
-    'autoqtl.builtins.genetic_encoders.AdditiveEncoder': {
-
-    },
-
-    'autoqtl.builtins.genetic_encoders.AdditiveAlternateEncoder': {
-
-    },
+    
 
     'autoqtl.builtins.genetic_encoders.DominantEncoder': {
 
@@ -44,18 +38,41 @@ regressor_config_dict = {
 
     },
 
-    'autoqtl.builtins.genetic_encoders.HeterozygoteAdvantageEncoder': {
+    'autoqtl.builtins.genetic_encoders.HeterosisEncoder': {
 
     },
 
-    'autoqtl.builtins.genetic_encoders.HeterozygoteDisadvantageEncoder': {
+    
+
+    'autoqtl.builtins.genetic_encoders.UnderDominanceEncoder': {
 
     },
+
+   
+    'autoqtl.builtins.genetic_encoders.OverDominanceEncoder': {
+
+    },
+
+    
 
     # Machine Learning Methods
 
     'sklearn.linear_model.LinearRegression': {
 
+    },
+
+    'sklearn.tree.DecisionTreeRegressor': {
+        'max_depth': range(1, 11),
+        'min_samples_split': range(2, 21),
+        'min_samples_leaf': range(1, 21)
+    },
+
+    'sklearn.ensemble.RandomForestRegressor': {
+        'n_estimators': [100],
+        'max_features': np.arange(0.05, 1.01, 0.05),
+        'min_samples_split': range(2, 21),
+        'min_samples_leaf': range(1, 21),
+        'bootstrap': [True, False]
     }
 }
 

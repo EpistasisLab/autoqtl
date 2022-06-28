@@ -1,0 +1,116 @@
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.35)),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_leaf=5,
+                                       min_samples_split=9, random_state=42))])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.30756200563373703
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10015473963512733
+
+ Dataset D1 score on trained D1:  0.5494151582781792
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.35)),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_split=16,
+                                       random_state=42))])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.28139733205438877
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10714814104408932
+
+ Dataset D1 score on trained D1:  0.5144925054539977
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.35)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_leaf=5,
+                                       min_samples_split=16,
+                                       random_state=42))])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2751106208733596
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10298275610383989
+
+ Dataset D1 score on trained D1:  0.5105599289156872
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x000002B589FFF4C0>)),
+                ('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('heterosisencoder', HeterosisEncoder()),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('decisiontreeregressor',
+                 DecisionTreeRegressor(max_depth=4, min_samples_leaf=12,
+                                       min_samples_split=19,
+                                       random_state=42))])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.01790307713986794
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.019765040519701182
+
+ Dataset D1 score on trained D1:  0.3655008031853666
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('dominantencoder', DominantEncoder()),
+                ('variancethreshold-1', VarianceThreshold(threshold=0.15)),
+                ('variancethreshold-2', VarianceThreshold(threshold=0.05)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.3, min_samples_leaf=18,
+                                       min_samples_split=15,
+                                       random_state=42))])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.002628935107210184
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.0006996224945976515
+
+ Dataset D1 score on trained D1:  0.001958275603670123
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('dominantencoder', DominantEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.15)),
+                ('featureencodingfrequencyselector-1',
+                 FeatureEncodingFrequencySelector(threshold=0.2)),
+                ('featureencodingfrequencyselector-2',
+                 FeatureEncodingFrequencySelector(threshold=0.25)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.1, min_samples_leaf=14,
+                                       random_state=42))])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.002628935107210184
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.0006996224945978735
+
+ Dataset D1 score on trained D1:  0.0016092133213106985
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('dominantencoder', DominantEncoder()),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.15)),
+                ('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x000002B589FFF4C0>)),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.15)),
+                ('linearregression', LinearRegression())])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0012635911756397888
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.001538028638020661
+
+ Dataset D1 score on trained D1:  0.0005977699737732545
+Holdout LR on 80% trained data:  0.0017169106767441766
+Entire Dataset R^2 using LR:  0.0042848693196244625
+D2 Dataset R^2 value on only LR model trained on D1:  -0.021350815851007843
+80% Dataset R^2 using LR:  0.003949249615479156
