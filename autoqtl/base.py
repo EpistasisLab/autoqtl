@@ -16,7 +16,6 @@ from tempfile import mkdtemp
 import warnings
 from isort import file
 from joblib import Memory
-from matplotlib import pyplot as plt
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
@@ -27,9 +26,6 @@ import sklearn
 import re
 import shap
 import sys
-import pandas as pd
-
-import pandas as pd
 
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection import VarianceThreshold
@@ -53,11 +49,7 @@ from .decorators import _pre_test
 from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
 from .gp_deap import (
-<<<<<<< HEAD
     cxOnePoint, get_feature_size, get_score_on_fitted_pipeline, mutNodeReplacement, _wrapped_score, eaMuPlusLambda
-=======
-    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda, get_feature_size, get_score_on_fitted_pipeline
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 )
 
 from .export_utils import (
@@ -143,18 +135,14 @@ class AUTOQTLBase(BaseEstimator):
             Function used to evaluate the quality of a given pipeline for the
             problem. By default, accuracy is used for classification problems and
             mean squared error (MSE) for regression problems.
-
             Offers the same options as sklearn.model_selection.cross_val_score as well as
             a built-in score 'balanced_accuracy'. Classification metrics:
-
             ['accuracy', 'adjusted_rand_score', 'average_precision', 'balanced_accuracy',
             'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted',
             'precision', 'precision_macro', 'precision_micro', 'precision_samples',
             'precision_weighted', 'recall', 'recall_macro', 'recall_micro',
             'recall_samples', 'recall_weighted', 'roc_auc']
-
             Regression metrics:
-
             ['neg_median_absolute_error', 'neg_mean_absolute_error',
             'neg_mean_squared_error', 'r2']
         
@@ -236,7 +224,6 @@ class AUTOQTLBase(BaseEstimator):
             the same estimator on the same split of data multiple times. It
             will also provide more detailed diagnostics when using Dask's
             distributed scheduler.
-
             See `avoid repeated work <https://dask-ml.readthedocs.io/en/latest/hyper-parameter-search.html#avoid-repeated-work>`__
             for more details. (NOT USED)
         
@@ -262,7 +249,6 @@ class AUTOQTLBase(BaseEstimator):
         
         log_file: string, io.TextIOWrapper or io.StringIO, optional (defaul: sys.stdout)
             Save progress content to a file.
-
         Returns
         -------
         None
@@ -308,7 +294,6 @@ class AUTOQTLBase(BaseEstimator):
         Returns
         -------
         None
-
         """
         self.template = template
         if self.template is None:
@@ -601,7 +586,6 @@ class AUTOQTLBase(BaseEstimator):
 
     def _gen_grow_safe(self, pset, min_, max_, type_=None):
         """Generate an expression where each leaf might have a different depth between min_ and max_.
-
         Parameters
         ----------
         pset: PrimitiveSetTyped
@@ -630,10 +614,8 @@ class AUTOQTLBase(BaseEstimator):
     @_pre_test
     def _generate(self, pset, min_, max_, condition, type_=None):
         """Generate a Tree as a list of lists.
-
         The tree is build from the root to the leaves, and it stop growing when
         the condition is fulfilled.
-
         Parameters
         ----------
         pset: PrimitiveSetTyped
@@ -649,7 +631,6 @@ class AUTOQTLBase(BaseEstimator):
         type_: class
             The type that should return the tree when called, when
             :obj:None (default) no return type is enforced.
-
         Returns
         -------
         individual: list
@@ -746,23 +727,19 @@ class AUTOQTLBase(BaseEstimator):
     @_pre_test
     def _random_mutation_operator(self, individual, allow_shrink=True):
         """Perform a replacement, insertion, or shrink mutation on an individual.
-
         Parameters
         ----------
         individual: DEAP individual
             A list of pipeline operators and model parameters that can be
             compiled by DEAP into a callable function
-
         allow_shrink: bool (True)
             If True the `mutShrink` operator, which randomly shrinks the pipeline,
             is allowed to be chosen as one of the random mutation operators.
             If False, `mutShrink`  will never be chosen as a mutation operator.
-
         Returns
         -------
         mut_ind: DEAP individual
             Returns the individual with one of the mutations applied to it
-
         """
         if self.tree_structure:
             mutation_techniques = [
@@ -816,12 +793,10 @@ class AUTOQTLBase(BaseEstimator):
     
     def _compile_to_sklearn(self, expr):
         """Compile a DEAP pipeline into a sklearn pipeline.
-
         Parameters
         ----------
         expr: DEAP individual
             The DEAP pipeline to be compiled
-
         Returns
         -------
         sklearn_pipeline: sklearn.pipeline.Pipeline
@@ -855,13 +830,11 @@ class AUTOQTLBase(BaseEstimator):
 
     def _preprocess_individuals(self, individuals):
         """Preprocess DEAP individuals before pipeline evaluation.
-
          Parameters
         ----------
         individuals: a list of DEAP individual
             One individual is a list of pipeline operators and model parameters that can be
             compiled by DEAP into a callable function
-
         Returns
         -------
         operator_counts: dictionary
@@ -872,7 +845,6 @@ class AUTOQTLBase(BaseEstimator):
             a list of scikit-learn pipelines converted from DEAP individuals for evaluation
         stats_dicts: dictionary
             A dict where 'key' is the string representation of an individual and 'value' is a dict containing statistics about the individual
-
         """
         # update self._pbar.total
         if (
@@ -962,13 +934,11 @@ class AUTOQTLBase(BaseEstimator):
 
     def _operator_count(self, individual):
         """Count the number of pipeline operators as a measure of pipeline complexity.
-
         Parameters
         ----------
         individual: list
             A grown tree with leaves at possibly different depths
             depending on the condition function.
-
         Returns
         -------
         operator_count: int
@@ -983,7 +953,6 @@ class AUTOQTLBase(BaseEstimator):
 
     def _combine_individual_stats(self, operator_count, score_on_dataset1, score_on_dataset2 ,individual_stats):
         """Combine the stats with operator count and cv score and preprare to be written to _evaluated_individuals
-
         Parameters
         ----------
         operator_count: int
@@ -998,7 +967,6 @@ class AUTOQTLBase(BaseEstimator):
             'mutation_count': number of mutation operations applied to the individual and its predecessor cumulatively
             'crossover_count': number of crossover operations applied to the individual and its predecessor cumulatively
             'predecessor': string representation of the individual
-
         Returns
         -------
         stats: dictionary
@@ -1079,45 +1047,19 @@ class AUTOQTLBase(BaseEstimator):
                 score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
                 #score_on_dataset1 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset2, y_learner=target_dataset2, X_test=features_dataset1, y_test=target_dataset1, scoring_function=self.scoring_function)
                 #print(score_on_dataset1)
-<<<<<<< HEAD
                 #score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
                 score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
                 #print(score_on_dataset2)
                 # Use the modified _update_val() to add the evaluated scores to the result_score_list
                 #result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, result_score_list)
                 avg_traind1_testd2 = (score_on_dataset1 + score_on_dataset2)/2
-                difference_inverse = 1/(abs(score_on_dataset1-score_on_dataset2))
-                difference_sqrt = (difference_inverse)**(1/4)
+                difference_inverse = (1/(abs(score_on_dataset1-score_on_dataset2)))**(1/4)
                 #Trying Ruowang's method
-                #Trying Jason's idea
-                diffbyavg = (abs(score_on_dataset1-score_on_dataset2))/avg_traind1_testd2
-                #Phil's idea
-                avgsquarebydiff = (avg_traind1_testd2 * avg_traind1_testd2)/(abs(score_on_dataset1-score_on_dataset2))
-                # Master Equation
-                master_value = (((avg_traind1_testd2)*(avg_traind1_testd2)*min(score_on_dataset1, score_on_dataset2))/(abs(score_on_dataset1-score_on_dataset2))) ** (1/4)
-                result_score_list = self._update_val(score_on_dataset2, difference_sqrt, result_score_list)
-=======
-                no_of_features_dataset1 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
-                #print(no_of_features_dataset1)
-                #score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
-                score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
-                #print(score_on_dataset2)
-                no_of_features_dataset2 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
-                #print(no_of_features_dataset2)
-                no_of_features_after_addition = 1/(no_of_features_dataset1 + no_of_features_dataset2)
-                # percentage of feature retained
-                feature_percentage = round(1 - ((no_of_features_dataset1 + no_of_features_dataset2)/(len(features_dataset1.columns) + len(features_dataset2.columns))), 4)
-                #print(no_of_features_after_addition)
-                # Use the modified _update_val() to add the evaluated scores to the result_score_list
-                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, feature_percentage, result_score_list)
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
+                result_score_list = self._update_val(score_on_dataset2, difference_inverse, result_score_list)
                 #print(result_score_list)
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
-            
                 #print(sklearn_pipeline)
-                #print("Training R^2", score_on_dataset1)
-                #print("Testing R^2", score_on_dataset2)
                 #print(result_score_list)
 
         except (KeyboardInterrupt, SystemExit, StopIteration) as e:
@@ -1200,12 +1142,10 @@ class AUTOQTLBase(BaseEstimator):
             Pipeline evaluation score on dataset2. Basically the R2 value on scoring the pipeline on dataset2
         result_score_list : list
             A list of scores of the pipelines [a list of list]
-
         Returns
         -------
         result_score_list : list
             An updated result score list
-
         """
         self._update_pbar()
         score_on_d1_d2_list = []
@@ -1433,7 +1373,6 @@ class AUTOQTLBase(BaseEstimator):
 
     def export(self, output_file_name="", data_file_path=""):
         """Export the optimized pipeline as Python code.
-
         Parameters
         ----------
         output_file_name: string (default: '')
@@ -1441,7 +1380,6 @@ class AUTOQTLBase(BaseEstimator):
         data_file_path: string (default: '')
             By default, the path of input dataset is 'PATH/TO/DATA/FILE' by default.
             If data_file_path is another string, the path will be replaced.
-
         Returns
         -------
         to_write: str
@@ -1495,7 +1433,6 @@ class AUTOQTLBase(BaseEstimator):
         """
         # Choose which dataset to use to get the fitted_pipeline, this pipeline will be used in the score() and predict() function
         """dataset_choice = np.random.random()
-
         if dataset_choice < 0.5:
             selected_features = features_dataset1
             selected_target = target_dataset1
@@ -1551,14 +1488,9 @@ class AUTOQTLBase(BaseEstimator):
                 print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
                     pipeline_to_be_printed = self.print_pipeline(pipeline)
-<<<<<<< HEAD
-                    print('\nTest R^2 = {0},\t(1/Train_test_diff)^(1/4) = {1},\tPipeline: {2}'.format(
-=======
-                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features Removed = {2}, \tPipeline: {3}'.format(
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
+                    print('\nTest R^2 = {0},\tDifference Score = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
-                            abs(pipeline_scores.wvalues[2]),
                             pipeline_to_be_printed))
 
             """if self.pareto_front_fitted_pipelines_:
@@ -1599,16 +1531,13 @@ class AUTOQTLBase(BaseEstimator):
     # make the pipeline suitable for display
     def clean_pipeline_string(self, individual):
         """Provide a string of the individual without the parameter prefixes.
-
         Parameters
         ----------
         individual: individual
             Individual which should be represented by a pretty string
-
         Returns
         -------
         A string like str(individual), but with parameter prefixes removed.
-
         """
         dirty_string = str(individual)
         # There are many parameter prefixes in the pipeline strings, used solely for
@@ -1763,7 +1692,6 @@ class AUTOQTLBase(BaseEstimator):
     # Function to check for validity of dataset
     def _check_dataset(self, features, target, sample_weight=None):
         """Check if a dataset has a valid feature set and labels.
-
         Parameters
         ----------
         features: array-like {n_samples, n_features}
@@ -2055,60 +1983,38 @@ class AUTOQTLBase(BaseEstimator):
         """for key, value in self.pipeline_for_feature_importance_.items():
             pipeline_estimator = value"""
                        
-        pipeline_estimator = self.fitted_pipeline_for_feature_importance[0]
+        pipeline_estimator = self.fitted_pipeline_for_feature_importance[2]
+        print(pipeline_estimator)
 
 
-        # Testing 
-        """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
-        pipeline = Pipeline(estimators)
-
-        pipeline.fit(X, y)"""
-        # Putting output to a text file
-        file_path = 'output_BMIwTail_new.txt'
-        sys.stdout = open(file_path, "w")
-
-        # Printing the pareto front, added now
+         # Printing the final pipeline
         print("Final Pareto Front at the end of the optimization process: ")
         for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
             pipeline_to_be_printed = self.print_pipeline(pipeline)
-            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features removed = {2}, \tPipeline: {3}'.format(
+            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
-                            abs(pipeline_scores.wvalues[2]),
                             pipeline_to_be_printed))
-        
-        # Permutation Feature Importance
-        """print("Feature Importance: \n ")
+        # Testing 
+        """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
+        pipeline = Pipeline(estimators)
+        pipeline.fit(X, y)"""
+        # Putting output to a text file
+        """file_path = 'output.txt'
+        sys.stdout = open(file_path, "w")
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
-            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
+            print("The Pipeline being evaluated: ", fitted_pipeline)
             permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<20}"
+                print(f"{X.columns[i]:<8}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")"""
 
-        # Shapley Values
-        print("\n Shapley Values")
-        num_features = X.shape[1]
-        max_evals = max(500, 2 * num_features + 1)
-        #X_background = shap.utils.sample(X, 100)
-        save_folder = "shapDiagrams"
-        if not os.path.exists(save_folder):
-            os.makedirs(save_folder)
-        i=1
-        for fitted_pipeline in self.fitted_pipeline_for_feature_importance[7:13]:
-            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
-            explainer = shap.Explainer(fitted_pipeline.predict, X)
-            shap_values = explainer(X, max_evals=max_evals)
-            #printing the Shap values
-            vals= np.abs(shap_values.values).mean(0)
-            feature_importance = pd.DataFrame(list(zip(X.columns,vals)),columns=['col_name','feature_importance_vals'])
-            feature_importance.sort_values(by=['feature_importance_vals'],ascending=False,inplace=True)
-            print(feature_importance)
-            #printing the Shap diagram
-            shap.summary_plot(shap_values, X, plot_type='bar', show=False)
-            plt.tight_layout()
-            plt.savefig(f"{save_folder}/Pipeline{i}.png")
-            i = i+1
+        permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
+        for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+                print(f"{X.columns[i]:<8}"
+                    f"{permutation_importance_object.importances_mean[i]:.3f}")
+        
+        
     
     def get_shap_values(self, X, y):
         estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
@@ -2122,26 +2028,12 @@ class AUTOQTLBase(BaseEstimator):
         max_evals = max(500, 2 * num_features + 1)
         explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
         shap_values = explainer(X, max_evals=max_evals)
-<<<<<<< HEAD
         shap.summary_plot(shap_values, X, plot_type='bar')
 
     
      #############################################################################################################################
     # Getting test R2 values for the pipelines in the pareto front
-    def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, entire80_X, entire80_y, entire_X, entire_y):
-=======
-        shap.summary_plot(shap_values, X, plot_type='bar', show=False)
-
-        ################################TRYING SHAP VALUES######################
-        # Putting output to a text file
-        file_path = 'output_shap_BMIwTail.pdf'
-        sys.stdout = open(file_path, "w")
-
-    
-    #############################################################################################################################
-    # Getting test R2 values for the pipelines in the pareto front
-    def get_test_r2(self, X, y, holdout_X, holdout_y):
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
+    def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, feature_80, target_80, entire_X, entire_y):
         
         self.final_pareto_pipelines_testR2 = {}
         self.fitted_final_pareto_pipelines_testR2 =[]
@@ -2154,23 +2046,13 @@ class AUTOQTLBase(BaseEstimator):
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
                         self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-<<<<<<< HEAD
-                            entire80_X, entire80_y
+                            feature_80, target_80
                         )
                         self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            entire80_X, entire80_y
+                            feature_80, target_80
                         ))
 
-        final_output_file_path = 'EvaluationOnHoldout.txt'
-=======
-                            X, y
-                        )
-                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            X, y
-                        ))
-
-        final_output_file_path = 'TestR2_ParetoPipelines_42.txt'
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
+        final_output_file_path = 'holdout.txt'
         sys.stdout = open(final_output_file_path, "w")
 
         
@@ -2178,8 +2060,7 @@ class AUTOQTLBase(BaseEstimator):
         for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
             print("\n The Pipeline being evaluated: \n", pareto_pipeline)
             #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
-<<<<<<< HEAD
-            score_80 = pareto_pipeline.score(entire80_X, entire80_y)
+            score_80 = pareto_pipeline.score(entire_X, entire_y)
             score_holdout_entireDataTrained = pareto_pipeline.score(holdout_X, holdout_y)
             """features_removed_d1 = len(d1_X.columns) - get_feature_size(pareto_pipeline, d1_X, d1_y)
             features_removed_d2 = len(d2_X.columns) - get_feature_size(pareto_pipeline, d2_X, d2_y)
@@ -2197,10 +2078,10 @@ class AUTOQTLBase(BaseEstimator):
             print("\n Dataset D1 score on trained D1: ", score_d1_trained_d1)
 
 
-            # To get the pipeline R^2 on entire dataset
+            # To get entire datatset
             pareto_pipeline.fit(entire_X, entire_y)
             score_full_trained_full = pareto_pipeline.score(entire_X, entire_y)
-            print("\n Entire dataset R^2 using pipeline: ", score_full_trained_full)
+            print("\n Entire dataset score on trained entire dataset: ", score_full_trained_full)
 
     def get_permutation_importance(self, X, y, random_state):
         self.pipeline_for_feature_importance_ = {}
@@ -2229,69 +2110,3 @@ class AUTOQTLBase(BaseEstimator):
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
                 print(f"{X.columns[i]:<20}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
-            
-
-        # Shapley Values
-        """print("\n Shapley Values")
-        num_features = X.shape[1]
-        max_evals = max(500, 2 * num_features + 1)
-        #X_background = shap.utils.sample(X, 100)
-        save_folder = "shapDiagrams"
-        if not os.path.exists(save_folder):
-            os.makedirs(save_folder)
-        i=1
-        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
-            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
-            explainer = shap.Explainer(fitted_pipeline.predict, X)
-            shap_values = explainer(X, max_evals=max_evals)
-            #printing the Shap values
-            vals= np.abs(shap_values.values).mean(0)
-            feature_importance = pd.DataFrame(list(zip(X.columns,vals)),columns=['col_name','feature_importance_vals'])
-            feature_importance.sort_values(by=['feature_importance_vals'],ascending=False,inplace=True)
-            print(feature_importance)
-            #printing the Shap diagram
-            shap.summary_plot(shap_values, X, plot_type='bar', show=False)
-            plt.tight_layout()
-            plt.savefig(f"{save_folder}/Pipeline{i}_8.png")
-            i = i+1"""
-=======
-            score = pareto_pipeline.score(holdout_X, holdout_y)
-            print("\n Holdout R2 Value: ", score)
-
-        """final_output_file_path = 'TestR2_ParetoPipelines.txt'
-        sys.stdout = open(final_output_file_path, "w")
-
-        self.final_pareto_pipelines_testR2 = {}
-        self.fitted_final_pareto_pipelines_testR2 =[]
-
-        for pipeline in self._pareto_front.items:
-                    self.final_pareto_pipelines_testR2[
-                        str(pipeline)
-                    ] = self._toolbox.compile(expr=pipeline)
-
-        with warnings.catch_warnings():
-                        warnings.simplefilter("ignore")
-                        self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            X, y
-                        )
-                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            X, y
-                        ))
-
-        for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
-            print("\n The Pipeline being evaluated: \n", pareto_pipeline)
-            score = pareto_pipeline.score(holdout_X, holdout_y)
-            print("\n Test R2 Value: ", score)"""
-
-    # Getting R^2 value for selected pipeline on entire dataset
-    def get_best_pipeline_R2(self, entire_X, entire_y):
-        estimator = self.fitted_final_pareto_pipelines_testR2[5]
-        print("R^2 value for selected pipelines:")
-        print(estimator)
-        score = estimator.score(entire_X, entire_y)
-        print("R^2 value on entire dataset with above selected pipeline: ", score)
-        no_of_features_retained_entire_dataset = get_feature_size(sklearn_pipeline=estimator, features=entire_X, target=entire_y)
-        percentage = round(1 - (no_of_features_retained_entire_dataset/len(entire_X.columns)),4)
-        print("Percentage of Features Removed: ", percentage)
-        
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0

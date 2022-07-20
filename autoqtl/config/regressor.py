@@ -48,46 +48,12 @@ regressor_config_dict = {
 
     },
 
-<<<<<<< HEAD
    
-=======
-    'autoqtl.builtins.genetic_encoders.InverseEncoder': {
-
-    },
-
-    'autoqtl.builtins.genetic_encoders.UnderDominanceEncoder': {
-
-    },
-
-    'autoqtl.builtins.genetic_encoders.UnderDominanceAlternateEncoder': {
-
-    },
-
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
     'autoqtl.builtins.genetic_encoders.OverDominanceEncoder': {
 
     },
 
-<<<<<<< HEAD
     
-=======
-    'autoqtl.builtins.genetic_encoders.OverDominanceAlternateEncoder': {
-
-    },
-
-    'autoqtl.builtins.genetic_encoders.OverDominancePlusEncoder': {
-
-    },
-
-    'autoqtl.builtins.genetic_encoders.OverDominancePlusAlternateEncoder': {
-
-    },
-
-    'autoqtl.builtins.genetic_encoders.TimesTwoEncoder': {
-
-    },
-
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 
     # Machine Learning Methods
 

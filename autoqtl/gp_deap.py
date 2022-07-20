@@ -55,12 +55,10 @@ def mutNodeReplacement(individual, pset):
     individual: DEAP individual
         A list of pipeline operators and model parameters that can be
         compiled by DEAP into a callable function
-
     Returns
     -------
     individual: DEAP individual
         Returns the individual with one of point mutation applied to it
-
     """
 
     index = np.random.randint(0, len(individual))
@@ -115,11 +113,9 @@ def mutNodeReplacement(individual, pset):
 # utility mutation function to use in varOr() function
 def mutate_random_individual(population, toolbox):
     """Picks a random individual from the population, and performs mutation on a copy of it.
-
     Parameters
     ----------
     population: array of individuals
-
     Returns
     ----------
     individual: individual
@@ -136,11 +132,9 @@ def mutate_random_individual(population, toolbox):
 # utility function to choose two individuals for crossover, to be used in varOr() function
 def pick_two_individuals_eligible_for_crossover(population):
     """Pick two individuals from the population which can do crossover, that is, they share a primitive.
-
     Parameters
     ----------
     population: array of individuals
-
     Returns
     ----------
     tuple: (individual, individual)
@@ -236,11 +230,9 @@ def initialize_stats_dict(individual):
         'mutation_count': number of mutation operations applied to the individual and its predecessor cumulatively. Initialized as: 0
         'crossover_count': number of crossover operations applied to the individual and its predecessor cumulatively. Initialized as: 0
         'predecessor': string representation of the individual. Initialized as: ('ROOT',)
-
     Parameters
     ----------
     individual: deap individual
-
     Returns
     -------
     object
@@ -342,7 +334,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
                 high_d2_score = max(halloffame.keys[x].wvalues[1]\
                     for x in range(len(halloffame.keys)))
                 pbar.write('\nGeneration {0} - Current '
-                            'best internal Test R^2: {1} and on Difference Score: {2}'.format(gen,
+                            'best internal score on D1: {1} and on D2: {2}'.format(gen,
                                                         high_d1_score, high_d2_score),
 
                             file=log_file)
@@ -354,11 +346,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
                             file=log_file)
                 for pipeline, pipeline_scores in zip(halloffame.items, reversed(halloffame.keys)):
                     pipeline_to_be_printed = print_pareto_pipeline(pipeline)
-<<<<<<< HEAD
-                    pbar.write('\nTest R^2 = {0},\t(1/Train_test_diff)^(1/4) = {1},\tPipeline: {2}'.format(
-=======
-                    pbar.write('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features Removed = {2}, \tPipeline: {3}'.format(
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
+                    pbar.write('\nTest R^2 = {0},\tDifference Score = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             pipeline
@@ -461,10 +449,7 @@ def print_pareto_pipeline(individual):
         return pretty_string
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 # To get the number of features after applying a pipeline. TESTING
 def get_feature_size(sklearn_pipeline, features, target):
     feature_names = features.columns
@@ -486,8 +471,4 @@ def get_score_on_fitted_pipeline(sklearn_pipeline, X_learner, y_learner, X_test,
 
     score = scorer(sklearn_pipeline, X_test, y_test) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
             
-<<<<<<< HEAD
     return score
-=======
-    return score
->>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0

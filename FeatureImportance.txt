@@ -25,7 +25,7 @@ chr8:103608382_G    0.003
 The Pipeline being evaluated: 
  Pipeline(steps=[('selectpercentile',
                  SelectPercentile(percentile=75,
-                                  score_func=<function f_regression at 0x000002525D46B4C0>)),
+                                  score_func=<function f_regression at 0x0000017FD47DE4C0>)),
                 ('dominantencoder', DominantEncoder()),
                 ('linearregression', LinearRegression())])
 chr3:136492861_G    0.013
