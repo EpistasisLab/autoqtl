@@ -1,0 +1,33 @@
+Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('heterosisencoder-1', HeterosisEncoder()),
+                ('heterosisencoder-2', HeterosisEncoder()),
+                ('decisiontreeregressor',
+                 DecisionTreeRegressor(max_depth=1, min_samples_leaf=12,
+                                       min_samples_split=16,
+                                       random_state=42))])
+Training R^2 0.01842507418345607
+Testing R^2 0.00776497436156709
+
+Final Pareto Front at the end of the optimization process: 
+
+Score on D1 = 0.0638137033033056,	Score on D2 = 26.36885159573285,	Pipeline: input_matrix -> LinearRegression.
+
+Score on D1 = 0.0637924178340028,	Score on D2 = 26.63238320955429,	Pipeline: input_matrix -> SelectPercentile -> LinearRegression.
+
+Score on D1 = 0.061023410623632146,	Score on D2 = 33.40248452878933,	Pipeline: input_matrix -> VarianceThreshold -> LinearRegression.
+
+Score on D1 = 0.0427079130367638,	Score on D2 = 77.43163063303786,	Pipeline: input_matrix -> DominantEncoder -> FeatureEncodingFrequencySelector -> LinearRegression.
+
+Score on D1 = 0.03946493105949733,	Score on D2 = 80.60351771897209,	Pipeline: input_matrix -> DominantEncoder -> VarianceThreshold -> LinearRegression.
+
+Score on D1 = 0.008721007427338612,	Score on D2 = 92.65055699674363,	Pipeline: input_matrix -> SelectPercentile -> DecisionTreeRegressor.
+
+Score on D1 = 0.008316116690789577,	Score on D2 = 107.53059545000747,	Pipeline: input_matrix -> SelectPercentile -> LinearRegression.
+
+Score on D1 = 0.0059580052813831275,	Score on D2 = 118.32673343390252,	Pipeline: input_matrix -> SelectPercentile -> HeterosisEncoder -> LinearRegression.
+
+Score on D1 = 0.004048943741945643,	Score on D2 = 124.42382121575211,	Pipeline: input_matrix -> SelectPercentile -> UnderDominanceEncoder -> LinearRegression.
+
+Score on D1 = 0.00032601231701789857,	Score on D2 = 230.28316635194705,	Pipeline: input_matrix -> HeterosisEncoder -> DecisionTreeRegressor.
+
+Score on D1 = -0.0009394588875579757,	Score on D2 = 1075.3152970197573,	Pipeline: True -> input_matrix -> RecessiveEncoder -> DominantEncoder -> RandomForestRegressor.

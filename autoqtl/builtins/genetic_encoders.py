@@ -312,6 +312,10 @@ class UnderDominanceEncoder(BaseEstimator, TransformerMixin):
 
         return X_transformed
 
+    """def predict(self, X, y=None):
+       
+        return self"""
+
 """class UnderDominanceAlternateEncoder(BaseEstimator, TransformerMixin):
     This class contains the function definition for encoding the input features as a Under Dominance Alternate genetic model.
     The encoding used is AA(0)->1, Aa(1)->0, aa(2)->2. 

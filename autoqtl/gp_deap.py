@@ -342,7 +342,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
                 high_d2_score = max(halloffame.keys[x].wvalues[1]\
                     for x in range(len(halloffame.keys)))
                 pbar.write('\nGeneration {0} - Current '
-                            'best internal score on D1: {1} and on D2: {2}'.format(gen,
+                            'best internal Test R^2: {1} and on Difference Score: {2}'.format(gen,
                                                         high_d1_score, high_d2_score),
 
                             file=log_file)
@@ -354,7 +354,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
                             file=log_file)
                 for pipeline, pipeline_scores in zip(halloffame.items, reversed(halloffame.keys)):
                     pipeline_to_be_printed = print_pareto_pipeline(pipeline)
-                    pbar.write('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
+                    pbar.write('\nTest R^2 = {0},\t(1/Train_test_diff)^(1/4) = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             pipeline

@@ -16,6 +16,7 @@ from tempfile import mkdtemp
 import warnings
 from isort import file
 from joblib import Memory
+from matplotlib import pyplot as plt
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
@@ -26,6 +27,7 @@ import sklearn
 import re
 import shap
 import sys
+import pandas as pd
 
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection import VarianceThreshold
@@ -1078,12 +1080,22 @@ class AUTOQTLBase(BaseEstimator):
                 #result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, result_score_list)
                 avg_traind1_testd2 = (score_on_dataset1 + score_on_dataset2)/2
                 difference_inverse = 1/(abs(score_on_dataset1-score_on_dataset2))
+                difference_sqrt = (difference_inverse)**(1/4)
                 #Trying Ruowang's method
-                result_score_list = self._update_val(score_on_dataset2, difference_inverse, result_score_list)
+                #Trying Jason's idea
+                diffbyavg = (abs(score_on_dataset1-score_on_dataset2))/avg_traind1_testd2
+                #Phil's idea
+                avgsquarebydiff = (avg_traind1_testd2 * avg_traind1_testd2)/(abs(score_on_dataset1-score_on_dataset2))
+                # Master Equation
+                master_value = (((avg_traind1_testd2)*(avg_traind1_testd2)*min(score_on_dataset1, score_on_dataset2))/(abs(score_on_dataset1-score_on_dataset2))) ** (1/4)
+                result_score_list = self._update_val(score_on_dataset2, difference_sqrt, result_score_list)
                 #print(result_score_list)
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
+            
                 #print(sklearn_pipeline)
+                #print("Training R^2", score_on_dataset1)
+                #print("Testing R^2", score_on_dataset2)
                 #print(result_score_list)
 
         except (KeyboardInterrupt, SystemExit, StopIteration) as e:
@@ -1517,7 +1529,7 @@ class AUTOQTLBase(BaseEstimator):
                 print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
                     pipeline_to_be_printed = self.print_pipeline(pipeline)
-                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
+                    print('\nTest R^2 = {0},\t(1/Train_test_diff)^(1/4) = {1},\tPipeline: {2}'.format(
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             pipeline_to_be_printed))
@@ -2067,7 +2079,7 @@ class AUTOQTLBase(BaseEstimator):
     
      #############################################################################################################################
     # Getting test R2 values for the pipelines in the pareto front
-    def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, entire_X, entire_y):
+    def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, entire80_X, entire80_y, entire_X, entire_y):
         
         self.final_pareto_pipelines_testR2 = {}
         self.fitted_final_pareto_pipelines_testR2 =[]
@@ -2080,13 +2092,13 @@ class AUTOQTLBase(BaseEstimator):
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
                         self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            entire_X, entire_y
+                            entire80_X, entire80_y
                         )
                         self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            entire_X, entire_y
+                            entire80_X, entire80_y
                         ))
 
-        final_output_file_path = 'holdout.txt'
+        final_output_file_path = 'EvaluationOnHoldout.txt'
         sys.stdout = open(final_output_file_path, "w")
 
         
@@ -2094,7 +2106,7 @@ class AUTOQTLBase(BaseEstimator):
         for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
             print("\n The Pipeline being evaluated: \n", pareto_pipeline)
             #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
-            score_80 = pareto_pipeline.score(entire_X, entire_y)
+            score_80 = pareto_pipeline.score(entire80_X, entire80_y)
             score_holdout_entireDataTrained = pareto_pipeline.score(holdout_X, holdout_y)
             """features_removed_d1 = len(d1_X.columns) - get_feature_size(pareto_pipeline, d1_X, d1_y)
             features_removed_d2 = len(d2_X.columns) - get_feature_size(pareto_pipeline, d2_X, d2_y)
@@ -2110,6 +2122,12 @@ class AUTOQTLBase(BaseEstimator):
             pareto_pipeline.fit(d1_X, d1_y)
             score_d1_trained_d1 = pareto_pipeline.score(d1_X, d1_y)
             print("\n Dataset D1 score on trained D1: ", score_d1_trained_d1)
+
+
+            # To get the pipeline R^2 on entire dataset
+            pareto_pipeline.fit(entire_X, entire_y)
+            score_full_trained_full = pareto_pipeline.score(entire_X, entire_y)
+            print("\n Entire dataset R^2 using pipeline: ", score_full_trained_full)
 
     def get_permutation_importance(self, X, y, random_state):
         self.pipeline_for_feature_importance_ = {}
@@ -2140,3 +2158,26 @@ class AUTOQTLBase(BaseEstimator):
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
             
 
+        # Shapley Values
+        """print("\n Shapley Values")
+        num_features = X.shape[1]
+        max_evals = max(500, 2 * num_features + 1)
+        #X_background = shap.utils.sample(X, 100)
+        save_folder = "shapDiagrams"
+        if not os.path.exists(save_folder):
+            os.makedirs(save_folder)
+        i=1
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
+            explainer = shap.Explainer(fitted_pipeline.predict, X)
+            shap_values = explainer(X, max_evals=max_evals)
+            #printing the Shap values
+            vals= np.abs(shap_values.values).mean(0)
+            feature_importance = pd.DataFrame(list(zip(X.columns,vals)),columns=['col_name','feature_importance_vals'])
+            feature_importance.sort_values(by=['feature_importance_vals'],ascending=False,inplace=True)
+            print(feature_importance)
+            #printing the Shap diagram
+            shap.summary_plot(shap_values, X, plot_type='bar', show=False)
+            plt.tight_layout()
+            plt.savefig(f"{save_folder}/Pipeline{i}_8.png")
+            i = i+1"""

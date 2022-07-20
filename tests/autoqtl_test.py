@@ -24,7 +24,7 @@ autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
 # dataset1
-test_data = pd.read_csv("tests/Easy_2and3way.csv")
+test_data = pd.read_csv("tests/BMIwTail.csv")
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
 feature_name = test_data.columns
@@ -37,7 +37,7 @@ test_y = test_data.iloc[:,-1]
 
 features_80, features_20, target_80, target_20 = train_test_split(test_X, test_y, test_size=0.2, random_state=42)
 
-features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=42)
+features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=22)
 
 
 # First test whether the custom parameters are being assigned properly
@@ -138,7 +138,7 @@ def test_summary_of_best_pipeline():
         random_state=42,
         population_size=100,
         #offspring_size=2,
-        generations=15,
+        generations=25,
         verbosity=3
     )
     autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
@@ -148,8 +148,10 @@ def test_summary_of_best_pipeline():
     #autoqtl_obj.get_feature_importance(test_X, test_y, random_state=0)
     #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
     #autoqtl_obj.get_shap_values(test_X, test_y)
+    
     autoqtl_obj.get_permutation_importance(test_X, test_y, random_state=0)
-    autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80)
+    autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80, test_X, test_y)
+    
 
 # Printing the Linear Regression R2 values for whole dataset and split dataset
 def get_R2():
@@ -194,6 +196,10 @@ def get_R2():
     # 80% LR trained on 80%
     model.fit(features_80, target_80)
     print("80% Dataset R^2 using LR: ", model.score(features_80, target_80))
+
+    # D1 LR
+    model.fit(features_dataset1, target_dataset1)
+    print("D1 Dataset R^2 value on only LR model trained on D1: ", model.score(features_dataset1,target_dataset1))
 
 # calling the test functions
 #test_init_custom_parameters()
