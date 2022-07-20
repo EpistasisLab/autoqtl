@@ -2052,7 +2052,7 @@ class AUTOQTLBase(BaseEstimator):
                             feature_80, target_80
                         ))
 
-        final_output_file_path = 'holdout.txt'
+        final_output_file_path = 'EvaluationOnHoldout.txt'
         sys.stdout = open(final_output_file_path, "w")
 
         
@@ -2081,7 +2081,7 @@ class AUTOQTLBase(BaseEstimator):
             # To get entire datatset
             pareto_pipeline.fit(entire_X, entire_y)
             score_full_trained_full = pareto_pipeline.score(entire_X, entire_y)
-            print("\n Entire dataset score on trained entire dataset: ", score_full_trained_full)
+            print("\n Entire dataset R^2 using pipeline: ", score_full_trained_full)
 
     def get_permutation_importance(self, X, y, random_state):
         self.pipeline_for_feature_importance_ = {}
