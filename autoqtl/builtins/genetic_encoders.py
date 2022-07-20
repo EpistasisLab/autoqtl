@@ -312,6 +312,7 @@ class UnderDominanceEncoder(BaseEstimator, TransformerMixin):
 
         return X_transformed
 
+<<<<<<< HEAD
     """def predict(self, X, y=None):
        
         return self"""
@@ -322,16 +323,34 @@ class UnderDominanceEncoder(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         Do nothing and return the estimator unchanged.
+=======
+###################################################################################################################
+# Addition of new Encoders
+class InverseEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as an Inverse Encoder genetic model.
+    The encoding used is AA(0)->2, Aa(1)->1, aa(2)->0. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         Dummy function to fit in with the sklearn API and hence work in pipelines.
         
         Parameters
         ----------
         X : array-like
+<<<<<<< HEAD
         
         return self
 
     def transform(self, X, y=None):
         Transform the data by applying the Heterosis encoding.
+=======
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         
         Parameters
         ----------
@@ -345,14 +364,98 @@ class UnderDominanceEncoder(BaseEstimator, TransformerMixin):
         -------
         X_transformed: numpy ndarray, {n_samples, n_components}
             The encoded feature set
+<<<<<<< HEAD
         
+=======
+        """
+        X = check_array(X)
+        map = {0: 2, 1: 1, 2: 0}
+        mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
+
+        X_transformed = mapping_function(X)
+
+        return X_transformed
+
+class UnderDominanceEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Under Dominance genetic model.
+    The encoding used is AA(0)->2, Aa(1)->0, aa(2)->1. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+        Dummy function to fit in with the sklearn API and hence work in pipelines.
+        
+        Parameters
+        ----------
+        X : array-like
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+        
+        Parameters
+        ----------
+        X : numpy ndarray, {n_samples, n_components}
+            New data, where n_samples is the number of samples (number of individuals)
+            and n_components is the number of components (number of features).
+        y : None
+            Unused
+            
+        Returns
+        -------
+        X_transformed: numpy ndarray, {n_samples, n_components}
+            The encoded feature set
+        """
+        X = check_array(X)
+        map = {0: 2, 1: 0, 2: 1}
+        mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
+
+        X_transformed = mapping_function(X)
+
+        return X_transformed
+
+class UnderDominanceAlternateEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Under Dominance Alternate genetic model.
+    The encoding used is AA(0)->1, Aa(1)->0, aa(2)->2. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+        Dummy function to fit in with the sklearn API and hence work in pipelines.
+        
+        Parameters
+        ----------
+        X : array-like
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+        
+        Parameters
+        ----------
+        X : numpy ndarray, {n_samples, n_components}
+            New data, where n_samples is the number of samples (number of individuals)
+            and n_components is the number of components (number of features).
+        y : None
+            Unused
+            
+        Returns
+        -------
+        X_transformed: numpy ndarray, {n_samples, n_components}
+            The encoded feature set
+        """
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         X = check_array(X)
         map = {0: 1, 1: 0, 2: 2}
         mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
 
         X_transformed = mapping_function(X)
 
+<<<<<<< HEAD
         return X_transformed"""
+=======
+        return X_transformed
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 
 class OverDominanceEncoder(BaseEstimator, TransformerMixin):
     """This class contains the function definition for encoding the input features as a Over Dominance genetic model.
@@ -392,22 +495,39 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
 
         return X_transformed
 
+<<<<<<< HEAD
 """class OverDominanceAlternateEncoder(BaseEstimator, TransformerMixin):
     This class contains the function definition for encoding the input features as a Over Dominance Alternate genetic model.
     The encoding used is AA(0)->0, Aa(1)->2, aa(2)->1. 
 
     def fit(self, X, y=None):
         Do nothing and return the estimator unchanged.
+=======
+class OverDominanceAlternateEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Over Dominance Alternate genetic model.
+    The encoding used is AA(0)->0, Aa(1)->2, aa(2)->1. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         Dummy function to fit in with the sklearn API and hence work in pipelines.
         
         Parameters
         ----------
         X : array-like
+<<<<<<< HEAD
         
         return self
 
     def transform(self, X, y=None):
         Transform the data by applying the Heterosis encoding.
+=======
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         
         Parameters
         ----------
@@ -421,13 +541,18 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
         -------
         X_transformed: numpy ndarray, {n_samples, n_components}
             The encoded feature set
+<<<<<<< HEAD
         
+=======
+        """
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         X = check_array(X)
         map = {0: 0, 1: 2, 2: 1}
         mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
 
         X_transformed = mapping_function(X)
 
+<<<<<<< HEAD
         return X_transformed"""
 
 """class OverDominancePlusEncoder(BaseEstimator, TransformerMixin):
@@ -436,16 +561,34 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         Do nothing and return the estimator unchanged.
+=======
+        return X_transformed
+
+class OverDominancePlusEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Over Dominance Plus  genetic model.
+    The encoding used is AA(0)->2, Aa(1)->3, aa(2)->0. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         Dummy function to fit in with the sklearn API and hence work in pipelines.
         
         Parameters
         ----------
         X : array-like
+<<<<<<< HEAD
         
         return self
 
     def transform(self, X, y=None):
         Transform the data by applying the Heterosis encoding.
+=======
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         
         Parameters
         ----------
@@ -459,13 +602,18 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
         -------
         X_transformed: numpy ndarray, {n_samples, n_components}
             The encoded feature set
+<<<<<<< HEAD
         
+=======
+        """
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         X = check_array(X)
         map = {0: 2, 1: 3, 2: 0}
         mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
 
         X_transformed = mapping_function(X)
 
+<<<<<<< HEAD
         return X_transformed"""
 
 """class OverDominancePlusAlternateEncoder(BaseEstimator, TransformerMixin):
@@ -474,16 +622,34 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         Do nothing and return the estimator unchanged.
+=======
+        return X_transformed
+
+class OverDominancePlusAlternateEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Over Dominance Plus Alternate  genetic model.
+    The encoding used is AA(0)->0, Aa(1)->3, aa(2)->2. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         Dummy function to fit in with the sklearn API and hence work in pipelines.
         
         Parameters
         ----------
         X : array-like
+<<<<<<< HEAD
         
         return self
 
     def transform(self, X, y=None):
         Transform the data by applying the Heterosis encoding.
+=======
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         
         Parameters
         ----------
@@ -497,13 +663,18 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
         -------
         X_transformed: numpy ndarray, {n_samples, n_components}
             The encoded feature set
+<<<<<<< HEAD
         
+=======
+        """
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         X = check_array(X)
         map = {0: 0, 1: 3, 2: 2}
         mapping_function = np.vectorize(lambda i: map[i] if i in map else i)
 
         X_transformed = mapping_function(X)
 
+<<<<<<< HEAD
         return X_transformed"""
 
 """class TimesTwoEncoder(BaseEstimator, TransformerMixin):
@@ -512,16 +683,34 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         Do nothing and return the estimator unchanged.
+=======
+        return X_transformed
+
+class TimesTwoEncoder(BaseEstimator, TransformerMixin):
+    """This class contains the function definition for encoding the input features as a Times Two genetic model.
+    The encoding used is: multiply each existing encoding with 2. """
+
+    def fit(self, X, y=None):
+        """Do nothing and return the estimator unchanged.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         Dummy function to fit in with the sklearn API and hence work in pipelines.
         
         Parameters
         ----------
         X : array-like
+<<<<<<< HEAD
         
         return self
 
     def transform(self, X, y=None):
         Transform the data by applying the Heterosis encoding.
+=======
+        """
+        return self
+
+    def transform(self, X, y=None):
+        """Transform the data by applying the Heterosis encoding.
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         
         Parameters
         ----------
@@ -535,12 +724,17 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
         -------
         X_transformed: numpy ndarray, {n_samples, n_components}
             The encoded feature set
+<<<<<<< HEAD
         
+=======
+        """
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         X = check_array(X)
         mapping_function = np.vectorize(lambda a: a * 2)
 
         X_transformed = mapping_function(X)
 
+<<<<<<< HEAD
         return X_transformed"""
 
 
@@ -550,3 +744,6 @@ class OverDominanceEncoder(BaseEstimator, TransformerMixin):
 
 
 
+=======
+        return X_transformed
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0

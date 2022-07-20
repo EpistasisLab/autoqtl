@@ -1,3 +1,7 @@
+#For running on HPC
+#import os, sys
+#sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
 from shutil import rmtree
 import sys
 from tempfile import mkdtemp
@@ -25,6 +29,7 @@ autoqtl_obj._fit_init()
 
 # dataset1
 test_data = pd.read_csv("tests/BMIwTail.csv")
+
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
 feature_name = test_data.columns
@@ -37,7 +42,11 @@ test_y = test_data.iloc[:,-1]
 
 features_80, features_20, target_80, target_20 = train_test_split(test_X, test_y, test_size=0.2, random_state=42)
 
+<<<<<<< HEAD
 features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=22)
+=======
+features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=42)
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 
 
 # First test whether the custom parameters are being assigned properly
@@ -138,7 +147,11 @@ def test_summary_of_best_pipeline():
         random_state=42,
         population_size=100,
         #offspring_size=2,
+<<<<<<< HEAD
         generations=25,
+=======
+        generations=15,
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         verbosity=3
     )
     autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
@@ -148,20 +161,30 @@ def test_summary_of_best_pipeline():
     #autoqtl_obj.get_feature_importance(test_X, test_y, random_state=0)
     #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
     #autoqtl_obj.get_shap_values(test_X, test_y)
+<<<<<<< HEAD
     
     autoqtl_obj.get_permutation_importance(test_X, test_y, random_state=0)
     autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80, test_X, test_y)
     
+=======
+    autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_20, target_20)
+    #autoqtl_obj.get_best_pipeline_R2(test_X, test_y)
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 
 # Printing the Linear Regression R2 values for whole dataset and split dataset
 def get_R2():
     model = LinearRegression()
     # Entire Dataset
+<<<<<<< HEAD
     """model.fit(test_X, test_y)
+=======
+    model.fit(test_X, test_y)
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
     print("Entire Dataset R^2 using LR: ", model.score(test_X, test_y))
     # Dataset split 1
     model.fit(features_dataset1, target_dataset1)
     print("Dataset split 1 R^2 using LR: ", model.score(features_dataset1,target_dataset1))
+<<<<<<< HEAD
     # D1 dataset with D2 as learner
     model.fit(features_dataset2, target_dataset2)
     print("D1 Dataset R^2 value on only LR model trained on D2: ", model.score(features_dataset1,target_dataset1))
@@ -171,12 +194,21 @@ def get_R2():
     # D2 dataset with D1 as learner
     model.fit(features_dataset1, target_dataset1)
     print("D2 Dataset R^2 value on only LR model trained on D1: ", model.score(features_dataset2,target_dataset2))
+=======
+    # Dataset split 2
+    model.fit(features_dataset2, target_dataset2)
+    print("Dataset split 2 R^2 using LR: ", model.score(features_dataset2,target_dataset2))
+     # Dataset split 2 with D1 as learner
+    model.fit(features_dataset1, target_dataset1)
+    print("Dataset split 2 R^2 using LR using LR model trained on D1: ", model.score(features_dataset2,target_dataset2))
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
     # Holdout dataset 
     model.fit(features_20, target_20)
     print("Holdout Dataset R^2 using LR: ", model.score(features_20,target_20))
     # Holdout dataset with D1 as learner
     model.fit(features_dataset1, target_dataset1)
     print("Holdout Dataset R^2 value on only LR model trained on D1: ", model.score(features_20,target_20))
+<<<<<<< HEAD
     # Holdout dataset with D2 as learner
     model.fit(features_dataset2, target_dataset2)
     print("Holdout Dataset R^2 value on only LR model trained on D2: ", model.score(features_20,target_20))
@@ -201,6 +233,17 @@ def get_R2():
     model.fit(features_dataset1, target_dataset1)
     print("D1 Dataset R^2 value on only LR model trained on D1: ", model.score(features_dataset1,target_dataset1))
 
+=======
+
+
+# Just LR
+"""def check_lr(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
+    lr = LinearRegression()
+    lr.fit(features_dataset1, )"""
+
+# Just RF
+
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 # calling the test functions
 #test_init_custom_parameters()
 #test_init_log_file()

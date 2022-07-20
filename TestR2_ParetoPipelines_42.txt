@@ -1,0 +1,879 @@
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('overdominancealternateencoder',
+                 OverDominanceAlternateEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False,
+                                       max_features=0.6500000000000001,
+                                       min_samples_leaf=3, min_samples_split=6,
+                                       random_state=42))])
+
+ Holdout R2 Value:  -0.008037751663152681
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False,
+                                       max_features=0.6500000000000001,
+                                       min_samples_leaf=3, min_samples_split=6,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.04225150067117034
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.5,
+                                       min_samples_leaf=3, min_samples_split=6,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.053350507372167066
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=90,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.5,
+                                       min_samples_leaf=3, min_samples_split=6,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.03910312247634429
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('overdominanceplusencoder', OverDominancePlusEncoder()),
+                ('overdominancealternateencoder',
+                 OverDominanceAlternateEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.35)),
+                ('timestwoencoder', TimesTwoEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=2,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05597121010441708
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('timestwoencoder', TimesTwoEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.35)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=2,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.07198220695038626
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('overdominancealternateencoder',
+                 OverDominanceAlternateEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.35)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=2,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.03718645169427137
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.35)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=2,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.063247621846793
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('inverseencoder', InverseEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.3, min_samples_leaf=2,
+                                       min_samples_split=3, random_state=42))])
+
+ Holdout R2 Value:  0.07944061377465805
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.7000000000000001,
+                                       min_samples_leaf=2, min_samples_split=6,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.06214586173389214
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('overdominanceplusencoder', OverDominancePlusEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.55,
+                                       min_samples_leaf=3, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  -0.027587266770529473
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=2,
+                                       min_samples_split=8, random_state=42))])
+
+ Holdout R2 Value:  0.08161500235978558
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(max_features=0.5, min_samples_leaf=3,
+                                       min_samples_split=6, random_state=42))])
+
+ Holdout R2 Value:  0.0787722102440166
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.5,
+                                       min_samples_leaf=3, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  -0.012024693754960847
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('inverseencoder', InverseEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.3, min_samples_leaf=3,
+                                       min_samples_split=3, random_state=42))])
+
+ Holdout R2 Value:  0.09035830180017246
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=2, min_samples_split=12,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.0687941777362222
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=55,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=3, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.005677525050217347
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('overdominanceplusencoder', OverDominancePlusEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=3,
+                                       min_samples_split=4, random_state=42))])
+
+ Holdout R2 Value:  0.03100379844925072
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.3,
+                                       min_samples_leaf=4, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.07412967678463944
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=3, min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.07105198708511062
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.25)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.2,
+                                       min_samples_leaf=4, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.0855166438192192
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.7000000000000001,
+                                       min_samples_leaf=2, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.07207695393752922
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.5, min_samples_leaf=3,
+                                       min_samples_split=16,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.09230675957391998
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.1,
+                                       min_samples_leaf=3, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.04766528660315672
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_leaf=5,
+                                       min_samples_split=16,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.09239759395348235
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('selectpercentile',
+                 SelectPercentile(percentile=90,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=2, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.046275397978868815
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('overdominanceplusencoder', OverDominancePlusEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.1,
+                                       min_samples_leaf=3, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.03433368303822393
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=50,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=2, min_samples_split=11,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.02416065648109922
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8500000000000001,
+                                       min_samples_leaf=6, min_samples_split=19,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.09536226460838881
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.2,
+                                       min_samples_leaf=4, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.07338503992680967
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9000000000000001,
+                                       min_samples_leaf=9, min_samples_split=13,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.0992866211804534
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=8,
+                                       min_samples_split=8, random_state=42))])
+
+ Holdout R2 Value:  0.10075648697874118
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.3)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=9, min_samples_split=12,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.08031747748523388
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=9,
+                                       min_samples_split=13,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.09637804170424091
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('randomforestregressor',
+                 RandomForestRegressor(max_features=0.5, min_samples_leaf=10,
+                                       min_samples_split=16,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.09909750723392163
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
+                ('underdominancealternateencoder',
+                 UnderDominanceAlternateEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_leaf=12,
+                                       min_samples_split=16,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.09935835613957722
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=75,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('heterozygotedisadvantageencoder',
+                 HeterozygoteDisadvantageEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.35000000000000003,
+                                       min_samples_leaf=6, min_samples_split=19,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.08595522015976376
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.35)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.4, min_samples_leaf=9,
+                                       min_samples_split=13,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.07926876664235061
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=40,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False,
+                                       max_features=0.7500000000000001,
+                                       min_samples_leaf=4, min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.016295533798717954
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.0732064090577752
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.5,
+                                       min_samples_leaf=3, min_samples_split=6,
+                                       random_state=42))])
+
+ Holdout R2 Value:  -0.025492534450929805
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=55,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('overdominanceplusalternateencoder',
+                 OverDominancePlusAlternateEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=12, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05854414051002221
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=55,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=9,
+                                       min_samples_split=13,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.06974772009832919
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.006529040125445418
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=55,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=12, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.06982092587797017
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=2, min_samples_split=11,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.012613810191357877
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('inverseencoder', InverseEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.55, min_samples_leaf=2,
+                                       min_samples_split=10,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.018090719762837715
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('additiveencoder', AdditiveEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.25,
+                                       min_samples_leaf=12,
+                                       min_samples_split=10,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.0738845499568791
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=1.0, min_samples_leaf=3,
+                                       min_samples_split=19,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.033776335405725
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=55,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=1.0, min_samples_leaf=19,
+                                       min_samples_split=11,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.0759901743293051
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=55,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.8, min_samples_leaf=18,
+                                       min_samples_split=11,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.07335896306532586
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=1.0, min_samples_leaf=6,
+                                       min_samples_split=19,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.03637069591300446
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=40,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.06667063472350043
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=8, min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.04286421831075582
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=50,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.6500000000000001,
+                                       min_samples_leaf=16, random_state=42))])
+
+ Holdout R2 Value:  0.07089250342122166
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('inverseencoder', InverseEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('variancethreshold', VarianceThreshold(threshold=0.1)),
+                ('underdominancealternateencoder',
+                 UnderDominanceAlternateEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.043689129884260214
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('underdominancealternateencoder',
+                 UnderDominanceAlternateEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.04137774915580694
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=25,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.1,
+                                       min_samples_leaf=3, min_samples_split=4,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.011287597295080665
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('inverseencoder', InverseEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05192464598655855
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05208800943413028
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=30,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.2,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05085588508322647
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=75,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.09513560149018796
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=65,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.08604786305529943
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.08411528965026349
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=55,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.07554899403267068
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=50,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.07510685220732205
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=60,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.05)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.07141996628342384
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('additiveencoder', AdditiveEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.9500000000000001,
+                                       min_samples_leaf=2, min_samples_split=7,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05504912248017946
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('additiveencoder', AdditiveEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.35000000000000003,
+                                       min_samples_leaf=2, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05707007678563747
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.35000000000000003,
+                                       min_samples_leaf=2, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05728855314528469
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('additiveencoder', AdditiveEncoder()),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05678167425068403
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False, max_features=0.4,
+                                       min_samples_leaf=11,
+                                       min_samples_split=14,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05661369925648996
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.35000000000000003,
+                                       min_samples_leaf=9, min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.05920265139193781
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.35000000000000003,
+                                       min_samples_leaf=19,
+                                       min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.06200080337876401
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=25,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.061307469250962976
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('overdominanceplusalternateencoder',
+                 OverDominancePlusAlternateEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=15,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False,
+                                       max_features=0.8500000000000001,
+                                       min_samples_leaf=8, min_samples_split=12,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.04041514712092675
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('underdominanceencoder', UnderDominanceEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=20,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.2, min_samples_leaf=18,
+                                       min_samples_split=19,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.04964381823209596
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('inverseencoder', InverseEncoder()),
+                ('timestwoencoder', TimesTwoEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=15,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False,
+                                       max_features=0.8500000000000001,
+                                       min_samples_leaf=8, min_samples_split=12,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.06544609097008625
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=15,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(bootstrap=False,
+                                       max_features=0.8500000000000001,
+                                       min_samples_leaf=8, min_samples_split=12,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.0654647212476821
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('decisiontreeregressor',
+                 DecisionTreeRegressor(max_depth=7, min_samples_leaf=15,
+                                       min_samples_split=13,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.04349414165704457
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('linearregression', LinearRegression())])
+
+ Holdout R2 Value:  0.03442352880687649
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('selectpercentile',
+                 SelectPercentile(percentile=5,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('underdominancealternateencoder',
+                 UnderDominanceAlternateEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.15)),
+                ('additiveencoder', AdditiveEncoder()),
+                ('decisiontreeregressor',
+                 DecisionTreeRegressor(max_depth=5, min_samples_leaf=3,
+                                       min_samples_split=15,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.034726887926236016
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('additiveencoder', AdditiveEncoder()),
+                ('selectpercentile',
+                 SelectPercentile(percentile=5,
+                                  score_func=<function f_regression at 0x0000017AEEABB5E0>)),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=1.0, min_samples_leaf=6,
+                                       min_samples_split=19,
+                                       random_state=42))])
+
+ Holdout R2 Value:  0.03472482984213876
+Entire Dataset R^2 using LR:  0.09676189140743763
+Dataset split 1 R^2 using LR:  0.10378835698918853
+Dataset split 2 R^2 using LR:  0.08697931802273906
+Dataset split 2 R^2 using LR using LR model trained on D1:  0.0749430677782329
+Holdout Dataset R^2 using LR:  0.1279803644446027
+Holdout Dataset R^2 value on only LR model trained on D1:  0.1052899945107082

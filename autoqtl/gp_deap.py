@@ -354,7 +354,11 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
                             file=log_file)
                 for pipeline, pipeline_scores in zip(halloffame.items, reversed(halloffame.keys)):
                     pipeline_to_be_printed = print_pareto_pipeline(pipeline)
+<<<<<<< HEAD
                     pbar.write('\nTest R^2 = {0},\t(1/Train_test_diff)^(1/4) = {1},\tPipeline: {2}'.format(
+=======
+                    pbar.write('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features Removed = {2}, \tPipeline: {3}'.format(
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
                             pipeline
@@ -457,7 +461,10 @@ def print_pareto_pipeline(individual):
         return pretty_string
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 # To get the number of features after applying a pipeline. TESTING
 def get_feature_size(sklearn_pipeline, features, target):
     feature_names = features.columns
@@ -479,4 +486,8 @@ def get_score_on_fitted_pipeline(sklearn_pipeline, X_learner, y_learner, X_test,
 
     score = scorer(sklearn_pipeline, X_test, y_test) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
             
+<<<<<<< HEAD
     return score
+=======
+    return score
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0

@@ -29,6 +29,8 @@ import shap
 import sys
 import pandas as pd
 
+import pandas as pd
+
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.impute import SimpleImputer
@@ -51,7 +53,11 @@ from .decorators import _pre_test
 from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
 from .gp_deap import (
+<<<<<<< HEAD
     cxOnePoint, get_feature_size, get_score_on_fitted_pipeline, mutNodeReplacement, _wrapped_score, eaMuPlusLambda
+=======
+    cxOnePoint, mutNodeReplacement, _wrapped_score, eaMuPlusLambda, get_feature_size, get_score_on_fitted_pipeline
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
 )
 
 from .export_utils import (
@@ -1073,6 +1079,7 @@ class AUTOQTLBase(BaseEstimator):
                 score_on_dataset1 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
                 #score_on_dataset1 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset2, y_learner=target_dataset2, X_test=features_dataset1, y_test=target_dataset1, scoring_function=self.scoring_function)
                 #print(score_on_dataset1)
+<<<<<<< HEAD
                 #score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
                 score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
                 #print(score_on_dataset2)
@@ -1089,6 +1096,21 @@ class AUTOQTLBase(BaseEstimator):
                 # Master Equation
                 master_value = (((avg_traind1_testd2)*(avg_traind1_testd2)*min(score_on_dataset1, score_on_dataset2))/(abs(score_on_dataset1-score_on_dataset2))) ** (1/4)
                 result_score_list = self._update_val(score_on_dataset2, difference_sqrt, result_score_list)
+=======
+                no_of_features_dataset1 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset1, target=target_dataset1)
+                #print(no_of_features_dataset1)
+                #score_on_dataset2 = partial_wrapped_score(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                score_on_dataset2 = get_score_on_fitted_pipeline(sklearn_pipeline=sklearn_pipeline, X_learner=features_dataset1, y_learner=target_dataset1, X_test=features_dataset2, y_test=target_dataset2, scoring_function=self.scoring_function)
+                #print(score_on_dataset2)
+                no_of_features_dataset2 = get_feature_size(sklearn_pipeline=sklearn_pipeline, features=features_dataset2, target=target_dataset2)
+                #print(no_of_features_dataset2)
+                no_of_features_after_addition = 1/(no_of_features_dataset1 + no_of_features_dataset2)
+                # percentage of feature retained
+                feature_percentage = round(1 - ((no_of_features_dataset1 + no_of_features_dataset2)/(len(features_dataset1.columns) + len(features_dataset2.columns))), 4)
+                #print(no_of_features_after_addition)
+                # Use the modified _update_val() to add the evaluated scores to the result_score_list
+                result_score_list = self._update_val(score_on_dataset1, score_on_dataset2, feature_percentage, result_score_list)
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
                 #print(result_score_list)
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
@@ -1529,9 +1551,14 @@ class AUTOQTLBase(BaseEstimator):
                 print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
                     pipeline_to_be_printed = self.print_pipeline(pipeline)
+<<<<<<< HEAD
                     print('\nTest R^2 = {0},\t(1/Train_test_diff)^(1/4) = {1},\tPipeline: {2}'.format(
+=======
+                    print('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features Removed = {2}, \tPipeline: {3}'.format(
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
                             pipeline_scores.wvalues[0],
                             pipeline_scores.wvalues[1],
+                            abs(pipeline_scores.wvalues[2]),
                             pipeline_to_be_printed))
 
             """if self.pareto_front_fitted_pipelines_:
@@ -2028,39 +2055,60 @@ class AUTOQTLBase(BaseEstimator):
         """for key, value in self.pipeline_for_feature_importance_.items():
             pipeline_estimator = value"""
                        
-        pipeline_estimator = self.fitted_pipeline_for_feature_importance[2]
-        print(pipeline_estimator)
+        pipeline_estimator = self.fitted_pipeline_for_feature_importance[0]
 
 
-         # Printing the final pipeline
-        print("Final Pareto Front at the end of the optimization process: ")
-        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
-            pipeline_to_be_printed = self.print_pipeline(pipeline)
-            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
-                            pipeline_scores.wvalues[0],
-                            pipeline_scores.wvalues[1],
-                            pipeline_to_be_printed))
         # Testing 
         """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
         pipeline = Pipeline(estimators)
 
         pipeline.fit(X, y)"""
         # Putting output to a text file
-        """file_path = 'output.txt'
+        file_path = 'output_BMIwTail_new.txt'
         sys.stdout = open(file_path, "w")
+
+        # Printing the pareto front, added now
+        print("Final Pareto Front at the end of the optimization process: ")
+        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+            pipeline_to_be_printed = self.print_pipeline(pipeline)
+            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPercentage of Features removed = {2}, \tPipeline: {3}'.format(
+                            pipeline_scores.wvalues[0],
+                            pipeline_scores.wvalues[1],
+                            abs(pipeline_scores.wvalues[2]),
+                            pipeline_to_be_printed))
+        
+        # Permutation Feature Importance
+        """print("Feature Importance: \n ")
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
-            print("The Pipeline being evaluated: ", fitted_pipeline)
+            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
             permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<8}"
+                print(f"{X.columns[i]:<20}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")"""
 
-        permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
-        for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<8}"
-                    f"{permutation_importance_object.importances_mean[i]:.3f}")
-        
-        
+        # Shapley Values
+        print("\n Shapley Values")
+        num_features = X.shape[1]
+        max_evals = max(500, 2 * num_features + 1)
+        #X_background = shap.utils.sample(X, 100)
+        save_folder = "shapDiagrams"
+        if not os.path.exists(save_folder):
+            os.makedirs(save_folder)
+        i=1
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance[7:13]:
+            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
+            explainer = shap.Explainer(fitted_pipeline.predict, X)
+            shap_values = explainer(X, max_evals=max_evals)
+            #printing the Shap values
+            vals= np.abs(shap_values.values).mean(0)
+            feature_importance = pd.DataFrame(list(zip(X.columns,vals)),columns=['col_name','feature_importance_vals'])
+            feature_importance.sort_values(by=['feature_importance_vals'],ascending=False,inplace=True)
+            print(feature_importance)
+            #printing the Shap diagram
+            shap.summary_plot(shap_values, X, plot_type='bar', show=False)
+            plt.tight_layout()
+            plt.savefig(f"{save_folder}/Pipeline{i}.png")
+            i = i+1
     
     def get_shap_values(self, X, y):
         estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
@@ -2074,12 +2122,26 @@ class AUTOQTLBase(BaseEstimator):
         max_evals = max(500, 2 * num_features + 1)
         explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
         shap_values = explainer(X, max_evals=max_evals)
+<<<<<<< HEAD
         shap.summary_plot(shap_values, X, plot_type='bar')
 
     
      #############################################################################################################################
     # Getting test R2 values for the pipelines in the pareto front
     def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, entire80_X, entire80_y, entire_X, entire_y):
+=======
+        shap.summary_plot(shap_values, X, plot_type='bar', show=False)
+
+        ################################TRYING SHAP VALUES######################
+        # Putting output to a text file
+        file_path = 'output_shap_BMIwTail.pdf'
+        sys.stdout = open(file_path, "w")
+
+    
+    #############################################################################################################################
+    # Getting test R2 values for the pipelines in the pareto front
+    def get_test_r2(self, X, y, holdout_X, holdout_y):
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         
         self.final_pareto_pipelines_testR2 = {}
         self.fitted_final_pareto_pipelines_testR2 =[]
@@ -2092,6 +2154,7 @@ class AUTOQTLBase(BaseEstimator):
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
                         self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+<<<<<<< HEAD
                             entire80_X, entire80_y
                         )
                         self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
@@ -2099,6 +2162,15 @@ class AUTOQTLBase(BaseEstimator):
                         ))
 
         final_output_file_path = 'EvaluationOnHoldout.txt'
+=======
+                            X, y
+                        )
+                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            X, y
+                        ))
+
+        final_output_file_path = 'TestR2_ParetoPipelines_42.txt'
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
         sys.stdout = open(final_output_file_path, "w")
 
         
@@ -2106,6 +2178,7 @@ class AUTOQTLBase(BaseEstimator):
         for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
             print("\n The Pipeline being evaluated: \n", pareto_pipeline)
             #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
+<<<<<<< HEAD
             score_80 = pareto_pipeline.score(entire80_X, entire80_y)
             score_holdout_entireDataTrained = pareto_pipeline.score(holdout_X, holdout_y)
             """features_removed_d1 = len(d1_X.columns) - get_feature_size(pareto_pipeline, d1_X, d1_y)
@@ -2181,3 +2254,44 @@ class AUTOQTLBase(BaseEstimator):
             plt.tight_layout()
             plt.savefig(f"{save_folder}/Pipeline{i}_8.png")
             i = i+1"""
+=======
+            score = pareto_pipeline.score(holdout_X, holdout_y)
+            print("\n Holdout R2 Value: ", score)
+
+        """final_output_file_path = 'TestR2_ParetoPipelines.txt'
+        sys.stdout = open(final_output_file_path, "w")
+
+        self.final_pareto_pipelines_testR2 = {}
+        self.fitted_final_pareto_pipelines_testR2 =[]
+
+        for pipeline in self._pareto_front.items:
+                    self.final_pareto_pipelines_testR2[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+        with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            X, y
+                        )
+                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+                            X, y
+                        ))
+
+        for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
+            print("\n The Pipeline being evaluated: \n", pareto_pipeline)
+            score = pareto_pipeline.score(holdout_X, holdout_y)
+            print("\n Test R2 Value: ", score)"""
+
+    # Getting R^2 value for selected pipeline on entire dataset
+    def get_best_pipeline_R2(self, entire_X, entire_y):
+        estimator = self.fitted_final_pareto_pipelines_testR2[5]
+        print("R^2 value for selected pipelines:")
+        print(estimator)
+        score = estimator.score(entire_X, entire_y)
+        print("R^2 value on entire dataset with above selected pipeline: ", score)
+        no_of_features_retained_entire_dataset = get_feature_size(sklearn_pipeline=estimator, features=entire_X, target=entire_y)
+        percentage = round(1 - (no_of_features_retained_entire_dataset/len(entire_X.columns)),4)
+        print("Percentage of Features Removed: ", percentage)
+        
+>>>>>>> 0e6321029dc67ac6bccf53f95c5eb975ef1801f0
