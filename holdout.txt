@@ -6,26 +6,65 @@
 
  Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
 
- Dataset D1 score on trained D1:  0.09067697610198533
+ Dataset D1 score on trained D1:  0.09240932401880586
 
  Entire dataset score on trained entire dataset:  0.09676189140743763
 
  The Pipeline being evaluated: 
- Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(percentile=75,
-                                  score_func=<function f_regression at 0x0000017FD47DE4C0>)),
-                ('dominantencoder', DominantEncoder()),
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.35)),
                 ('linearregression', LinearRegression())])
 
- Entire dataset(80%) R^2 trained on entire dataset(80%):  0.059905092983367214
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08688356957667076
 
- Holdout data R^2 trained on entire dataset(80%):  0.047468646451600094
+ Holdout data R^2 trained on entire dataset(80%):  0.09597672553604775
 
- Dataset D1 score on trained D1:  0.05308113642521062
+ Dataset D1 score on trained D1:  0.08390515564403267
 
- Entire dataset score on trained entire dataset:  0.060384486271611304
+ Entire dataset score on trained entire dataset:  0.08774944244349647
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.05)),
+                ('linearregression', LinearRegression())])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07118172504440112
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09389664776217277
+
+ Dataset D1 score on trained D1:  0.06259231534604526
+
+ Entire dataset score on trained entire dataset:  0.0722314057137996
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold-1', VarianceThreshold(threshold=0.05)),
+                ('variancethreshold-2', VarianceThreshold(threshold=0.35)),
+                ('recessiveencoder', RecessiveEncoder()),
+                ('linearregression', LinearRegression())])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06676286712871082
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08671311470859
+
+ Dataset D1 score on trained D1:  0.05873813940336581
+
+ Entire dataset score on trained entire dataset:  0.06779134938194997
+
+ The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.3)),
+                ('linearregression', LinearRegression())])
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.03274962516946189
+
+ Holdout data R^2 trained on entire dataset(80%):  0.045483605911155855
+
+ Dataset D1 score on trained D1:  0.02755988556045552
+
+ Entire dataset score on trained entire dataset:  0.033538634281466306
 Holdout LR on 80% trained data:  0.10639891621907727
 Entire Dataset R^2 using LR:  0.09676189140743763
-D2 Dataset R^2 value on only LR model trained on D1:  0.0869471529521273
+D2 Dataset R^2 value on only LR model trained on D1:  0.08631108293536394
 80% Dataset R^2 using LR:  0.09244401268001912
-D1 Dataset R^2 value on only LR model trained on D1:  0.09067697610198533
+D1 Dataset R^2 value on only LR model trained on D1:  0.09240932401880586

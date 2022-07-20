@@ -23,26 +23,95 @@ chr18:27348077_G    0.004
 chr8:103608382_G    0.003
 
 The Pipeline being evaluated: 
- Pipeline(steps=[('selectpercentile',
-                 SelectPercentile(percentile=75,
-                                  score_func=<function f_regression at 0x0000017FD47DE4C0>)),
-                ('dominantencoder', DominantEncoder()),
+ Pipeline(steps=[('variancethreshold', VarianceThreshold(threshold=0.35)),
                 ('linearregression', LinearRegression())])
-chr3:136492861_G    0.013
-chr1:203085725_C    0.012
-chr18:32316331_A    0.009
-chr4:178946041_A    0.009
-chr2:241577141_C    0.008
-chr6:29889998_C     0.008
-chr7:129118847_C    0.007
-chr10:84091208_T    0.007
-chr1:281788173_G    0.007
-chr19:24321261_T    0.006
-chr9:15866960_A     0.006
-chr5:107167969_G    0.005
-chr8:103608382_G    0.005
-chr5:72916242_T     0.000
+chr1:281788173_G    0.027
+chr3:136492861_G    0.017
+chr10:84091208_T    0.015
+chr1:203085725_C    0.011
+chr2:241577141_C    0.011
+chr4:178946041_A    0.010
+chr7:129118847_C    0.010
+chr9:15866960_A     0.009
+chr6:29889998_C     0.009
+chr18:27348077_G    0.008
+chr5:107167969_G    0.008
+chr5:72916242_T     0.007
+chr19:24321261_T    0.005
+chr8:103608382_G    0.003
+chr18:32316331_A    0.000
 chr9:71715296_A     0.000
 chr10:23267180_G    0.000
-chr18:27348077_G    0.000
 chr7:8599340_A      0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('variancethreshold', VarianceThreshold(threshold=0.05)),
+                ('linearregression', LinearRegression())])
+chr1:281788173_G    0.034
+chr18:27348077_G    0.019
+chr10:84091208_T    0.015
+chr3:136492861_G    0.009
+chr9:15866960_A     0.007
+chr6:29889998_C     0.006
+chr7:129118847_C    0.006
+chr10:23267180_G    0.005
+chr2:241577141_C    0.005
+chr4:178946041_A    0.005
+chr5:107167969_G    0.005
+chr7:8599340_A      0.004
+chr1:203085725_C    0.004
+chr19:24321261_T    0.003
+chr5:72916242_T     0.001
+chr8:103608382_G    0.001
+chr18:32316331_A    0.000
+chr9:71715296_A     0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('variancethreshold-1', VarianceThreshold(threshold=0.05)),
+                ('variancethreshold-2', VarianceThreshold(threshold=0.35)),
+                ('recessiveencoder', RecessiveEncoder()),
+                ('linearregression', LinearRegression())])
+chr1:281788173_G    0.035
+chr18:27348077_G    0.020
+chr10:84091208_T    0.015
+chr3:136492861_G    0.009
+chr9:15866960_A     0.007
+chr6:29889998_C     0.006
+chr7:129118847_C    0.006
+chr2:241577141_C    0.005
+chr1:203085725_C    0.005
+chr5:107167969_G    0.005
+chr4:178946041_A    0.004
+chr19:24321261_T    0.003
+chr5:72916242_T     0.002
+chr8:103608382_G    0.001
+chr18:32316331_A    0.000
+chr9:71715296_A     0.000
+chr10:23267180_G    0.000
+chr7:8599340_A      0.000
+
+The Pipeline being evaluated: 
+ Pipeline(steps=[('recessiveencoder', RecessiveEncoder()),
+                ('overdominanceencoder', OverDominanceEncoder()),
+                ('featureencodingfrequencyselector',
+                 FeatureEncodingFrequencySelector(threshold=0.3)),
+                ('linearregression', LinearRegression())])
+chr1:281788173_G    0.038
+chr6:29889998_C     0.008
+chr10:23267180_G    0.007
+chr7:8599340_A      0.006
+chr7:129118847_C    0.005
+chr2:241577141_C    0.000
+chr3:136492861_G    0.000
+chr4:178946041_A    0.000
+chr5:72916242_T     0.000
+chr5:107167969_G    0.000
+chr19:24321261_T    0.000
+chr18:32316331_A    0.000
+chr8:103608382_G    0.000
+chr9:15866960_A     0.000
+chr9:71715296_A     0.000
+chr10:84091208_T    0.000
+chr18:27348077_G    0.000
+chr1:203085725_C    0.000

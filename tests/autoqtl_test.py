@@ -42,7 +42,7 @@ test_y = test_data.iloc[:,-1]
 
 features_80, features_20, target_80, target_20 = train_test_split(test_X, test_y, test_size=0.2, random_state=42)
 
-features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=22)
+features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=12)
 
 
 # First test whether the custom parameters are being assigned properly
