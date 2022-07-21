@@ -1034,7 +1034,7 @@ class AUTOQTLBase(BaseEstimator):
                 test_score = _wrapped_score(sklearn_pipeline, features_dataset1, target_dataset1, self.scoring_function, sample_weight, timeout=max(int(self.max_eval_time_mins*60), 1))
                 #print(test_score)
                 #print(sklearn_pipeline)
-                #print(result_score_list)
+                
 
         except (KeyboardInterrupt, SystemExit, StopIteration) as e:
             if self.verbosity > 0:
