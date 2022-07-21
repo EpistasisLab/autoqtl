@@ -1,4 +1,4 @@
-"""This file is part of AUTOQTL library"""
+"""This file is part of AUTOQTL library. The AUTOQTLBase class is defined in this file. """
 from ast import expr
 from datetime import date, datetime
 import errno
@@ -44,7 +44,7 @@ from sympy import total_degree
 from tqdm import tqdm
 
 from .gp_types import Output_Array
-from .builtins.combine_dfs import CombineDFs
+#from .builtins.combine_dfs import CombineDFs
 from .decorators import _pre_test
 from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
@@ -70,7 +70,7 @@ except:
 class AUTOQTLBase(BaseEstimator):
     """Automatically creates and optimizes machine learning pipelines using Genetic Programming. """
     
-    regression = None # set to True by child classes. Will be set to false in case of classification, when included. (variable name classification in case of TPOT)
+    regression = None # set to True by child class. Will be set to false in case of classification. We plan to include 'classification' functionalities in the future.
 
     def __init__(
         self,
@@ -80,7 +80,6 @@ class AUTOQTLBase(BaseEstimator):
         mutation_rate = 0.9,
         crossover_rate = 0.1,
         scoring = None,
-        #cv = 5
         subsample = 1.0,
         n_jobs = 1,
         max_time_mins = None,
@@ -90,7 +89,6 @@ class AUTOQTLBase(BaseEstimator):
         template = None,
         warm_start = False,
         memory = None,
-        #use_dask = False
         periodic_checkpoint_folder = None,
         early_stop = None,
         verbosity = 0,
@@ -106,7 +104,7 @@ class AUTOQTLBase(BaseEstimator):
             It must be a positive number or None. If None, the parameter
             max_time_mins must be defined as the runtime limit.
             Generally, AUTOQTL will work better when you give it more generations (and
-            therefore time) to optimize the pipeline. AUTOQTL will evaluate
+            therefore time) to optimize the pipeline but it also depends on the complexity of the data. AUTOQTL will evaluate
             POPULATION_SIZE + GENERATIONS x OFFSPRING_SIZE pipelines in total.
         
         population_size: int, optional (default: 100)
@@ -133,37 +131,23 @@ class AUTOQTLBase(BaseEstimator):
         
         scoring: string or callable, optional
             Function used to evaluate the quality of a given pipeline for the
-            problem. By default, accuracy is used for classification problems and
-            mean squared error (MSE) for regression problems.
-            Offers the same options as sklearn.model_selection.cross_val_score as well as
-            a built-in score 'balanced_accuracy'. Classification metrics:
-            ['accuracy', 'adjusted_rand_score', 'average_precision', 'balanced_accuracy',
-            'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted',
-            'precision', 'precision_macro', 'precision_micro', 'precision_samples',
-            'precision_weighted', 'recall', 'recall_macro', 'recall_micro',
-            'recall_samples', 'recall_weighted', 'roc_auc']
-            Regression metrics:
+            problem. By default, coeeficient of determination (r^2) is used for regression problems.
+            Other built-in Regression metrics that can be used:
             ['neg_median_absolute_error', 'neg_mean_absolute_error',
             'neg_mean_squared_error', 'r2']
-        
-        cv: int or cross-validation generator, optional (default: 5)
-            If CV is a number, then it is the number of folds to evaluate each
-            pipeline over in k-fold cross-validation during the AUTOQTL optimization
-             process. If it is an object then it is an object to be used as a
-             cross-validation generator. (NOT USED)
         
         subsample: float, optional (default: 1.0)
             Subsample ratio of the training instance. Setting it to 0.5 means that AUTOQTL
             randomly collects half of training samples for pipeline optimization process.
         
         n_jobs: int, optional (default: 1)
-            Number of CPUs for evaluating pipelines in parallel during the TPOT
+            Number of CPUs for evaluating pipelines in parallel during the AUTOQTL
             optimization process. Assigning this to -1 will use as many cores as available
             on the computer. For n_jobs below -1, (n_cpus + 1 + n_jobs) are used.
             Thus for n_jobs = -2, all CPUs but one are used.
         
         max_time_mins: int, optional (default: None)
-            How many minutes TPOT has to optimize the pipeline.
+            How many minutes AUTOQTL has to optimize the pipeline.
             If not None, this setting will allow AUTOQTL to run until max_time_mins minutes
             elapsed and then stop. AUTOQTL will stop earlier if generationsis set and all
             generations are already evaluated.
@@ -171,7 +155,7 @@ class AUTOQTLBase(BaseEstimator):
         max_eval_time_mins: float, optional (default: 5)
             How many minutes AUTOQTL has to optimize a single pipeline.
             Setting this parameter to higher values will allow AUTOQTL to explore more
-            complex pipelines, but will also allow TPOT to run longer.
+            complex pipelines, but will also allow AUTOQTL to run longer.
         
         random_state: int, optional (default: None)
             Random number generator seed for AUTOQTL. Use this parameter to make sure
@@ -181,12 +165,12 @@ class AUTOQTLBase(BaseEstimator):
         config_dict: a Python dictionary or string, optional (default: None)
             Python dictionary:
                 A dictionary customizing the operators and parameters that
-                TPOT uses in the optimization process.
+                AUTOQTL uses in the optimization process.
                 For examples, see config_regressor.py 
             Path for configuration file:
                 A path to a configuration file for customizing the operators and parameters that
                 AUTOQTL uses in the optimization process.
-                For examples, see config_regressor.py and config_classifier.py
+                For examples, see config_regressor.py 
         
         template: string (default: None)
             Template of predefined pipeline structure. The option is for specifying a desired structure
@@ -218,15 +202,7 @@ class AUTOQTLBase(BaseEstimator):
                 and AUTOQTL does NOT clean the caching directory up upon shutdown.
             None:
                 AUTOQTL does not use memory caching.
-        
-        use_dask: boolean, default False
-            Whether to use Dask-ML's pipeline optimizations. This avoid re-fitting
-            the same estimator on the same split of data multiple times. It
-            will also provide more detailed diagnostics when using Dask's
-            distributed scheduler.
-            See `avoid repeated work <https://dask-ml.readthedocs.io/en/latest/hyper-parameter-search.html#avoid-repeated-work>`__
-            for more details. (NOT USED)
-        
+
         periodic_checkpoint_folder: path string, optional (default: None)
             If supplied, a folder in which AUTOQTL will periodically save pipelines in pareto front so far while optimizing.
             Currently once per generation but not more often than once per 30 seconds.
@@ -265,7 +241,6 @@ class AUTOQTLBase(BaseEstimator):
         self.mutation_rate = mutation_rate
         self.crossover_rate = crossover_rate
         self.scoring = scoring
-        #self.cv = cv
         self.subsample = subsample
         self.n_jobs = n_jobs
         self.max_time_mins = max_time_mins
@@ -276,7 +251,6 @@ class AUTOQTLBase(BaseEstimator):
         self.template = template
         self.warm_start = warm_start
         self.memory = memory
-        #self.use_dask = use_dask
         self.verbosity = verbosity
         self.disable_update_check = disable_update_check
         self.random_state = random_state
