@@ -10,3 +10,8 @@ The goal of AutoQTL is to automate QTL analysis by building an analytics pipelin
 
 #geneticsmeetsautoML
 
+==================================
+Anyone interested in AutoQTL can fork the repository and run the autoqtl_test.py file in the 'test' folder. 
+We continue to work on to add new features and functionality to AutoQTL and make it available as a python package. 
+Suggestions are welcome.
+
