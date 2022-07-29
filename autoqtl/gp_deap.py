@@ -469,6 +469,6 @@ def get_score_on_fitted_pipeline(sklearn_pipeline, X_learner, y_learner, X_test,
     sklearn_pipeline.fit(X_learner, y_learner)
     
 
-    score = scorer(sklearn_pipeline, X_test, y_test) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
+    score = scorer(sklearn_pipeline, X_test, y_test) # will return the result of sklearn pipeline score? Yes it does. 
             
     return score

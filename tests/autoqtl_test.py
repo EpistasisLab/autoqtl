@@ -27,7 +27,7 @@ from sklearn.linear_model import LinearRegression
 autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
-# dataset1
+# dataset
 test_data = pd.read_csv("tests/BMIwTail.csv")
 
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
@@ -137,6 +137,7 @@ def test_update_top_pipeline():
 
 
 # Test if the summary of the pipeline is being printed properly along with the working of the fit function
+# Final testing
 def test_summary_of_best_pipeline():
     """Testing the summary_of_best_pipeline function. """
     autoqtl_obj = AUTOQTLRegressor(
@@ -161,31 +162,7 @@ def test_summary_of_best_pipeline():
 # Printing the Linear Regression R2 values for whole dataset and split dataset
 def get_R2():
     model = LinearRegression()
-    # Entire Dataset
-    """model.fit(test_X, test_y)
-    print("Entire Dataset R^2 using LR: ", model.score(test_X, test_y))
-    # Dataset split 1
-    model.fit(features_dataset1, target_dataset1)
-    print("Dataset split 1 R^2 using LR: ", model.score(features_dataset1,target_dataset1))
-    # D1 dataset with D2 as learner
-    model.fit(features_dataset2, target_dataset2)
-    print("D1 Dataset R^2 value on only LR model trained on D2: ", model.score(features_dataset1,target_dataset1))
-    # Dataset split 2
-    model.fit(features_dataset2, target_dataset2)
-    print("Dataset split 2 R^2 using LR: ", model.score(features_dataset2,target_dataset2))
-    # D2 dataset with D1 as learner
-    model.fit(features_dataset1, target_dataset1)
-    print("D2 Dataset R^2 value on only LR model trained on D1: ", model.score(features_dataset2,target_dataset2))
-    # Holdout dataset 
-    model.fit(features_20, target_20)
-    print("Holdout Dataset R^2 using LR: ", model.score(features_20,target_20))
-    # Holdout dataset with D1 as learner
-    model.fit(features_dataset1, target_dataset1)
-    print("Holdout Dataset R^2 value on only LR model trained on D1: ", model.score(features_20,target_20))
-    # Holdout dataset with D2 as learner
-    model.fit(features_dataset2, target_dataset2)
-    print("Holdout Dataset R^2 value on only LR model trained on D2: ", model.score(features_20,target_20))
-    """
+   
     # Holdout LR on 80%
     model.fit(features_80, target_80)
     print("Holdout LR on 80% trained data: ", model.score(features_20, target_20))
@@ -207,10 +184,7 @@ def get_R2():
     print("D1 Dataset R^2 value on only LR model trained on D1: ", model.score(features_dataset1,target_dataset1))
 
 # calling the test functions
-#test_init_custom_parameters()
-#test_init_log_file()
-#test_fit()
-#test_update_top_pipeline()
+
 test_summary_of_best_pipeline() # using 
 get_R2()
-#print(feature_name)
+

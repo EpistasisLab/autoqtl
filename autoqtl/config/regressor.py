@@ -1,10 +1,10 @@
 """This python file contains the configuration dictionary with all the selctors, transformer and ML methods, 
-which all will be converted to genetic programming operators.
+which all will be converted to genetic programming operators to form the expression trees.
 
-The custom AUTOQTL configuration must be in nested dictionary format, 
+The custom AutoQTL configuration must be in nested dictionary format, 
 where the first level key is the path and name of the operator and the 
 second level key is the corresponding parameter name for that operator. 
-The second level key should point to a list of parameter values for that parameter. """
+The second level key should point to a list of parameter values for that parameter, i.e the hyperparameters. """
 
 import numpy as np
 
@@ -27,8 +27,6 @@ regressor_config_dict = {
     },
 
     # Feature Transformers (Encoders)
-
-    
 
     'autoqtl.builtins.genetic_encoders.DominantEncoder': {
 

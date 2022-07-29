@@ -7,11 +7,11 @@ from sklearn.gaussian_process.kernels import Kernel
 import inspect
 
 class Operator(object):
-    """Base class for operators in AUTOQTL. class object is passed as a parameter to make the class a new style python class for older versions. """
+    """Base class for operators in AutoQTL. class object is passed as a parameter to make the class a new style python class for older versions. """
 
     root = False # Whether this operator type can be the root of the genetic tree
     import_hash = None # Specifies the packages required to be imported to use the operator
-    package_class = None # Specifies the class (part of sklearn package or AUTOQTL package) which contains the functionalities of the operator. Renamed from sklearn_class (TPOT)
+    package_class = None # Specifies the class (part of sklearn package or AutoQTL package) which contains the functionalities of the operator. 
     arg_types = None # Types of the argument of the operator
 
 
@@ -50,7 +50,7 @@ def source_decode(sourcecode, verbose=0):
     import_str = ".".join(tmp_path) # After the operator class string is popped, the rest of the path is again joined with a "."
     try:
         if sourcecode.startswith("autoqtl."):
-            exec("from {} import {}".format(import_str[7:], op_str)) # When importing the operator class from AUTOQTL package, as already in the package location hence omitting the 'autoql' part of the path
+            exec("from {} import {}".format(import_str[7:], op_str)) # When importing the operator class from AutoQTL package, as already in the package location hence omitting the 'autoql' part of the path
         else:
             exec("from {} import {}".format(import_str, op_str))
         op_obj = eval(op_str)
