@@ -7,7 +7,9 @@ import sys
 from tempfile import mkdtemp
 
 from sklearn.model_selection import train_test_split
-sys.path.append("C:/Users/ghosha/.vscode/autoqtl")
+#sys.path.append("C:/Users/ghosha/.vscode/autoqtl")
+sys.path.append("/Users/ghosha/Documents/VSCode Projects/autoqtl-1")
+
 import autoqtl
 
 from autoqtl.autoqtl import AUTOQTLRegressor
@@ -28,7 +30,8 @@ autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
 # dataset
-test_data = pd.read_csv("tests/BMIwTail.csv")
+#test_data = pd.read_csv("tests/BMIwTail.csv")
+test_data = pd.read_csv("/Users/ghosha/Documents/VSCode Projects/autoqtl/tests/BMIwTail.csv")
 
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
@@ -157,7 +160,7 @@ def test_summary_of_best_pipeline():
     
     autoqtl_obj.get_permutation_importance(test_X, test_y, random_state=0)
     autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80, test_X, test_y)
-    
+    autoqtl_obj.shap_feature_importance(test_X, test_y, random_state=0)
 
 # Printing the Linear Regression R2 values for whole dataset and split dataset
 def get_R2():

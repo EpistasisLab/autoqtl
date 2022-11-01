@@ -40,7 +40,7 @@ from copy import copy, deepcopy
 
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.utils import check_X_y, check_array, check_consistent_length
-from sympy import total_degree
+#from sympy import total_degree
 from tqdm import tqdm
 
 from .gp_types import Output_Array
@@ -2050,7 +2050,7 @@ class AUTOQTLBase(BaseEstimator):
                         self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
                             X, y
                         ))
-        file_path = 'FeatureImportance.txt'
+        file_path = 'PermutationFeatureImportance.txt'
         sys.stdout = open(file_path, "w")
 
         # Permutation Feature Importance
@@ -2061,3 +2061,70 @@ class AUTOQTLBase(BaseEstimator):
             for i in permutation_importance_object.importances_mean.argsort()[::-1]:
                 print(f"{X.columns[i]:<20}"
                     f"{permutation_importance_object.importances_mean[i]:.3f}")
+
+    def shap_feature_importance(self, X, y, random_state):
+        self.pipeline_for_feature_importance_ = {}
+        self.fitted_pipeline_for_feature_importance =[]
+        for pipeline in self._pareto_front.items:
+                    self.pipeline_for_feature_importance_[
+                        str(pipeline)
+                    ] = self._toolbox.compile(expr=pipeline)
+
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        self.pipeline_for_feature_importance_[str(pipeline)].fit(
+                            X, y
+                        )
+                        self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
+                            X, y
+                        ))
+
+        # starting with the shap calculations
+        num_features = X.shape[1]
+        max_evals = max(500, 2*num_features + 1)
+
+        # dictionary to store column name (feature) as key and list of shap values as value
+        feature_name_importance_dict = {feature_name : [] for feature_name in X.columns}   
+
+        #trying to the feature_name_importance_dict printed in a file
+        file_path = 'ParetoPipelineShapFeatureImportance.txt' 
+        sys.stdout = open(file_path, "w")
+
+        # Printing the final pareto pipeline
+        print("Final Pareto Front at the end of the optimization process: ")
+        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+            pipeline_to_be_printed = self.print_pipeline(pipeline)
+            print('\nTest R^2 = {0},\tDifference Score = {1},\tPipeline: {2}'.format(
+                            pipeline_scores.wvalues[0],
+                            pipeline_scores.wvalues[1],
+                            pipeline_to_be_printed))
+
+
+        # calculating the shap values for each pipeline
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+            explainer = shap.Explainer(fitted_pipeline.predict, X)
+            shap_values = explainer(X, max_evals=max_evals)
+            vals = np.abs(shap_values.values).mean(0)
+            for i in range(0, len(vals)):
+                feature_name_importance_dict[X.columns[i]].append(round(vals[i], 6))
+            print(feature_name_importance_dict)
+
+        # # For making the graph using the dictionary
+        # x = [] # list of values for x axis
+        # y = [] # list of values for y axis
+
+        # # filling the lists, x will have the feature names and y will have the importance values
+        # for key in feature_name_importance_dict.keys():
+        #     x.append(key)
+        #     y.append(round(statistics.mean(feature_name_importance_dict[key]), 4))
+        
+        # plt.figure(figsize=(10,6))
+        # # bar plot for feature importance in descending order
+        # df = pd.DataFrame({"Feature":x, "Importance Score":y})
+        # ax = sns.barplot(x='Importance Score', y='Feature', data=df, order=df.sort_values('Importance Score', ascending=False).Feature, color='pastel', palette="mako")
+        # ax.bar_label(ax.containers[0])
+        # plt.xlabel("Average shap importance score across pareto pipelines", size=15)
+        # plt.ylabel("Features", size=15)
+        # plt.title("Feature Importance Graph", size=18)
+        # plt.tight_layout()
+        # plt.savefig("22AvgFIGraph.png", dpi=100)
