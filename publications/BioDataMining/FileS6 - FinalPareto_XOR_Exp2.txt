@@ -1,0 +1,3965 @@
+*******************************
+******* RANDOM SEED 12 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069326
+Entire Dataset R^2 using LR:  0.004800385046657585
+D2 Dataset R^2 value on only LR model trained on D1:  -0.0062744507473666555
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.008968521661853912
+
+
+*****************************************************************************************
+
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.10814754174386321,	Difference Score = 1.3728301206910578,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=3, min_samples_split=12, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.33451039953304673
+
+Holdout data R^2 trained on entire dataset(80%):  0.12249765758097808
+
+Dataset D1 score on trained D1:  0.389682807206449
+
+Entire dataset R^2 using pipeline:  0.3906225008365273
+
+**************************************************************************************
+
+
+
+Test R^2 = 0.10738722934179235,	Difference Score = 1.4458076751164448,	Pipeline: input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=3, min_samples_split=11, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2943365105530438
+
+Holdout data R^2 trained on entire dataset(80%):  0.1227690445302756
+
+Dataset D1 score on trained D1:  0.33624090730242895
+
+Entire dataset R^2 using pipeline:  0.3363036516462403
+
+
+**************************************************************************************
+
+
+Test R^2 = 0.10638213579537281,	Difference Score = 1.4472387804625528,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> HeterosisEncoder -> RecessiveEncoder -> RecessiveEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=3, min_samples_split=11, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.29313043053465226
+
+Holdout data R^2 trained on entire dataset(80%):  0.12187334915802694
+
+Dataset D1 score on trained D1:  0.33433194563814195
+
+Entire dataset R^2 using pipeline:  0.3395824396643463
+
+
+**************************************************************************************
+
+
+Test R^2 = 0.10601722539501424,	Difference Score = 1.519481910074644,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=3, min_samples_split=12, n_estimators=100).
+
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2627741091342164
+
+Holdout data R^2 trained on entire dataset(80%):  0.12059686537997083
+
+Dataset D1 score on trained D1:  0.2936107589205973
+
+Entire dataset R^2 using pipeline:  0.30138118436890615
+
+
+***************************************************************************************
+
+
+Test R^2 = 0.103484641207642,	Difference Score = 1.6269066148254783,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.23200192623504
+
+Holdout data R^2 trained on entire dataset(80%):  0.11421322653636978
+
+Dataset D1 score on trained D1:  0.2462258927159019
+
+Entire dataset R^2 using pipeline:  0.263283841022387
+
+
+************************************************************************************
+
+
+Test R^2 = 0.10194548857369845,	Difference Score = 1.6447398926688601,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=3, min_samples_split=20, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.22658680298666778
+
+Holdout data R^2 trained on entire dataset(80%):  0.11979051788816752
+
+Dataset D1 score on trained D1:  0.23859594766113024
+
+Entire dataset R^2 using pipeline:  0.2577073506382419
+
+
+*************************************************************************************
+
+
+Test R^2 = 0.09766370238703004,	Difference Score = 1.6526689013043743,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.4, min_samples_leaf=11, min_samples_split=5, n_estimators=100).
+
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.21356883173138563
+
+Holdout data R^2 trained on entire dataset(80%):  0.11750479168533734
+
+Dataset D1 score on trained D1:  0.23171054232446342
+
+Entire dataset R^2 using pipeline:  0.24315011911349016
+
+
+************************************************************************************
+
+
+Test R^2 = 0.09736690079075094,	Difference Score = 1.683903802954888,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=14, min_samples_split=20, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2097553280686758
+
+Holdout data R^2 trained on entire dataset(80%):  0.11409506731275121
+
+Dataset D1 score on trained D1:  0.22174126937699912
+
+Entire dataset R^2 using pipeline:  0.2374596262602986
+
+
+************************************************************************************
+
+
+
+Test R^2 = 0.09606174695358771,	Difference Score = 1.730831815507526,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=8, min_samples_split=12, n_estimators=100).
+
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1984681830830014
+
+Holdout data R^2 trained on entire dataset(80%):  0.1114994892260045
+
+Dataset D1 score on trained D1:  0.20748620269784923
+
+Entire dataset R^2 using pipeline:  0.22301050325013516
+
+
+********************************************************************************
+
+
+Test R^2 = 0.09539548170579781,	Difference Score = 1.7551896118434824,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=1.0, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.19202320422264552
+
+Holdout data R^2 trained on entire dataset(80%):  0.10196662622112984
+
+Dataset D1 score on trained D1:  0.2007622938160265
+
+Entire dataset R^2 using pipeline:  0.22084670011903684
+
+
+********************************************************************************
+
+
+Test R^2 = 0.09457959981489206,	Difference Score = 1.7810154129513158,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7500000000000001, min_samples_leaf=19, min_samples_split=17, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1835410217428688
+
+Holdout data R^2 trained on entire dataset(80%):  0.10188770891791732
+
+Dataset D1 score on trained D1:  0.19396653273886422
+
+Entire dataset R^2 using pipeline:  0.21012887892736276
+
+
+*****************************************************************************
+
+
+Test R^2 = 0.09315005468676418,	Difference Score = 1.7994548080742965,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=14, min_samples_split=20, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18741938212530262
+
+Holdout data R^2 trained on entire dataset(80%):  0.1108529459078369
+
+Dataset D1 score on trained D1:  0.1885254219667436
+
+Entire dataset R^2 using pipeline:  0.20904955806174186
+
+
+***************************************************************************
+
+
+Test R^2 = 0.09240241170462371,	Difference Score = 1.804073297946209,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1825376587246783
+
+Holdout data R^2 trained on entire dataset(80%):  0.10930683461125679
+
+Dataset D1 score on trained D1:  0.1868048660806696
+
+Entire dataset R^2 using pipeline:  0.20471149899567276
+
+
+*****************************************************************************
+
+
+
+
+Test R^2 = 0.09088529016533953,	Difference Score = 1.8209844501908687,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> HeterosisEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=19, min_samples_split=12, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17720961471294716
+
+Holdout data R^2 trained on entire dataset(80%):  0.10628334649853455
+
+Dataset D1 score on trained D1:  0.18182949936485948
+
+Entire dataset R^2 using pipeline:  0.2010448068370838
+
+
+*******************************************************************************
+
+
+
+Test R^2 = 0.09015643166533005,	Difference Score = 1.8923702056519751,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=14, min_samples_split=20, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16855080215823215
+
+Holdout data R^2 trained on entire dataset(80%):  0.10874412840319336
+
+Dataset D1 score on trained D1:  0.16813506029573722
+
+Entire dataset R^2 using pipeline:  0.1862877696039288
+
+
+*********************************************************************************
+
+
+Test R^2 = 0.08845805837194609,	Difference Score = 1.9503164456044046,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=16, min_samples_split=20, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16001552278333242
+
+Holdout data R^2 trained on entire dataset(80%):  0.10512442954437262
+
+Dataset D1 score on trained D1:  0.15757422906821061
+
+Entire dataset R^2 using pipeline:  0.1768644656887144
+
+
+**********************************************************************************
+
+
+Test R^2 = 0.08798914462164098,	Difference Score = 1.9711289908759186,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=17, min_samples_split=20, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15629462803403682
+
+Holdout data R^2 trained on entire dataset(80%):  0.10269336710457866
+
+Dataset D1 score on trained D1:  0.15423211802063552
+
+Entire dataset R^2 using pipeline:  0.17172200906961832
+
+
+*********************************************************************************
+
+Test R^2 = 0.0849105508164979,	Difference Score = 2.0100845708830675,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=19, min_samples_split=11, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1489532955209122
+
+Holdout data R^2 trained on entire dataset(80%):  0.10128903404018574
+
+Dataset D1 score on trained D1:  0.14616571101248488
+
+Entire dataset R^2 using pipeline:  0.16387711691522266
+
+
+**********************************************************************************
+
+
+Test R^2 = 0.08166118442747616,	Difference Score = 2.086880993996977,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> VarianceThreshold(0.0) -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=18, min_samples_split=12, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13954706780097526
+
+Holdout data R^2 trained on entire dataset(80%):  0.09749472282803417
+
+Dataset D1 score on trained D1:  0.13438529532421206
+
+Entire dataset R^2 using pipeline:  0.15332636583598314
+
+
+********************************************************************************
+
+
+Test R^2 = 0.07389698552536828,	Difference Score = 2.2367517894881863,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11997235619306612
+
+Holdout data R^2 trained on entire dataset(80%):  0.08703578138151313
+
+Dataset D1 score on trained D1:  0.11384809330753165
+
+Entire dataset R^2 using pipeline:  0.13288470086655169
+
+
+*********************************************************************************
+
+
+Test R^2 = 0.06584885667759965,	Difference Score = 2.239177487085749,	Pipeline:  input_matrix -> OverDominanceEncoder -> DominantEncoder -> FeatureEncodingFrequencySelector(0.35) -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=16, min_samples_split=17, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11610252063905713
+
+Holdout data R^2 trained on entire dataset(80%):  0.08645821453193525
+
+Dataset D1 score on trained D1:  0.1056271296615161
+
+Entire dataset R^2 using pipeline:  0.12763956615793792
+
+
+*********************************************************************************
+
+Test R^2 = 0.06450062521726863,	Difference Score = 2.2986781348945646,	Pipeline:  input_matrix -> OverDominanceEncoder -> DominantEncoder -> OverDominanceEncoder -> DominantEncoder -> FeatureEncodingFrequencySelector(0.35) -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=16, min_samples_split=12, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11386986733427173
+
+Holdout data R^2 trained on entire dataset(80%):  0.08048931233308276
+
+Dataset D1 score on trained D1:  0.10031747130888369
+
+Entire dataset R^2 using pipeline:  0.12575373930031875
+
+
+**********************************************************************************
+
+Test R^2 = 0.062326685275460925,	Difference Score = 2.4041495186502253,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> OverDominanceEncoder -> FeatureEncodingFrequencySelector(0.35) -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=19, min_samples_split=17, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10483619542059064
+
+Holdout data R^2 trained on entire dataset(80%):  0.08257035886702258
+
+Dataset D1 score on trained D1:  0.09225995126709274
+
+Entire dataset R^2 using pipeline:  0.11710399988321529
+
+
+**********************************************************************************
+
+Test R^2 = 0.05776680353581831,	Difference Score = 2.420328288426097,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09975245101642438
+
+Holdout data R^2 trained on entire dataset(80%):  0.07371026529390856
+
+Dataset D1 score on trained D1:  0.08690769898811945
+
+Entire dataset R^2 using pipeline:  0.11310752336741126
+
+
+**********************************************************************************
+
+Test R^2 = 0.0572222445242887,	Difference Score = 2.42734554875591,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, Rmin_samples_leaf=19, min_samples_split=17,n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10007777661408246
+
+Holdout data R^2 trained on entire dataset(80%):  0.07515442735431799
+
+Dataset D1 score on trained D1:  0.08602762249808982
+
+Entire dataset R^2 using pipeline:  0.11309688166447318
+
+
+***********************************************************************************
+
+Test R^2 = 0.05536965437654817,	Difference Score = 3.914528391315701,	Pipeline: input_matrix -> SelectPercentile(65) -> VarianceThreshold(0.3) -> SelectPercentile -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=3, min_samples_leaf=9, min_samples_split=15).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.006338163233157501
+
+Holdout data R^2 trained on entire dataset(80%):  0.004614948244389239
+
+Dataset D1 score on trained D1:  0.051110903745419045
+
+Entire dataset R^2 using pipeline:  0.007319687098953143
+
+
+************************************************************************************
+
+Test R^2 = 0.051144137186138305,	Difference Score = 4.683998074610716,	Pipeline: input_matrix -> SelectPercentile(55) -> VarianceThreshold(0.3) -> SelectPercentile -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=1, min_samples_split=14).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.006665460923784283
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0030100850468832707
+
+ Dataset D1 score on trained D1:  0.053221599568188505
+
+ Entire dataset R^2 using pipeline:  0.008080651586586218
+
+
+*************************************************************************************
+
+Test R^2 = 0.027333365951504818,	Difference Score = 4.729079139230355,	Pipeline: input_matrix -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=5, min_samples_split=8).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02315743767059464
+
+Holdout data R^2 trained on entire dataset(80%):  0.02775178680046375
+
+Dataset D1 score on trained D1:  0.02933273825968441
+
+Entire dataset R^2 using pipeline:  0.02670677375776631
+
+
+**************************************************************************************
+
+Test R^2 = 0.016807707117026727,	Difference Score = 7.211805758381822,	Pipeline: input_matrix -> SelectPercentile(55) -> VarianceThreshold(0.15) -> VarianceThreshold(0.3) -> SelectPercentile(65) -> HeterosisEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.005859455390751167
+
+Holdout data R^2 trained on entire dataset(80%):  0.006725946241687875
+
+Dataset D1 score on trained D1:  0.017177385380993115
+
+Entire dataset R^2 using pipeline:  0.005975516722745877
+
+
+**************************************************************************************
+
+*******************************
+******* RANDOM SEED 22 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069104
+Entire Dataset R^2 using LR:  0.004800385046657807
+D2 Dataset R^2 value on only LR model trained on D1:  -0.014901512107178494
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.014771813425857983
+
+
+************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+                                                                                
+Test R^2 = 0.10079843066891314, Difference Score = 1.4336153535178837,  Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=1, min_samples_split=17, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.29925852856663404
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12287866122471303
+
+ Dataset D1 score on trained D1:  0.3375372220373756
+
+ Entire dataset R^2 using pipeline:  0.3463367975608491
+
+ **********************************************************************
+
+
+Test R^2 = 0.09972536273354649, Difference Score = 1.4339216427147259,  Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=1, min_samples_split=17, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.29767969259636173
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12374526115684625
+
+ Dataset D1 score on trained D1:  0.33626194694430855
+
+ Entire dataset R^2 using pipeline:  0.3472760386286925
+
+ ********************************************************************
+
+Test R^2 = 0.09865594492281304, Difference Score = 1.4459403766605698,  Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=3, min_samples_split=17, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2889448375244359
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12259556501280866
+
+ Dataset D1 score on trained D1:  0.32742562203120584
+
+ Entire dataset R^2 using pipeline:  0.3297218934351883
+
+ ******************************************************************
+
+Test R^2 = 0.09662431392417525, Difference Score = 1.487151572465405,   Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=7, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2633831430290008
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11761742359788574
+
+ Dataset D1 score on trained D1:  0.3010705226720909
+
+ Entire dataset R^2 using pipeline:  0.3047880782887824
+
+
+*******************************************************************
+
+Test R^2 = 0.09444352488123198, Difference Score = 1.5254840742936773,  Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=8, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.24641735971215528
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11825113872871018
+
+ Dataset D1 score on trained D1:  0.2791020182114219
+
+ Entire dataset R^2 using pipeline:  0.2820671573635869
+
+ ******************************************************************
+
+Test R^2 = 0.09352089880933445, Difference Score = 1.549781433390869,   Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=8, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2393071905466655
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11745799551065395
+
+ Dataset D1 score on trained D1:  0.26686863933864924
+
+ Entire dataset R^2 using pipeline:  0.27181056652329816
+
+ *******************************************************************
+
+Test R^2 = 0.09327582346357821, Difference Score = 1.6077667117347354,  Pipeline:  input_matrix -> HeterosisEncoder -> RecessiveEncoder -> VarianceThreshold(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=5, min_samples_split=16, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.221095640970706
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1127191783134146
+
+ Dataset D1 score on trained D1:  0.24293655716918627
+
+ Entire dataset R^2 using pipeline:  0.2506318039195228
+
+ *******************************************************************
+
+
+Test R^2 = 0.0923635113462915,  Difference Score = 1.6356568223013597,  Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=11, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2101189528101487
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1103731246756866
+
+ Dataset D1 score on trained D1:  0.23207471759247966
+
+ Entire dataset R^2 using pipeline:  0.23943470594730998
+
+ ******************************************************************
+
+Test R^2 = 0.09019009320556959, Difference Score = 1.665991853949382,   Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=12, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2050698587123111
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11327412952701432
+
+ Dataset D1 score on trained D1:  0.2200001995837746
+
+ Entire dataset R^2 using pipeline:  0.22964705953852516
+
+ ******************************************************************
+
+Test R^2 = 0.08742478528403252, Difference Score = 1.7027298671003146,  Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=14, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.19091394861617406
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11205968779839748
+
+ Dataset D1 score on trained D1:  0.20638917589014139
+
+ Entire dataset R^2 using pipeline:  0.21227512141957772
+
+ ******************************************************************
+
+Test R^2 = 0.08682452011777042, Difference Score = 1.732936643830725,   Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=15, min_samples_split=17, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18388585766622512
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10777647183645511
+
+ Dataset D1 score on trained D1:  0.19770861587290423
+
+ Entire dataset R^2 using pipeline:  0.20725105723725767
+
+********************************************************************
+
+Test R^2 = 0.08593752514845343, Difference Score = 1.733340236031228,   Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=15, min_samples_split=17, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18323087304181018
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10975531655279391
+
+ Dataset D1 score on trained D1:  0.19671838363352168
+
+ Entire dataset R^2 using pipeline:  0.20597517452316316
+
+*********************************************************************
+
+Test R^2 = 0.08485732686449932, Difference Score = 1.7524363760952617,  Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=10, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17609660327478993
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1051397619417157
+
+ Dataset D1 score on trained D1:  0.1908878641821029
+
+ Entire dataset R^2 using pipeline:  0.20042178470856664
+
+ ******************************************************************
+
+Test R^2 = 0.08476114279719638, Difference Score = 1.7775736039961396,  Pipeline:  input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17455846261293684
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10829612310369197
+
+ Dataset D1 score on trained D1:  0.18492006201721456
+
+ Entire dataset R^2 using pipeline:  0.19377119666471632
+
+ *******************************************************************
+
+Test R^2 = 0.0843451848484954,  Difference Score = 1.8024174598405096,  Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=18, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16935517065867678
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10441712695879235
+
+ Dataset D1 score on trained D1:  0.17909501872176847
+
+ Entire dataset R^2 using pipeline:  0.19092909253909818
+
+ *******************************************************************
+
+
+Test R^2 = 0.08420560592404358, Difference Score = 1.8312082981619855,  Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=19, min_samples_split=17, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1672458366549886
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10541106274808842
+
+ Dataset D1 score on trained D1:  0.17313575273103676
+
+ Entire dataset R^2 using pipeline:  0.1853818408056448
+
+ ********************************************************************
+
+Test R^2 = 0.08178801843825434, Difference Score = 1.8985906056536799,  Pipeline:  input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> SelectPercentile(75) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=12, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1503091537680744
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09706378424304019
+
+ Dataset D1 score on trained D1:  0.15874972504258278
+
+ Entire dataset R^2 using pipeline:  0.16854184153785567
+
+ ********************************************************************
+
+Test R^2 = 0.07852778493571955, Difference Score = 2.029994262472428,   Pipeline:  input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> SelectPercentile(75) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13229664656578977
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09390328210800203
+
+ Dataset D1 score on trained D1:  0.13741496507324524
+
+ Entire dataset R^2 using pipeline:  0.15025211389434634
+
+ ********************************************************************
+
+
+Test R^2 = 0.07188081749286335, Difference Score = 2.2307199910704263,  Pipeline:  input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.3) -> SelectPercentile(65) -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=16, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1099970809749774
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08390331879682089
+
+ Dataset D1 score on trained D1:  0.11226578731866832
+
+ Entire dataset R^2 using pipeline:  0.12404095182528618
+
+ ********************************************************************
+
+Test R^2 = 0.05927958149268331, Difference Score = 2.647069265847003,   Pipeline: input_matrix -> SelectPercentile(35) -> UnderDominanceEncoder -> RecessiveEncoder -> RecessiveEncoder -> SelectPercentile(95) -> FeatureEncodingFrequencySelector(0.1) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.029065133058814085
+
+ Holdout data R^2 trained on entire dataset(80%):  0.020206493355425792
+
+ Dataset D1 score on trained D1:  0.07964713085240271
+
+ Entire dataset R^2 using pipeline:  0.019019836771620557
+
+ *********************************************************************
+
+Test R^2 = 0.05897543354717327, Difference Score = 2.674137418233395,   Pipeline: input_matrix -> SelectPercentile(35) -> UnderDominanceEncoder -> RecessiveEncoder -> SelectPercentile(95) -> FeatureEncodingFrequencySelector(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=19, min_samples_split=14, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02887787718990642
+
+ Holdout data R^2 trained on entire dataset(80%):  0.019465937737916827
+
+ Dataset D1 score on trained D1:  0.07853076205991172
+
+ Entire dataset R^2 using pipeline:  0.018963219522383445
+
+ *********************************************************************
+
+Test R^2 = 0.058802279797493306,    Difference Score = 2.67542425505022,    Pipeline:  input_matrix -> SelectPercentile(35) -> UnderDominanceEncoder -> RecessiveEncoder -> UnderDominanceEncoder -> RecessiveEncoder -> SelectPercentile(95) -> FeatureEncodingFrequencySelector(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=19, min_samples_split=14, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02887787718990642
+
+ Holdout data R^2 trained on entire dataset(80%):  0.019465937737916827
+
+ Dataset D1 score on trained D1:  0.07832001222898799
+
+ Entire dataset R^2 using pipeline:  0.018963219522383223
+
+ *********************************************************************
+
+Test R^2 = 0.058654549912836695,    Difference Score = 2.6789538535251896,  Pipeline: input_matrix -> SelectPercentile(35) -> UnderDominanceEncoder -> RecessiveEncoder -> UnderDominanceEncoder -> RecessiveEncoder -> SelectPercentile(95) -> FeatureEncodingFrequencySelector(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=19, min_samples_split=14, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02887787718990642
+
+ Holdout data R^2 trained on entire dataset(80%):  0.019465937737916827
+
+ Dataset D1 score on trained D1:  0.0780696247614352
+
+ Entire dataset R^2 using pipeline:  0.018963219522383223
+
+ **********************************************************************
+
+Test R^2 = 0.040793032137869556,    Difference Score = 3.0000727199511914,  Pipeline:  input_matrix -> SelectPercentile(35) -> UnderDominanceEncoder -> SelectPercentile(95) -> FeatureEncodingFrequencySelector(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=19, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02582729330200284
+
+ Holdout data R^2 trained on entire dataset(80%):  0.028782381941925506
+
+ Dataset D1 score on trained D1:  0.053137514186518464
+
+ Entire dataset R^2 using pipeline:  0.011175460213109889
+
+ **************************************************************************
+
+Test R^2 = 0.03382748612038711, Difference Score = 3.796257357390801,   Pipeline: input_matrix -> SelectPercentile(30) -> OverDominanceEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=5, min_samples_split=17).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.020156284594579854
+
+ Holdout data R^2 trained on entire dataset(80%):  0.019042020599373877
+
+ Dataset D1 score on trained D1:  0.03864227682630461
+
+ Entire dataset R^2 using pipeline:  0.007173602221107633
+
+ **************************************************************************
+
+
+Test R^2 = 0.009621863917081974,    Difference Score = 4.729251744640857,   Pipeline: input_matrix -> DominantEncoder -> FeatureEncodingFrequencySelector(0.15) -> VarianceThreshold(0.1) -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=11, min_samples_split=7).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.010549487169569827
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0056485397039829355
+
+ Dataset D1 score on trained D1:  0.011620944353647134
+
+ Entire dataset R^2 using pipeline:  0.01139430600643665
+
+ **************************************************************************
+
+
+Test R^2 = 0.007829658668662587,    Difference Score = 5.689987974485924,   Pipeline: input_matrix -> DominantEncoder -> DecisionTreeRegressor(max_depth=1, min_samples_leaf=6, min_samples_split=20).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.006702586499277574
+
+ Holdout data R^2 trained on entire dataset(80%):  0.00011406563825677729
+
+ Dataset D1 score on trained D1:  0.0068756449808009545
+
+ Entire dataset R^2 using pipeline:  0.006801443792300188
+
+ ***************************************************************************
+
+
+Test R^2 = 0.00042500148831081663,  Difference Score = 12.898175361268027,  Pipeline: input_matrix -> DominantEncoder -> RecessiveEncoder -> FeatureEncodingFrequencySelector(0.0) -> FeatureEncodingFrequencySelector(0.35) -> DecisionTreeRegressor(max_depth=1, min_samples_leaf=4, min_samples_split=16).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0009171484402864527
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.0018713005703430152
+
+ Dataset D1 score on trained D1:  0.0003888699134853013
+
+ Entire dataset R^2 using pipeline:  0.0009956837987497025
+
+ ***************************************************************************
+
+
+Test R^2 = 0.0004250014883105946,   Difference Score = 12.898175361287844,  Pipeline: input_matrix -> DominantEncoder -> RecessiveEncoder -> SelectPercentile(60) -> VarianceThreshold(0.05) -> FeatureEncodingFrequencySelector(0.35) -> DecisionTreeRegressor(max_depth=1, min_samples_leaf=4, min_samples_split=16).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0009171484402864527
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.0018713005703430152
+
+ Dataset D1 score on trained D1:  0.0003888699134853013
+
+ Entire dataset R^2 using pipeline:  0.0009956837987497025
+
+ ***************************************************************************
+
+*******************************
+******* RANDOM SEED 32 ********
+*******************************
+
+
+Holdout LR on 80% trained data:  -0.006700906367069326
+Entire Dataset R^2 using LR:  0.004800385046657585
+D2 Dataset R^2 value on only LR model trained on D1:  -0.0017787017216672751
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.007142222370907336
+
+*******************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.09993720927773908,	Difference Score = 1.2804415188209193,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.25, min_samples_leaf=3, min_samples_split=10, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.39005829517897284
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12000133529146795
+
+ Dataset D1 score on trained D1:  0.47195268650170796
+
+ Entire dataset R^2 using pipeline:  0.45673036527121624
+
+ ********************************************************************************
+
+
+Test R^2 = 0.0980489371575074,	Difference Score = 1.4989279549149315,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=6, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.26249085057746013
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12107353518781261
+
+ Dataset D1 score on trained D1:  0.2961455104153723
+
+ Entire dataset R^2 using pipeline:  0.2991698816970857
+
+*********************************************************************************
+
+Test R^2 = 0.0954641980440305,	Difference Score = 1.499888027116829,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=10, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2568770219208515
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11864329525303863
+
+ Dataset D1 score on trained D1:  0.2930540548514501
+
+ Entire dataset R^2 using pipeline:  0.2933910529585749
+
+ *******************************************************************************
+
+Test R^2 = 0.09506635245764594,	Difference Score = 1.5346375498852647,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=11, min_samples_split=19, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.24706655634883523
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11898864852271229
+
+ Dataset D1 score on trained D1:  0.27535846117983787
+
+ Entire dataset R^2 using pipeline:  0.27881065374082115
+
+ ********************************************************************************
+
+Test R^2 = 0.0918862044647788,	Difference Score = 1.6360817565310153,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=15, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2115507039914586
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11542362591316868
+
+ Dataset D1 score on trained D1:  0.2314523202878237
+
+ Entire dataset R^2 using pipeline:  0.2414209551649188
+
+ ********************************************************************************
+
+Test R^2 = 0.09140584016996456,	Difference Score = 1.6946107623801188,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=11, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.19896642598862047
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11533672959979557
+
+ Dataset D1 score on trained D1:  0.21266656474284018
+
+ Entire dataset R^2 using pipeline:  0.22214450737885494
+
+ *******************************************************************************
+
+Test R^2 = 0.0895300460776729,	Difference Score = 1.7275874197785488,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=19, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18867124569591143
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10947790351211983
+
+ Dataset D1 score on trained D1:  0.20179387968539586
+
+ Entire dataset R^2 using pipeline:  0.21347610141632356
+
+ *******************************************************************************
+
+Test R^2 = 0.0886355114216042,	Difference Score = 1.873030328074147,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16363327322799281
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10620369851815359
+
+ Dataset D1 score on trained D1:  0.16988502355504154
+
+ Entire dataset R^2 using pipeline:  0.18195525738398433
+
+ ********************************************************************************
+
+Test R^2 = 0.08627263156860698,	Difference Score = 1.93416488021482,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=19, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15650012880306763
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10512999111817367
+
+ Dataset D1 score on trained D1:  0.15772654621623716
+
+ Entire dataset R^2 using pipeline:  0.1742156105771
+
+ *********************************************************************************
+
+Test R^2 = 0.07889751997408778,	Difference Score = 1.9544516081444538,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=16, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.14662941808805297
+
+ Holdout data R^2 trained on entire dataset(80%):  0.102587731152189
+
+ Dataset D1 score on trained D1:  0.14743060981509215
+
+ Entire dataset R^2 using pipeline:  0.1639286948856563
+
+ *********************************************************************************
+
+Test R^2 = 0.07592064558782052,	Difference Score = 2.0622081721291927,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13416542394963282
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09797322965285937
+
+ Dataset D1 score on trained D1:  0.13121362419416982
+
+ Entire dataset R^2 using pipeline:  0.14870198553640057
+
+ **********************************************************************************
+
+
+Test R^2 = 0.06855958638426474,	Difference Score = 2.067955187765008,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RecessiveEncoder -> FeatureEncodingFrequencySelector(0.35) -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=16, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12443906423323547
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09137113446402656
+
+ Dataset D1 score on trained D1:  0.12324046777379982
+
+ Entire dataset R^2 using pipeline:  0.1398445709383569
+
+ ************************************************************************************
+
+Test R^2 = 0.06064686036074485,	Difference Score = 2.2222830802710325,	Pipeline: input_matrix -> HeterosisEncoder -> VarianceThreshold(0.0) -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=16, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10760836510800742
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07546731465813594
+
+ Dataset D1 score on trained D1:  0.1016486186596195
+
+ Entire dataset R^2 using pipeline:  0.12097645417593295
+
+ *************************************************************************************
+
+Test R^2 = 0.05334227094994626,	Difference Score = 2.392287869827966,	Pipeline: input_matrix -> OverDominanceEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=4, min_samples_split=9).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06928075964538993
+
+ Holdout data R^2 trained on entire dataset(80%):  0.028752321527592217
+
+ Dataset D1 score on trained D1:  0.08387363778342616
+
+ Entire dataset R^2 using pipeline:  0.0732541558105827
+
+ **************************************************************************************
+
+Test R^2 = 0.042414151152083246,	Difference Score = 5.1280176361945555,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=5, min_samples_split=8).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.03918637149041171
+
+ Holdout data R^2 trained on entire dataset(80%):  0.01951667006405844
+
+ Dataset D1 score on trained D1:  0.04386026325036796
+
+ Entire dataset R^2 using pipeline:  0.03957812511879777
+
+ ***************************************************************************************
+
+Test R^2 = 0.016680688244268604,	Difference Score = 6.2656138007921856,	Pipeline: input_matrix -> UnderDominanceEncoder -> SelectPercentile(5) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.018116210152704038
+
+ Holdout data R^2 trained on entire dataset(80%):  0.021749065659426914
+
+ Dataset D1 score on trained D1:  0.01603183644914552
+
+ Entire dataset R^2 using pipeline:  0.018173117186905507
+
+ ****************************************************************************************
+
+Test R^2 = 0.010900782990624913,	Difference Score = 9.496540761409728,	Pipeline: input_matrix -> VarianceThreshold(0.15) -> FeatureEncodingFrequencySelector(0.2) -> DominantEncoder -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.01293105509020509
+
+ Holdout data R^2 trained on entire dataset(80%):  0.011450145833962755
+
+ Dataset D1 score on trained D1:  0.011023735742477614
+
+ Entire dataset R^2 using pipeline:  0.013252905641249701
+
+ *****************************************************************************************
+Test R^2 = 0.0008340834999293056,	Difference Score = 10.662144244594675,	Pipeline: input_matrix -> VarianceThreshold(0.0) -> FeatureEncodingFrequencySelector(0.2) -> LinearRegression.
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0009346849958905556
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.005242761581052413
+
+ Dataset D1 score on trained D1:  0.0009114622634112113
+
+ Entire dataset R^2 using pipeline:  0.001291516076937116
+
+ *****************************************************************************************
+
+*******************************
+******* RANDOM SEED 62 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069104
+Entire Dataset R^2 using LR:  0.004800385046657807
+D2 Dataset R^2 value on only LR model trained on D1:  0.0002988303306173945
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.005129737485195629
+
+******************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.11089317653918296,	Difference Score = 1.5183057083859592,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.55, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2711500493715575
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11706453920297832
+
+ Dataset D1 score on trained D1:  0.2990686860383007
+
+ Entire dataset R^2 using pipeline:  0.3106357319989783
+
+**************************************************************
+
+Test R^2 = 0.10364407926672237,	Difference Score = 1.5266237559816693,	Pipeline:  input_matrix -> SelectPercentile(95) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=5, min_samples_split=18, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.25335152623015655
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11372286102437246
+
+ Dataset D1 score on trained D1:  0.2877517719048436
+
+ Entire dataset R^2 using pipeline:  0.28941847453128
+
+ ***********************************************************
+
+Test R^2 = 0.10346309629597794,	Difference Score = 1.5798734770504717,	Pipeline:  input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=2, min_samples_split=20, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2424665544089778
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12452942730491423
+
+ Dataset D1 score on trained D1:  0.2639763015508442
+
+ Entire dataset R^2 using pipeline:  0.275969431258529
+
+ **********************************************************
+
+Test R^2 = 0.10268213348947808,	Difference Score = 1.610114474276643,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=10, min_samples_split=18, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2310100864216903
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11755503237211118
+
+ Dataset D1 score on trained D1:  0.2514718729772881
+
+ Entire dataset R^2 using pipeline:  0.2633900006650878
+
+**********************************************************
+
+Test R^2 = 0.10119350225428081,	Difference Score = 1.6361069298150615,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=3, min_samples_split=18, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.22206020116216707
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12041231992451806
+
+ Dataset D1 score on trained D1:  0.24075102876979604
+
+ Entire dataset R^2 using pipeline:  0.252718065821365
+
+ *********************************************************
+
+Test R^2 = 0.10094424323931961,	Difference Score = 1.6367194418500182,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.4, min_samples_leaf=16, min_samples_split=5, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2223934048568348
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11186502105775498
+
+ Dataset D1 score on trained D1:  0.2402929796836607
+
+ Entire dataset R^2 using pipeline:  0.2541920678181506
+
+ ***********************************************************
+
+
+Test R^2 = 0.10075800724113193,	Difference Score = 1.686694059594994,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=12, min_samples_split=18, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.21048323854710427
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11189086816546001
+
+ Dataset D1 score on trained D1:  0.22431141789628584
+
+ Entire dataset R^2 using pipeline:  0.23953439053000924
+
+ ***********************************************************
+
+
+Test R^2 = 0.09806078060303902,	Difference Score = 1.7363241532044422,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=14, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.19942754143134045
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11228374590596779
+
+ Dataset D1 score on trained D1:  0.20808208099441716
+
+ Entire dataset R^2 using pipeline:  0.22274619847446475
+
+ ***********************************************************
+
+Test R^2 = 0.09802865851757303,	Difference Score = 1.78951511034839,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> VarianceThreshold(0.0) -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=17, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18971955493503456
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11209951109191074
+
+ Dataset D1 score on trained D1:  0.19554076103191975
+
+ Entire dataset R^2 using pipeline:  0.21220149920539855
+
+ ***********************************************************
+
+Test R^2 = 0.09459739399968736,	Difference Score = 1.7898092544483937,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=16, min_samples_split=14,n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18536417996301802
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10975868110144482
+
+ Dataset D1 score on trained D1:  0.19204541026658117
+
+ Entire dataset R^2 using pipeline:  0.20872720817987733
+
+ **********************************************************
+
+Test R^2 = 0.09453529285659423,	Difference Score = 1.8011360539504622,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18226322322819732
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1086966044223937
+
+ Dataset D1 score on trained D1:  0.18955505109025705
+
+ Entire dataset R^2 using pipeline:  0.20494133759803357
+
+ *********************************************************
+
+Test R^2 = 0.09418308286319588,	Difference Score = 1.8457298790238494,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.5, min_samples_leaf=19, min_samples_split=16, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17708995705905717
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10746077160983691
+
+ Dataset D1 score on trained D1:  0.18034739575560577
+
+ Entire dataset R^2 using pipeline:  0.19741280970707775
+
+ *********************************************************
+
+Test R^2 = 0.09070963775896201,	Difference Score = 1.9082944407327993,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=17, min_samples_split=8, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16485117818412232
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10747660121044667
+
+ Dataset D1 score on trained D1:  0.16611781784485458
+
+ Entire dataset R^2 using pipeline:  0.1824099091974557
+
+ **********************************************************
+
+Test R^2 = 0.09003809248343819,	Difference Score = 1.9364208950131945,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=19, min_samples_split=2, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15668792852091917
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10738539115075652
+
+ Dataset D1 score on trained D1:  0.16115960088911696
+
+ Entire dataset R^2 using pipeline:  0.17498975108048975
+
+ ********************************************************
+
+Test R^2 = 0.08916268953689499,	Difference Score = 1.9460014950713482,	Pipeline:  input_matrix -> VarianceThreshold(0.1) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=19, min_samples_split=20,n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15650012880306763
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10512999111817367
+
+ Dataset D1 score on trained D1:  0.15889391885822557
+
+ Entire dataset R^2 using pipeline:  0.1742156105771
+
+ *********************************************************
+
+
+Test R^2 = 0.08277082365286492,	Difference Score = 2.0214103652210578,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1438253055770543
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10163675137679395
+
+ Dataset D1 score on trained D1:  0.14266464829947445
+
+ Entire dataset R^2 using pipeline:  0.16164283394660506
+
+ *********************************************************
+
+
+Test R^2 = 0.07474545836163682,	Difference Score = 2.0842701845594274,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RecessiveEncoder -> FeatureEncodingFrequencySelector(0.15) -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=16, min_samples_split=14, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12912493527888036
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09255700442408554
+
+ Dataset D1 score on trained D1:  0.12773424024793012
+
+ Entire dataset R^2 using pipeline:  0.143482987563761
+
+ ********************************************************
+
+
+Test R^2 = 0.07387109817241011,	Difference Score = 2.167529907719285,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(70) -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12272573059223324
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09081518027328495
+
+ Dataset D1 score on trained D1:  0.1191754170610615
+
+ Entire dataset R^2 using pipeline:  0.13355096933280275
+
+ ********************************************************
+
+Test R^2 = 0.07318264966690158,	Difference Score = 2.197547052213633,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12058420845924778
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0882059902567578
+
+ Dataset D1 score on trained D1:  0.1160619084505915
+
+ Entire dataset R^2 using pipeline:  0.1337486815800346
+
+ *****************************************************
+
+
+Test R^2 = 0.06394296112019315,	Difference Score = 2.241741659576322,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> FeatureEncodingFrequencySelector(0.15) -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=16, min_samples_split=14, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11215521492664182
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08266692115009389
+
+ Dataset D1 score on trained D1:  0.1035395477210379
+
+ Entire dataset R^2 using pipeline:  0.12517472265789564
+
+ ******************************************************
+
+Test R^2 = 0.0586498596414482,	Difference Score = 2.5383092793678994,	Pipeline: input_matrix -> OverDominanceEncoder -> OverDominanceEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=5, min_samples_split=9).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07097907316752006
+
+ Holdout data R^2 trained on entire dataset(80%):  0.040733263759995975
+
+ Dataset D1 score on trained D1:  0.08273903040448372
+
+ Entire dataset R^2 using pipeline:  0.07335204791544092
+
+ *****************************************************
+
+Test R^2 = 0.04895535188519151,	Difference Score = 3.2781999071992747,	Pipeline: input_matrix -> UnderDominanceEncoder -> OverDominanceEncoder -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=3, min_samples_leaf=19, min_samples_split=3).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.05171286548845255
+
+ Holdout data R^2 trained on entire dataset(80%):  0.030595756420828457
+
+ Dataset D1 score on trained D1:  0.05761416298820332
+
+ Entire dataset R^2 using pipeline:  0.05305126216654088
+
+ *******************************************************
+
+
+Test R^2 = 0.04324869361128869,	Difference Score = 5.66851756393423,	Pipeline: input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.2) -> SelectPercentile(65) -> LinearRegression.
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04528917710526614
+
+ Holdout data R^2 trained on entire dataset(80%):  0.042617397326984996
+
+ Dataset D1 score on trained D1:  0.04228014368269073
+
+ Entire dataset R^2 using pipeline:  0.0457298814975724
+
+ *****************************************************
+
+
+Test R^2 = 0.042455381765201694,	Difference Score = 8.978515398363395,	Pipeline: input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.3) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.045519776435676174
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04276818850723474
+
+ Dataset D1 score on trained D1:  0.04260926165717516
+
+ Entire dataset R^2 using pipeline:  0.04599330289891901
+
+ *****************************************************
+
+
+Test R^2 = 0.022541693220270442,	Difference Score = 16.384147324340386,	Pipeline: input_matrix -> RecessiveEncoder -> SelectPercentile(80) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.023165381432143528
+
+ Holdout data R^2 trained on entire dataset(80%):  0.010176192548067675
+
+ Dataset D1 score on trained D1:  0.022555570508935197
+
+ Entire dataset R^2 using pipeline:  0.024423624235340502
+
+ ******************************************************
+
+*******************************
+******* RANDOM SEED 72 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069326
+Entire Dataset R^2 using LR:  0.004800385046657585
+D2 Dataset R^2 value on only LR model trained on D1:  -0.008181428585016581
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.01104085951115974
+
+***********************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.0989552601143665,	Difference Score = 1.2582991314275893,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=2, min_samples_split=2, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.4090135209535314
+
+Holdout data R^2 trained on entire dataset(80%):  0.11592638516001863
+
+Dataset D1 score on trained D1:  0.49785560584378385
+
+Entire dataset R^2 using pipeline:  0.48137425095101793
+
+ ************************************************************
+
+Test R^2 = 0.09824321215098786,	Difference Score = 1.4548754174731175,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.28046533307008337
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11587457264481571
+
+ Dataset D1 score on trained D1:  0.3214445414368545
+
+ Entire dataset R^2 using pipeline:  0.3240481544513646
+
+ **********************************
+
+Test R^2 = 0.09633135927421621,	Difference Score = 1.4589934059446803,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=6, min_samples_split=9, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.27315177374367383
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11632990441990165
+
+ Dataset D1 score on trained D1:  0.3170234066883363
+
+ Entire dataset R^2 using pipeline:  0.315185962556239
+
+ **********************************
+
+Test R^2 = 0.09623372405354869,	Difference Score = 1.4852408811750424,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=7, min_samples_split=20, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.26318500875960893
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11303875408334707
+
+ Dataset D1 score on trained D1:  0.30173400568398
+
+ Entire dataset R^2 using pipeline:  0.30274788864411795
+
+ **********************************
+
+Test R^2 = 0.09495308898448518,	Difference Score = 1.54001240104373,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RecessiveEncoder -> UnderDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=9, min_samples_split=16, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.24040371970460783
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11634114252527972
+
+ Dataset D1 score on trained D1:  0.2727413687639719
+
+ Entire dataset R^2 using pipeline:  0.27483731037980463
+
+ **********************************
+
+Test R^2 = 0.09443797068608129,	Difference Score = 1.5727527514801956,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=8, min_samples_split=2, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2294045244243873
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11436144855122732
+
+ Dataset D1 score on trained D1:  0.25787790738965455
+
+ Entire dataset R^2 using pipeline:  0.2585685964220612
+
+ *************************************
+
+
+
+Test R^2 = 0.09335614461222042,	Difference Score = 1.6290835527432257,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7500000000000001, min_samples_leaf=14, min_samples_split=16, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.21392854345111223
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10994073920349301
+
+ Dataset D1 score on trained D1:  0.2353359458231592
+
+ Entire dataset R^2 using pipeline:  0.24251874571221654
+
+ *************************************
+
+
+Test R^2 = 0.09282135421365267,	Difference Score = 1.6430823014705278,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=14, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.20910415173655816
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11068898322442566
+
+ Dataset D1 score on trained D1:  0.23002407679937564
+
+ Entire dataset R^2 using pipeline:  0.23762280210380504
+
+ ***************************************
+
+
+Test R^2 = 0.09114674547304669,	Difference Score = 1.7130707766872233,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.4, min_samples_leaf=14, min_samples_split=16, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.19413113987096098
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11339341463936858
+
+ Dataset D1 score on trained D1:  0.20726453878625706
+
+ Entire dataset R^2 using pipeline:  0.2161032527658494
+
+ ***************************************
+
+
+Test R^2 = 0.09084900563969533,	Difference Score = 1.7359022504613137,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=18, min_samples_split=2, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18719063262764546
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1102419239720801
+
+ Dataset D1 score on trained D1:  0.20097730563610794
+
+ Entire dataset R^2 using pipeline:  0.21006954934908995
+
+ ******************************************
+
+Test R^2 = 0.08937907332245665,	Difference Score = 1.7541856234253315,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18226322322819732
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1086966044223937
+
+ Dataset D1 score on trained D1:  0.19498731464362118
+
+ Entire dataset R^2 using pipeline:  0.20494133759803357
+
+ ********************************************
+
+Test R^2 = 0.08913835548982907,	Difference Score = 1.7758269107788471,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=20, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17794963157792065
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1040662315473404
+
+ Dataset D1 score on trained D1:  0.1896919194542218
+
+ Entire dataset R^2 using pipeline:  0.19974194962968062
+
+ *********************************************
+
+
+Test R^2 = 0.0875947421308314,	Difference Score = 1.8054514449027559,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.4, min_samples_leaf=18, min_samples_split=2, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17179876089049095
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10491040043835065
+
+ Dataset D1 score on trained D1:  0.18170928720226032
+
+ Entire dataset R^2 using pipeline:  0.1930066385857585
+
+ ************************************************
+
+Test R^2 = 0.08708940972875956,	Difference Score = 1.8517622477441518,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.4, min_samples_leaf=20, min_samples_split=10, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16511114847039177
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10666999851749037
+
+ Dataset D1 score on trained D1:  0.17213642894861492
+
+ Entire dataset R^2 using pipeline:  0.1842283061046519
+
+ **************************************************
+
+Test R^2 = 0.08475763917493218,	Difference Score = 1.8878097579577036,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RecessiveEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=19, min_samples_split=4, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15650012880306763
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10512999111817367
+
+ Dataset D1 score on trained D1:  0.16349250534120896
+
+ Entire dataset R^2 using pipeline:  0.1742156105771
+
+ *************************************************
+
+Test R^2 = 0.08285687356115823,	Difference Score = 1.9012714091636993,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=15, min_samples_split=10, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15098328977099107
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10139941014153486
+
+ Dataset D1 score on trained D1:  0.15938543157795948
+
+ Entire dataset R^2 using pipeline:  0.16738095516587503
+
+ **************************************************
+
+Test R^2 = 0.07779731567233594,	Difference Score = 1.947580849063496,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=18, min_samples_split=2, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13954706780097526
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09749472282803417
+
+ Dataset D1 score on trained D1:  0.14730263107438546
+
+ Entire dataset R^2 using pipeline:  0.15332636583598314
+
+ **************************************************
+
+Test R^2 = 0.07722954131549109,	Difference Score = 1.9957395329407561,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=2, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13416542394963282
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09797322965285937
+
+ Dataset D1 score on trained D1:  0.1402649480108732
+
+ Entire dataset R^2 using pipeline:  0.14870198553640057
+
+ *****************************************************
+
+
+Test R^2 = 0.0698861721817412,	Difference Score = 2.053452201166121,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=18, min_samples_split=10, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12488002123764463
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09132946721904678
+
+ Dataset D1 score on trained D1:  0.126128282456335
+
+ Entire dataset R^2 using pipeline:  0.13687571331889192
+
+ ****************************************************
+
+Test R^2 = 0.06434605453850939,	Difference Score = 2.059445128373356,	Pipeline:  input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.1) -> RecessiveEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=13, min_samples_split=18, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11996934642332646
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08188333361224875
+
+ Dataset D1 score on trained D1:  0.11993636498592963
+
+ Entire dataset R^2 using pipeline:  0.13298354597012663
+
+ **************************************************
+
+Test R^2 = 0.06424166740243353,	Difference Score = 2.093333381242939,	Pipeline:  input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=14, min_samples_split=4, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11644278644356043
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08058521558763942
+
+ Dataset D1 score on trained D1:  0.11631872091848439
+
+ Entire dataset R^2 using pipeline:  0.12933267400488935
+
+ ****************************************************
+
+Test R^2 = 0.0634596922031192,	Difference Score = 2.1454278108910665,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=15, min_samples_split=20, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11298080054234871
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07821664881622625
+
+ Dataset D1 score on trained D1:  0.11065995057048139
+
+ Entire dataset R^2 using pipeline:  0.1250291882547443
+
+ ***************************************************
+
+Test R^2 = 0.06333900392196967,	Difference Score = 2.1861386684323607,	Pipeline:  input_matrix -> VarianceThreshold(0.15) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=18, min_samples_split=2, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10631001022673492
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07898037867855345
+
+ Dataset D1 score on trained D1:  0.107120356604404
+
+ Entire dataset R^2 using pipeline:  0.11777024409123593
+
+ *****************************************************
+
+Test R^2 = 0.05964207325502535,	Difference Score = 2.204156053135818,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=18, min_samples_split=2, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10194161638526356
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07680035667698537
+
+ Dataset D1 score on trained D1:  0.10200935916953069
+
+ Entire dataset R^2 using pipeline:  0.1163694572311259
+
+ *******************************************************
+
+
+Test R^2 = 0.05884573033182483,	Difference Score = 2.2288564218011975,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=18, min_samples_split=2, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10258745803176439
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07694847547869976
+
+ Dataset D1 score on trained D1:  0.09936593476367062
+
+ Entire dataset R^2 using pipeline:  0.1156779596368922
+
+ ********************************************************
+
+
+Test R^2 = 0.05672351572484269,	Difference Score = 2.263626486958165,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=20, min_samples_split=2, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09699132630953344
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07344255390211252
+
+ Dataset D1 score on trained D1:  0.09481088107753777
+
+ Entire dataset R^2 using pipeline:  0.10848896161092847
+
+ *********************************************************
+
+Test R^2 = 0.05525255278425678,	Difference Score = 2.504472970100898,	Pipeline: input_matrix -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=6, min_samples_split=8).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07097907316752006
+
+ Holdout data R^2 trained on entire dataset(80%):  0.040733263759995975
+
+ Dataset D1 score on trained D1:  0.08067015651120435
+
+ Entire dataset R^2 using pipeline:  0.07335204791544092
+
+ ***********************************************************
+
+Test R^2 = 0.0542399714888272,	Difference Score = 2.539882645387408,	Pipeline: input_matrix -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=12, min_samples_split=16).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07155053409913315
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04830164960591088
+
+ Dataset D1 score on trained D1:  0.07826950818996736
+
+ Entire dataset R^2 using pipeline:  0.07272037334604053
+
+ ********************************************************
+
+Test R^2 = 0.04058928493873182,	Difference Score = 3.889186592507688,	Pipeline: input_matrix -> UnderDominanceEncoder -> UnderDominanceEncoder -> VarianceThreshold(0.25) -> FeatureEncodingFrequencySelector(0.0) -> DecisionTreeRegressor(max_depth=2, DecisionTreeRegressor__min_samples_leaf=5, DecisionTreeRegressor__min_samples_split=8).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0391863714904116
+
+ Holdout data R^2 trained on entire dataset(80%):  0.01951667006405844
+
+ Dataset D1 score on trained D1:  0.0449601246517316
+
+ Entire dataset R^2 using pipeline:  0.03957812511879777
+
+ *******************************************************
+
+Test R^2 = 0.03613344394323326,	Difference Score = 5.8076452096948605,	Pipeline: input_matrix -> VarianceThreshold(0.05) -> UnderDominanceEncoder -> FeatureEncodingFrequencySelector(0.2) -> RecessiveEncoder -> SelectPercentile(70) -> LinearRegression.
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.037871657226301925
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04226658303833042
+
+ Dataset D1 score on trained D1:  0.03525442205270268
+
+ Entire dataset R^2 using pipeline:  0.03796511589853402
+
+ *****************************************************
+
+Test R^2 = 0.03325455290803725,	Difference Score = 6.027209218192399,	Pipeline: input_matrix -> VarianceThreshold(0.05) -> UnderDominanceEncoder -> FeatureEncodingFrequencySelector(0.2) -> SelectPercentile(70) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.03440285643616037
+
+ Holdout data R^2 trained on entire dataset(80%):  0.037360187897442776
+
+ Dataset D1 score on trained D1:  0.03249678722814786
+
+ Entire dataset R^2 using pipeline:  0.03449216338057903
+
+ *******************************************************
+
+Test R^2 = -0.000765629642629273,	Difference Score = 6.051092222762979,	Pipeline: input_matrix -> DominantEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=9, min_samples_split=16, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  -6.0342121119827397e-05
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.0010744626585241779
+
+ Dataset D1 score on trained D1:  -1.9756598031328565e-05
+
+ Entire dataset R^2 using pipeline:  -1.7860712908657206e-10
+
+ *********************************************************
+
+*******************************
+******* RANDOM SEED 92 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069104
+Entire Dataset R^2 using LR:  0.004800385046657807
+D2 Dataset R^2 value on only LR model trained on D1:  -0.007180135423834111
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.01057566516081987
+
+*****************************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.10300793162700994,	Difference Score = 1.32552389846645,	Pipeline: input_matrix -> HeterosisEncoder -> RecessiveEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=1, min_samples_split=12, n_estimators=100).
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.36223575102805616
+
+Holdout data R^2 trained on entire dataset(80%):  0.1236012857857216
+
+Dataset D1 score on trained D1:  0.4269368725324352
+
+Entire dataset R^2 using pipeline:  0.42341069003233156
+
+*****************************************************************************************
+
+
+Test R^2 = 0.10176180662813072,	Difference Score = 1.346486360129212,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=1, min_samples_split=13, n_estimators=100).
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.3456521563368541
+
+Holdout data R^2 trained on entire dataset(80%):  0.12007719295135022
+
+Dataset D1 score on trained D1:  0.4059848919542378
+
+Entire dataset R^2 using pipeline:  0.40420996373789797
+
+*****************************************************************************************
+
+Test R^2 = 0.10142038491578753,	Difference Score = 1.4399154296400776,	Pipeline:  input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=1, min_samples_split=18, n_estimators=100).
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2907436966187229
+
+Holdout data R^2 trained on entire dataset(80%):  0.12374023851104055
+
+Dataset D1 score on trained D1:  0.33404306664081296
+
+Entire dataset R^2 using pipeline:  0.3344020362318305
+
+*****************************************************************************************
+
+Test R^2 = 0.099022160727809,	Difference Score = 1.5054157009642426,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.4, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.26038227806227177
+
+Holdout data R^2 trained on entire dataset(80%):  0.125469155048067
+
+Dataset D1 score on trained D1:  0.2937258743345319
+
+Entire dataset R^2 using pipeline:  0.29924516139659063
+
+*****************************************************************************************
+
+Test R^2 = 0.09493460064430714,	Difference Score = 1.5207212116706335,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=11, min_samples_split=13, n_estimators=100).
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.24706655634883523
+
+Holdout data R^2 trained on entire dataset(80%):  0.11898864852271229
+
+Dataset D1 score on trained D1:  0.28191736889620866
+
+Entire dataset R^2 using pipeline:  0.27881065374082115
+
+*****************************************************************************************
+
+Test R^2 = 0.09480849060784069,	Difference Score = 1.5931147613000942,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=10, min_samples_split=13, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2202774005450412
+
+Holdout data R^2 trained on entire dataset(80%):  0.11683564389388035
+
+Dataset D1 score on trained D1:  0.25005139287494627
+
+Entire dataset R^2 using pipeline:  0.25323709324368615
+
+*****************************************************************************************
+
+Test R^2 = 0.09306444975529027,	Difference Score = 1.6411653106705484,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=6, min_samples_split=18, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.20845262395818875
+
+Holdout data R^2 trained on entire dataset(80%):  0.11493467202621421
+
+Dataset D1 score on trained D1:  0.2309093442056207
+
+Entire dataset R^2 using pipeline:  0.23722260424309083
+
+*****************************************************************************************
+Test R^2 = 0.08985353273366636,	Difference Score = 1.6658663932271554,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.20010737960344704
+
+Holdout data R^2 trained on entire dataset(80%):  0.11217461727737632
+
+Dataset D1 score on trained D1:  0.21970274887403818
+
+Entire dataset R^2 using pipeline:  0.2250064611806316
+
+*****************************************************************************************
+
+Test R^2 = 0.08906998677503775,	Difference Score = 1.6736534078001715,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, RandomForestRegressor__min_samples_leaf=13, min_samples_split=13, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.19677252968102588
+
+Holdout data R^2 trained on entire dataset(80%):  0.11181028774774426
+
+Dataset D1 score on trained D1:  0.21651941617462167
+
+Entire dataset R^2 using pipeline:  0.22024877090881634
+
+*****************************************************************************************
+
+
+Test R^2 = 0.08844872777515811,	Difference Score = 1.6744302745405968,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.19483505753381924
+
+Holdout data R^2 trained on entire dataset(80%):  0.11683661476770935
+
+Dataset D1 score on trained D1:  0.2156617965692218
+
+Entire dataset R^2 using pipeline:  0.22016392296458254
+
+*****************************************************************************************
+
+Test R^2 = 0.08810651533717073,	Difference Score = 1.697342099052102,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.25, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18707132728934794
+
+Holdout data R^2 trained on entire dataset(80%):  0.11017666377504176
+
+Dataset D1 score on trained D1:  0.20858859836413146
+
+Entire dataset R^2 using pipeline:  0.21391530845802464
+
+*****************************************************************************************
+
+Test R^2 = 0.08762831970045826,	Difference Score = 1.7139162693583394,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, _max_features=0.6500000000000001, min_samples_leaf=18, min_samples_split=18, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18719063262764546
+
+Holdout data R^2 trained on entire dataset(80%):  0.1102419239720801
+
+Dataset D1 score on trained D1:  0.20351715405816584
+
+Entire dataset R^2 using pipeline:  0.21006954934908995
+
+*****************************************************************************************
+
+Test R^2 = 0.08720709602096599,	Difference Score = 1.7438118333329835,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=17, min_samples_split=20, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18165398386685372
+
+Holdout data R^2 trained on entire dataset(80%):  0.11090652678035129
+
+Dataset D1 score on trained D1:  0.1953508692308129
+
+Entire dataset R^2 using pipeline:  0.20205400307935484
+
+*****************************************************************************************
+
+Test R^2 = 0.08494374364156321,	Difference Score = 1.76133026805769,	Pipeline:  input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.25, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1754328418521789
+
+Holdout data R^2 trained on entire dataset(80%):  0.10736506277076718
+
+Dataset D1 score on trained D1:  0.1888488296894345
+
+Entire dataset R^2 using pipeline:  0.19778062744191827
+
+*****************************************************************************************
+
+Test R^2 = 0.08467657049208044,	Difference Score = 1.8352020023859807,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=20, min_samples_split=13, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16371458569613706
+
+Holdout data R^2 trained on entire dataset(80%):  0.10742563315934373
+
+Dataset D1 score on trained D1:  0.17283513346137913
+
+Entire dataset R^2 using pipeline:  0.18121922964644976
+
+*****************************************************************************************
+
+Test R^2 = 0.08123601417145199,	Difference Score = 1.8457875408548583,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16003108545670952
+
+Holdout data R^2 trained on entire dataset(80%):  0.10844385223287778
+
+Dataset D1 score on trained D1:  0.16738956058261234
+
+Entire dataset R^2 using pipeline:  0.18001277393686133
+
+*****************************************************************************************
+
+Test R^2 = 0.08041252334465099,	Difference Score = 1.8686648890646256,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=14, min_samples_split=12, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15588021555646614
+
+Holdout data R^2 trained on entire dataset(80%):  0.1036359664659281
+
+Dataset D1 score on trained D1:  0.16242393693926094
+
+Entire dataset R^2 using pipeline:  0.17051624114394126
+
+*****************************************************************************************
+
+Test R^2 = 0.0780364425538963,	Difference Score = 1.9266931037180015,	Pipeline:   input_matrix -> OverDominanceEncoder -> FeatureEncodingFrequencySelector(0.35) -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.14508033759361394
+
+Holdout data R^2 trained on entire dataset(80%):  0.10133412824845234
+
+Dataset D1 score on trained D1:  0.15060522363430384
+
+Entire dataset R^2 using pipeline:  0.16102692511287842
+
+*****************************************************************************************
+
+Test R^2 = 0.07552718941781456,	Difference Score = 1.946674406379796,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=18, min_samples_split=18, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13954706780097526
+
+Holdout data R^2 trained on entire dataset(80%):  0.09749472282803417
+
+Dataset D1 score on trained D1:  0.14516205211865274
+
+Entire dataset R^2 using pipeline:  0.15332636583598314
+
+*****************************************************************************************
+
+Test R^2 = 0.0730761683056852,	Difference Score = 2.0397106518633965,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=17, min_samples_split=14, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12651034285425022
+
+Holdout data R^2 trained on entire dataset(80%):  0.0915845869438372
+
+Dataset D1 score on trained D1:  0.1308492779920003
+
+Entire dataset R^2 using pipeline:  0.14096745515774056
+
+*****************************************************************************************
+
+Test R^2 = 0.06848929444060936,	Difference Score = 2.050489452951339,	Pipeline:  input_matrix -> SelectPercentile(55) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=14, min_samples_split=12, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09111070447323089
+
+Holdout data R^2 trained on entire dataset(80%):  0.062276554720808175
+
+Dataset D1 score on trained D1:  0.12505716636639885
+
+Entire dataset R^2 using pipeline:  0.0976086737154469
+
+*****************************************************************************************
+
+Test R^2 = 0.06408860638014646,	Difference Score = 2.0534224714206895,	Pipeline:   input_matrix -> SelectPercentile(60) -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.0) -> RecessiveEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10165684799962371
+
+Holdout data R^2 trained on entire dataset(80%):  0.07382357214956115
+
+Dataset D1 score on trained D1:  0.12033397385087441
+
+Entire dataset R^2 using pipeline:  0.0970761435657519
+
+*****************************************************************************************
+
+Test R^2 = 0.06329882137281795,	Difference Score = 2.1398576004199428,	Pipeline:   input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> SelectPercentile(90) -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=14, min_samples_split=14, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11904305328862519
+
+Holdout data R^2 trained on entire dataset(80%):  0.08392854086235146
+
+Dataset D1 score on trained D1:  0.11099246535386365
+
+Entire dataset R^2 using pipeline:  0.1307569933940178
+
+*****************************************************************************************
+
+Test R^2 = 0.05865551093547339,	Difference Score = 2.2011184904654417,	Pipeline:    input_matrix -> UnderDominanceEncoder -> FeatureEncodingFrequencySelector(0.35) -> RecessiveEncoder -> HeterosisEncoder -> HeterosisEncoder -> HeterosisEncoder -> SelectPercentile(90) -> VarianceThreshold(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=17, min_samples_split=20, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10884835192061748
+
+Holdout data R^2 trained on entire dataset(80%):  0.08071394278638988
+
+Dataset D1 score on trained D1:  0.1012571503001013
+
+Entire dataset R^2 using pipeline:  0.122494526188754
+
+*****************************************************************************************
+
+Test R^2 = 0.05852320854144355,	Difference Score = 2.225340644294882,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> FeatureEncodingFrequencySelector(0.15) -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=19, min_samples_split=17, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10369975903339113
+
+Holdout data R^2 trained on entire dataset(80%):  0.07754058646318551
+
+Dataset D1 score on trained D1:  0.09930008915381738
+
+Entire dataset R^2 using pipeline:  0.11487781655903906
+
+*****************************************************************************************
+
+Test R^2 = 0.05449205478600705,	Difference Score = 2.232418124352176,	Pipeline: input_matrix -> OverDominanceEncoder -> OverDominanceEncoder -> RecessiveEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=19, min_samples_split=12, n_estimators=100).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10007777661408246
+
+Holdout data R^2 trained on entire dataset(80%):  0.07515442735431799
+
+Dataset D1 score on trained D1:  0.09475428622113524
+
+Entire dataset R^2 using pipeline:  0.11309688166447318
+
+*****************************************************************************************
+
+
+Test R^2 = 0.03997793141986594,	Difference Score = 2.5289038985196806,	Pipeline: input_matrix -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=3, min_samples_leaf=19, min_samples_split=3).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.05195016436873523
+
+Holdout data R^2 trained on entire dataset(80%):  0.03825536014527109
+
+Dataset D1 score on trained D1:  0.06442747162668327
+
+Entire dataset R^2 using pipeline:  0.05305126216654088
+
+*****************************************************************************************
+
+Test R^2 = 0.03978408170400005,	Difference Score = 3.522830509905924,	Pipeline: input_matrix -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=5, min_samples_split=8).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.03918637149041171
+
+Holdout data R^2 trained on entire dataset(80%):  0.01951667006405844
+
+Dataset D1 score on trained D1:  0.04627689633810761
+
+Entire dataset R^2 using pipeline:  0.03957812511879777
+
+*****************************************************************************************
+
+Test R^2 = 0.016415013567312675,	Difference Score = 8.650983410022262,	Pipeline: input_matrix -> UnderDominanceEncoder -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.35) -> RecessiveEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=10, min_samples_split=17).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.016122592760239973
+
+Holdout data R^2 trained on entire dataset(80%):  0.008361550650821226
+
+Dataset D1 score on trained D1:  0.01623647251781457
+
+Entire dataset R^2 using pipeline:  0.016235389892802043
+
+*****************************************************************************************
+
+*******************************
+****** RANDOM SEED 102 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069326
+Entire Dataset R^2 using LR:  0.004800385046657585
+D2 Dataset R^2 value on only LR model trained on D1:  -0.005666506460933141
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.011369734630029882
+
+*******************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.10914389766282595,	Difference Score = 1.410189364100876,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=2, min_samples_split=12, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.3202996636862574
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12448805941244123
+
+ Dataset D1 score on trained D1:  0.36200979404373945
+
+ Entire dataset R^2 using pipeline:  0.3685933903596794
+
+ *******************************************************************
+
+
+Test R^2 = 0.10653614191777805,	Difference Score = 1.4343922595253722,	Pipeline: input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.1) -> RecessiveEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.25, min_samples_leaf=4, min_samples_split=17, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.30287043680273884
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12404429312109433
+
+ Dataset D1 score on trained D1:  0.34276245306409847
+
+ Entire dataset R^2 using pipeline:  0.34751430265136807
+
+ *********************************************************************
+
+Test R^2 = 0.10648267557299007,	Difference Score = 1.4667691096111892,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7000000000000001, min_samples_leaf=1, min_samples_split=19, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2901323088903507
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11806963415476923
+
+ Dataset D1 score on trained D1:  0.3225320333627174
+
+ Entire dataset R^2 using pipeline:  0.3347814239131093
+
+ ********************************************************************
+
+
+Test R^2 = 0.10604659897362789,	Difference Score = 1.5330198406242534,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=2, min_samples_split=18, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.26421817672956494
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12474223801575535
+
+ Dataset D1 score on trained D1:  0.2871009214386959
+
+ Entire dataset R^2 using pipeline:  0.3010854553532035
+
+ ***********************************************************************
+
+
+Test R^2 = 0.10357704598266315,	Difference Score = 1.598927042592771,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(95) -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.23980369791814926
+
+ Holdout data R^2 trained on entire dataset(80%):  0.121294356038395
+
+ Dataset D1 score on trained D1:  0.2565749244888911
+
+ Entire dataset R^2 using pipeline:  0.2731465571045486
+
+ ************************************************************************
+
+
+Test R^2 = 0.10345074705682555,	Difference Score = 1.5996654933194832,	Pipeline: input_matrix -> SelectPercentile(95) -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.23346304295671316
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1143620659153638
+
+ Dataset D1 score on trained D1:  0.256166308576123
+
+ Entire dataset R^2 using pipeline:  0.2714403947376425
+
+ **************************************************************************
+
+
+Test R^2 = 0.09859925544043358,	Difference Score = 1.61059620672597,	Pipeline: input_matrix -> SelectPercentile(90) -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.22596254254109438
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10861121199330936
+
+ Dataset D1 score on trained D1:  0.24721106157977168
+
+ Entire dataset R^2 using pipeline:  0.2645277559381277
+
+ ***************************************************************************
+
+
+Test R^2 = 0.09841548031968894,	Difference Score = 1.6982111881975666,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.55, min_samples_leaf=13, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.20705538281983948
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10971417980597453
+
+ Dataset D1 score on trained D1:  0.21865111739638465
+
+ Entire dataset R^2 using pipeline:  0.23573950640003138
+
+ ***************************************************************************
+
+Test R^2 = 0.09554372363137942,	Difference Score = 1.8337860672632527,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.55, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1818331815898937
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10919061349159087
+
+ Dataset D1 score on trained D1:  0.18397488427724296
+
+ Entire dataset R^2 using pipeline:  0.2024312681670145
+
+ *****************************************************************************
+
+Test R^2 = 0.09273563803501972,	Difference Score = 1.8375052787794766,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7000000000000001, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17938526782766784
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10704694316881203
+
+ Dataset D1 score on trained D1:  0.180453011369904
+
+ Entire dataset R^2 using pipeline:  0.20150075898428055
+
+ ******************************************************************************
+
+Test R^2 = 0.09229638837643117,	Difference Score = 1.8581001307952505,	Pipeline: input_matrix -> SelectPercentile(85) -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.9500000000000001, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16718180356165613
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08363010122432135
+
+ Dataset D1 score on trained D1:  0.17618896715523158
+
+ Entire dataset R^2 using pipeline:  0.18326562178318384
+
+ *******************************************************************************
+
+Test R^2 = 0.08787930686755185,	Difference Score = 2.025282490174974,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=16, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.14662941808805297
+
+ Holdout data R^2 trained on entire dataset(80%):  0.102587731152189
+
+ Dataset D1 score on trained D1:  0.14731640091534448
+
+ Entire dataset R^2 using pipeline:  0.1639286948856563
+
+ ********************************************************************************
+
+Test R^2 = 0.08467935649764835,	Difference Score = 2.043228160950443,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=16, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.146943488993721
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1010879546565745
+
+ Dataset D1 score on trained D1:  0.14205565632733497
+
+ Entire dataset R^2 using pipeline:  0.16278299480729863
+
+ *********************************************************************************
+
+Test R^2 = 0.0831231337560212,	Difference Score = 2.050115693360171,	Pipeline: input_matrix -> HeterosisEncoder -> VarianceThreshold(0.1) -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13954706780097526
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09749472282803417
+
+ Dataset D1 score on trained D1:  0.13973226885015477
+
+ Entire dataset R^2 using pipeline:  0.15332636583598314
+
+ *********************************************************************************
+
+Test R^2 = 0.08070835036724744,	Difference Score = 2.1160186901605997,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13416542394963282
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09797322965285937
+
+ Dataset D1 score on trained D1:  0.1305878401585937
+
+ Entire dataset R^2 using pipeline:  0.14870198553640057
+
+ ***********************************************************************************
+
+Test R^2 = 0.07848778832052128,	Difference Score = 2.1465028081510327,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13383679542524196
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09590156761571744
+
+ Dataset D1 score on trained D1:  0.12559356361722296
+
+ Entire dataset R^2 using pipeline:  0.14782018771110295
+
+ ***********************************************************************************
+
+Test R^2 = 0.07306238375809393,	Difference Score = 2.2814179160540635,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(45) -> RandomForestRegressor(bootstrap=True, max_features=0.55, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09181705431307852
+
+ Holdout data R^2 trained on entire dataset(80%):  0.06893903678023916
+
+ Dataset D1 score on trained D1:  0.10997549138726215
+
+ Entire dataset R^2 using pipeline:  0.10061063015731864
+
+ ************************************************************************************
+
+Test R^2 = 0.06932023956914268,	Difference Score = 2.291711935124888,	Pipeline: input_matrix -> SelectPercentile(85) -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10785685108170973
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07746057954705754
+
+ Dataset D1 score on trained D1:  0.10557457043000507
+
+ Entire dataset R^2 using pipeline:  0.11687721119882077
+
+ *************************************************************************************
+
+Test R^2 = 0.05988193466358016,	Difference Score = 2.5623325576831157,	Pipeline: input_matrix -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=20, min_samples_split=10).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07155053409913315
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04830164960591088
+
+ Dataset D1 score on trained D1:  0.08308033402005222
+
+ Entire dataset R^2 using pipeline:  0.07272037334604053
+
+ **************************************************************************************
+
+Test R^2 = 0.04794439553481977,	Difference Score = 4.456053577031977,	Pipeline: input_matrix -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=3, min_samples_leaf=8, min_samples_split=9).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.05171286548845255
+
+ Holdout data R^2 trained on entire dataset(80%):  0.030595756420828457
+
+ Dataset D1 score on trained D1:  0.050480682468797666
+
+ Entire dataset R^2 using pipeline:  0.05305126216654088
+
+ ****************************************************************************************
+
+Test R^2 = 0.04517508934968706,	Difference Score = 5.683193737760648,	Pipeline: input_matrix -> DecisionTreeRegressor(max_depth=3, min_samples_leaf=6, min_samples_split=8).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04547146474552588
+
+ Holdout data R^2 trained on entire dataset(80%):  0.03895280872159723
+
+ Dataset D1 score on trained D1:  0.044216505395286765
+
+ Entire dataset R^2 using pipeline:  0.04220729337066931
+
+ ******************************************************************************************
+
+
+Test R^2 = 0.04517508934968695,	Difference Score = 5.6831937377608135,	Pipeline: input_matrix -> SelectPercentile(95) -> DecisionTreeRegressor(max_depth=3, min_samples_leaf=19, min_samples_split=16).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04547146474552588
+
+ Holdout data R^2 trained on entire dataset(80%):  0.03895280872159723
+
+ Dataset D1 score on trained D1:  0.044216505395286765
+
+ Entire dataset R^2 using pipeline:  0.041837269700625956
+
+ *******************************************************************************************
+
+Test R^2 = 0.041834455047964236,	Difference Score = 5.776621226039958,	Pipeline: input_matrix -> VarianceThreshold(0.2) -> UnderDominanceEncoder -> RecessiveEncoder -> SelectPercentile(50) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04409719860665562
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04231963109058612
+
+ Dataset D1 score on trained D1:  0.04273251314549964
+
+ Entire dataset R^2 using pipeline:  0.04472715899990731
+
+ *******************************************************************************************
+
+Test R^2 = 0.04176324377089913,	Difference Score = 7.005708826503119,	Pipeline: input_matrix -> UnderDominanceEncoder -> RecessiveEncoder -> SelectPercentile(50) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.043859308171125044
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04375876494838571
+
+ Dataset D1 score on trained D1:  0.04134810655567345
+
+ Entire dataset R^2 using pipeline:  0.04421664589588736
+
+ ********************************************************************************************
+
+Test R^2 = 0.039433146583358725,	Difference Score = 8.139935338558509,	Pipeline: input_matrix -> VarianceThreshold(0.2) -> UnderDominanceEncoder -> SelectPercentile(50) -> LinearRegression.
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04103838053575526
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0374936312181301
+
+ Dataset D1 score on trained D1:  0.039205366273156184
+
+ Entire dataset R^2 using pipeline:  0.041423664306332486
+
+ *********************************************************************************************
+
+
+Test R^2 = 0.03798917886148245,	Difference Score = 16.78724400853735,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(25) -> SelectPercentile(90) -> LinearRegression.
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.040068098175030986
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04091870828032085
+
+ Dataset D1 score on trained D1:  0.038001770504064725
+
+ Entire dataset R^2 using pipeline:  0.04044971304501477
+
+ **********************************************************************************************
+
+*******************************
+****** RANDOM SEED 122 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069104
+Entire Dataset R^2 using LR:  0.004800385046657807
+D2 Dataset R^2 value on only LR model trained on D1:  -0.012194547365440123
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.013995898180317656
+
+*******************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.11287002739290986,	Difference Score = 1.3221831564308009,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.55, min_samples_leaf=4, min_samples_split=8, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.36833243984921293
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11505421765342738
+
+ Dataset D1 score on trained D1:  0.44008526450298135
+
+ Entire dataset R^2 using pipeline:  0.4308250085578972
+
+ *******************************************************************************
+
+Test R^2 = 0.10700159162591649,	Difference Score = 1.586878333144679,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=10, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.24111952008407644
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11853728418566889
+
+ Dataset D1 score on trained D1:  0.2646993348497485
+
+ Entire dataset R^2 using pipeline:  0.2761628997397848
+
+ *******************************************************************************
+
+Test R^2 = 0.10416882942558048,	Difference Score = 1.6230472183159785,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=11, min_samples_split=5, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.22959591513317912
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11164643900363147
+
+ Dataset D1 score on trained D1:  0.24827261218821084
+
+ Entire dataset R^2 using pipeline:  0.26093217350345443
+
+ ********************************************************************************
+
+Test R^2 = 0.1018569062929322,	Difference Score = 1.7275905926330568,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.20010737960344704
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11217461727737632
+
+ Dataset D1 score on trained D1:  0.21411991517787465
+
+ Entire dataset R^2 using pipeline:  0.2250064611806316
+
+*********************************************************************************
+
+Test R^2 = 0.10128588275574424,	Difference Score = 1.80526328288467,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=17, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18662255411840267
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10655387122701176
+
+ Dataset D1 score on trained D1:  0.19543967207872004
+
+ Entire dataset R^2 using pipeline:  0.2110671106805576
+
+ ********************************************************************************
+
+Test R^2 = 0.09834013888521653,	Difference Score = 1.818077686370984,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=18, min_samples_split=15, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18375897324340063
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10789102752842017
+
+ Dataset D1 score on trained D1:  0.1898673550524257
+
+ Entire dataset R^2 using pipeline:  0.20777090592068137
+
+ ********************************************************************************
+
+Test R^2 = 0.09312206117334154,	Difference Score = 1.932075360268284,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16363327322799281
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10620369851815359
+
+ Dataset D1 score on trained D1:  0.16488558436819467
+
+ Entire dataset R^2 using pipeline:  0.18195525738398433
+
+ ********************************************************************************
+
+Test R^2 = 0.05842702011436918,	Difference Score = 1.9919881081204232,	Pipeline: input_matrix -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=11, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12437873802064536
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07381575405106022
+
+ Dataset D1 score on trained D1:  0.12193861727536826
+
+ Entire dataset R^2 using pipeline:  0.13617672885392584
+
+ *********************************************************************************
+
+Test R^2 = 0.05264759574060862,	Difference Score = 2.2387941014201354,	Pipeline: input_matrix -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.05, min_samples_leaf=16, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10116847208909507
+
+ Holdout data R^2 trained on entire dataset(80%):  0.06411215339930099
+
+ Dataset D1 score on trained D1:  0.09245312328531574
+
+ Entire dataset R^2 using pipeline:  0.11195186514626587
+
+ ************************************************************************************
+
+Test R^2 = 0.048545693237859955,	Difference Score = 2.276585762402289,	Pipeline: input_matrix -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=1, min_samples_split=17).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07155053409913315
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04830164960591088
+
+ Dataset D1 score on trained D1:  0.08577319887736878
+
+ Entire dataset R^2 using pipeline:  0.07272037334604053
+
+ ************************************************************************************
+
+
+Test R^2 = 0.04339066083732168,	Difference Score = 7.844558219632682,	Pipeline: input_matrix -> VarianceThreshold(0.15) -> HeterosisEncoder -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.045371731962488115
+
+ Holdout data R^2 trained on entire dataset(80%):  0.041648038829066536
+
+ Dataset D1 score on trained D1:  0.043126586597764915
+
+ Entire dataset R^2 using pipeline:  0.046078970258150664
+
+ ************************************************************************************
+
+Test R^2 = 0.04335044804853927,	Difference Score = 8.134080758495626,	Pipeline: input_matrix -> VarianceThreshold(0.25) -> HeterosisEncoder -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.045360219263295254
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04178876661227604
+
+ Dataset D1 score on trained D1:  0.04312201124201975
+
+ Entire dataset R^2 using pipeline:  0.046059063391207244
+
+ **********************************************************************************
+
+Test R^2 = 0.04001231366863722,	Difference Score = 11.198268135339237,	Pipeline: input_matrix -> UnderDominanceEncoder -> VarianceThreshold(0.25) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04229961436139995
+
+ Holdout data R^2 trained on entire dataset(80%):  0.036946689968076485
+
+ Dataset D1 score on trained D1:  0.03994872253733561
+
+ Entire dataset R^2 using pipeline:  0.042952550834510106
+
+ ***********************************************************************************
+
+Test R^2 = 0.03997492726305185,	Difference Score = 15.059144910020088,	Pipeline: input_matrix -> VarianceThreshold(0.15) -> UnderDominanceEncoder -> LinearRegression.
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04230070610265635
+
+ Holdout data R^2 trained on entire dataset(80%):  0.03694583661359507
+
+ Dataset D1 score on trained D1:  0.03995548267483717
+
+ Entire dataset R^2 using pipeline:  0.042953361455765116
+
+ ***********************************************************************************
+
+*******************************
+****** RANDOM SEED 132 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069326
+Entire Dataset R^2 using LR:  0.004800385046657585
+D2 Dataset R^2 value on only LR model trained on D1:  -0.009891061235444587
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.013293790651502047
+
+**********************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.11226175244272318,	Difference Score = 1.425821247194904,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.25, min_samples_leaf=4, min_samples_split=16, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.3096408593320752
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1194544450193401
+
+ Dataset D1 score on trained D1:  0.3542195771346297
+
+ Entire dataset R^2 using pipeline:  0.35599335772838314
+
+ *******************************************************************************
+
+
+Test R^2 = 0.1104071686385365,	Difference Score = 1.4510460170497284,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=5, min_samples_split=11, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.29934522463861224
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1237875423077951
+
+ Dataset D1 score on trained D1:  0.3359740100555767
+
+ Entire dataset R^2 using pipeline:  0.3425602741787319
+
+ ******************************************************************************
+
+Test R^2 = 0.11027059398254613,	Difference Score = 1.4660123055996697,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=4, min_samples_split=16, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2888153217264585
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12263694017115356
+
+ Dataset D1 score on trained D1:  0.3267664246298596
+
+ Entire dataset R^2 using pipeline:  0.32983335990217133
+
+ ****************************************************************************
+
+
+Test R^2 = 0.11015940366044108,	Difference Score = 1.752330844926403,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> RecessiveEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=10, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2074471461502928
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11483676575634283
+
+ Dataset D1 score on trained D1:  0.21621548532639956
+
+ Entire dataset R^2 using pipeline:  0.2313123212718301
+
+ ****************************************************************************
+
+Test R^2 = 0.1038131969225704,	Difference Score = 1.8362455581992705,	Pipeline: input_matrix -> HeterosisEncoder -> VarianceThreshold(0.0) -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=18, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18719063262764546
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1102419239720801
+
+ Dataset D1 score on trained D1:  0.1917715252667247
+
+ Entire dataset R^2 using pipeline:  0.21006954934908995
+
+ ****************************************************************************
+
+Test R^2 = 0.10122728873657616,	Difference Score = 1.8532854797202751,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6500000000000001, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18226322322819732
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1086966044223937
+
+ Dataset D1 score on trained D1:  0.1859950488458163
+
+ Entire dataset R^2 using pipeline:  0.20494133759803357
+
+ *****************************************************************************
+
+Test R^2 = 0.10036118424002682,	Difference Score = 1.8759634076354113,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=19, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18027721212814318
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10840564175628797
+
+ Dataset D1 score on trained D1:  0.18110375052754946
+
+ Entire dataset R^2 using pipeline:  0.20285517194704628
+
+ ******************************************************************************
+
+Test R^2 = 0.09944078289867042,	Difference Score = 1.9264393238899786,	Pipeline: input_matrix -> HeterosisEncoder -> VarianceThreshold(0.05) -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.45, min_samples_leaf=19, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17365364777395786
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10723734519059769
+
+ Dataset D1 score on trained D1:  0.17204781098125144
+
+ Entire dataset R^2 using pipeline:  0.19284981837613824
+
+ ********************************************************************************
+
+Test R^2 = 0.09818379928699039,	Difference Score = 2.0271312449627907,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.05) -> HeterosisEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16108355964258836
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10740080537529362
+
+ Dataset D1 score on trained D1:  0.15740436195667484
+
+ Entire dataset R^2 using pipeline:  0.1780545132308533
+
+ *********************************************************************************
+
+Test R^2 = 0.09451692633990316,	Difference Score = 2.0515894874527523,	Pipeline: input_matrix -> HeterosisEncoder -> VarianceThreshold(0.05) -> RecessiveEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15272786566402985
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1046678044107997
+
+ Dataset D1 score on trained D1:  0.15096357210137745
+
+ Entire dataset R^2 using pipeline:  0.17045367707549675
+
+ **********************************************************************************
+
+Test R^2 = 0.09165549645387305,	Difference Score = 2.1208860060624892,	Pipeline: input_matrix -> HeterosisEncoder -> RecessiveEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=16, min_samples_split=19, n_estimators=100).
+
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.14662941808805297
+
+ Holdout data R^2 trained on entire dataset(80%):  0.102587731152189
+
+ Dataset D1 score on trained D1:  0.14107867739366053
+
+ Entire dataset R^2 using pipeline:  0.1639286948856563
+
+ ***********************************************************************************
+
+Test R^2 = 0.09039270731443172,	Difference Score = 2.1289206846899624,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.14508033759361394
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10133412824845234
+
+ Dataset D1 score on trained D1:  0.13907399681088495
+
+ Entire dataset R^2 using pipeline:  0.16102692511287842
+
+ ************************************************************************************
+
+Test R^2 = 0.08839493324565639,	Difference Score = 2.152520389193075,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=17, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1432668340648623
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10055655885455561
+
+ Dataset D1 score on trained D1:  0.13497615813415909
+
+ Entire dataset R^2 using pipeline:  0.15884532378061722
+
+ *************************************************************************************
+
+Test R^2 = 0.08631310114962232,	Difference Score = 2.210508366064755,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13383679542524196
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09590156761571744
+
+ Dataset D1 score on trained D1:  0.12819548071729503
+
+ Entire dataset R^2 using pipeline:  0.14782018771110295
+
+ *************************************************************************************
+
+Test R^2 = 0.0833094676395576,	Difference Score = 2.2320258451945505,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(90) -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13141954567436887
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09486619707839428
+
+ Dataset D1 score on trained D1:  0.12360001093041484
+
+ Entire dataset R^2 using pipeline:  0.14316434391905075
+
+ ****************************************************************************************
+
+Test R^2 = 0.08294731472495875,	Difference Score = 2.235350979136645,	Pipeline:  input_matrix -> HeterosisEncoder -> VarianceThreshold(0.05) -> UnderDominanceEncoder -> RecessiveEncoder -> SelectPercentile(95) -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1338290073997882
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09786990020746378
+
+ Dataset D1 score on trained D1:  0.12299866010483251
+
+ Entire dataset R^2 using pipeline:  0.14911531706168712
+
+ *****************************************************************************************
+
+Test R^2 = 0.07933786633279194,	Difference Score = 2.2399952320396532,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=16, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12942547251249736
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09284561558570648
+
+ Dataset D1 score on trained D1:  0.11905808441848698
+
+ Entire dataset R^2 using pipeline:  0.14408543393020135
+
+ ******************************************************************************************
+
+Test R^2 = 0.07900217546410937,	Difference Score = 2.2421415415313115,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=16, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12905355850505873
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09447499416301475
+
+ Dataset D1 score on trained D1:  0.11857052169790638
+
+ Entire dataset R^2 using pipeline:  0.14355292913968765
+
+ ******************************************************************************************
+
+Test R^2 = 0.07870454042009967,	Difference Score = 2.313146363747242,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12042385180127135
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0856131026322432
+
+ Dataset D1 score on trained D1:  0.11363365251696256
+
+ Entire dataset R^2 using pipeline:  0.13798848785144557
+
+ *******************************************************************************************
+
+Test R^2 = 0.0757171847738729,	Difference Score = 2.3722348048016317,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11808123419531702
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08783329882404045
+
+ Dataset D1 score on trained D1:  0.10729407127610269
+
+ Entire dataset R^2 using pipeline:  0.13283486513846798
+
+ ********************************************************************************************
+
+Test R^2 = 0.07467464381017863,	Difference Score = 2.4173397757563793,	Pipeline: input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11687553119762539
+
+ Holdout data R^2 trained on entire dataset(80%):  0.08581861728148898
+
+ Dataset D1 score on trained D1:  0.10395991212574685
+
+ Entire dataset R^2 using pipeline:  0.13161078280260174
+
+ **********************************************************************************************
+
+Test R^2 = 0.07448772998418773,	Difference Score = 2.4550548832489154,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> VarianceThreshold(0.05) -> SelectPercentile(80) -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11767900839363488
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0935470953992048
+
+ Dataset D1 score on trained D1:  0.10201449520742789
+
+ Entire dataset R^2 using pipeline:  0.12416299340352033
+
+ ***********************************************************************************************
+
+Test R^2 = 0.06845044618316154,	Difference Score = 3.01082305700104,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(20) -> RandomForestRegressor(bootstrap=True, max_features=0.5, min_samples_leaf=16, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.041010892782068264
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04151338978480601
+
+ Dataset D1 score on trained D1:  0.056281329169871386
+
+ Entire dataset R^2 using pipeline:  0.0418480464633435
+
+ ************************************************************************************************
+
+Test R^2 = 0.06760153131547952,	Difference Score = 3.0688871871351817,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> SelectPercentile(20) -> DecisionTreeRegressor(max_depth=5, min_samples_leaf=9, min_samples_split=4).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.041136147414787994
+
+ Holdout data R^2 trained on entire dataset(80%):  0.041903174846974256
+
+ Dataset D1 score on trained D1:  0.05632757613162487
+
+ Entire dataset R^2 using pipeline:  0.041878628258689266
+
+ *************************************************************************************************
+
+
+Test R^2 = 0.058616373135868094,	Difference Score = 3.4497376323649096,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> SelectPercentile(25) -> RandomForestRegressor(bootstrap=True, max_features=0.6000000000000001, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.045346587511188696
+
+ Holdout data R^2 trained on entire dataset(80%):  0.045726266377084435
+
+ Dataset D1 score on trained D1:  0.06567720279978317
+
+ Entire dataset R^2 using pipeline:  0.04666290511570792
+
+ ***************************************************************************************************
+
+Test R^2 = 0.045764662847722515,	Difference Score = 3.462501424849456,	Pipeline: input_matrix -> HeterosisEncoder -> HeterosisEncoder -> OverDominanceEncoder -> HeterosisEncoder -> SelectPercentile(80) -> OverDominanceEncoder -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04560948123822517
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04233391070663284
+
+ Dataset D1 score on trained D1:  0.038807372039380894
+
+ Entire dataset R^2 using pipeline:  0.04637832170569145
+
+ ****************************************************************************************************
+
+Test R^2 = 0.045764662847722404,	Difference Score = 3.462501424849498,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(80) -> UnderDominanceEncoder -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04560948123822517
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04233391070663284
+
+ Dataset D1 score on trained D1:  0.038807372039381116
+
+ Entire dataset R^2 using pipeline:  0.04637832170569145
+
+ *****************************************************************************************************
+
+Test R^2 = 0.04576466284772229,	Difference Score = 3.462501424849511,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(80) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04560948123822517
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04233391070663284
+
+ Dataset D1 score on trained D1:  0.038807372039381116
+
+ Entire dataset R^2 using pipeline:  0.04637832170569145
+
+ *****************************************************************************************************
+
+Test R^2 = 0.045627231527853085,	Difference Score = 3.494319068550272,	Pipeline: input_matrix -> OverDominanceEncoder -> VarianceThreshold(0.25) -> DominantEncoder -> OverDominanceEncoder -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04595077674480541
+
+ Holdout data R^2 trained on entire dataset(80%):  0.043314545429646634
+
+ Dataset D1 score on trained D1:  0.038919900088327464
+
+ Entire dataset R^2 using pipeline:  0.04642674636091959
+
+ ******************************************************************************************************
+
+Test R^2 = 0.04417418185231403,	Difference Score = 3.7535103978757633,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(85) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.045648114948513174
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04245740914819396
+
+ Dataset D1 score on trained D1:  0.03913628226763144
+
+ Entire dataset R^2 using pipeline:  0.04637897661781465
+
+ *******************************************************************************************************
+
+Test R^2 = 0.04398917551528314,	Difference Score = 3.8138490652317283,	Pipeline: input_matrix -> HeterosisEncoder -> SelectPercentile(90) -> VarianceThreshold(0.1) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.045777713381978447
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04250409613331563
+
+ Dataset D1 score on trained D1:  0.0392626066117332
+
+ Entire dataset R^2 using pipeline:  0.046396320085189124
+
+ *********************************************************************************************************
+
+Test R^2 = 0.04398054218670433,	Difference Score = 3.8158165493406537,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> OverDominanceEncoder -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.045799891307466756
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04240717530496707
+
+ Dataset D1 score on trained D1:  0.03926371406517137
+
+ Entire dataset R^2 using pipeline:  0.04650302381806559
+
+ *********************************************************************************************************
+
+
+Test R^2 = 0.04153450200198716,	Difference Score = 3.9175797936453365,	Pipeline: input_matrix -> UnderDominanceEncoder -> VarianceThreshold(0.25) -> SelectPercentile(60) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04210319832721621
+
+ Holdout data R^2 trained on entire dataset(80%):  0.03812264703286028
+
+ Dataset D1 score on trained D1:  0.037289004437566664
+
+ Entire dataset R^2 using pipeline:  0.04247968960270643
+
+ *********************************************************************************************************
+
+Test R^2 = 0.04028880533053392,	Difference Score = 3.920754160642637,	Pipeline: input_matrix -> SelectPercentile(80) -> UnderDominanceEncoder -> SelectPercentile(95) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.037097270467889576
+
+ Holdout data R^2 trained on entire dataset(80%):  0.03328332814219537
+
+ Dataset D1 score on trained D1:  0.036057040235744076
+
+ Entire dataset R^2 using pipeline:  0.02583166498598599
+
+ *********************************************************************************************************
+
+Test R^2 = 0.040032878746888545,	Difference Score = 4.554748590385395,	Pipeline: input_matrix -> UnderDominanceEncoder -> SelectPercentile(55) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04237117787801703
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0383838643115455
+
+ Dataset D1 score on trained D1:  0.037709380444171936
+
+ Entire dataset R^2 using pipeline:  0.04275865400229528
+
+ *********************************************************************************************************
+
+Test R^2 = 0.03977396198062699,	Difference Score = 5.416142697893589,	Pipeline: input_matrix -> UnderDominanceEncoder -> SelectPercentile(85) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04266387243341008
+
+ Holdout data R^2 trained on entire dataset(80%):  0.037673278579653635
+
+ Dataset D1 score on trained D1:  0.0386118723990313
+
+ Entire dataset R^2 using pipeline:  0.043307686043991156
+
+ **********************************************************************************************************
+
+Test R^2 = 0.03962318575975621,	Difference Score = 5.697722723577338,	Pipeline: input_matrix -> UnderDominanceEncoder -> SelectPercentile(90) -> VarianceThreshold(0.1) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04266732959717545
+
+ Holdout data R^2 trained on entire dataset(80%):  0.037688995157768135
+
+ Dataset D1 score on trained D1:  0.03867434188775043
+
+ Entire dataset R^2 using pipeline:  0.04330960239983728
+
+ ************************************************************************************************************
+
+Test R^2 = 0.03919090585954477,	Difference Score = 5.756193154084992,	Pipeline: input_matrix -> UnderDominanceEncoder -> SelectPercentile(70) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.042348675639394595
+
+ Holdout data R^2 trained on entire dataset(80%):  0.03751929475143523
+
+ Dataset D1 score on trained D1:  0.03828003131486346
+
+ Entire dataset R^2 using pipeline:  0.043243106963259725
+
+ ************************************************************************************************************
+
+Test R^2 = 0.03867067075990438,	Difference Score = 8.873985088286917,	Pipeline: input_matrix -> UnderDominanceEncoder -> SelectPercentile(95) -> LinearRegression.
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.042666863215877315
+
+ Holdout data R^2 trained on entire dataset(80%):  0.03768658879185893
+
+ Dataset D1 score on trained D1:  0.03883193022749176
+
+ Entire dataset R^2 using pipeline:  0.043310215448198575
+
+ **************************************************************************************************
+
+Test R^2 = 0.038453043645077734,	Difference Score = 10.285701579514154,	Pipeline: input_matrix -> UnderDominanceEncoder -> VarianceThreshold(0.25) -> LinearRegression
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04229961436139995
+
+ Holdout data R^2 trained on entire dataset(80%):  0.036946689968076485
+
+ Dataset D1 score on trained D1:  0.038542387424552405
+
+ Entire dataset R^2 using pipeline:  0.042952550834510106
+
+ **************************************************************************************************
+
+*******************************
+****** RANDOM SEED 142 ********
+*******************************
+
+Holdout LR on 80% trained data:  -0.006700906367069326
+Entire Dataset R^2 using LR:  0.004800385046657585
+D2 Dataset R^2 value on only LR model trained on D1:  -0.007807003093999176
+80% Dataset R^2 using LR:  0.006404671609474222
+D1 Dataset R^2 value on only LR model trained on D1:  0.0075632218433535625
+
+*******************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.10603232495885029,	Difference Score = 1.3303544257725641,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=2, min_samples_split=11, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.365517906162652
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12428066668323912
+
+ Dataset D1 score on trained D1:  0.42528207433670884
+
+ Entire dataset R^2 using pipeline:  0.42539273731228733
+
+ *****************************************************************************
+
+Test R^2 = 0.10535998562461135,	Difference Score = 1.3533627205195706,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=2, min_samples_split=7, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.3486281036122204
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12402122842383911
+
+ Dataset D1 score on trained D1:  0.40344707244497224
+
+ Entire dataset R^2 using pipeline:  0.40366169036730615
+
+ *****************************************************************************
+
+Test R^2 = 0.1052455919613563,	Difference Score = 1.3905626510336293,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=2, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.32353015665903295
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12479631930265334
+
+ Dataset D1 score on trained D1:  0.3726926086755733
+
+ Entire dataset R^2 using pipeline:  0.37706482663570673
+
+ *****************************************************************************
+
+Test R^2 = 0.10439684968122254,	Difference Score = 1.4765117912692873,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7000000000000001, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.28095221525296155
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11809550504136024
+
+ Dataset D1 score on trained D1:  0.3148000405477718
+
+ Entire dataset R^2 using pipeline:  0.3253189754053347
+
+ ******************************************************************************
+
+Test R^2 = 0.10336693417661047,	Difference Score = 1.4804257930458844,	Pipeline: input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.05) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7000000000000001, min_samples_leaf=2, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.27974414119451774
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11571970700841172
+
+ Dataset D1 score on trained D1:  0.31155384821639087
+
+ Entire dataset R^2 using pipeline:  0.3225325219506717
+
+ *******************************************************************************
+
+Test R^2 = 0.10277165080310768,	Difference Score = 1.5480477427750494,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=2, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.25303117449023016
+
+ Holdout data R^2 trained on entire dataset(80%):  0.12139801776158621
+
+ Dataset D1 score on trained D1:  0.27689723965490853
+
+ Entire dataset R^2 using pipeline:  0.2906797907282336
+
+ ********************************************************************************
+
+Test R^2 = 0.0975398686805915,	Difference Score = 1.5858684621959915,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.55, min_samples_leaf=10, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.23508423319732685
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11387178716999335
+
+ Dataset D1 score on trained D1:  0.2556396794306992
+
+ Entire dataset R^2 using pipeline:  0.267222400142064
+
+ *********************************************************************************
+
+Test R^2 = 0.09699614041865456,	Difference Score = 1.6016154326824494,	Pipeline:  input_matrix -> HeterosisEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=7, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.23011392525678898
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11442533153906964
+
+ Dataset D1 score on trained D1:  0.2489693447009933
+
+ Entire dataset R^2 using pipeline:  0.25985806470587247
+
+ ********************************************************************************
+
+Test R^2 = 0.09610785779455888,	Difference Score = 1.6546595173208283,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.25, min_samples_leaf=8, min_samples_split=8, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.21438217701546647
+
+ Holdout data R^2 trained on entire dataset(80%):  0.112862540182874
+
+ Dataset D1 score on trained D1:  0.22951080779577016
+
+ Entire dataset R^2 using pipeline:  0.24250091925217743
+
+ ********************************************************************************
+
+Test R^2 = 0.09509208181068296,	Difference Score = 1.6833684645760376,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.4, min_samples_leaf=12, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.2044230229871833
+
+ Holdout data R^2 trained on entire dataset(80%):  0.11476734678252865
+
+ Dataset D1 score on trained D1:  0.2196247381215538
+
+ Entire dataset R^2 using pipeline:  0.2324864274543742
+
+ ********************************************************************************
+
+Test R^2 = 0.09496188986389376,	Difference Score = 1.7133251751652734,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=8, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1984681830830014
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1114994892260045
+
+ Dataset D1 score on trained D1:  0.21101073278361349
+
+ Entire dataset R^2 using pipeline:  0.22301050325013516
+
+ ********************************************************************************
+
+Test R^2 = 0.0944335649426078,	Difference Score = 1.7547400799782351,	Pipeline: input_matrix -> HeterosisEncoder -> RecessiveEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.8, min_samples_leaf=18, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1919164680166101
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10662756754819636
+
+ Dataset D1 score on trained D1:  0.19990839064315347
+
+ Entire dataset R^2 using pipeline:  0.21901679075727154
+
+ ********************************************************************************
+
+Test R^2 = 0.09420007071446779,	Difference Score = 1.7654003672379954,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.55, min_samples_leaf=16, min_samples_split=13, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1903979036107375
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1080820559184057
+
+ Dataset D1 score on trained D1:  0.19715026004109248
+
+ Entire dataset R^2 using pipeline:  0.21323325961506834
+
+ ********************************************************************************
+
+Test R^2 = 0.0940487878331231,	Difference Score = 1.7738476117905164,	Pipeline: input_matrix -> HeterosisEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.9000000000000001, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.18946365826412337
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10163959351103036
+
+ Dataset D1 score on trained D1:  0.1950519032240644
+
+ Entire dataset R^2 using pipeline:  0.2171967391505607
+
+ *******************************************************************************
+
+Test R^2 = 0.09322772144130265,	Difference Score = 1.7867854872308437,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7000000000000001, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1823015669084872
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10381802618996239
+
+ Dataset D1 score on trained D1:  0.1913370570235169
+
+ Entire dataset R^2 using pipeline:  0.20703231883539963
+
+ *******************************************************************************
+
+Test R^2 = 0.09322504918324304,	Difference Score = 1.8218017413322263,	Pipeline: input_matrix -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.05) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.7000000000000001, min_samples_leaf=20, min_samples_split=19, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.17883235927805763
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10301936244307952
+
+ Dataset D1 score on trained D1:  0.18400617171383016
+
+ Entire dataset R^2 using pipeline:  0.2029883426293534
+
+ ******************************************************************************
+
+Test R^2 = 0.09151443355765099,	Difference Score = 1.9034081485887047,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=18, min_samples_split=18, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16766263258285796
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10706712099682247
+
+ Dataset D1 score on trained D1:  0.16769993022398177
+
+ Entire dataset R^2 using pipeline:  0.18972294307584991
+
+ ******************************************************************************
+
+Test R^2 = 0.08731122744725983,	Difference Score = 1.9143347205956929,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=18, min_samples_split=7, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1585169726234753
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10386392206675255
+
+ Dataset D1 score on trained D1:  0.16177216408529382
+
+ Entire dataset R^2 using pipeline:  0.17872250188912742
+
+ *****************************************************************************
+
+Test R^2 = 0.08692941413205146,	Difference Score = 1.9234119808268177,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.35000000000000003, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.16108355964258836
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10740080537529362
+
+ Dataset D1 score on trained D1:  0.15999464019655163
+
+ Entire dataset R^2 using pipeline:  0.1780545132308533
+
+ *****************************************************************************
+
+
+Test R^2 = 0.08661319162228664,	Difference Score = 1.9754272074281083,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> FeatureEncodingFrequencySelector(0.05) -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1529275493195308
+
+ Holdout data R^2 trained on entire dataset(80%):  0.10361870710439425
+
+ Dataset D1 score on trained D1:  0.1522815071228366
+
+ Entire dataset R^2 using pipeline:  0.169744793170156
+
+ *****************************************************************************
+
+Test R^2 = 0.08494204053913224,	Difference Score = 1.9780732125834155,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> UnderDominanceEncoder -> FeatureEncodingFrequencySelector(0.05) -> RandomForestRegressor(bootstrap=True, max_features=0.3, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.15272786566402985
+
+ Holdout data R^2 trained on entire dataset(80%):  0.1046678044107997
+
+ Dataset D1 score on trained D1:  0.15025969082892476
+
+ Entire dataset R^2 using pipeline:  0.17045367707549675
+
+ *****************************************************************************
+
+Test R^2 = 0.08283343738381788,	Difference Score = 2.002265406049188,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=16, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.14662941808805297
+
+ Holdout data R^2 trained on entire dataset(80%):  0.102587731152189
+
+ Dataset D1 score on trained D1:  0.14505106169975712
+
+ Entire dataset R^2 using pipeline:  0.1639286948856563
+
+ ******************************************************************************
+
+Test R^2 = 0.08157452841823642,	Difference Score = 2.0737010544756505,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=18, min_samples_split=7, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13907005947878626
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09832636319388166
+
+ Dataset D1 score on trained D1:  0.13565187899376863
+
+ Entire dataset R^2 using pipeline:  0.15533389526799557
+
+ ******************************************************************************
+
+Test R^2 = 0.0788922886889254,	Difference Score = 2.10228404254795,	Pipeline:  input_matrix -> OverDominanceEncoder -> DominantEncoder -> FeatureEncodingFrequencySelector(0.05) -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13416542394963282
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09797322965285937
+
+ Dataset D1 score on trained D1:  0.13008809941977817
+
+ Entire dataset R^2 using pipeline:  0.14870198553640057
+
+ *****************************************************************************
+
+Test R^2 = 0.07652433477204634,	Difference Score = 2.1037451518449806,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=20, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.13383679542524196
+
+ Holdout data R^2 trained on entire dataset(80%):  0.09590156761571744
+
+ Dataset D1 score on trained D1:  0.12757806596965726
+
+ Entire dataset R^2 using pipeline:  0.14782018771110295
+
+ *****************************************************************************
+
+Test R^2 = 0.07318903883682326,	Difference Score = 2.1253086201977225,	Pipeline:  input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=18, min_samples_split=7, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12042385180127135
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0856131026322432
+
+ Dataset D1 score on trained D1:  0.12220211777111178
+
+ Entire dataset R^2 using pipeline:  0.13798848785144557
+
+ *****************************************************************************
+
+Test R^2 = 0.07312312832268852,	Difference Score = 2.161967969506899,	Pipeline: input_matrix -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.12058420845924778
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0882059902567578
+
+ Dataset D1 score on trained D1:  0.11889545389799472
+
+ Entire dataset R^2 using pipeline:  0.1337486815800346
+
+ *****************************************************************************
+
+Test R^2 = 0.06688257842928214,	Difference Score = 2.1924827735340724,	Pipeline: input_matrix -> SelectPercentile(90) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=19, min_samples_split=3, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.11214489794291893
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0822107511857797
+
+ Dataset D1 score on trained D1:  0.11015938844290674
+
+ Entire dataset R^2 using pipeline:  0.12492115290416905
+
+ ******************************************************************************
+
+Test R^2 = 0.06326767559236934,	Difference Score = 2.2090311660698045,	Pipeline: input_matrix -> SelectPercentile(65) -> VarianceThreshold(0.1) -> OverDominanceEncoder -> DominantEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=18, min_samples_split=7, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.1045671862378752
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07657438009557682
+
+ Dataset D1 score on trained D1:  0.1052621961524084
+
+ Entire dataset R^2 using pipeline:  0.10601853786458992
+
+ ******************************************************************************
+
+Test R^2 = 0.06311066169112522,	Difference Score = 2.209842688554558,	Pipeline: input_matrix -> SelectPercentile(65) -> VarianceThreshold(0.1) -> OverDominanceEncoder -> DominantEncoder -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.2, min_samples_leaf=18, min_samples_split=7, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10462989936549649
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07508006504222886
+
+ Dataset D1 score on trained D1:  0.1050435294830705
+
+ Entire dataset R^2 using pipeline:  0.10867117034295415
+
+ ******************************************************************************
+
+Test R^2 = 0.06010370197931747,	Difference Score = 2.293144484499325,	Pipeline:  input_matrix -> SelectPercentile(90) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=17, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.10064442038359589
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07243459480428172
+
+ Dataset D1 score on trained D1:  0.09626752398280358
+
+ Entire dataset R^2 using pipeline:  0.11314546638653333
+
+ *****************************************************************************
+
+Test R^2 = 0.05957637945135197,	Difference Score = 2.338890451869507,	Pipeline: input_matrix -> SelectPercentile(75) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=19, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09878197841009795
+
+ Holdout data R^2 trained on entire dataset(80%):  0.07367421732509727
+
+ Dataset D1 score on trained D1:  0.09299284218557269
+
+ Entire dataset R^2 using pipeline:  0.0992196585113474
+
+ *****************************************************************************
+
+Test R^2 = 0.058809538208933754,	Difference Score = 2.5817717754885576,	Pipeline: input_matrix -> OverDominanceEncoder -> DominantEncoder -> DecisionTreeRegressor(max_depth=4, min_samples_leaf=4, min_samples_split=11).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07155053409913315
+
+ Holdout data R^2 trained on entire dataset(80%):  0.04830164960591088
+
+ Dataset D1 score on trained D1:  0.08131710798866254
+
+ Entire dataset R^2 using pipeline:  0.07272037334604053
+
+ *****************************************************************************
+
+Test R^2 = 0.044622679139704635,	Difference Score = 3.6207786860430997,	Pipeline: input_matrix -> SelectPercentile(10) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=3, min_samples_split=6, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0018497794048347727
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.0057935462924403325
+
+ Dataset D1 score on trained D1:  0.03880443314062121
+
+ Entire dataset R^2 using pipeline:  0.00036137861278418004
+
+ ******************************************************************************
+
+Test R^2 = 0.0445373061745441,	Difference Score = 3.636775610445376,	Pipeline: input_matrix -> SelectPercentile(45) -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=14, min_samples_split=4).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04434928740845656
+
+ Holdout data R^2 trained on entire dataset(80%):  0.049893285827293465
+
+ Dataset D1 score on trained D1:  0.03882075656712103
+
+ Entire dataset R^2 using pipeline:  0.006840908616424057
+
+ ******************************************************************************
+
+Test R^2 = 0.04453730617454388,	Difference Score = 3.636775610445411,	Pipeline: input_matrix -> SelectPercentile(45) -> SelectPercentile(55) -> HeterosisEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=14, min_samples_split=4).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0063453560689444855
+
+ Holdout data R^2 trained on entire dataset(80%):  0.004725393682744938
+
+ Dataset D1 score on trained D1:  0.03882075656712103
+
+ Entire dataset R^2 using pipeline:  0.0065508020219494645
+
+ *******************************************************************************
+
+Test R^2 = 0.044191061058018954,	Difference Score = 5.761897369912441,	Pipeline: input_matrix -> SelectPercentile(20) -> FeatureEncodingFrequencySelector(0.0) -> HeterosisEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.15000000000000002, min_samples_leaf=1, min_samples_split=3, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.008395911591936867
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.002081351524506392
+
+ Dataset D1 score on trained D1:  0.04509833393190532
+
+ Entire dataset R^2 using pipeline:  0.009449793105556936
+
+ *******************************************************************************
+
+Test R^2 = 0.04291293930459794,	Difference Score = 5.854548776159338,	Pipeline:  input_matrix -> SelectPercentile(10) -> FeatureEncodingFrequencySelector(0.35) -> UnderDominanceEncoder -> FeatureEncodingFrequencySelector(0.3) -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=2, min_samples_split=14, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0023928363577259137
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.007655240882555425
+
+ Dataset D1 score on trained D1:  0.04206174974986088
+
+ Entire dataset R^2 using pipeline:  0.004707241843990184
+
+ *******************************************************************************
+
+Test R^2 = 0.04283795991089179,	Difference Score = 6.06899914648786,	Pipeline: input_matrix -> SelectPercentile(45) -> SelectPercentile(20) -> RandomForestRegressor(bootstrap=False, max_features=0.15000000000000002, min_samples_leaf=1, min_samples_split=20, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0023928363577259137
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.007655240882555647
+
+ Dataset D1 score on trained D1:  0.04210085094409455
+
+ Entire dataset R^2 using pipeline:  0.004707241843990184
+
+ *********************************************************************************
+
+Test R^2 = 0.04263864050171495,	Difference Score = 11.34404537964519,	Pipeline: input_matrix -> SelectPercentile(15) -> HeterosisEncoder -> UnderDominanceEncoder -> OverDominanceEncoder -> RandomForestRegressor(bootstrap=True, max_features=0.1, min_samples_leaf=2, min_samples_split=12, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.007963445140490633
+
+ Holdout data R^2 trained on entire dataset(80%):  0.0026121029860135536
+
+ Dataset D1 score on trained D1:  0.04257825562563544
+
+ Entire dataset R^2 using pipeline:  0.002770263813164253
+
+ ********************************************************************************
+
+Test R^2 = 0.042218922481348065,	Difference Score = 12.331326286942405,	Pipeline: input_matrix -> SelectPercentile(10) -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=2, min_samples_split=5, n_estimators=100).
+
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0023928363577259137
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.007655240882555425
+
+ Dataset D1 score on trained D1:  0.042175674997749435
+
+ Entire dataset R^2 using pipeline:  0.004707241843990184
+
+ ********************************************************************************
+
+Test R^2 = 0.04215455419063363,	Difference Score = 14.362924601474944,	Pipeline: input_matrix -> SelectPercentile(10) -> UnderDominanceEncoder -> RandomForestRegressor(bootstrap=False, max_features=0.3, min_samples_leaf=2, min_samples_split=2, n_estimators=100).
+
+ Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0023928363577259137
+
+ Holdout data R^2 trained on entire dataset(80%):  -0.007655240882555425
+
+ Dataset D1 score on trained D1:  0.042178052059587134
+
+ Entire dataset R^2 using pipeline:  0.004707241843990184
+
+ *********************************************************************************

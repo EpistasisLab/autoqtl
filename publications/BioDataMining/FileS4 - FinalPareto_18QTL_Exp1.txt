@@ -1,0 +1,1101 @@
+*******************************
+******* RANDOM SEED 12 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.08631108293536394
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.09240932401880586
+
+**************************************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process:
+
+Test R^2 = 0.08631108293536394,      Difference Score = 3.578482128634093,        Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.09240932401880586
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+.......................................................................................................................................................................
+
+
+Test R^2 = 0.07787564391058166,      Difference Score = 3.588636448904052,        Pipeline: input_matrix -> VarianceThreshold(0.35) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08377021700941711
+
+Holdout data R^2 trained on entire dataset(80%):  0.09597672553604775
+
+Dataset D1 score on trained D1:  0.08390515564403267
+
+Entire dataset R^2 using pipeline:  0.08774944244349647
+
+.......................................................................................................................................................................
+
+Test R^2 = 0.06085101748365207,      Difference Score = 4.8953272930182425,       Pipeline: input_matrix -> RecessiveEncoder -> VarianceThreshold(0.05) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06465940503774203
+
+Holdout data R^2 trained on entire dataset(80%):  0.09389664776217277
+
+Dataset D1 score on trained D1:  0.06259231534604526
+
+Entire dataset R^2 using pipeline:  0.0722314057137996
+
+...........................................................................................................................................................................
+
+Test R^2 = 0.05765649431149056,      Difference Score = 5.514152895917354,        Pipeline: input_matrix -> VarianceThreshold(0.05) -> VarianceThreshold(0.35) -> RecessiveEncoder -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.060925372850749615
+
+Holdout data R^2 trained on entire dataset(80%):  0.08671311470859
+
+Dataset D1 score on trained D1:  0.05873813940336581
+
+Entire dataset R^2 using pipeline:  0.06779134938194997
+
+...........................................................................................................................................................................
+
+Test R^2 = 0.027394596084872158,     Difference Score = 8.81939308067846, 	Pipeline: input_matrix -> RecessiveEncoder -> OverDominanceEncoder -> FeatureEncodingFrequencySelector(0.3) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02867877876985092
+
+Holdout data R^2 trained on entire dataset(80%):  0.045483605911155855
+
+Dataset D1 score on trained D1:  0.02755988556045552
+
+Entire dataset R^2 using pipeline:  0.033538634281466306
+
+..........................................................................................................................................................................
+
+*******************************
+******* RANDOM SEED 22 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.0869471529521273
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.09067697610198533
+
+**************************************************************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.0869471529521273,       (1/Train_test_diff)^1/4 = 4.046485047747463,        Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.09067697610198533
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+..................................................................................................................................................................................
+
+Test R^2 = 0.05540878158234919,      (1/Train_test_diff)^1/4 = 4.552718586890303,        Pipeline: input_matrix -> SelectPercentile(75) -> DominantEncoder -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06213164345050082
+
+Holdout data R^2 trained on entire dataset(80%):  0.047468646451600094
+
+Dataset D1 score on trained D1:  0.05308113642521062
+
+Entire dataset R^2 using pipeline:  0.060384486271611304
+
+..............................................................................................................................................................................
+
+*******************************
+******* RANDOM SEED 32 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.08988245529269534
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.08763794709028705
+
+*********************************************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process:
+
+Test R^2 = 0.08988245529269534,      (1/Train_test_diff)^1/4 = 4.594303705864555,        Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.08763794709028705
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+....................................................................................................................................................................................
+
+Test R^2 = 0.08714170504031193,      (1/Train_test_diff)^1/4 = 13.645798601770473,       Pipeline: input_matrix -> SelectPercentile(95) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09010905228405508
+
+Holdout data R^2 trained on entire dataset(80%):  0.10096485926283216
+
+Dataset D1 score on trained D1:  0.08711286444829258
+
+Entire dataset R^2 using pipeline:  0.09335898305840362
+
+....................................................................................................................................................................................
+
+*******************************
+******* RANDOM SEED 62 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.0767204990987369
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.10180537302418013
+
+**************************************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.0767204990987369,       (1/Train_test_diff)^1/4 = 2.5127369106556974,       Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.10180537302418013
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+.............................................................................................................................................
+
+Test R^2 = 0.0753835611616116,       (1/Train_test_diff)^1/4 = 2.5584379958903876,       Pipeline: input_matrix -> OverDominanceEncoder -> VarianceThreshold(0.25) -> UnderDominanceEncoder -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09020820799653506
+
+Holdout data R^2 trained on entire dataset(80%):  0.10413841649012945
+
+Dataset D1 score on trained D1:  0.0987235376924912
+
+Entire dataset R^2 using pipeline:  0.09452659757301596
+
+.............................................................................................................................................
+
+Test R^2 = 0.054845509247715585,     (1/Train_test_diff)^1/4 = 2.90427794602194, 	Pipeline: input_matrix -> RecessiveEncoder -> VarianceThreshold(0.05) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06465940503774203
+
+Holdout data R^2 trained on entire dataset(80%):  0.09389664776217277
+
+Dataset D1 score on trained D1:  0.06890104137071917
+
+Entire dataset R^2 using pipeline:  0.0722314057137996
+
+.................................................................................................................................................
+
+Test R^2 = 0.05347561270730439,      (1/Train_test_diff)^1/4 = 3.039523067613143,        Pipeline: input_matrix -> OverDominanceEncoder -> VarianceThreshold(0.25) -> HeterosisEncoder -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0626559823548617
+
+Holdout data R^2 trained on entire dataset(80%):  0.09118217256563632
+
+Dataset D1 score on trained D1:  0.06519158201364805
+
+Entire dataset R^2 using pipeline:  0.0701042979917933
+
+.................................................................................................................................................
+
+Test R^2 = 0.038735569899003175,     (1/Train_test_diff)^1/4 = 3.102218449867834,        Pipeline: input_matrix -> RecessiveEncoder 
+-> FeatureEncodingFrequencySelector(0.2) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.04589383627513999
+
+Holdout data R^2 trained on entire dataset(80%):  0.07691165370471742
+
+Dataset D1 score on trained D1:  0.0495327536984983
+
+Entire dataset R^2 using pipeline:  0.05362226822457283
+
+.................................................................................................................................................
+
+Test R^2 = 0.020687834214605405,     (1/Train_test_diff)^1/4 = 3.379726662100038,        Pipeline: input_matrix -> RecessiveEncoder 
+-> HeterosisEncoder -> SelectPercentile(10) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02513933638602439
+
+Holdout data R^2 trained on entire dataset(80%):  0.0410530931461881
+
+Dataset D1 score on trained D1:  0.028352155267967638
+
+Entire dataset R^2 using pipeline:  0.028957404270238296
+
+...................................................................................................................................................
+
+Test R^2 = 0.019121868922764462,     (1/Train_test_diff)^1/4 = 4.026539944664486,        Pipeline: input_matrix -> VarianceThreshold(0.05) -> FeatureEncodingFrequencySelector(0.2) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.030889271781706307
+
+Holdout data R^2 trained on entire dataset(80%):  0.04233716325543335
+
+Dataset D1 score on trained D1:  0.022926144356445466
+
+Entire dataset R^2 using pipeline:  0.034152498103147355
+
+...............................................................................................................................................
+
+Test R^2 = 0.012079056619669015,     (1/Train_test_diff)^1/4 = 4.360954347913667,        Pipeline: input_matrix -> DecisionTreeRegressor(max_depth=1, min_samples_leaf=12, min_samples_split=16).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.014067044334259982
+
+Holdout data R^2 trained on entire dataset(80%):  0.03411708381973
+
+Dataset D1 score on trained D1:  0.01484392103244958
+
+Entire dataset R^2 using pipeline:  0.01942234525120068
+
+..................................................................................................................................................
+
+Test R^2 = 0.00011243006032479741,   (1/Train_test_diff)^1/4 = 5.263505444789939,        Pipeline: input_matrix -> UnderDominanceEncoder -> VarianceThreshold(0.05) -> FeatureEncodingFrequencySelector(0.2) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.00571431800476796
+
+Holdout data R^2 trained on entire dataset(80%):  0.009867906965262851
+
+Dataset D1 score on trained D1:  0.0014152958898089318
+
+Entire dataset R^2 using pipeline:  0.007613239023511298
+
+..................................................................................................................................................
+
+Test R^2 = -0.0010460021450329204,   (1/Train_test_diff)^1/4 = 5.5605385532123,  Pipeline: input_matrix -> RecessiveEncoder -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.2) -> DominantEncoder -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0
+
+Holdout data R^2 trained on entire dataset(80%):  -0.004656297894350514
+
+Dataset D1 score on trained D1:  0.0
+
+Entire dataset R^2 using pipeline:  0.0
+
+.............................................................................................................................................
+
+*******************************
+******* RANDOM SEED 72 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.0985179952408668
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.07993823433806713
+
+****************************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.0985179952408668,       (1/Train_test_diff)^1/4 = 2.708569412798005,        Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.07993823433806713
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+.........................................................................................................................................
+
+Test R^2 = 0.07868490099484937,      (1/Train_test_diff)^1/4 = 3.194188868803213,        Pipeline: input_matrix -> SelectPercentile(75)-> LinearRegression. 
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0811124285192737
+
+Holdout data R^2 trained on entire dataset(80%):  0.08951578645790093
+
+Dataset D1 score on trained D1:  0.06907856810213875
+
+Entire dataset R^2 using pipeline:  0.08435892318994609
+
+.........................................................................................................................................
+
+
+Test R^2 = 0.07716923399515219,      (1/Train_test_diff)^1/4 = 3.2146618275393672,       Pipeline: input_matrix -> SelectPercentile(70) 
+-> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07707799897062029
+
+Holdout data R^2 trained on entire dataset(80%):  0.08417418831001033
+
+Dataset D1 score on trained D1:  0.06780528957907139
+
+Entire dataset R^2 using pipeline:  0.08210579314268718
+
+........................................................................................................................................
+
+Test R^2 = 0.07280259069750816,      (1/Train_test_diff)^1/4 = 3.2492543258306323,       Pipeline: input_matrix -> SelectPercentile(60) 
+-> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07377797395535113
+
+Holdout data R^2 trained on entire dataset(80%):  0.08069037584621397
+
+Dataset D1 score on trained D1:  0.06383108831495832
+
+Entire dataset R^2 using pipeline:  0.07759629592148998
+
+........................................................................................................................................
+
+Test R^2 = 0.06373955217142002,      (1/Train_test_diff)^1/4 = 3.278785463194319,        Pipeline: input_matrix -> SelectPercentile(50) 
+-> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06519515532011211
+
+Holdout data R^2 trained on entire dataset(80%):  0.08097627478305869
+
+Dataset D1 score on trained D1:  0.05508692489560851
+
+Entire dataset R^2 using pipeline:  0.06985752704755255
+
+.......................................................................................................................................
+
+Test R^2 = 0.06114722883777235,      (1/Train_test_diff)^1/4 = 5.073285409282768,        Pipeline: input_matrix -> RecessiveEncoder 
+-> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06473076379800125
+
+Holdout data R^2 trained on entire dataset(80%):  0.09373270369256015
+
+Dataset D1 score on trained D1:  0.05963769511668471
+
+Entire dataset R^2 using pipeline:  0.07227123724627071
+
+.......................................................................................................................................
+
+Test R^2 = 0.023914774162756336,     (1/Train_test_diff)^1/4 = 5.533376399010954,        Pipeline: input_matrix -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=5, min_samples_split=8).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.025175754934871897
+
+Holdout data R^2 trained on entire dataset(80%):  0.04129637796522201
+
+Dataset D1 score on trained D1:  0.024981466429061405
+
+Entire dataset R^2 using pipeline:  0.029762600032391173
+
+
+.....................................................................................................................................
+
+Test R^2 = 0.019026037223216052,     (1/Train_test_diff)^1/4 = 5.611092589719371,        Pipeline: input_matrix -> SelectPercentile(10) 
+-> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02260608005018827
+
+Holdout data R^2 trained on entire dataset(80%):  0.04572400265792376
+
+Dataset D1 score on trained D1:  0.01801722517714066
+
+Entire dataset R^2 using pipeline:  0.028482798076145177
+
+.......................................................................................................................................
+
+*******************************
+******* RANDOM SEED 92 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.07446833671384057
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.09880593468277243
+
+*****************************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.07446833671384057,      (1/Train_test_diff)^1/4 = 2.531806857375887,        Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.09880593468277243
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+...............................................................................................................................................
+
+Test R^2 = 0.07227343624530258,      (1/Train_test_diff)^1/4 = 2.5799955751787373,       Pipeline: input_matrix -> VarianceThreshold(0.25) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08837608611413839
+
+Holdout data R^2 trained on entire dataset(80%):  0.10319605043731006
+
+Dataset D1 score on trained D1:  0.0948430514890457
+
+Entire dataset R^2 using pipeline:  0.09288422196132773
+
+.....................................................................................................................................................
+
+Test R^2 = 0.05563736053692858,      (1/Train_test_diff)^1/4 = 2.5909534727469548,       Pipeline: input_matrix -> DominantEncoder -> RecessiveEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07072842356962394
+
+Holdout data R^2 trained on entire dataset(80%):  0.05261636057293195
+
+Dataset D1 score on trained D1:  0.07782757723201117
+
+Entire dataset R^2 using pipeline:  0.06839215679131816
+
+.....................................................................................................................................................
+
+Test R^2 = 0.054735480998464925,     (1/Train_test_diff)^1/4 = 2.6168783966662583,       Pipeline: input_matrix -> SelectPercentile(95) 
+-> DominantEncoder -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06946842338822601
+
+Holdout data R^2 trained on entire dataset(80%):  0.05109356084160055
+
+Dataset D1 score on trained D1:  0.07605934147422411
+
+Entire dataset R^2 using pipeline:  0.06489115439378346
+
+...................................................................................................................................................
+
+Test R^2 = 0.05243113575017133,      (1/Train_test_diff)^1/4 = 2.8930574863538334,       Pipeline: input_matrix -> UnderDominanceEncoder -> HeterosisEncoder -> VarianceThreshold(0.1) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06327793486270883
+
+Holdout data R^2 trained on entire dataset(80%):  0.053642117760088204
+
+Dataset D1 score on trained D1:  0.0667059920997819
+
+Entire dataset R^2 using pipeline:  0.06246988988953661
+
+...................................................................................................................................................
+
+Test R^2 = 0.0473658742759826,       (1/Train_test_diff)^1/4 = 3.0889859084780418,       Pipeline: input_matrix -> DominantEncoder -> RecessiveEncoder -> FeatureEncodingFrequencySelector(0.15) -> VarianceThreshold(0.1) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.05601950298571334
+
+Holdout data R^2 trained on entire dataset(80%):  0.04726724462848475
+
+Dataset D1 score on trained D1:  0.05834926140971608
+
+Entire dataset R^2 using pipeline:  0.055408466955421565
+
+..................................................................................................................................................
+
+Test R^2 = 0.04350063363052248,      (1/Train_test_diff)^1/4 = 3.8308676867171667,       Pipeline: input_matrix -> DominantEncoder -> FeatureEncodingFrequencySelector(0.2) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.048651695939533
+
+Holdout data R^2 trained on entire dataset(80%):  0.04247831365660426
+
+Dataset D1 score on trained D1:  0.048143769484747745
+
+Entire dataset R^2 using pipeline:  0.04853550695475395
+
+...................................................................................................................................................
+
+Test R^2 = 0.025734614881795403,     (1/Train_test_diff)^1/4 = 4.138896828675679,        Pipeline: input_matrix -> DominantEncoder -> RecessiveEncoder -> VarianceThreshold(0.2) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.020335159413359505
+
+Holdout data R^2 trained on entire dataset(80%):  0.011168593861217824
+
+Dataset D1 score on trained D1:  0.02232691297771605
+
+Entire dataset R^2 using pipeline:  0.02303404289161315
+
+......................................................................................................................................................
+
+Test R^2 = 0.017338660863866262,     (1/Train_test_diff)^1/4 = 4.568667362350319,        Pipeline: input_matrix -> OverDominanceEncoder -> SelectPercentile(15) -> UnderDominanceEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.016919430371709954
+
+Holdout data R^2 trained on entire dataset(80%):  0.008695889515879185
+
+Dataset D1 score on trained D1:  0.01504334824430631
+
+Entire dataset R^2 using pipeline:  0.021148052259671868
+
+..........................................................................................................................................................
+
+Test R^2 = 0.0019873917414989783,    (1/Train_test_diff)^1/4 = 4.630915967395195,        Pipeline: input_matrix -> HeterosisEncoder 
+-> DecisionTreeRegressor(max_depth=1, min_samples_leaf=12, min_samples_split=16).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.003906432569731999
+
+Holdout data R^2 trained on entire dataset(80%):  -0.0035722515185581116
+
+Dataset D1 score on trained D1:  0.004161756490232649
+
+Entire dataset R^2 using pipeline:  0.005965971347645316
+
+.........................................................................................................................................................
+
+Test R^2 = -0.001270501291473547,    (1/Train_test_diff)^1/4 = 5.296711932566702,        Pipeline: input_matrix -> HeterosisEncoder -> DominantEncoder -> RandomForestRegressor(max_features=0.4, min_samples_leaf=13,
+                                       min_samples_split=16).
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  -2.1012337203529796e-08
+
+Holdout data R^2 trained on entire dataset(80%):  -0.004676142848626608
+
+Dataset D1 score on trained D1:  -1.5412728870956016e-09
+
+Entire dataset R^2 using pipeline:  -1.0028337702472356e-06
+
+...............................................................................................................................................
+
+*******************************
+****** RANDOM SEED 102 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.08337801709222181
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.09462215544419994
+
+*********************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process:
+
+Test R^2 = 0.08337801709222181,      (1/Train_test_diff)^(1/4) = 3.070919660360998,        Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.09462215544419994
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+.......................................................................................................................................
+
+Test R^2 = 0.08165417398756458,      (1/Train_test_diff)^(1/4) = 3.118038764132613,        Pipeline: input_matrix -> VarianceThreshold(0.15) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0903328847030519
+
+Holdout data R^2 trained on entire dataset(80%):  0.10352522951633558
+
+Dataset D1 score on trained D1:  0.0922338887634434
+
+Entire dataset R^2 using pipeline:  0.09453132956558852
+
+....................................................................................................................................
+
+Test R^2 = 0.08007797420472484,      (1/Train_test_diff)^(1/4) = 3.1789716238764334,       Pipeline: input_matrix -> VarianceThreshold(0.25) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08837608611413839
+
+Holdout data R^2 trained on entire dataset(80%):  0.10319605043731006
+
+Dataset D1 score on trained D1:  0.08986956814009794
+
+Entire dataset R^2 using pipeline:  0.09288422196132773
+
+...................................................................................................................................
+
+Test R^2 = 0.05579263735110418,      (1/Train_test_diff)^(1/4) = 3.219158364130069,        Pipeline: input_matrix -> RecessiveEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06473076379800125
+
+Holdout data R^2 trained on entire dataset(80%):  0.09373270369256015
+
+Dataset D1 score on trained D1:  0.06510437286449966
+
+Entire dataset R^2 using pipeline:  0.07227123724627071
+
+.................................................................................................................................
+
+Test R^2 = 0.020800472281127247,     (1/Train_test_diff)^(1/4) = 3.501101480152467,        Pipeline: input_matrix -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=5, min_samples_split=8).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.025175754934871897
+
+Holdout data R^2 trained on entire dataset(80%):  0.04129637796522201
+
+Dataset D1 score on trained D1:  0.027455980188380025
+
+Entire dataset R^2 using pipeline:  0.029762600032391173
+
+
+................................................................................................................................
+
+Test R^2 = 0.015847254388119514,     (1/Train_test_diff)^(1/4) = 3.668223619765222,        Pipeline: input_matrix -> DominantEncoder -> FeatureEncodingFrequencySelector(0.35) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.020335159413359505
+
+Holdout data R^2 trained on entire dataset(80%):  0.011168593861217824
+
+Dataset D1 score on trained D1:  0.021370276578258185
+
+Entire dataset R^2 using pipeline:  0.019561530311631548
+
+...............................................................................................................................
+
+Test R^2 = 0.015604130357334989,     (1/Train_test_diff)^(1/4) = 3.7240176264915688,       Pipeline: input_matrix -> DominantEncoder -> FeatureEncodingFrequencySelector(0.35) -> SelectPercentile(80) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.019939663585387235
+
+Holdout data R^2 trained on entire dataset(80%):  0.010959916221193633
+
+Dataset D1 score on trained D1:  0.020803528663340343
+
+Entire dataset R^2 using pipeline:  0.019210616854103524
+
+............................................................................................................................
+
+Test R^2 = 0.013063861102842633,     (1/Train_test_diff)^(1/4) = 5.163728456556673,        Pipeline: input_matrix -> SelectPercentile(5) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.01384515235546857
+
+Holdout data R^2 trained on entire dataset(80%):  0.025744633173281906
+
+Dataset D1 score on trained D1:  0.014470382734092069
+
+Entire dataset R^2 using pipeline:  0.017386525479898274
+
+..........................................................................................................................
+
+Test R^2 = -8.459034536123511e-05,   (1/Train_test_diff)^(1/4) = 10.427250343962358,       Pipeline: input_matrix -> RecessiveEncoder -> UnderDominanceEncoder -> HeterosisEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0
+
+Holdout data R^2 trained on entire dataset(80%):  -0.004656297894350514
+
+Dataset D1 score on trained D1:  0.0
+
+Entire dataset R^2 using pipeline:  0.0
+
+............................................................................................................................
+
+*******************************
+****** RANDOM SEED 122 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.07587878514415869
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.10001691410473723
+
+**********************************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.07587878514415869,      (1/Train_test_diff)^(1/4) = 2.537021216826175,        Pipeline: input_matrix -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.10001691410473723
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+................................................................................................................................................................
+
+Test R^2 = 0.07410503517341327,      (1/Train_test_diff)^(1/4) = 2.6408824764315884,       Pipeline: input_matrix -> VarianceThreshold(0.25) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08837608611413839
+
+Holdout data R^2 trained on entire dataset(80%):  0.10319605043731006
+
+Dataset D1 score on trained D1:  0.09466411631994542
+
+Entire dataset R^2 using pipeline:  0.09288422196132773
+
+.................................................................................................................................................................
+
+Test R^2 = 0.07039252527731132,      (1/Train_test_diff)^(1/4) = 2.7005363813569794,       Pipeline: input_matrix -> VarianceThreshold(0.35) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08377021700941711
+
+Holdout data R^2 trained on entire dataset(80%):  0.09597672553604775
+
+Dataset D1 score on trained D1:  0.08919434439651519
+
+Entire dataset R^2 using pipeline:  0.08774944244349647
+
+...............................................................................................................................................................
+
+Test R^2 = 0.059146469341038954,     (1/Train_test_diff)^(1/4) = 2.9095080612156217,       Pipeline: input_matrix -> DominantEncoder -> RecessiveEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07072842356962394
+
+Holdout data R^2 trained on entire dataset(80%):  0.05261636057293195
+
+Dataset D1 score on trained D1:  0.07310120906789408
+
+Entire dataset R^2 using pipeline:  0.06839215679131816
+
+...........................................................................................................................................................
+
+Test R^2 = 0.018978183649036917,     (1/Train_test_diff)^(1/4) = 3.0995623619247543,       Pipeline: input_matrix -> UnderDominanceEncoder -> DecisionTreeRegressor(max_depth=2, min_samples_leaf=5, min_samples_split=8).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.025175754934871897
+
+Holdout data R^2 trained on entire dataset(80%):  0.04129637796522201
+
+Dataset D1 score on trained D1:  0.029812424490844536
+
+Entire dataset R^2 using pipeline:  0.029762600032391173
+
+.........................................................................................................................................................
+
+Test R^2 = 0.014290918228921812,     (1/Train_test_diff)^(1/4) = 3.1532042084292065,       Pipeline: input_matrix -> SelectPercentile(10) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.02260608005018827
+
+Holdout data R^2 trained on entire dataset(80%):  0.04572400265792376
+
+Dataset D1 score on trained D1:  0.024406517347369983
+
+Entire dataset R^2 using pipeline:  0.028482798076145177
+
+......................................................................................................................................................
+
+Test R^2 = 0.006078682393812707,     (1/Train_test_diff)^(1/4) = 3.361522777237034,        Pipeline: input_matrix -> DecisionTreeRegressor(max_depth=1, min_samples_leaf=12, min_samples_split=16).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.014067044334259982
+
+Holdout data R^2 trained on entire dataset(80%):  0.03411708381973
+
+Dataset D1 score on trained D1:  0.013910377409761754
+
+Entire dataset R^2 using pipeline:  0.01942234525120068
+
+...................................................................................................................................................
+
+*******************************
+****** RANDOM SEED 132 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.07426605651457596
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.10390745713132266
+
+
+**************************************************************************************************************************************************************
+
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.07426605651457596,      (1/Train_test_diff)^(1/4) = 2.410045932256711,        Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.10390745713132266
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+..................................................................................................................................................
+
+Test R^2 = 0.0532531192993313,       (1/Train_test_diff)^(1/4) = 2.486882834049933,        Pipeline: input_matrix -> DominantEncoder -> RecessiveEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.07072842356962394
+
+Holdout data R^2 trained on entire dataset(80%):  0.05261636057293195
+
+Dataset D1 score on trained D1:  0.0793975206362093
+
+Entire dataset R^2 using pipeline:  0.06839215679131816
+
+.................................................................................................................................................
+
+Test R^2 = 0.04408575914864599,      (1/Train_test_diff)^(1/4) = 2.780273017726599,        Pipeline: input_matrix -> OverDominanceEncoder -> RecessiveEncoder -> VarianceThreshold(0.15) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.05601950298571334
+
+Holdout data R^2 trained on entire dataset(80%):  0.04726724462848475
+
+Dataset D1 score on trained D1:  0.060821703389682735
+
+Entire dataset R^2 using pipeline:  0.05203703695206918
+
+...............................................................................................................................................
+
+Test R^2 = 0.036797741259583794,     (1/Train_test_diff)^(1/4) = 3.125568376039176,        Pipeline: input_matrix -> OverDominanceEncoder -> RecessiveEncoder -> FeatureEncodingFrequencySelector(0.2) -> HeterosisEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.048651695939533
+
+Holdout data R^2 trained on entire dataset(80%):  0.04247831365660426
+
+Dataset D1 score on trained D1:  0.04727587611299677
+
+Entire dataset R^2 using pipeline:  0.04853550695475395
+
+...............................................................................................................................................
+
+Test R^2 = 0.02805319985765653,      (1/Train_test_diff)^(1/4) = 3.492733103062131,        Pipeline: input_matrix -> OverDominanceEncoder -> SelectPercentile(70) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.034944178022789485
+
+Holdout data R^2 trained on entire dataset(80%):  0.017213929906925718
+
+Dataset D1 score on trained D1:  0.034772722144260526
+
+Entire dataset R^2 using pipeline:  0.03301804899134886
+
+..............................................................................................................................................
+
+Test R^2 = 0.026428813288505326,     (1/Train_test_diff)^(1/4) = 3.6062084331567625,       Pipeline: input_matrix -> DominantEncoder -> HeterosisEncoder -> FeatureEncodingFrequencySelector(0.25) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.03170561441404107
+
+Holdout data R^2 trained on entire dataset(80%):  0.02308253993666165
+
+Dataset D1 score on trained D1:  0.032341661105509956
+
+Entire dataset R^2 using pipeline:  0.03100731052852912
+
+.............................................................................................................................................
+
+
+Test R^2 = 0.01681218328640699,      (1/Train_test_diff)^(1/4) = 3.8901103454260544,       Pipeline: input_matrix -> DominantEncoder -> FeatureEncodingFrequencySelector(0.3) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.020335159413359505
+
+Holdout data R^2 trained on entire dataset(80%):  0.011168593861217824
+
+Dataset D1 score on trained D1:  0.02117887284668174
+
+Entire dataset R^2 using pipeline:  0.019561530311631548
+
+.........................................................................................................................................
+
+Test R^2 = 0.00850304633820409,      (1/Train_test_diff)^(1/4) = 10.819002960588506,       Pipeline: input_matrix -> SelectPercentile(30) -> HeterosisEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0074566937894693375
+
+Holdout data R^2 trained on entire dataset(80%):  0.014363792651374663
+
+Dataset D1 score on trained D1:  0.008430058409113372
+
+Entire dataset R^2 using pipeline:  0.012354742569594235
+
+........................................................................................................................................
+
+*******************************
+****** RANDOM SEED 142 ********
+*******************************
+
+Holdout LR on 80% trained data:  0.10639891621907727
+Entire Dataset R^2 using LR:  0.09676189140743763
+D2 Dataset R^2 value on only LR model trained on D1:  0.07943620375362392
+80% Dataset R^2 using LR:  0.09244401268001912
+D1 Dataset R^2 value on only LR model trained on D1:  0.09520010037197235
+
+************************************************************************************************************************************************
+
+Final Pareto Front at the end of the optimization process: 
+
+Test R^2 = 0.07943620375362392,      (1/Train_test_diff)^(1/4) = 2.82217607291817, 	Pipeline: input_matrix -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.09244401268001912
+
+Holdout data R^2 trained on entire dataset(80%):  0.10639891621907727
+
+Dataset D1 score on trained D1:  0.09520010037197235
+
+Entire dataset R^2 using pipeline:  0.09676189140743763
+
+...............................................................................................................................................
+
+Test R^2 = 0.07803070684958391,      (1/Train_test_diff)^(1/4) = 2.8989165155598067,       Pipeline: input_matrix -> VarianceThreshold(0.15) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0903328847030519
+
+Holdout data R^2 trained on entire dataset(80%):  0.10352522951633558
+
+Dataset D1 score on trained D1:  0.09219050837436193
+
+Entire dataset R^2 using pipeline:  0.09453132956558852
+
+.............................................................................................................................................
+
+Test R^2 = 0.07689567009327081,      (1/Train_test_diff)^(1/4) = 2.9749737944529935,       Pipeline: input_matrix -> VarianceThreshold(0.25) -> LinearRegression.
+
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08837608611413839
+
+Holdout data R^2 trained on entire dataset(80%):  0.10319605043731006
+
+Dataset D1 score on trained D1:  0.08966203993809918
+
+Entire dataset R^2 using pipeline:  0.09288422196132773
+
+.........................................................................................................................................
+
+Test R^2 = 0.07492168833321888,      (1/Train_test_diff)^(1/4) = 3.338124201173487,        Pipeline: input_matrix -> VarianceThreshold(0.35) -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.08377021700941711
+
+Holdout data R^2 trained on entire dataset(80%):  0.09597672553604775
+
+Dataset D1 score on trained D1:  0.08297528794114872
+
+Entire dataset R^2 using pipeline:  0.08774944244349647
+
+...........................................................................................................................................
+
+Test R^2 = 0.06729602961009895,      (1/Train_test_diff)^(1/4) = 3.7932052098285785,       Pipeline: input_matrix -> VarianceThreshold(0.35) -> FeatureEncodingFrequencySelector(0.35) -> FeatureEncodingFrequencySelector(0.1) -> LinearRegression.   
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.06910664380221021
+
+Holdout data R^2 trained on entire dataset(80%):  0.09081604592770243
+
+Dataset D1 score on trained D1:  0.06246572358440172
+
+Entire dataset R^2 using pipeline:  0.07484466524996036
+ 
+........................................................................................................................................
+
+Test R^2 = 0.046786543935019576,     (1/Train_test_diff)^(1/4) = 6.100184142445131,        Pipeline: input_matrix -> VarianceThreshold(0.25) -> FeatureEncodingFrequencySelector(0.1) -> DominantEncoder -> LinearRegression.
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.0516851871655315
+
+Holdout data R^2 trained on entire dataset(80%):  0.04853496039440974
+
+Dataset D1 score on trained D1:  0.04606439259732342
+
+Entire dataset R^2 using pipeline:  0.05210447228467463
+
+......................................................................................................................................
+
+Test R^2 = 0.009146984757573584,     (1/Train_test_diff)^(1/4) = 7.622257540649611,        Pipeline:  input_matrix -> RecessiveEncoder -> FeatureEncodingFrequencySelector(0.25) -> FeatureEncodingFrequencySelector(0.35) -> RandomForestRegressor(bootstrap=False, max_features=0.2, min_samples_leaf=16, min_samples_split=16, n_estimators=100).
+
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.010339600826330564
+
+Holdout data R^2 trained on entire dataset(80%):  -0.002858938694574986
+
+Dataset D1 score on trained D1:  0.008850729868956853
+
+Entire dataset R^2 using pipeline:  0.008765210912318744
+
+........................................................................................................................................
+
+Test R^2 = 0.00868853077422993,      (1/Train_test_diff)^(1/4) = 11.509743523720298,       Pipeline: input_matrix -> RecessiveEncoder -> FeatureEncodingFrequencySelector(0.25) -> FeatureEncodingFrequencySelector(0.35) -> LinearRegression.
+
+
+Entire dataset(80%) R^2 trained on entire dataset(80%):  0.00997518076813686
+
+Holdout data R^2 trained on entire dataset(80%):  -0.004524938189113481
+
+Dataset D1 score on trained D1:  0.008631548810062006
+
+Entire dataset R^2 using pipeline:  0.008096039949848088
+
+........................................................................................................................................

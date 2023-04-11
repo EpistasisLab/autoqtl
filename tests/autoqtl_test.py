@@ -7,8 +7,9 @@ import sys
 from tempfile import mkdtemp
 
 from sklearn.model_selection import train_test_split
-#sys.path.append("C:/Users/ghosha/.vscode/autoqtl")
-sys.path.append("/Users/ghosha/Documents/VSCode Projects/autoqtl-1")
+
+# Insert the path of the currently cloned github repo folder
+sys.path.append("Insert path")
 
 import autoqtl
 
@@ -29,16 +30,13 @@ from sklearn.linear_model import LinearRegression
 autoqtl_obj = AUTOQTLRegressor()
 autoqtl_obj._fit_init()
 
-# dataset
-#test_data = pd.read_csv("tests/BMIwTail.csv")
-test_data = pd.read_csv("/Users/ghosha/Documents/VSCode Projects/autoqtl/tests/BMIwTail.csv")
+# Load the dataset
+# Insert the path to your test data. The raw data used for some of our experiments is available in the doc/publications/BioDataMining/Supplementary/FileS10 - RawData
+test_data = pd.read_csv("Insert a csv file")
 
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
 feature_name = test_data.columns
-
-#test_X = test_data_numpyarray[:, : -1 ]
-#test_y = test_data_numpyarray[:,-1]
 
 test_X = test_data.iloc[:,:-1]
 test_y = test_data.iloc[:,-1]
