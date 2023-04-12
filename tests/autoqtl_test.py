@@ -41,6 +41,11 @@ feature_name = test_data.columns
 test_X = test_data.iloc[:,:-1]
 test_y = test_data.iloc[:,-1]
 
+""" We perform two sequential splits of the dataset. First, we split our dataset into a 80/20 split. 
+    We would use the 80% split data to train our models and to evolve the models through the generational process.
+    To do that we split the 80% data as training and testing. Train the GP machine learning pipelines using the training split and genrate the test score using the testing split.
+    Once the pareto front pipelines are generated, the user than use the holdout dataset to get the model performances on the holdout."""
+
 features_80, features_20, target_80, target_20 = train_test_split(test_X, test_y, test_size=0.2, random_state=42)
 
 features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=22)
@@ -157,6 +162,7 @@ def test_summary_of_best_pipeline():
     #autoqtl_obj.get_shap_values(test_X, test_y)
     
     autoqtl_obj.get_permutation_importance(test_X, test_y, random_state=0)
+    # this method outputs a text file named EvaluationOnHoldout.txt with the performance on holdout data for each pareto front pipeline
     autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80, test_X, test_y)
     autoqtl_obj.shap_feature_importance(test_X, test_y, random_state=0)
 

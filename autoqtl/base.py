@@ -1989,7 +1989,7 @@ class AUTOQTLBase(BaseEstimator):
 
     
      #############################################################################################################################
-    # Getting test R2 values for the pipelines in the pareto front
+    # Getting test R^2 values (basically holdout R^2 values) for the pipelines in the pareto front
     def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, feature_80, target_80, entire_X, entire_y):
         
         self.final_pareto_pipelines_testR2 = {}
