@@ -2017,7 +2017,7 @@ class AUTOQTLBase(BaseEstimator):
         for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
             print("\n The Pipeline being evaluated: \n", pareto_pipeline)
             #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
-            score_80 = pareto_pipeline.score(entire_X, entire_y)
+            score_80 = pareto_pipeline.score(feature_80, target_80)
             score_holdout_entireDataTrained = pareto_pipeline.score(holdout_X, holdout_y)
             
             print("\n Entire dataset(80%) R^2 trained on entire dataset(80%): ", score_80)
