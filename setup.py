@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 # function to calculate the version of the package
 def calculate_version():
-    initpy = open('autoqtl/_version.py').read().split('\n')
+    initpy = open('_version.py').read().split('\n')
     version = list(filter(lambda x: '__version__' in x, initpy))[0].split('\'')[1]
     return version
 
