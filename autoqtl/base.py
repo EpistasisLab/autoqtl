@@ -1,4 +1,5 @@
 """This file is part of AUTOQTL library. The AUTOQTLBase class is defined in this file. """
+# all the import statements
 from ast import expr
 from datetime import date, datetime
 import errno
@@ -14,25 +15,30 @@ from subprocess import call
 import sys
 from tempfile import mkdtemp
 import warnings
-from isort import file
+# from isort import file
 from joblib import Memory
 import numpy as np
 import deap
 from deap import base, creator, tools, gp
 from pandas import DataFrame
-from pyrsistent import pset
+import pandas as pd
+# from pyrsistent import pset
 from sklearn import tree
-import sklearn
 import re
 import shap
-import sys
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from fpdf import FPDF
+
 
 from sklearn.base import BaseEstimator
-from sklearn.feature_selection import VarianceThreshold
+# from sklearn.feature_selection import VarianceThreshold
 from sklearn.impute import SimpleImputer
 from sklearn.inspection import permutation_importance
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import SCORERS
+from sklearn.metrics import SCORERS, get_scorer
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline, make_union, make_pipeline
 
@@ -49,7 +55,7 @@ from .decorators import _pre_test
 from .operator_utils import AUTOQTLOperatorClassFactory, Operator, ARGType
 
 from .gp_deap import (
-    cxOnePoint, get_feature_size, get_score_on_fitted_pipeline, mutNodeReplacement, _wrapped_score, eaMuPlusLambda
+    cxOnePoint, get_feature_size, get_score_on_fitted_pipeline, mutNodeReplacement, _wrapped_score, eaMuPlusLambda, return_logbook
 )
 
 from .export_utils import (
@@ -1390,15 +1396,63 @@ class AUTOQTLBase(BaseEstimator):
             calling this function sets the self.fitted_pipeline_ variable
             
         """
-        # Choose which dataset to use to get the fitted_pipeline, this pipeline will be used in the score() and predict() function
-        """dataset_choice = np.random.random()
-        if dataset_choice < 0.5:
-            selected_features = features_dataset1
-            selected_target = target_dataset1
-        else :
-            selected_features = features_dataset2
-            selected_target = target_dataset2"""
-        selected_features = features_dataset1
+        # selected_features = features_dataset1
+        # selected_target = target_dataset1
+        
+        # if not self._optimized_pipeline:
+        #     raise RuntimeError(
+        #         "There was an error in the AUTOQTL optimization process. Please make sure you passed the data to AUTOQTL correctly."
+        #     )
+
+        # else:
+        #     self.fitted_pipeline_ = self._toolbox.compile(expr=self._optimized_pipeline) # changing the optimized DEAP pipeline  to sklearn pipeline
+
+        #     with warnings.catch_warnings():
+        #         warnings.simplefilter("ignore")
+        #         self.fitted_pipeline_.fit(selected_features, selected_target) # the sklearn pipeline is fitted with the pipeline fit function
+
+        #         if self.verbosity in [1, 3]:
+        #             # Add an extra line of spacing if the progress bar was used
+        #             if self.verbosity >=2:
+        #                 print("")
+
+        #             optimized_pipeline_str = self.clean_pipeline_string(
+        #                 self._optimized_pipeline
+        #             )
+        #             #print("Best pipeline:", optimized_pipeline_str)
+        #             #print("Score of pipeline on two datasets respectively: ", self._optimized_pipeline_score)
+
+        #         # Store, fit and display the entire Pareto front 
+        #         self.pareto_front_fitted_pipelines_ = {} # contains the fitted pipelines present in the pareto front
+        #         pareto_front_pipeline_str = {} # contains the pareto front pipeline strings
+
+        #         for pipeline in self._pareto_front.items:
+        #             self.pareto_front_fitted_pipelines_[
+        #                 str(pipeline)
+        #             ] = self._toolbox.compile(expr=pipeline)
+
+        #             with warnings.catch_warnings():
+        #                 warnings.simplefilter("ignore")
+        #                 self.pareto_front_fitted_pipelines_[str(pipeline)].fit(
+        #                     selected_features, selected_target
+        #                 )
+        #                 pareto_front_pipeline_str[str(pipeline)] = self.clean_pipeline_string(pipeline)
+
+                
+        #                 #print("Pareto front individuals: ", pareto_front_pipeline_str)
+        #                 # can print the fitness tuples of those pipelines
+        #         # Printing the final pipeline
+        #         print("Final Pareto Front at the end of the optimization process: ")
+        #         for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+        #             pipeline_to_be_printed = self.print_pipeline(pipeline)
+        #             print('\nTest R^2 = {0},\tDifference Score = {1},\tPipeline: {2}'.format(
+        #                     pipeline_scores.wvalues[0],
+        #                     pipeline_scores.wvalues[1],
+        #                     pipeline_to_be_printed))
+
+        ################ NEW VERSION OF THE METHOD ###################
+        # all the Pareto front pipelines are fitted using dataset1, i.e, training dataset
+        selected_features = features_dataset1 
         selected_target = target_dataset1
         
         if not self._optimized_pipeline:
@@ -1421,38 +1475,126 @@ class AUTOQTLBase(BaseEstimator):
                     optimized_pipeline_str = self.clean_pipeline_string(
                         self._optimized_pipeline
                     )
-                    #print("Best pipeline:", optimized_pipeline_str)
-                    #print("Score of pipeline on two datasets respectively: ", self._optimized_pipeline_score)
 
                 # Store, fit and display the entire Pareto front 
-                self.pareto_front_fitted_pipelines_ = {} # contains the fitted pipelines present in the pareto front
+                self._pareto_front_fitted_pipelines_ = {} # contains the fitted pipelines present in the pareto front
                 pareto_front_pipeline_str = {} # contains the pareto front pipeline strings
 
                 for pipeline in self._pareto_front.items:
-                    self.pareto_front_fitted_pipelines_[
+                    self._pareto_front_fitted_pipelines_[
                         str(pipeline)
                     ] = self._toolbox.compile(expr=pipeline)
 
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
-                        self.pareto_front_fitted_pipelines_[str(pipeline)].fit(
+                        self._pareto_front_fitted_pipelines_[str(pipeline)].fit(
                             selected_features, selected_target
                         )
                         pareto_front_pipeline_str[str(pipeline)] = self.clean_pipeline_string(pipeline)
+    
 
-                
-                        #print("Pareto front individuals: ", pareto_front_pipeline_str)
-                        # can print the fitness tuples of those pipelines
-                # Printing the final pipeline
+                # store score 1 and score 2 from the final pareto front
+                self.score1_final_list =[]
+                self.score2_final_list = []
+
+                # Printing the final pareto pipeline
                 print("Final Pareto Front at the end of the optimization process: ")
                 for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
-                    pipeline_to_be_printed = self.print_pipeline(pipeline)
-                    print('\nTest R^2 = {0},\tDifference Score = {1},\tPipeline: {2}'.format(
+                    #pipeline_to_be_printed = self.print_pipeline(pipeline) # change to EZ version
+                    print('\nTest R^2 = {0},\tDifference Score = {1}'.format(
                             pipeline_scores.wvalues[0],
-                            pipeline_scores.wvalues[1],
-                            pipeline_to_be_printed))
+                            pipeline_scores.wvalues[1]))
+                    
+                    print(self.print_pipeline_hyper(pipeline))
 
+                    # print the names of the selected features if FS exists in the pipeline
+                    pipeline_sklearn = self._toolbox.compile(expr=pipeline)
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                    pipeline_sklearn.fit(selected_features, selected_target)
+                    flag = False
+                    for name, transformer in pipeline_sklearn.steps:
+                        if name=='variancethreshold' or name=='selectpercentile' or name=='featureencodingfrequencyselector':
+                            selected_features_mask = transformer.get_support()
+                            selected_features_names = features_dataset1.columns[selected_features_mask]
+                            print("No of features selected in the pipeline: ", len(selected_features_names))
+                            print("Feature names selected in the pipeline: ", selected_features_names.tolist())
+                            flag = True
+
+                    if flag==False:
+                        print("No feature selectors were selected in the pipeline")
+
+                    self.score1_final_list.append(pipeline_scores.wvalues[0])
+                    self.score2_final_list.append(pipeline_scores.wvalues[1])
+
+    # function to print pipeline with hyperparameters
+    def print_pipeline_hyper(self, individual, cleaned = False):
+        
+        """This function cleans up the pipeline representation.
+        It also displays all the hyperparameters.
+        
+        """
+        if not cleaned: # cleaned represents whether inputted individual has been compiled into scikit learn form yet
+            dirty_string = self._toolbox.compile(expr=individual)
+        else:
+            dirty_string = individual
+
+        savePrevLine = ""
+        pretty_string = "" # initialize result variable
+        count = 0
+        for line in str(dirty_string).splitlines():
+            if savePrevLine != "": # if previous line should be combined with current line
+                line = savePrevLine + line.lstrip()
+                savePrevLine = ""  
+
+            if "'" in line: # if line includes extra operator to remove
+                if ")" in line: # if extra operator and necessary operator are on same line
+                    line = re.sub('\'[^>]+ ', '', line)
+                else: #if extra operator comes on line before the necessary operator
+                    line = re.sub('\'[^>]+,', '', line)
+                    savePrevLine = line #saves current line to combine with next line
+                    continue
+
+            #remove score_func argument in selectpercentile pipelines
+            if(re.search('SelectPercentile', line) is not None):
+                if re.search('score_func', line) is None:
+                    savePrevLine = line[:-1] + '),'
+                    continue
+                elif(re.search('percentile', line) is not None):
+                    line = re.sub('score_func(.*)', '', line)
+                else: #adds percentile=10 as default parameter in SelectPercentile
+                    line = re.sub('score_func(.*)\>', 'percentile=10', line)
             
+            #remove unnecessary open parentheses
+            if(re.search('\([A-Z]', line) is not None):
+                index = re.search('\([A-Z]', line).start()
+                line = line[:index] + line[index + 1:]
+            if(re.match('[a-z]', line.lstrip())):
+                line = line[1:]
+            
+            #clean start of pipeline
+            line = str.replace(line, "Pipeline(steps=[", "Pipeline steps: ") 
+
+            #remove unnecessary end parentheses
+            line = str.replace(line, "]", "")
+            line = str.replace(line, "))", ")")
+            line = str.replace(line, "))", ")")
+
+            #add number labelling to each step and manage indents
+            if(re.search("Pipeline steps: ", line) is not None):
+                count = 1
+                index = re.search("Pipeline steps: ", line).end()
+                line = line[:index] + "\n     " + str(count) + ". " + line[index:]
+            elif(re.search('   [A-Z]', line) is not None):
+                count += 1
+                line = "{:>8}{}".format(str(count) + ". ", line.lstrip())
+            else: 
+                line = line[8:]
+
+            #combine with final result
+            pretty_string = pretty_string + line + "\n"
+
+        return pretty_string           
                         
 
     # To get a pipeline outputted in a desired format
@@ -1512,7 +1654,184 @@ class AUTOQTLBase(BaseEstimator):
         return pretty
 
 
-    # Start with setting up the fit function, design the fit function which will include a pareto function
+    # scoring function - which returns score for each pipeline in the pareto front
+    def score(self, holdout_features, holdout_target):
+        """Returns the holdout R^2 values on the holdout dataset by using each pareto front pipeline trained using the training data.
+        
+        Parameters
+        __________
+        holdout_features: array-like {n_samples, n_features}
+            Feature matrix of the holdout set
+        holdout_target: array-like {n_samples}
+            List of class labels for prediction in the holdout set
+
+        Returns
+        _______
+        R^2 value: list
+            List of the estimated holdout set R^2 values for each pareto front pipelines
+
+        """
+        print("Results of calling the score function: ")
+        if len(self._pareto_front_fitted_pipelines_) == 0:
+            raise RuntimeError(
+                               "No pipeline has been optimized and fitted yet. Please call fit() first.")
+        
+        holdout_features, holdout_target = self._check_dataset(holdout_features, holdout_target, sample_weight = None)
+
+        # If the scoring function is a string, we must adjust to use the sklearn
+        # scoring interface
+        if isinstance(self.scoring_function, str):
+            #scorer = SCORERS[self.scoring_function]
+            scorer = get_scorer(self.scoring_function)
+        elif callable(self.scoring_function):
+            scorer = self.scoring_function
+        else:
+            raise RuntimeError(
+                "The scoring function should either be the name of a scikit-learn scorer or a scorer object"
+            )
+        
+        holdout_score_list = []
+        for fitted_pipeline in self._pareto_front_fitted_pipelines_.values():
+            print(re.sub("Pipeline steps:", "", self.print_pipeline_hyper(fitted_pipeline, cleaned=True)))
+            score = scorer(
+            fitted_pipeline,
+            holdout_features.astype(np.float64),
+            holdout_target.astype(np.float64),
+            )
+            print("Holdout R\u00b2: ", score)
+            holdout_score_list.append(score)
+
+        return holdout_score_list
+    
+    # function to print the holdout score for the pipeline asked by the user
+    def score_user_choice(self, holdout_features, holdout_target, pipeline_no):
+        """Returns the holdout R^2 values on the holdout dataset by using the specified Pareto front pipeline trained using the training data.
+        
+        Parameters
+        __________
+        holdout_features: array-like {n_samples, n_features}
+            Feature matrix of the holdout set
+        holdout_target: array-like {n_samples}
+            List of class labels for prediction in the holdout set
+        pipeline_no: The Pareto front pipeline number to be used as the optimal pipeline to evaluat ethe holdout dataset.
+
+        Returns
+        _______
+        R^2 value: list
+            List of the estimated holdout set R^2 values for the specified Pareto front pipeline.
+        
+        """
+        if len(self._pareto_front_fitted_pipelines_) == 0:
+            raise RuntimeError(
+                               "No pipeline has been optimized and fitted yet. Please call fit() first.")
+        
+        holdout_features, holdout_target = self._check_dataset(holdout_features, holdout_target, sample_weight = None)
+
+        # If the scoring function is a string, we must adjust to use the sklearn
+        # scoring interface
+        if isinstance(self.scoring_function, str):
+            #scorer = SCORERS[self.scoring_function]
+            scorer = get_scorer(self.scoring_function)
+        elif callable(self.scoring_function):
+            scorer = self.scoring_function
+        else:
+            raise RuntimeError(
+                "The scoring function should either be the name of a scikit-learn scorer or a scorer object"
+            )
+        pareto_front_fitted_pipelines_key_list = list(self._pareto_front_fitted_pipelines_.keys())
+        score = scorer(
+            self._pareto_front_fitted_pipelines_[pareto_front_fitted_pipelines_key_list[pipeline_no-1]],
+            holdout_features.astype(np.float64),
+            holdout_target.astype(np.float64),
+            )
+        
+        return score
+    
+    # function definition for predict to get the predicted target values for the holdout dataset
+    def predict(self, holdout_features):
+        """Returns the predicted target values on the holdout dataset by using each pareto front pipeline trained using the training data.
+        
+        Parameters
+        __________
+        holdout_features: array-like {n_samples, n_features}
+            Feature matrix of the holdout set
+
+        Returns
+        _______
+        predicted_target: [[]]
+            Dictionary of predicted target values for each pareto front pipeline.
+
+        """
+        if len(self._pareto_front_fitted_pipelines_) == 0:
+            raise RuntimeError(
+                               "No pipeline has been optimized and fitted yet. Please call fit() first.")
+        
+        holdout_features = self._check_dataset(holdout_features, target=None, sample_weight=None)
+
+        predicted_target_dict = {} # The key of the dictionary will be the pipeline name and the value will be a list of the predicted target values.
+        i = 0
+        for fitted_pipeline in self._pareto_front_fitted_pipelines_.values():
+            i = i + 1
+            predicted_target_list_per_pipeline = fitted_pipeline.predict(holdout_features)
+            #pipeline_name_key = self.print_pipeline_hyper(fitted_pipeline, cleaned=True)
+            pipeline_name_key = "Pipeline " + "#" + str(i)
+            predicted_target_dict[pipeline_name_key] = (np.round(predicted_target_list_per_pipeline, 6)).tolist()
+            
+           
+        return predicted_target_dict
+    
+    # function to predict the target values based on a particular pareto front pipeline as inputed by the user
+    def predict_user_choice(self, holdout_features, pipeline_no):
+        """Returns the predicted target values on the holdout dataset by using the chosen Pareto front pipeline trained using the training data.
+        
+        Parameters
+        __________
+        holdout_features: array-like {n_samples, n_features}
+            Feature matrix of the holdout set
+
+        Returns
+        _______
+        predicted_target: [[]]
+            Dictionary of predicted target values for the chosen Pareto front pipeline.
+
+        """
+        if len(self._pareto_front_fitted_pipelines_) == 0:
+            raise RuntimeError(
+                               "No pipeline has been optimized and fitted yet. Please call fit() first.")
+        
+        # holdout_features, holdout_target = self._check_dataset(holdout_features, holdout_target, sample_weight = None)
+        holdout_features = self._check_dataset(holdout_features, target=None, sample_weight = None)
+        pareto_front_fitted_pipelines_key_list = list(self._pareto_front_fitted_pipelines_.keys())
+        predicted_target_list = self._pareto_front_fitted_pipelines_[pareto_front_fitted_pipelines_key_list[pipeline_no-1]].predict(holdout_features)
+              
+        return np.round(predicted_target_list, 6).tolist()
+    
+    # function to give the SHAP feature importance bar graph of a particular pipeline as inputted by the user
+    def shap_feature_importance_user_choice(self, features, target, pipeline_no):
+        """Gives the SHAP summary plot for the chosen pipeline.
+        
+        """
+        if len(self._pareto_front_fitted_pipelines_) == 0:
+            raise RuntimeError(
+                               "No pipeline has been optimized and fitted yet. Please call fit() first.")
+        features, target = self._check_dataset(features, target, sample_weight=None)
+        pareto_front_fitted_pipelines_key_list = list(self._pareto_front_fitted_pipelines_.keys())
+        selected_pipeline = self._pareto_front_fitted_pipelines_[pareto_front_fitted_pipelines_key_list[pipeline_no-1]]
+
+        # compute SHAP
+        num_features = features.shape[1]
+        max_evals = max(500, 2 * num_features + 1)
+        explainer = shap.Explainer(selected_pipeline.predict, features)
+        shap_values = explainer(features, max_evals=max_evals)
+        fig, ax = plt.subplots()
+        shap.summary_plot(shap_values, features, plot_type='bar', show=False)
+        plt.tight_layout()
+
+        # Save the plot to a file
+        plt.savefig(f"Pipeline{pipeline_no}.png")
+        #plt.close()
+        return plt # added a line to the plot
+
 
     # This function initializes all the variables required to use the fit()
     def _fit_init(self):
@@ -1714,13 +2033,15 @@ class AUTOQTLBase(BaseEstimator):
 
     
     # the fit function of AutoQTL
-    def fit(self, features_dataset1, target_dataset1, features_dataset2, target_dataset2, sample_weight = None):
+    def fit(self, features, target, random_state, test_size = 0.5, sample_weight = None):
         """Fit an optimized machine learning pipeline.
         
         """
+        # split the features, target into training and testing according to the test_size given.
+        self.features_dataset1, self.features_dataset2, self.target_dataset1, self.target_dataset2 = train_test_split(features, target, test_size=test_size, random_state=random_state)
         self._fit_init()
-        features_dataset1, target_dataset1 = self._check_dataset(features_dataset1, target_dataset1, sample_weight)
-        features_dataset2, target_dataset2 = self._check_dataset(features_dataset2, target_dataset2, sample_weight)
+        features_dataset1, target_dataset1 = self._check_dataset(self.features_dataset1, self.target_dataset1, sample_weight)
+        features_dataset2, target_dataset2 = self._check_dataset(self.features_dataset2, self.target_dataset2, sample_weight)
         
         self._init_pretest(features_dataset1, target_dataset1)
 
@@ -1906,138 +2227,168 @@ class AUTOQTLBase(BaseEstimator):
             rmtree(self._cachedir)
             self._memory = None
 
-    # Trying out feature importance with permutation importance score
-    def get_feature_importance(self, X, y, random_state):
-        """
-         Parameters
-        ----------
-        """
+    # # Trying out feature importance with permutation importance score
+    # def get_feature_importance(self, X, y, random_state):
+    #     """
+    #      Parameters
+    #     ----------
+    #     """
         
-        self.pipeline_for_feature_importance_ = {}
-        self.fitted_pipeline_for_feature_importance =[]
-        """for key, value in self.pareto_front_fitted_pipelines_.items():
-            pipeline_estimator = value
+    #     self.pipeline_for_feature_importance_ = {}
+    #     self.fitted_pipeline_for_feature_importance =[]
+    #     """for key, value in self.pareto_front_fitted_pipelines_.items():
+    #         pipeline_estimator = value
         
-        print(pipeline_estimator)"""
+    #     print(pipeline_estimator)"""
         
-        for pipeline in self._pareto_front.items:
-                    self.pipeline_for_feature_importance_[
-                        str(pipeline)
-                    ] = self._toolbox.compile(expr=pipeline)
+    #     for pipeline in self._pareto_front.items:
+    #                 self.pipeline_for_feature_importance_[
+    #                     str(pipeline)
+    #                 ] = self._toolbox.compile(expr=pipeline)
 
-                    with warnings.catch_warnings():
-                        warnings.simplefilter("ignore")
-                        self.pipeline_for_feature_importance_[str(pipeline)].fit(
-                            X, y
-                        )
-                        self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
-                            X, y
-                        ))
+    #                 with warnings.catch_warnings():
+    #                     warnings.simplefilter("ignore")
+    #                     self.pipeline_for_feature_importance_[str(pipeline)].fit(
+    #                         X, y
+    #                     )
+    #                     self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
+    #                         X, y
+    #                     ))
         
-        #print(self.pipeline_for_feature_importance_) 
-        #print(self.fitted_pipeline_for_feature_importance[0])
+    #     #print(self.pipeline_for_feature_importance_) 
+    #     #print(self.fitted_pipeline_for_feature_importance[0])
 
-        """for key, value in self.pipeline_for_feature_importance_.items():
-            pipeline_estimator = value"""
+    #     """for key, value in self.pipeline_for_feature_importance_.items():
+    #         pipeline_estimator = value"""
                        
-        pipeline_estimator = self.fitted_pipeline_for_feature_importance[2]
-        print(pipeline_estimator)
+    #     pipeline_estimator = self.fitted_pipeline_for_feature_importance[2]
+    #     print(pipeline_estimator)
 
 
-         # Printing the final pipeline
-        print("Final Pareto Front at the end of the optimization process: ")
-        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
-            pipeline_to_be_printed = self.print_pipeline(pipeline)
-            print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
-                            pipeline_scores.wvalues[0],
-                            pipeline_scores.wvalues[1],
-                            pipeline_to_be_printed))
-        # Testing 
-        """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
-        pipeline = Pipeline(estimators)
-        pipeline.fit(X, y)"""
-        # Putting output to a text file
-        """file_path = 'output.txt'
-        sys.stdout = open(file_path, "w")
-        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
-            print("The Pipeline being evaluated: ", fitted_pipeline)
-            permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
-            for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<8}"
-                    f"{permutation_importance_object.importances_mean[i]:.3f}")"""
+    #      # Printing the final pipeline
+    #     print("Final Pareto Front at the end of the optimization process: ")
+    #     for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
+    #         pipeline_to_be_printed = self.print_pipeline(pipeline)
+    #         print('\nScore on D1 = {0},\tScore on D2 = {1},\tPipeline: {2}'.format(
+    #                         pipeline_scores.wvalues[0],
+    #                         pipeline_scores.wvalues[1],
+    #                         pipeline_to_be_printed))
+    #     # Testing 
+    #     """estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
+    #     pipeline = Pipeline(estimators)
+    #     pipeline.fit(X, y)"""
+    #     # Putting output to a text file
+    #     """file_path = 'output.txt'
+    #     sys.stdout = open(file_path, "w")
+    #     for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+    #         print("The Pipeline being evaluated: ", fitted_pipeline)
+    #         permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
+    #         for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+    #             print(f"{X.columns[i]:<8}"
+    #                 f"{permutation_importance_object.importances_mean[i]:.3f}")"""
 
-        permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
-        for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<8}"
-                    f"{permutation_importance_object.importances_mean[i]:.3f}")
+    #     permutation_importance_object = permutation_importance(estimator=pipeline_estimator, X=X, y=y, n_repeats=5, random_state=random_state)
+    #     for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+    #             print(f"{X.columns[i]:<8}"
+    #                 f"{permutation_importance_object.importances_mean[i]:.3f}")
         
         
     
-    def get_shap_values(self, X, y):
-        estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
-        pipeline = Pipeline(estimators)
+    # def get_shap_values(self, X, y):
+    #     estimators = [('feature_extraction', VarianceThreshold(threshold=0.25)), ('regression', LinearRegression())]
+    #     pipeline = Pipeline(estimators)
 
-        pipeline.fit(X, y)
+    #     pipeline.fit(X, y)
 
-        print(X.shape[1])
-        X_background = shap.utils.sample(X, 2500)
-        num_features = X.shape[1]
-        max_evals = max(500, 2 * num_features + 1)
-        explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
-        shap_values = explainer(X, max_evals=max_evals)
-        shap.summary_plot(shap_values, X, plot_type='bar')
+    #     print(X.shape[1])
+    #     X_background = shap.utils.sample(X, 2500)
+    #     num_features = X.shape[1]
+    #     max_evals = max(500, 2 * num_features + 1)
+    #     explainer = shap.Explainer(self.fitted_pipeline_.predict, X)
+    #     shap_values = explainer(X, max_evals=max_evals)
+    #     shap.summary_plot(shap_values, X, plot_type='bar')
 
     
      #############################################################################################################################
-    # Getting test R^2 values (basically holdout R^2 values) for the pipelines in the pareto front
-    def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, feature_80, target_80, entire_X, entire_y):
+    # # Getting test R^2 values (basically holdout R^2 values) for the pipelines in the pareto front
+    # def get_test_r2(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, feature_80, target_80, entire_X, entire_y):
         
-        self.final_pareto_pipelines_testR2 = {}
-        self.fitted_final_pareto_pipelines_testR2 =[]
+    #     self.final_pareto_pipelines_testR2 = {}
+    #     self.fitted_final_pareto_pipelines_testR2 =[]
         
-        for pipeline in self._pareto_front.items:
-                    self.final_pareto_pipelines_testR2[
-                        str(pipeline)
-                    ] = self._toolbox.compile(expr=pipeline)
+    #     for pipeline in self._pareto_front.items:
+    #                 self.final_pareto_pipelines_testR2[
+    #                     str(pipeline)
+    #                 ] = self._toolbox.compile(expr=pipeline)
 
-                    with warnings.catch_warnings():
-                        warnings.simplefilter("ignore")
-                        self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            feature_80, target_80
-                        )
-                        self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
-                            feature_80, target_80
-                        ))
+    #                 with warnings.catch_warnings():
+    #                     warnings.simplefilter("ignore")
+    #                     self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+    #                         feature_80, target_80
+    #                     )
+    #                     self.fitted_final_pareto_pipelines_testR2.append(self.final_pareto_pipelines_testR2[str(pipeline)].fit(
+    #                         feature_80, target_80
+    #                     ))
 
-        final_output_file_path = 'EvaluationOnHoldout.txt'
-        sys.stdout = open(final_output_file_path, "w")
+    #     final_output_file_path = 'EvaluationOnHoldout.txt'
+    #     sys.stdout = open(final_output_file_path, "w")
 
         
 
-        for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
-            print("\n The Pipeline being evaluated: \n", pareto_pipeline)
-            #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
-            score_80 = pareto_pipeline.score(feature_80, target_80)
-            score_holdout_entireDataTrained = pareto_pipeline.score(holdout_X, holdout_y)
+    #     for pareto_pipeline in self.fitted_final_pareto_pipelines_testR2:
+    #         print("\n The Pipeline being evaluated: \n", pareto_pipeline)
+    #         #score = partial_wrapped_score(pareto_pipeline, holdout_X, holdout_y)
+    #         score_80 = pareto_pipeline.score(feature_80, target_80)
+    #         score_holdout_entireDataTrained = pareto_pipeline.score(holdout_X, holdout_y)
             
-            print("\n Entire dataset(80%) R^2 trained on entire dataset(80%): ", score_80)
-            print("\n Holdout data R^2 trained on entire dataset(80%): ", score_holdout_entireDataTrained)
+    #         print("\n Entire dataset(80%) R^2 trained on entire dataset(80%): ", score_80)
+    #         print("\n Holdout data R^2 trained on entire dataset(80%): ", score_holdout_entireDataTrained)
 
-            # To get the D1 train score
-            pareto_pipeline.fit(d1_X, d1_y)
-            score_d1_trained_d1 = pareto_pipeline.score(d1_X, d1_y)
-            print("\n Dataset D1 score on trained D1: ", score_d1_trained_d1)
+    #         # To get the D1 train score
+    #         pareto_pipeline.fit(d1_X, d1_y)
+    #         score_d1_trained_d1 = pareto_pipeline.score(d1_X, d1_y)
+    #         print("\n Dataset D1 score on trained D1: ", score_d1_trained_d1)
 
 
-            # To get entire datatset
-            pareto_pipeline.fit(entire_X, entire_y)
-            score_full_trained_full = pareto_pipeline.score(entire_X, entire_y)
-            print("\n Entire dataset R^2 using pipeline: ", score_full_trained_full)
+    #         # To get entire datatset
+    #         pareto_pipeline.fit(entire_X, entire_y)
+    #         score_full_trained_full = pareto_pipeline.score(entire_X, entire_y)
+    #         print("\n Entire dataset R^2 using pipeline: ", score_full_trained_full)
 
-    def get_permutation_importance(self, X, y, random_state):
+    # def get_permutation_importance(self, X, y, random_state):
+    #     self.pipeline_for_feature_importance_ = {}
+    #     self.fitted_pipeline_for_feature_importance =[]
+    #     for pipeline in self._pareto_front.items:
+    #                 self.pipeline_for_feature_importance_[
+    #                     str(pipeline)
+    #                 ] = self._toolbox.compile(expr=pipeline)
+
+    #                 with warnings.catch_warnings():
+    #                     warnings.simplefilter("ignore")
+    #                     self.pipeline_for_feature_importance_[str(pipeline)].fit(
+    #                         X, y
+    #                     )
+    #                     self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
+    #                         X, y
+    #                     ))
+    #     file_path = 'PermutationFeatureImportance.txt'
+    #     sys.stdout = open(file_path, "w")
+
+    #     # Permutation Feature Importance
+    #     print("Feature Importance: \n ")
+    #     for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+    #         print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
+    #         permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
+    #         for i in permutation_importance_object.importances_mean.argsort()[::-1]:
+    #             print(f"{X.columns[i]:<20}"
+    #                 f"{permutation_importance_object.importances_mean[i]:.3f}")
+
+    # Getting shap values in a separate text file and shap plots in a folder
+    def get_shap_values(self, X, y, random_state):
         self.pipeline_for_feature_importance_ = {}
         self.fitted_pipeline_for_feature_importance =[]
         for pipeline in self._pareto_front.items:
+                    #print(pipeline)
                     self.pipeline_for_feature_importance_[
                         str(pipeline)
                     ] = self._toolbox.compile(expr=pipeline)
@@ -2050,19 +2401,39 @@ class AUTOQTLBase(BaseEstimator):
                         self.fitted_pipeline_for_feature_importance.append(self.pipeline_for_feature_importance_[str(pipeline)].fit(
                             X, y
                         ))
-        file_path = 'PermutationFeatureImportance.txt'
+        file_path = 'ShapFeatureImportance.txt'
         sys.stdout = open(file_path, "w")
 
-        # Permutation Feature Importance
-        print("Feature Importance: \n ")
-        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
-            print("\nThe Pipeline being evaluated: \n", fitted_pipeline)
-            permutation_importance_object = permutation_importance(estimator=fitted_pipeline, X=X, y=y, n_repeats=5, random_state=random_state)
-            for i in permutation_importance_object.importances_mean.argsort()[::-1]:
-                print(f"{X.columns[i]:<20}"
-                    f"{permutation_importance_object.importances_mean[i]:.3f}")
+        # Shapley values
+        print("Shapley Values")
+        num_features = X.shape[1]
+        max_evals = max(500, 2 * num_features + 1)
+        save_folder = "ShapDiagrams"
+        if not os.path.exists(save_folder):
+            os.makedirs(save_folder)
 
-    def shap_feature_importance(self, X, y, random_state):
+        # try clearing the figure so that the pareto plot doesn't get superimposed
+        plt.clf()
+        
+        i = 1 # To concatenate pipeline numbers in the png file names
+        #fitted_pipeline = self.fitted_pipeline_for_feature_importance[6]
+        for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
+            print("\nThe pipeline being evaluated: \n", fitted_pipeline)
+            explainer = shap.Explainer(fitted_pipeline.predict, X)
+            shap_values = explainer(X, max_evals=max_evals)
+            # To get the values before making the summary plot
+            vals = np.abs(shap_values.values).mean(0)
+            shap_feature_importance = pd.DataFrame(list(zip(X.columns,vals)), columns=['col_name', 'feature_importance_vals'])
+            shap_feature_importance.sort_values(by=['feature_importance_vals'], ascending=False, inplace=True)
+            print(shap_feature_importance)
+            # Saving the summary plot 
+            shap.summary_plot(shap_values, X, plot_type='bar', show=False)
+            plt.tight_layout()
+            plt.savefig(f"{save_folder}/Pipeline{i}.png")
+            i = i+ 1
+
+    # Function to make graph based on average shap values for each feature considering all the pipelines in the run
+    def average_feature_importance(self, X, y):
         self.pipeline_for_feature_importance_ = {}
         self.fitted_pipeline_for_feature_importance =[]
         for pipeline in self._pareto_front.items:
@@ -2084,21 +2455,7 @@ class AUTOQTLBase(BaseEstimator):
         max_evals = max(500, 2*num_features + 1)
 
         # dictionary to store column name (feature) as key and list of shap values as value
-        feature_name_importance_dict = {feature_name : [] for feature_name in X.columns}   
-
-        #trying to the feature_name_importance_dict printed in a file
-        file_path = 'ParetoPipelineShapFeatureImportance.txt' 
-        sys.stdout = open(file_path, "w")
-
-        # Printing the final pareto pipeline
-        print("Final Pareto Front at the end of the optimization process: ")
-        for pipeline, pipeline_scores in zip(self._pareto_front.items, reversed(self._pareto_front.keys)):
-            pipeline_to_be_printed = self.print_pipeline(pipeline)
-            print('\nTest R^2 = {0},\tDifference Score = {1},\tPipeline: {2}'.format(
-                            pipeline_scores.wvalues[0],
-                            pipeline_scores.wvalues[1],
-                            pipeline_to_be_printed))
-
+        feature_name_importance_dict = {feature_name : [] for feature_name in X.columns}    
 
         # calculating the shap values for each pipeline
         for fitted_pipeline in self.fitted_pipeline_for_feature_importance:
@@ -2107,24 +2464,316 @@ class AUTOQTLBase(BaseEstimator):
             vals = np.abs(shap_values.values).mean(0)
             for i in range(0, len(vals)):
                 feature_name_importance_dict[X.columns[i]].append(round(vals[i], 6))
-            print(feature_name_importance_dict)
+            #print(feature_name_importance_dict)
 
-        # # For making the graph using the dictionary
-        # x = [] # list of values for x axis
-        # y = [] # list of values for y axis
+        # For making the graph using the dictionary
+        x = [] # list of values for x axis
+        y = [] # list of values for y axis
 
-        # # filling the lists, x will have the feature names and y will have the importance values
-        # for key in feature_name_importance_dict.keys():
-        #     x.append(key)
-        #     y.append(round(statistics.mean(feature_name_importance_dict[key]), 4))
+        # filling the lists, x will have the feature names and y will have the importance values
+        for key in feature_name_importance_dict.keys():
+            x.append(key)
+            y.append(round(statistics.mean(feature_name_importance_dict[key]), 4))
         
-        # plt.figure(figsize=(10,6))
-        # # bar plot for feature importance in descending order
-        # df = pd.DataFrame({"Feature":x, "Importance Score":y})
-        # ax = sns.barplot(x='Importance Score', y='Feature', data=df, order=df.sort_values('Importance Score', ascending=False).Feature, color='pastel', palette="mako")
-        # ax.bar_label(ax.containers[0])
-        # plt.xlabel("Average shap importance score across pareto pipelines", size=15)
-        # plt.ylabel("Features", size=15)
-        # plt.title("Feature Importance Graph", size=18)
-        # plt.tight_layout()
-        # plt.savefig("22AvgFIGraph.png", dpi=100)
+        # clear the existing plot so that there is no overlapping
+        plt.clf()
+
+        plt.figure(figsize=(10,6))
+        # bar plot for feature importance in descending order
+        df = pd.DataFrame({"Feature":x, "Importance Score":y})
+        ax = sns.barplot(x='Importance Score', y='Feature', data=df, order=df.sort_values('Importance Score', ascending=False).Feature, color='pastel', palette="mako")
+        ax.bar_label(ax.containers[0])
+        plt.xlabel("Average shap importance score across pareto pipelines", size=15)
+        plt.ylabel("Features", size=15)
+        plt.title("Feature Importance Graph", size=18)
+        plt.tight_layout()
+        plt.savefig("AvgShapGraph.png", dpi=100)
+        return plt
+
+    # function to convert a text file to a pdf file
+    def convert_text_to_pdf(self, text_file_path, pdf_file_path, plot1_path,plot2_path):
+
+        # # checking if the plot files are fine or not
+        # plot1.savefig("ParetoPlot_check.png")
+        # plot2.savefig("AvgShapPlot_check.png")
+
+        # read the text file
+        with open(text_file_path, 'r') as f:
+            text = f.read()
+        # create a PDF object
+        pdf = FPDF()
+        # add a new page
+        pdf.add_page()
+        # set the font and font size
+        pdf.set_font('Arial', size=12)
+        # write the text to the PDF
+        pdf.write(5, text)
+
+        # to add first plot to the PDF
+        pdf.add_page()
+        # plot1.savefig('plot1.png')
+        # pdf.image('plot1.png', x=10, y=40, w=190) # just directly add the plot as a parameter, so change plot1.png to plot1
+        pdf.image(plot1_path, x=10, y=40, w=190)
+
+
+        # save and close the first plot
+        # plot1.savefig('plot1.png')
+        # plt.close(plot1)
+
+        # to add second plot to the PDF
+        pdf.add_page()
+        # plot2.savefig('plot2.png')
+        # pdf.image('plot2.png', x=10, y=40, w=190)
+        # #plt.close(plot2)
+        pdf.image(plot2_path, x=10, y=40, w=190)
+
+        # save the PDF file
+        pdf.output(pdf_file_path, 'F')
+
+    
+    # def get_final_output(self, d1_X, d1_y, d2_X, d2_y, holdout_X, holdout_y, d80_X, d80_y, entire_X, entire_y, filename = None):
+    def get_final_output(self, entire_X, entire_y, holdout_X, holdout_y, file_path = None):
+
+        # final_output_file_path = 'final_output.txt'
+        # sys.stdout = open(final_output_file_path, "w")
+
+        if file_path is None:
+            final_output_file_path = ''
+        else:
+            final_output_file_path = file_path 
+
+        text_output_path = final_output_file_path + 'final_output.txt'
+        pdf_output_path = final_output_file_path + 'final_output.pdf'
+
+        sys.stdout = open(text_output_path, "w")
+
+        print("-------------     autoQTL output     -------------\n")
+
+        # #file name
+        # if filename is not None:
+        #     print("File name:", filename, "\n")
+
+        # Printing the size of the data
+        print("Total number of samples in the dataset: ", entire_X.shape[0])
+        print("Total number of features in the dataset: ", entire_X.shape[1])
+
+        print("The entire dataset is split into 80-20. The 80% is used in the evolution and the 20% is used as a hold out to assess model performances.")
+        print("The 80% data is further splitted equally into training and testing datasets.")
+        print("Training data: 1st split of 80% data.")
+        print("Testing data: 2nd split of 80% data.")
+        print("Holdout data: 20% spilt of entire data.")
+
+        #autoQTL parameters
+        print("autoQTL parameters:")
+        print("\tpopulation size =", self.population_size)
+        print("\toffspring size =", self.offspring_size)
+        print("\tgenerations =", self.generations)
+        print("\tmutation rate =", self.mutation_rate)
+        print("\tcrossover rate =", self.crossover_rate)
+        print("\trandom state = ", self.random_state)
+
+
+        #evolution history
+        print("\n*************************************************")
+        print("Evolution History:")
+        format_row = "{:>10}{:>16}{:>18}"
+        print(format_row.format("", "Best Test R\u00b2 score", "Best difference score"))
+        format_row = "{:>10}{:>16.5f}{:>18.5f}"
+        try:
+            for log in self._logbook:
+                if log.get('gen') == 0:
+                    continue
+                print(format_row.format(("Gen " + str(log.get('gen'))), log.get('topscore1'), log.get('topscore2')))
+                return_logbook(clear = True) #clears logbook when this is run
+        except AttributeError:
+            logbook = return_logbook(clear = True) #clears logbook when this is run
+            for log in logbook:
+                if log.get('gen') == 0:
+                    continue
+                print(format_row.format(("Gen " + str(log.get('gen'))), log.get('topscore1'), log.get('topscore2')))
+
+        #multiple linear regression statistics for comparison
+        print("\n*************************************************")
+        print("Multiple Linear Regression:")
+        lrmod = LinearRegression()
+        format_row = "     {:<50}{:>8.5f}"
+
+        # # Different LR values
+        # lrmod.fit(d1_X, d1_y)
+        # print(format_row.format("Train R\u00b2: ", lrmod.score(d1_X, d1_y)))
+        # print(format_row.format("Test R\u00b2: ", lrmod.score(d2_X,d2_y)))
+        # print(format_row.format("Holdout R\u00b2: ", lrmod.score(holdout_X, holdout_y)))
+        # # LR model trained and tested on entire dataset
+        # lrmod.fit(entire_X, entire_y)
+        # print(format_row.format("Entire Dataset R\u00b2: ", lrmod.score(entire_X, entire_y)))
+
+        # Different LR values - using the already split datasets
+        lrmod.fit(self.features_dataset1, self.target_dataset1)
+        print(format_row.format("Train R\u00b2: ", lrmod.score(self.features_dataset1, self.target_dataset1)))
+        print(format_row.format("Test R\u00b2: ", lrmod.score(self.features_dataset2, self.target_dataset2)))
+        print(format_row.format("Holdout R\u00b2: ", lrmod.score(holdout_X, holdout_y)))
+        # LR model trained and tested on entire dataset
+        lrmod.fit(entire_X, entire_y)
+        print(format_row.format("Entire Dataset R\u00b2: ", lrmod.score(entire_X, entire_y)))
+
+        #final pareto front statistics
+        print("\n*************************************************")
+        print("Final Pareto Front Statistics:\n")
+        
+        #find regression and encoder types on final pareto front
+        reg_list = []
+        enc_list = []
+        for pipeline, score1, score2 in zip(self._pareto_front.items, self.score1_final_list, self.score2_final_list):
+            enc = 'a'
+            reg = ""
+            string = str(self.print_pipeline_hyper(pipeline))
+            if re.search('LinearRegression', string) is not None:
+                reg = 'LR'
+            elif re.search('RandomForest', string) is not None:
+                reg = 'RF'
+            elif re.search('DecisionTree', string) is not None:
+                reg = 'DT'
+            
+            if re.search('Encoder', string) is not None:
+                enc = '3'
+            if re.search('Heterosis|Recessive|Dominant', string) is not None:
+                enc = '2'
+            
+            reg_list.append(reg)
+            enc_list.append(enc)
+
+        #print final pareto front statistics
+        tot = len(self._pareto_front.items)
+        print(tot, "pipelines on the final Pareto front\n")
+
+        format_row = "{:>16}{:>8}{:>8}"
+        print(format_row.format("", "Number", "Percent"))
+        print("--------------------------------")
+        
+        format_row = "{:>16}{:>8}{:>8.0%}"
+        print(format_row.format("LinearRegression", sum(x == 'LR' for x in reg_list), sum(x == 'LR' for x in reg_list)/tot))
+        print(format_row.format("MachineLearning", sum(x != 'LR' for x in reg_list), sum(x != 'LR' for x in reg_list)/tot))
+        print("--------------------------------")
+        print(format_row.format("RandomForest", sum(x == 'RF' for x in reg_list), sum(x == 'RF' for x in reg_list)/tot))
+        print(format_row.format("DecisionTree", sum(x == 'DT' for x in reg_list), sum(x == 'DT' for x in reg_list)/tot))
+        print("--------------------------------")
+        print(format_row.format("AdditiveEncoder", sum(x == 'a' for x in enc_list), sum(x == 'a' for x in enc_list)/tot))
+        print(format_row.format("3-LevelEncoder", sum(x == '3' for x in enc_list), sum(x == '3' for x in enc_list)/tot))
+        print(format_row.format("2-LevelEncoder", sum(x == '2' for x in enc_list), sum(x == '2' for x in enc_list)/tot))
+
+        print("\nRange of Test R\u00b2:         ({:.5f}, {:.5f})".format(min(self.score1_final_list), max(self.score1_final_list)))
+        print("Range of Difference Score: ({:.5f}, {:.5f})".format(min(self.score2_final_list), max(self.score2_final_list)))
+
+        #pipelines on final pareto front
+        print("\n*************************************************")
+        print("Final Pareto Front:\n")
+        i = 0
+        for pipeline, score1, score2 in zip(self._pareto_front_fitted_pipelines_.values(), self.score1_final_list, self.score2_final_list):
+            i = i +  1
+            print("Pipeline #" + str(i) + ": ")
+            print("Test R\u00b2:", score1, "|\tDifference Score:", score2)
+            print(re.sub("Pipeline steps:", "", self.print_pipeline_hyper(pipeline, cleaned=True)))
+            
+            #usable_pipeline = self._toolbox.compile(expr=unclean_pipeline) # scikit learn pipeline
+            usable_pipeline = pipeline
+            fitted_pipeline = pipeline
+
+            # print the names of the selected features if FS exists in the pipeline
+            # with warnings.catch_warnings():
+            #     warnings.simplefilter("ignore")
+            #     fitted_pipeline = usable_pipeline.fit(d1_X, d1_y) # usuable pipeline fitted on the training dataset (D1)
+            flag = False
+            current_data_feature_names = entire_X.columns
+            j = 0
+            for name, transformer in usable_pipeline.steps:
+                if name=='variancethreshold' or "variancethreshold" in name or name=='selectpercentile' or "selectpercentile" in name  or name=='featureencodingfrequencyselector' or "featureencodingfrequencyselector" in name:
+                    j = j+1
+                    selected_features_mask = transformer.get_support()
+                    selected_features_names = current_data_feature_names[selected_features_mask]
+                    if len(selected_features_names) == len(current_data_feature_names):
+                        print("\tFeature Selector " +name, "threshold at level " +str(j), "didn't select any features")
+                    else:
+                        print("\tNumber of features selected by " +name, "after " +str(j), "level of feature selection in the pipeline: ", len(selected_features_names))
+                        print("\tFeature names of the selected features by " +name, "after " +str(j), "level of feature selection in the pipeline: ", selected_features_names.tolist())
+                    current_data_feature_names = selected_features_names
+                    flag = True
+
+            if flag==False:
+                print("\tNo feature selectors in the pipeline")
+
+            # with warnings.catch_warnings():
+            #     warnings.simplefilter("ignore")
+            #     fitted_pipeline = usable_pipeline.fit(d80_X, d80_y)
+                
+            # score_80 = fitted_pipeline.score(d80_X, d80_y)
+            # score_holdout_entireDataTrained = fitted_pipeline.score(holdout_X, holdout_y)
+
+            # score_on_holdout = fitted_pipeline.score(holdout_X, holdout_y)
+            # score_on_train = fitted_pipeline.score(d1_X, d1_y)
+            score_on_train = fitted_pipeline.score(self.features_dataset1, self.target_dataset1)
+
+            # print("\tHoldout R\u00b2: ", score_on_holdout)
+            print("\tTrain R\u00b2: ", score_on_train)
+            
+            # print("\tEntire dataset(80%) R^2 trained on entire dataset(80%): ", score_80)
+            # print("\tHoldout data R^2 trained on entire dataset(80%): ", score_holdout_entireDataTrained)
+
+            # # To get the entire data R2
+            # with warnings.catch_warnings():
+            #     warnings.simplefilter("ignore")
+            #     fitted_pipeline = usable_pipeline.fit(entire_X, entire_y)
+            # score_on_entire_dataset = fitted_pipeline.score(entire_X, entire_y)
+            # print("\tEntire dataset R\u00b2: ", score_on_entire_dataset)
+            print("\n-------------------------------------------------")
+
+        # call the plot_final_pareto() function to get the pareto plot to add to the pdf
+        plot1 = self.plot_final_pareto() # final pareto front plot
+        plot1_path = "plot1.png"
+        plot1.savefig(plot1_path)
+        plot1.close()
+
+        #pareto_plot.savefig("ParetoPlot_check.png")
+        plot2 = self.average_feature_importance(entire_X, entire_y) # avg SHAP importance plot
+        plot2_path = "plot2.png"
+        plot2.savefig(plot2_path)   
+        plot2.close()  
+        #avg_shap_plot.savefig("AvgShapPlot_check.png")
+
+        # # define the path to the plots and save the plot images to separate file paths
+        # plot1_path = "plot1.png"
+        # plot2_path = "plot2.png"
+        # plot1.savefig(plot1_path)
+        # plot1.close()
+        # plot2.savefig(plot2_path)   
+        # plot2.close()    
+
+        
+        # close the file
+        sys.stdout.close()
+        # close the file and redirect standard output back to console
+        sys.stdout.close()
+        sys.stdout = sys.__stdout__
+
+        # call the function to convert the text file made to a pdf file
+        self.convert_text_to_pdf(text_output_path, pdf_output_path, plot1_path, plot2_path)
+
+    #outputs a pareto front
+    def plot_final_pareto(self):
+        rangex = max(self.score1_final_list) - min(self.score1_final_list)
+        rangey = max(self.score2_final_list) - min(self.score2_final_list)
+        n = range(1, 1 + len(self.score1_final_list))
+        plt.scatter(self.score1_final_list, self.score2_final_list, edgecolors='black')
+        plt.plot(self.score1_final_list, self.score2_final_list, color='black', linestyle='dashed')  # Change color and linestyle here
+        for i, txt in enumerate(n):
+            plt.annotate(txt, (self.score1_final_list[i], self.score2_final_list[i]), 
+                               xytext = (self.score1_final_list[i] - 0.05*rangex, self.score2_final_list[i] - 0.05*rangey)) # Adjust the xytext values here
+        plt.title('autoQTL: Final Pareto Front')
+        plt.xlabel('Test R2')
+        plt.ylabel('Difference Score')
+        # Set xlim and ylim in reverse order
+        plt.xlim(min(self.score1_final_list) - 0.1*rangex, max(self.score1_final_list) + 0.1*rangex)
+        plt.ylim(min(self.score2_final_list) - 0.1*rangey, max(self.score2_final_list) + 0.1*rangey)
+        #plt.savefig('pareto_plot_BMIPathways_12.png')
+        #plt.close()
+        return plt
+        

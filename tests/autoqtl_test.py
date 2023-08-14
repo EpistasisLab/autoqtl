@@ -9,7 +9,8 @@ from tempfile import mkdtemp
 from sklearn.model_selection import train_test_split
 
 # Insert the path of the currently cloned github repo folder
-sys.path.append("Insert path")
+#sys.path.append("Insert path")
+sys.path.append("/Users/ghosha/Documents/VSCode Projects/autoqtl-1")
 
 import autoqtl
 
@@ -32,7 +33,8 @@ autoqtl_obj._fit_init()
 
 # Load the dataset
 # Insert the path to your test data. The raw data used for some of our experiments is available in the doc/publications/BioDataMining/Supplementary/FileS10 - RawData
-test_data = pd.read_csv("Insert a csv file")
+# test_data = pd.read_csv("Insert a csv file")
+test_data = pd.read_csv("/Users/ghosha/Documents/VSCode Projects/autoqtl/tests/MouseData_BMIPathways.csv")
 
 test_data_numpyarray = pd.DataFrame(test_data).to_numpy()
 
@@ -48,7 +50,7 @@ test_y = test_data.iloc[:,-1]
 
 features_80, features_20, target_80, target_20 = train_test_split(test_X, test_y, test_size=0.2, random_state=42)
 
-features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=22)
+features_dataset1, features_dataset2, target_dataset1, target_dataset2 = train_test_split(features_80, target_80, test_size=0.5, random_state=32)
 
 
 # First test whether the custom parameters are being assigned properly
@@ -153,7 +155,8 @@ def test_summary_of_best_pipeline():
         generations=25,
         verbosity=3
     )
-    autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
+    #autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
+    autoqtl_obj.fit(features_80, target_80,32, 0.5)
     #autoqtl_obj._summary_of_best_pipeline(features_dataset1, target_dataset2, features_dataset2, target_dataset2)
     assert isinstance(autoqtl_obj._optimized_pipeline, creator.Individual)
     #autoqtl_obj.get_feature_importance(features_dataset1, target_dataset1, random_state=0)
@@ -161,10 +164,21 @@ def test_summary_of_best_pipeline():
     #autoqtl_obj.get_shap_values(features_dataset1, target_dataset1)
     #autoqtl_obj.get_shap_values(test_X, test_y)
     
-    autoqtl_obj.get_permutation_importance(test_X, test_y, random_state=0)
+    #autoqtl_obj.get_permutation_importance(test_X, test_y, random_state=0)
     # this method outputs a text file named EvaluationOnHoldout.txt with the performance on holdout data for each pareto front pipeline
-    autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80, test_X, test_y)
-    autoqtl_obj.shap_feature_importance(test_X, test_y, random_state=0)
+    #autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80, test_X, test_y)
+    #autoqtl_obj.shap_feature_importance(test_X, test_y, random_state=0)
+    autoqtl_obj.get_final_output(test_X, test_y, features_20, target_20, file_path = '/Users/ghosha/Library/CloudStorage/Box-Box/AutoQTL/Mouse Data/Analysis/AutoQTL Outputs/')
+    #autoqtl_obj.average_feature_importance(test_X, test_y)
+
+    # # individual SHAP plot
+    # autoqtl_obj.shap_feature_importance_user_choice(test_X, test_y, 1)
+
+    # predicted_target_pipeline = autoqtl_obj.predict_user_choice(features_20, 4)
+    # print("Predicted target for single pipeline: ", predicted_target_pipeline)
+    # holdout_score_pipeline = autoqtl_obj.score_user_choice(features_20, target_20, 4)
+    # print("Holdout score on single pipeline: ", holdout_score_pipeline)
+
 
 # Printing the Linear Regression R2 values for whole dataset and split dataset
 def get_R2():
@@ -193,5 +207,5 @@ def get_R2():
 # calling the test functions
 
 test_summary_of_best_pipeline() # using 
-get_R2()
+#get_R2()
 

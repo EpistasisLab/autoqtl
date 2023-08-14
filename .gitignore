@@ -1,0 +1,30 @@
+# System-specific temporary and index files
+.DS_Store
+.swp
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+.Python
+env/
+venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IPython Notebooks
+.ipynb_checkpoints
+.ipynb_checkpoints/*

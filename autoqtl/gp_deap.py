@@ -12,6 +12,10 @@ from stopit import threading_timeoutable
 from sklearn.model_selection import train_test_split
 
 from .operator_utils import set_sample_weight
+
+# adding for detailed outputs
+logbook = tools.Logbook() # create logbook variable to return evolution history
+
 # One point crossover
 def cxOnePoint(ind1, ind2):
     """Randomly select in each individual and exchange each subtree with the
@@ -292,8 +296,12 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
     registered in the toolbox. This algorithm uses the :func:`varOr`
     variation.
     """
-    logbook = tools.Logbook()
-    logbook.header = ['gen', 'nevals'] + (stats.fields if stats else [])
+    # changes to logbook -> initialize logbook variable
+    global logbook
+    logbook.header = ['gen', 'nevals', 'topscore1', 'topscore2'] + (stats.fields if stats else [])
+
+    # logbook = tools.Logbook()
+    # logbook.header = ['gen', 'nevals'] + (stats.fields if stats else [])
 
     # Initialize statistics dict for the individuals in the population, to keep track of mutation/crossover operations and predecessor relations
     for ind in population:
@@ -302,7 +310,7 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
     population[:] = toolbox.evaluate(population)
 
     record = stats.compile(population) if stats is not None else {}
-    logbook.record(gen=0, nevals=len(population), **record)
+    logbook.record(gen=0, nevals=len(population), topscore1 = 0, topscore2 = 0, **record) # added topscore1 and topscore2
 
     # Begin the generational process
     for gen in range(1, ngen + 1):
@@ -324,6 +332,12 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
 
         # Select the next generation population
         population[:] = toolbox.select(population + offspring, mu)
+
+        # calculate the highest d1 and d2 score
+        high_d1_score = max(halloffame.keys[x].wvalues[0] \
+            for x in range(len(halloffame.keys)))
+        high_d2_score = max(halloffame.keys[x].wvalues[1] \
+            for x in range(len(halloffame.keys)))
 
         # pbar process
         if not pbar.disable:
@@ -360,11 +374,10 @@ def eaMuPlusLambda(population, toolbox, mu, lambda_, cxpb, mutpb, ngen, pbar,
 
         # Update the statistics with the new population
         record = stats.compile(population) if stats is not None else {}
-        logbook.record(gen=gen, nevals=len(invalid_ind), **record)
+        logbook.record(gen=gen, nevals=len(invalid_ind), topscore1 = high_d1_score, topscore2 = high_d2_score, **record) # added topscore1 and topscore2
 
     return population, logbook
 
-# Change to tpot's _wrapped_cross_val_score() as autoqtl does not do cross validation and also it has two sets of features & target for two inputted datasets
 @threading_timeoutable(default="Timeout")
 def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
                     sample_weight=None):
@@ -410,9 +423,8 @@ def _wrapped_score(sklearn_pipeline, features, target, scoring_function,
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')
 
-            score = scorer(sklearn_pipeline, features, target) # will return the result of sklearn pipeline score? Yes it does. Have to find a way to put in the sample_weight_dict
-            #rounded_score = round(score, 5)
-            #print(score)
+            score = scorer(sklearn_pipeline, features, target) # will return the sklearn_pipeline score using the scoring function
+            
         return score
     
     except TimeoutError:
@@ -472,3 +484,13 @@ def get_score_on_fitted_pipeline(sklearn_pipeline, X_learner, y_learner, X_test,
     score = scorer(sklearn_pipeline, X_test, y_test) # will return the result of sklearn pipeline score? Yes it does. 
             
     return score
+
+# new function added to return evolution history
+def return_logbook(clear = False): # default will NOT clear the logbook
+    global logbook
+    if clear: # option to clear and re-initialize the logbook
+        logbook2 = logbook
+        logbook = tools.Logbook()
+        return logbook2
+    else:
+        return logbook
