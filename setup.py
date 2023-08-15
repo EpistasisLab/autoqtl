@@ -25,7 +25,7 @@ A Python tool for post-QTL analysis investigation.
     zip_safe=True,
     install_requires=['numpy>=1.16.3',
                     'scipy>=1.3.1',
-                    'scikit-learn>=0.22.0',
+                    'scikit-learn==1.2.2',
                     'deap>=1.2',
                     'update_checker>=0.16',
                     'tqdm>=4.36.1',
