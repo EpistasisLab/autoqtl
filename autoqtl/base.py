@@ -64,7 +64,7 @@ from .export_utils import (
     set_param_recursive,
     export_pipeline
 )
-from .config.regressor import regressor_config_dict
+#from .config.regressor import regressor_config_dict
 
 try:
     from imblearn.pipeline import make_pipeline as make_imblearn_pipeline
