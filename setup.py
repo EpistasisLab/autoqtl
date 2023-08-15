@@ -35,7 +35,8 @@ A Python tool for post-QTL analysis investigation.
                     'matplotlib>=3.6.2',
                     'seaborn>=0.11.2',
                     'shap>=0.39.0',
-                    'fpdf>=1.7.2'],
+                    'fpdf>=1.7.2',
+                    'filelock>=3.11.0'],
     extras_require={
         'skrebate': ['skrebate>=0.3.4'],
         'mdr': ['scikit-mdr>=0.4.4'],

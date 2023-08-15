@@ -1,1 +1,1 @@
-import autoqtl
+from .autoqtl import AUTOQTLRegressor
