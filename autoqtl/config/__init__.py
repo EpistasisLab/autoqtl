@@ -1,1 +1,1 @@
-from regressor import regressor_config_dict
+from .regressor import regressor_config_dict
