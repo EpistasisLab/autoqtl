@@ -1507,22 +1507,22 @@ class AUTOQTLBase(BaseEstimator):
                     
                     print(self.print_pipeline_hyper(pipeline))
 
-                    # print the names of the selected features if FS exists in the pipeline
-                    pipeline_sklearn = self._toolbox.compile(expr=pipeline)
-                    with warnings.catch_warnings():
-                        warnings.simplefilter("ignore")
-                    pipeline_sklearn.fit(selected_features, selected_target)
-                    flag = False
-                    for name, transformer in pipeline_sklearn.steps:
-                        if name=='variancethreshold' or name=='selectpercentile' or name=='featureencodingfrequencyselector':
-                            selected_features_mask = transformer.get_support()
-                            selected_features_names = features_dataset1.columns[selected_features_mask]
-                            print("No of features selected in the pipeline: ", len(selected_features_names))
-                            print("Feature names selected in the pipeline: ", selected_features_names.tolist())
-                            flag = True
+                    # # print the names of the selected features if FS exists in the pipeline
+                    # pipeline_sklearn = self._toolbox.compile(expr=pipeline)
+                    # with warnings.catch_warnings():
+                    #     warnings.simplefilter("ignore")
+                    # pipeline_sklearn.fit(selected_features, selected_target)
+                    # flag = False
+                    # for name, transformer in pipeline_sklearn.steps:
+                    #     if name=='variancethreshold' or name=='selectpercentile' or name=='featureencodingfrequencyselector':
+                    #         selected_features_mask = transformer.get_support()
+                    #         selected_features_names = features_dataset1.columns[selected_features_mask]
+                    #         print("No of features selected in the pipeline: ", len(selected_features_names))
+                    #         print("Feature names selected in the pipeline: ", selected_features_names.tolist())
+                    #         flag = True
 
-                    if flag==False:
-                        print("No feature selectors were selected in the pipeline")
+                    # if flag==False:
+                    #     print("No feature selectors were selected in the pipeline")
 
                     self.score1_final_list.append(pipeline_scores.wvalues[0])
                     self.score2_final_list.append(pipeline_scores.wvalues[1])

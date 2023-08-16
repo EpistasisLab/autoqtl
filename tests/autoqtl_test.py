@@ -10,7 +10,8 @@ from sklearn.model_selection import train_test_split
 
 # Insert the path of the currently cloned github repo folder
 #sys.path.append("Insert path")
-sys.path.append("/Users/ghosha/Documents/VSCode Projects/autoqtl-1")
+#sys.path.append("/Users/ghosha/Documents/VSCode Projects/autoqtl-1")
+sys.path.append("/Users/ghosha/Documents/VSCode Projects/autoqtl")
 
 import autoqtl
 
@@ -156,7 +157,7 @@ def test_summary_of_best_pipeline():
         verbosity=3
     )
     #autoqtl_obj.fit(features_dataset1, target_dataset1, features_dataset2, target_dataset2)
-    autoqtl_obj.fit(features_80, target_80,32, 0.5)
+    autoqtl_obj.fit(features_80, target_80,42, 0.5)
     #autoqtl_obj._summary_of_best_pipeline(features_dataset1, target_dataset2, features_dataset2, target_dataset2)
     assert isinstance(autoqtl_obj._optimized_pipeline, creator.Individual)
     #autoqtl_obj.get_feature_importance(features_dataset1, target_dataset1, random_state=0)
@@ -168,7 +169,7 @@ def test_summary_of_best_pipeline():
     # this method outputs a text file named EvaluationOnHoldout.txt with the performance on holdout data for each pareto front pipeline
     #autoqtl_obj.get_test_r2(features_dataset1, target_dataset1, features_dataset2, target_dataset2 ,features_20, target_20, features_80, target_80, test_X, test_y)
     #autoqtl_obj.shap_feature_importance(test_X, test_y, random_state=0)
-    autoqtl_obj.get_final_output(test_X, test_y, features_20, target_20, file_path = '/Users/ghosha/Library/CloudStorage/Box-Box/AutoQTL/Mouse Data/Analysis/AutoQTL Outputs/')
+    autoqtl_obj.get_final_output(test_X, test_y, features_20, target_20, file_path = '/Users/ghosha/Library/CloudStorage/Box-Box/AutoQTL/Mouse Data/Analysis/AutoQTL Outputs/Package Tests/')
     #autoqtl_obj.average_feature_importance(test_X, test_y)
 
     # # individual SHAP plot
