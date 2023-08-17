@@ -1828,7 +1828,7 @@ class AUTOQTLBase(BaseEstimator):
         plt.tight_layout()
 
         # Save the plot to a file
-        plt.savefig(f"Pipeline{pipeline_no}.png")
+        #plt.savefig(f"Pipeline{pipeline_no}.png")
         #plt.close()
         return plt # added a line to the plot
 
@@ -2487,7 +2487,7 @@ class AUTOQTLBase(BaseEstimator):
         plt.ylabel("Features", size=15)
         plt.title("Feature Importance Graph", size=18)
         plt.tight_layout()
-        plt.savefig("AvgShapGraph.png", dpi=100)
+        #plt.savefig("AvgShapGraph.png", dpi=100)
         return plt
 
     # function to convert a text file to a pdf file
