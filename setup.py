@@ -19,7 +19,7 @@ setup(
     entry_points={'console_scripts': ['autoqtl=autoqtl:main', ]},
     description=('Automated Quantitative Trait Locus Analysis Tool'),
     long_description='''
-A Python tool for post-QTL analysis investigation.
+AutoQTL: A Python package for automated quantitative trait locus analysis.
 
 ''',
     zip_safe=True,
