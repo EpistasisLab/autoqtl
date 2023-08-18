@@ -13,7 +13,7 @@ AutoQTL is recommended to be used as a posthoc analysis to genome-wide associati
 #geneticsmeetsautoML
 
 ## Installing & Running AutoQTL
-==================================
+
 We recommend installing the Python package 'autoqtl' from the pypi repository to run AutoQTL. 
 [The package can be found at] (https://pypi.org/project/autoqtl/#description) 
 
@@ -34,12 +34,12 @@ We continue to work on to add new features and functionality to AutoQTL.
 Suggestions are welcome.
 
 ## License
-==================================
+
 Please see the [repository license](https://github.com/EpistasisLab/autoqtl/blob/master/LICENSE) for licensing and usage information.
 Autoqtl is open source and freely available but citation is required.
 
 ## Citing AutoQTL
-==================================
+
 If you use AutoQTL in a scientific publication, please consider citing the following paper:
 
 Philip J. Freda, Attri Ghosh, Elizabeth Zhang, Tianhao Luo, Apurva S. Chitre, Oksana Polesskaya, Celine L. St. Pierre, Jianjun Gao,
