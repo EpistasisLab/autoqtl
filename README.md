@@ -12,15 +12,33 @@ AutoQTL is recommended to be used as a posthoc analysis to genome-wide associati
 
 #geneticsmeetsautoML
 
-Running AutoQTL
+## Installing & Running AutoQTL
 ==================================
-Anyone interested in AutoQTL can clone the repository and run the autoqtl_test.py file in the 'test' folder in a python environment made by using the requirements.txt file.
-This software is built as part of a proof-of-concept and hence is still under development. 
- 
-We continue to work on to add new features and functionality to AutoQTL and make it available as a python package. 
+We recommend installing the Python package 'autoqtl' from the pypi repository to run AutoQTL. 
+[The package can be found at] (https://pypi.org/project/autoqtl/#description) 
+
+We also recommend using conda environments for installing Autoqtl, but it is not necessary. 
+Recommended installation:
+```
+conda create --name autoqtl_env python=3.10
+conda activate autoqtl_env
+pip install autoqtl
+```
+
+After installation, the 'demo.ipynb' jupyter notebook in the tutorials folder can be used as a reference to run AutoQTL.  
+
+Anyone interested in exploring the code base of AutoQTL further, can clone the repository, make a conda environment using the requirements.txt file and try out new things.
+
+This software is built as part of a proof-of-concept and hence is still under development.  
+We continue to work on to add new features and functionality to AutoQTL. 
 Suggestions are welcome.
 
-Citing AutoQTL
+## License
+==================================
+Please see the [repository license](https://github.com/EpistasisLab/autoqtl/blob/master/LICENSE) for licensing and usage information.
+Autoqtl is open source and freely available but citation is required.
+
+## Citing AutoQTL
 ==================================
 If you use AutoQTL in a scientific publication, please consider citing the following paper:
 
