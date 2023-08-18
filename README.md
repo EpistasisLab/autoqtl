@@ -15,7 +15,7 @@ AutoQTL is recommended to be used as a posthoc analysis to genome-wide associati
 ## Installing & Running AutoQTL
 
 We recommend installing the Python package 'autoqtl' from the pypi repository to run AutoQTL. 
-[The package can be found at] (https://pypi.org/project/autoqtl/#description) 
+[The package can be found at](https://pypi.org/project/autoqtl/#description) 
 
 We also recommend using conda environments for installing Autoqtl, but it is not necessary. 
 Recommended installation:
