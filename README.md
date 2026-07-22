@@ -8,7 +8,7 @@ AutoQTL : Automated Quantitative Trait Locus Analysis
 **AutoQTL** is an automated machine learning tool for QTL analysis.
 The goal of AutoQTL is to automate QTL analysis by building an analytics pipeline optimized for explaining variation in a quantitative trait given a set of genetic variants (e.g., SNPs). It uses genetic programming (GP) as the search and optimization method. 
 
-AutoQTL is recommended to be used as a posthoc analysis to genome-wide association studies and/or QTL analysis. AutoQTL aims to provide additional insights into the association of phenotype to genotype including, but not limited to, the detection of non-additive genetic inheritance models and epistatic interactions. Furthermore, our feature importance metrics, in tandem with summary statistics, can provide additional evidence for the identification of putative QTL and targets for gene set enrichment and KEGG pathway analysis. 
+AutoQTL is recommended to be used as a posthoc analysis to genome-wide association studies and/or QTL analysis. AutoQTL aims to provide additional insights into the association of phenotype to genotype including, but not limited to, the detection of non-additive inheritance models and epistatic interactions. Furthermore, our feature importance metrics, in tandem with summary statistics, can provide additional evidence for the identification of putative QTL and targets for gene set enrichment and KEGG pathway analysis. 
 
 #geneticsmeetsautoML
 
